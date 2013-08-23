@@ -1,4 +1,4 @@
-    #!/usr/local/bin/python
+#!/usr/local/bin/python
 # encoding: utf-8
 """
 plotting
@@ -108,17 +108,17 @@ def plot_polynomial(
     ## LOCAL APPLICATION ##
 
     ################ >ACTION(S) ################
-    colors = [
-        {'green' : '#859900'},
-        {'blue' : '#268bd2'},
-        {'red' : '#dc322f'},
-        {'gray' : '#D2D1D1'},
-        {'orange' : '#cb4b16'},
-        {'violet' : '#6c71c4'},
-        {'cyan' : '#2aa198'},
-        {'magenta' : '#d33682'},
-        {'yellow' : '#b58900'}
-    ]
+    colors = {
+        'green' : '#859900',
+        'blue' : '#268bd2',
+        'red' : '#dc322f',
+        'gray' : '#D2D1D1',
+        'orange' : '#cb4b16',
+        'violet' : '#6c71c4',
+        'cyan' : '#2aa198',
+        'magenta' : '#d33682',
+        'yellow' : '#b58900'
+    }
 
     if not xRange:
         log.error('please provide an x-range')

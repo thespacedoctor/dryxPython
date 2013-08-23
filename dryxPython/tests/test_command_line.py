@@ -1,6 +1,7 @@
 import os
 import nose
-from .. import fitstools
+import dryxPython.command_line as cl
+from unittest import TestCase
 
 ## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 def setUpModule():
@@ -8,7 +9,8 @@ def setUpModule():
     import logging.config
     import yaml
 
-    "set up test fixtures"
+    print "SETUP"
+
     moduleDirectory = os.path.dirname(__file__) + "/../tests"
 
     # SETUP PATHS TO COMMONG DIRECTORIES FOR TEST DATA
@@ -21,9 +23,6 @@ def setUpModule():
     # SETUP THE TEST LOG FILE
     global testlog
     testlog = open(pathToOutputDir + "tests.log", 'w')
-
-    global pathToFitsFile
-    pathToFitsFile = pathToInputDataDir + "LSQ12dwl_20120808_B639_56462_1.fits"
 
     # SETUP LOGGING
     loggerConfig = """
@@ -56,6 +55,8 @@ def setUpModule():
 
 def tearDownModule():
     "tear down test fixtures"
+
+    print "TEARDOWN"
     # CLOSE THE TEST LOG FILE
     testlog.close()
     return None
@@ -67,34 +68,25 @@ class emptyLogger:
     critical=None
     warning=None
 
-class test_convert_fits_header_to_dictionary():
+class test_get_help_for_python_module():
+    def test_fail_for_no_argv(self):
+        result = cl.py_get_help_for_python_module()
+        assert result == -1
 
-    def test_pathToFitsFile_argu_is_str(self):
-        nose.tools.assert_raises(TypeError, fitstools.convert_fits_header_to_dictionary, log, ["not a string", 10])
+class test_fits_print_fits_header():
 
-    def test_error_raises_if_fits_file_does_not_exists(self):
-        nose.tools.assert_raises(IOError, fitstools.convert_fits_header_to_dictionary, log, "/path/to/nothing")
+    def test_docopt(self):
+        clArgs = {}
+        clArgs["<path-to-fits-file>"] = pathToInputDataDir + "LSQ12dwl_20120808_B639_56462_1.fits"
+        clArgs["--pydict"] = False
+        clArgs["--help"] = False
+        result = cl.dft_print_fits_header(clArgs)
+        nose.tools.assert_is_instance(result, list)
 
-    def test_dictionary_is_returned(self):
-        result = fitstools.convert_fits_header_to_dictionary(log, pathToFitsFile)
+    def test_result_to_python_dictionary(self):
+        clArgs = {}
+        clArgs["<path-to-fits-file>"] = pathToInputDataDir + "LSQ12dwl_20120808_B639_56462_1.fits"
+        clArgs["--pydict"] = True
+        clArgs["--help"] = False
+        result = cl.dft_print_fits_header(clArgs)
         nose.tools.assert_is_instance(result, dict)
-
-    def test_dictionary_values_are_lists_with_2_items(self):
-        result = fitstools.convert_fits_header_to_dictionary(log, pathToFitsFile)
-        lengthResult = True
-        for k, v in result.iteritems():
-            if len(v) != 2:
-                lengthResult = False
-        nose.tools.assert_true(lengthResult)
-
-
-
-
-
-
-
-
-
-
-
-

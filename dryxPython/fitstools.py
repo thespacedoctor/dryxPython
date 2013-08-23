@@ -77,18 +77,14 @@ def main():
 ## LAST MODIFIED : March 19, 2013
 ## CREATED : March 19, 2013
 ## AUTHOR : DRYX
-
-
 def convert_fits_header_to_dictionary(
-        dbConn,
         log,
-        pathToFits):
+        pathToFitsFile):
     """Convert a FITS file header keywords / values into a python dictionary
 
     **Key Arguments:**
-        - ``dbConn`` -- mysql database connection
         - ``log`` -- logger
-        - ``pathToFits`` -- the absolute path to the FITS file
+        - ``pathToFitsFile`` -- path to the fits file
 
     **Return:**
         - ``headerDictionary`` -- the header converted to a dictionary suitable for mysql ingest
@@ -97,25 +93,32 @@ def convert_fits_header_to_dictionary(
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
-    import utils as u
 
     ################ > VARIABLE SETTINGS ######
     ################ >ACTION(S) ################
-    header = get_fits_header(log, pathToFits)
+    if not isinstance(pathToFitsFile, str):
+        raise TypeError("pathToFitsFile argument needs to be a string")
+
+    try:
+        with open(pathToFitsFile):
+            pass
+            fileExists = True
+    except IOError:
+       fileExists = False
+       raise IOError("the fits file %s does not exist" % (pathToFitsFile,))
+
+    fitsHeader = get_fits_header(log, pathToFitsFile)
+    cardList = fitsHeader.ascardlist()
 
     headerDictionary = {}
-    for k, v in header.iteritems():
-        formatedKey = (k.replace(" ", "_")).strip()
-        if len(formatedKey) > 0:
-            headerDictionary.update({formatedKey: v})
+    for cl in cardList:
+        headerDictionary[cl.key] = [cl.value, cl.comment]
 
-    return newHeaderDictionary
+    return headerDictionary
 
 ## LAST MODIFIED : March 19, 2013
 ## CREATED : March 19, 2013
 ## AUTHOR : DRYX
-
-
 def get_fits_header(log, pathToFits):
     """Return the HDU for the given fits file
 

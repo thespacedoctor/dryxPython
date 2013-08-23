@@ -602,5 +602,39 @@ def get_recursive_list_of_directory_contents(
     return matchedPathList
 
 
+## LAST MODIFIED : August 17, 2013
+## CREATED : August 17, 2013
+## AUTHOR : DRYX
+def get_help_for_python_module(
+        pathToModuleFile,
+        log):
+    """print the help for python module
+
+    **Key Arguments:**
+        - ``pathToModuleFile`` -- the path to the python module
+        - ``log`` -- logger
+
+    **Return:**
+        - None
+
+    **Todo**
+        - [ ] when complete, clean get_help_for_python_module function
+        - [ ] when complete add logging
+        - [ ] when complete, decide whether to abstract function to another module
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+
+    log.info('starting the ``get_help_for_python_module`` function')
+    ## VARIABLES ##
+
+    basename = os.path.basename(pathToModuleFile).replace(".py")
+    print basename
+
+    log.info('completed the ``get_help_for_python_module`` function')
+    return None
+
 if __name__ == '__main__':
     main()

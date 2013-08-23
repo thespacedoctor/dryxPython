@@ -31,16 +31,16 @@ def setup_dryx_logging(yaml_file):
 
     import logging
     # REINSTATE logging.config WHENEVER PYTHON 2.7 INSTALLED - dictconfig IS USED TO MAKE LOGGING BACKWARD COMPATIBLE WITH PYTHON 2.6
-    #import logging.config
-    import dictconfig
+    import logging.config
+    # import dictconfig
     import yaml
 
     # IMPORT CUSTOM HANDLER THAT ALLOWS GROUP WRITING
     handlers.GroupWriteRotatingFileHandler = GroupWriteRotatingFileHandler
 
     # IMPORT YAML LOGGING DICTIONARY
-    # logging.config.dictConfig(yaml.load(open(yaml_file, 'r'))) # REINSTATE AFTER PYTHON 2.7 INSTALLED
-    dictconfig.dictConfig(yaml.load(open(yaml_file, 'r')))
+    logging.config.dictConfig(yaml.load(open(yaml_file, 'r'))) # REINSTATE AFTER PYTHON 2.7 INSTALLED
+    # dictconfig.dictConfig(yaml.load(open(yaml_file, 'r')))
     # SET THE ROOT LOGGER
     logger = logging.getLogger(__name__)
 

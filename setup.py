@@ -25,7 +25,10 @@ setup(name='dryxPython',
       ],
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],
-      # entry_points={
-      #     'console_scripts': ['funniest-joke=funniest.cmd:main'],
-      # },
+      entry_points={
+          'console_scripts': [
+            'py_get_help_for_python_module=dryxPython.command_line:get_help_for_python_module',
+            'dft_print_fits_header=dryxPython.command_line:dft_print_fits_header'
+          ],
+      },
       zip_safe=False)

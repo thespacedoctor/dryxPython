@@ -1,0 +1,11 @@
+SETUP
+Usage: get_help_for_python_module <pathToModuleFile>
+TEARDOWN
+* 11:59:51 - CRITICAL: mysql.py:convert_dictionary_to_mysql_table:225 > Please use a valid MySQL DB connection.
+* 11:59:51 - CRITICAL: mysql.py:convert_dictionary_to_mysql_table:230 > Please make sure "dictionary" argument is a dict type.
+* 11:59:51 - CRITICAL: mysql.py:convert_dictionary_to_mysql_table:247 > Please make sure values in "dictionary" are of an appropriate value to add to the database
+* 11:59:51 - CRITICAL: mysql.py:convert_dictionary_to_mysql_table:235 > Please make sure "uniqueKeyList" is a list
+* 11:59:51 - CRITICAL: mysql.py:convert_dictionary_to_mysql_table:241 > Please make sure values in "uniqueKeyList" are present in the "dictionary" you are tring to convert
+* 11:59:51 - ERROR: mysql.py:execute_mysql_write_query:133 > MySQL write command not executed for this query: << ALTER TABLE python_unit_testing_dict_to_mysqlysq ADD unique somegoodkey_and_other (someGoodKey,and other) >>
+The error was: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and other)' at line 1") 
+* 11:59:51 - DEBUG: mysql.py:convert_dictionary_to_mysql_table:432 > adding new data to the python_unit_testing_dict_to_mysqlysq table; query: INSERT IGNORE INTO python_unit_testing_dict_to_mysqlysq (and_other,dateCreated,dateLastModified,dateLastRead,someGoodKey) VALUES ("nice, nice" ,"2013-08-23T11:59:51" ,"2013-08-23T11:59:51" ,"2013-08-23T11:59:51" ,"nice")

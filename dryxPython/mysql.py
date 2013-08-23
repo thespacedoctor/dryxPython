@@ -205,20 +205,49 @@ def convert_dictionary_to_mysql_table(
         - ``dictionary`` -- python dictionary
         - ``dbConn`` -- the db connection
         - ``dbTableName`` -- name of the table you wish to add the data to (or create if it does not exist)
-        - ``uniqueKeyList`` - a tuple of lowcase, no space mysql column names that need to be the primary key
+        - ``uniqueKeyList`` - a lists column names that need combined to create the primary key
 
     **Return:**
         - ``None`` """
 
     # # >IMPORTS ##
-    import MySQLdb
+    import MySQLdb as mdb
     import re
     import yaml
     import time
-    import dryxPython.commonutils
+    from dryxPython import commonutils as dcu
     import ordereddict as c  # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
     # import collections as c
-    # # >SETTINGS ##
+
+    ## TEST THE ARGUMENTS
+    if str(type(dbConn).__name__) != "Connection":
+        message = 'Please use a valid MySQL DB connection.'
+        log.critical(message)
+        raise TypeError(message)
+
+    if not isinstance(dictionary, dict):
+        message = 'Please make sure "dictionary" argument is a dict type.'
+        log.critical(message)
+        raise TypeError(message)
+
+    if not isinstance(uniqueKeyList, list):
+        message = 'Please make sure "uniqueKeyList" is a list'
+        log.critical(message)
+        raise TypeError(message)
+
+    for i in uniqueKeyList:
+        if i not in dictionary.keys():
+            message = 'Please make sure values in "uniqueKeyList" are present in the "dictionary" you are tring to convert'
+            log.critical(message)
+            raise ValueError(message)
+
+    for k, v in dictionary.iteritems():
+        if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float)):
+            message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database'
+            log.critical(message)
+            raise ValueError(message)
+
+
     qCreateColumnPreamble = \
         "IF NOT EXISTS( (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND COLUMN_NAME='my_additional_column' AND TABLE_NAME='my_table_name') ) THEN"
     qCreateColumnPostamble = \
@@ -243,9 +272,7 @@ def convert_dictionary_to_mysql_table(
     formattedKey = ''
     formattedKeyList = []
     myValues = []
-    # ##########################################################
-    # >ACTIONS                                                #
-    # ##########################################################
+
     # CREATE THE TABLE IF IT DOES NOT EXIST YET
     try:
         # log.debug("creating the "+dbTableName+" table if it does not exist")
@@ -266,9 +293,9 @@ def convert_dictionary_to_mysql_table(
         log.critical('could not create the table ' + dbTableName + ' ' + str(e) + '\n')
         sys.exit(e)
     # ADD EXTRA COLUMNS TO THE DICTIONARY
-    dictionary['dateCreated'] = str(commonutils.get_now_sql_datetime())
-    dictionary['dateLastModified'] = str(commonutils.get_now_sql_datetime())
-    dictionary['dateLastRead'] = str(commonutils.get_now_sql_datetime())
+    dictionary['dateCreated'] = str(dcu.get_now_sql_datetime())
+    dictionary['dateLastModified'] = str(dcu.get_now_sql_datetime())
+    dictionary['dateLastRead'] = str(dcu.get_now_sql_datetime())
     # ITERATE THROUGH THE DICTIONARY AND GENERATE THE A TABLE COLUMN WITH THE NAME OF THE KEY, IF IT DOES NOT EXIST
     count = len(dictionary)
     i = 1
@@ -278,7 +305,7 @@ def convert_dictionary_to_mysql_table(
     # SORT THE DICTIONARY BY KEY
     odictionary = c.OrderedDict(sorted(dictionary.items()))
     for (key, value) in odictionary.iteritems():
-        formattedKey = key
+        formattedKey = key.replace(" ","_")
         # DEC A KEYWORD IN MYSQL - NEED TO CHANGE BEFORE INGEST
         if formattedKey == 'dec':
             formattedKey = 'decl'
@@ -315,7 +342,7 @@ def convert_dictionary_to_mysql_table(
                 log.error('something went wrong' + str(e) + '\n')
             # IF COLUMN DOESN'T EXIT - GENERATE IT
             if len(rows) == 0:
-                qCreateColumn = 'ALTER TABLE ' + dbTableName + ' ADD ' + formattedKey
+                qCreateColumn = """ALTER TABLE %s ADD %s""" % (dbTableName,formattedKey)
                 if reDatetime.search(str(value)):
                     # log.debug('Ok - a datetime string was found')
                     qCreateColumn += ' datetime DEFAULT NULL'
@@ -361,15 +388,13 @@ def convert_dictionary_to_mysql_table(
                         log.debug('qCreateColumn: %s' % (qCreateColumn, ))
                         log.error('could not create the ' + formattedKey + ' column in the ' + dbTableName
                                   + ' table -- ' + str(e) + '\n')
+
     # # GENERATE THE INDEX NAME - THEN CREATE INDEX IF IT DOES NOT YET EXIST
-    # CHECK IF THE UNIQUE KEY IS A LIST (COULD BE STRING)
-    if type(uniqueKeyList) is list:
-        indexName = uniqueKeyList[0]
-        for i in range(len(uniqueKeyList) - 1):
-            indexName += '_' + uniqueKeyList[i + 1]
-    else:
-        indexName = uniqueKeyList
-    indexName = commonutils.make_lowercase_nospace(indexName)
+    indexName = uniqueKeyList[0]
+    for i in range(len(uniqueKeyList) - 1):
+        indexName += '_' + uniqueKeyList[i + 1]
+
+    indexName = dcu.make_lowercase_nospace(indexName)
     rows = execute_mysql_read_query(
         """SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND
                                 TABLE_NAME = '"""
