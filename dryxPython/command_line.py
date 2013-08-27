@@ -119,7 +119,8 @@ def dft_print_fits_header(clArgs=None):
         )
         result = thisDict
 
-    return result
+    print result
+    return None
 
 
 # from . import joke

@@ -197,7 +197,7 @@ def convert_dictionary_to_mysql_table(
         log,
         dictionary,
         dbTableName,
-        uniqueKeyList):
+        uniqueKeyList=[]):
     """ Convert a python dictionary into a mysql table
 
     **Key Arguments:**
@@ -242,9 +242,9 @@ def convert_dictionary_to_mysql_table(
             raise ValueError(message)
 
     for k, v in dictionary.iteritems():
-        if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float)):
-            message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database'
-            log.critical(message)
+        if not (isinstance(v[0], str) or isinstance(v[0], int) or isinstance(v[0], bool) or isinstance(v[0], float) or v[0] == None):
+            message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
+            log.critical("%s: in %s we have a %s (%s)" % (message,k,v,type(v)))
             raise ValueError(message)
 
 
@@ -293,36 +293,40 @@ def convert_dictionary_to_mysql_table(
         log.critical('could not create the table ' + dbTableName + ' ' + str(e) + '\n')
         sys.exit(e)
     # ADD EXTRA COLUMNS TO THE DICTIONARY
-    dictionary['dateCreated'] = str(dcu.get_now_sql_datetime())
-    dictionary['dateLastModified'] = str(dcu.get_now_sql_datetime())
-    dictionary['dateLastRead'] = str(dcu.get_now_sql_datetime())
+    dictionary['dateCreated'] = [str(dcu.get_now_sql_datetime()),"date row was created"]
+    dictionary['dateLastModified'] = [str(dcu.get_now_sql_datetime()),"date row was modified"]
+    dictionary['dateLastRead'] = [str(dcu.get_now_sql_datetime()),"date row was last read"]
     # ITERATE THROUGH THE DICTIONARY AND GENERATE THE A TABLE COLUMN WITH THE NAME OF THE KEY, IF IT DOES NOT EXIST
     count = len(dictionary)
     i = 1
     for (key, value) in dictionary.items():
-        if value is None:
+        if value[0] is None:
             del dictionary[key]
     # SORT THE DICTIONARY BY KEY
     odictionary = c.OrderedDict(sorted(dictionary.items()))
     for (key, value) in odictionary.iteritems():
-        formattedKey = key.replace(" ","_")
+
+        formattedKey = key.replace(" ","_").replace("-","_")
         # DEC A KEYWORD IN MYSQL - NEED TO CHANGE BEFORE INGEST
-        if formattedKey == 'dec':
-            formattedKey = 'decl'
+        if formattedKey == "dec":
+            formattedKey = "decl"
+        if formattedKey == "DEC":
+            formattedKey = "DECL"
+
         formattedKeyList.extend([formattedKey])
         if len(key) > 0:
             # CONVERT LIST AND FEEDPARSER VALUES TO YAML (SO I CAN PASS IT AS A STRING TO MYSQL)
-            if type(value) == list or reFeedParserClass.search(str(type(value))):
-                value = yaml.dump(value)
-                value = str(value)
+            if type(value[0]) == list or reFeedParserClass.search(str(type(value[0]))):
+                value[0] = yaml.dump(value[0])
+                value[0] = str(value[0])
             # REMOVE CHARACTERS THAT COLLIDE WITH MYSQL
-            if type(value) == str or type(value) == unicode:
-                value = value.replace('"', """'""")
+            if type(value[0]) == str or type(value[0]) == unicode:
+                value[0] = value[0].replace('"', """'""")
             # JOIN THE VALUES TOGETHER IN A LIST - EASIER TO GENERATE THE MYSQL COMMAND LATER
-            if type(value) == unicode:
-                myValues.extend(['%s' % value.strip()])
+            if type(value[0]) == unicode:
+                myValues.extend(['%s' % value[0].strip()])
             else:
-                myValues.extend(['%s' % (value, )])
+                myValues.extend(['%s' % (value[0], )])
             # CHECK IF COLUMN EXISTS YET
             colExists = \
                 "SELECT *\
@@ -343,32 +347,32 @@ def convert_dictionary_to_mysql_table(
             # IF COLUMN DOESN'T EXIT - GENERATE IT
             if len(rows) == 0:
                 qCreateColumn = """ALTER TABLE %s ADD %s""" % (dbTableName,formattedKey)
-                if reDatetime.search(str(value)):
+                if reDatetime.search(str(value[0])):
                     # log.debug('Ok - a datetime string was found')
                     qCreateColumn += ' datetime DEFAULT NULL'
                 elif formattedKey == 'updated_parsed' or formattedKey == 'published_parsed' or formattedKey \
                     == 'feedName' or formattedKey == 'title':
                     qCreateColumn += ' varchar(200) DEFAULT NULL'
-                elif (type(value) == str or type(value) == unicode) and len(value) < 30:
-                    qCreateColumn += ' varchar(450) DEFAULT NULL'
-                elif (type(value) == str or type(value) == unicode) and len(value) >= 30 and len(value) < 80:
-                    qCreateColumn += ' varchar(450) DEFAULT NULL'
-                elif type(value) == str or type(value) == unicode:
-                    columnLength = 450 + len(value) * 2
+                elif (type(value[0]) == str or type(value[0]) == unicode) and len(value[0]) < 30:
+                    qCreateColumn += ' varchar(200) DEFAULT NULL'
+                elif (type(value[0]) == str or type(value[0]) == unicode) and len(value[0]) >= 30 and len(value[0]) < 80:
+                    qCreateColumn += ' varchar(200) DEFAULT NULL'
+                elif type(value[0]) == str or type(value[0]) == unicode:
+                    columnLength = 450 + len(value[0]) * 2
                     qCreateColumn += ' varchar(' + str(columnLength) + ') DEFAULT NULL'
-                elif type(value) == int and abs(value) <= 9:
+                elif type(value[0]) == int and abs(value[0]) <= 9:
                     qCreateColumn += ' tinyint DEFAULT NULL'
-                elif type(value) == int:
+                elif type(value[0]) == int:
                     qCreateColumn += ' int DEFAULT NULL'
-                elif type(value) == float or type(value) == long:
+                elif type(value[0]) == float or type(value[0]) == long:
                     qCreateColumn += ' double DEFAULT NULL'
-                elif type(value) == bool:
+                elif type(value[0]) == bool:
                     qCreateColumn += ' tinyint DEFAULT NULL'
-                elif type(value) == list:
+                elif type(value[0]) == list:
                     qCreateColumn += ' varchar(1024) DEFAULT NULL'
                 else:
                     log.debug('Do not know what format to add this key in MySQL - removing from dictionary: %s, %s'
-                              % (key, type(value)))
+                              % (key, type(value[0])))
                     formattedKeyList.pop()
                     myValues.pop()
                     qCreateColumn = None
@@ -390,29 +394,39 @@ def convert_dictionary_to_mysql_table(
                                   + ' table -- ' + str(e) + '\n')
 
     # # GENERATE THE INDEX NAME - THEN CREATE INDEX IF IT DOES NOT YET EXIST
-    indexName = uniqueKeyList[0]
-    for i in range(len(uniqueKeyList) - 1):
-        indexName += '_' + uniqueKeyList[i + 1]
+    if len(uniqueKeyList):
+        for i in range(len(uniqueKeyList)):
+            uniqueKeyList[i] = uniqueKeyList[i].replace(" ","_").replace("-","_")
+            if uniqueKeyList[i] == "dec":
+                uniqueKeyList[i] = "decl"
+            if uniqueKeyList[i] == "DEC":
+                uniqueKeyList[i] = "DECL"
 
-    indexName = dcu.make_lowercase_nospace(indexName)
-    rows = execute_mysql_read_query(
-        """SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND
-                                TABLE_NAME = '"""
-             + dbTableName + """' AND INDEX_NAME = '""" + indexName + """'""",
-        dbConn,
-        log,
-        )
-    exists = rows[0]['COUNT(*)']
-    if exists == 0:
-        if type(uniqueKeyList) is list:
-            uniqueKeyList = ','.join(uniqueKeyList)
-        addUniqueKey = 'ALTER TABLE ' + dbTableName + ' ADD unique ' + indexName + """ (""" + uniqueKeyList + ')'
-        # log.debug('HERE IS THE COMMAND:'+addUniqueKey)
-        execute_mysql_write_query(
-            addUniqueKey,
+        indexName = uniqueKeyList[0].replace(" ","_").replace("-","_")
+        for i in range(len(uniqueKeyList) - 1):
+            indexName += '_' + uniqueKeyList[i + 1]
+
+        indexName = dcu.make_lowercase_nospace(indexName)
+        rows = execute_mysql_read_query(
+            """SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND
+                                    TABLE_NAME = '"""
+                 + dbTableName + """' AND INDEX_NAME = '""" + indexName + """'""",
             dbConn,
             log,
             )
+        exists = rows[0]['COUNT(*)']
+        log.debug('uniqueKeyList: %s' % (uniqueKeyList,))
+        if exists == 0:
+            if type(uniqueKeyList) is list:
+                uniqueKeyList = ','.join(uniqueKeyList)
+
+            addUniqueKey = 'ALTER TABLE ' + dbTableName + ' ADD unique ' + indexName + """ (""" + uniqueKeyList + ')'
+            # log.debug('HERE IS THE COMMAND:'+addUniqueKey)
+            execute_mysql_write_query(
+                addUniqueKey,
+                dbConn,
+                log,
+                )
     # GENERATE THE INSERT COMMAND - IGNORE DUPLICATE ENTRIES
     myKeys = ','.join(formattedKeyList)
     myValues = '" ,"'.join(myValues)
@@ -541,17 +555,17 @@ def add_column_to_db_table(
 ## CREATED : 20121102
 
 def add_HTMIds_to_mysql_tables(
-    raColName,
-    declColName,
-    tableName,
-    dbConn,
-    log,
-    ):
+        raColName,
+        declColName,
+        tableName,
+        dbConn,
+        log,
+        primaryIdColumnName="primaryId"):
     """ Calculate and append HTMId info to a mysql db table containing ra and dec columns
 
     ****Key Arguments:****
-        - ``ra`` -- ra in sexegesimal
-        - ``decl`` -- dec in sexegesimal
+        - ``raColName`` -- ra in sexegesimal
+        - ``declColName`` -- dec in sexegesimal
         - ``tableName`` -- name of table to add htmid info to
         - ``dbConn`` -- database hosting the above table
         - ``log`` -- logger
@@ -560,9 +574,40 @@ def add_HTMIds_to_mysql_tables(
         - ``None`` """
 
     # # > IMPORTS ##
-    import utils as u
+    import MySQLdb as ms
     import dryxPython.mysql as m
+    from dryxPython.kws import utils as u
     # # >SETTINGS ##
+
+    ## TEST TABLE EXIST
+    sqlQuery = """show tables"""
+    rows =  execute_mysql_read_query(
+        sqlQuery=sqlQuery,
+        dbConn=dbConn,
+        log=log
+    )
+    tableList = []
+    for row in rows:
+        tableList.extend(row.values())
+    if tableName not in tableList:
+        message = "The %s table does not exist in the database" % (tableName,)
+        log.critical(message)
+        raise IOError(message)
+
+    ## TEST COLUMN EXISTS
+    cursor = dbConn.cursor(ms.cursors.DictCursor)
+    sqlQuery = """SELECT * FROM %s LIMIT 1""" % (tableName,)
+    cursor.execute(sqlQuery)
+    rows = cursor.fetchall()
+    desc = cursor.description
+    existingColumns = []
+    for i in range(len(desc)):
+        existingColumns.append(desc[i][0])
+    if (raColName not in existingColumns) or (declColName not in existingColumns):
+        message = 'Please make sure you have got the naes of the RA and DEC columns correct'
+        log.critical(message)
+        raise IOError(message)
+
     # >ACTION(S)   ###
     htmCols = {
         'htm16ID': 'BIGINT(20)',
@@ -571,16 +616,17 @@ def add_HTMIds_to_mysql_tables(
         'cy': 'DOUBLE',
         'cz': 'DOUBLE',
         }
+
     # CHECK IF COLUMNS EXISTS YET - IF NOT CREATE FROM
     for key in htmCols.keys():
         try:
             log.debug('attempting to check and generate the HTMId columns for the %s db table' % (tableName, ))
             colExists = \
                 """SELECT *
-                                    FROM information_schema.COLUMNS
-                                    WHERE TABLE_SCHEMA=DATABASE()
-                                    AND COLUMN_NAME='%s'
-                                    AND TABLE_NAME='%s'""" \
+                    FROM information_schema.COLUMNS
+                    WHERE TABLE_SCHEMA=DATABASE()
+                    AND COLUMN_NAME='%s'
+                    AND TABLE_NAME='%s'""" \
                 % (key, tableName)
             colExists = m.execute_mysql_read_query(
                 colExists,
@@ -599,7 +645,7 @@ def add_HTMIds_to_mysql_tables(
                           % (tableName, str(e)))
             return -1
     # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
-    sqlQuery = 'SELECT primaryId, ' + raColName + ', ' + declColName + ' from ' + tableName + ' where htm16ID is NULL'
+    sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL""" % (primaryIdColumnName,raColName, declColName,tableName)
     rows = m.execute_mysql_read_query(
         sqlQuery,
         dbConn,
@@ -621,7 +667,7 @@ def add_HTMIds_to_mysql_tables(
         (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
         sqlQuery = \
             """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
-                                                where primaryId = '%s'""" \
+                                                where %s = '%s'""" \
             % (
             tableName,
             htm16ID,
@@ -629,7 +675,8 @@ def add_HTMIds_to_mysql_tables(
             cx,
             cy,
             cz,
-            row['primaryId'],
+            primaryIdColumnName,
+            row[primaryIdColumnName],
             )
         try:
             log.debug('attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))

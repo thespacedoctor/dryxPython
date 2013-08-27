@@ -111,8 +111,11 @@ def convert_fits_header_to_dictionary(
     cardList = fitsHeader.ascardlist()
 
     headerDictionary = {}
+
     for cl in cardList:
-        headerDictionary[cl.key] = [cl.value, cl.comment]
+        if len(cl.key) > 0:
+            # log.debug('cl: %s' % (cl,))
+            headerDictionary[cl.key] = [cl.value, cl.comment]
 
     return headerDictionary
 
