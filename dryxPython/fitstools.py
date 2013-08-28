@@ -109,7 +109,7 @@ def convert_fits_header_to_dictionary(
        fileExists = False
        raise IOError("the fits file %s does not exist" % (pathToFitsFile,))
 
-    fitsHeader = get_fits_header(log, pathToFitsFile)
+    fitsHeader = get_fits_header(log, pathToFitsFile, headerExtension=headerExtension)
     cardList = fitsHeader.ascardlist()
 
     headerDictionary = {}
