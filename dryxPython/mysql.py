@@ -218,8 +218,8 @@ def convert_dictionary_to_mysql_table(
     import yaml
     import time
     from dryxPython import commonutils as dcu
-    import ordereddict as c  # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
-    # import collections as c
+    # import ordereddict as c  # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
+    import collections as c
 
     ## TEST THE ARGUMENTS
     if str(type(dbConn).__name__) != "Connection":
