@@ -197,7 +197,8 @@ def convert_dictionary_to_mysql_table(
         log,
         dictionary,
         dbTableName,
-        uniqueKeyList=[]):
+        uniqueKeyList=[],
+        createHelperTables=False):
     """ Convert a python dictionary into a mysql table
 
     **Key Arguments:**
@@ -206,6 +207,7 @@ def convert_dictionary_to_mysql_table(
         - ``dbConn`` -- the db connection
         - ``dbTableName`` -- name of the table you wish to add the data to (or create if it does not exist)
         - ``uniqueKeyList`` - a lists column names that need combined to create the primary key
+        - ``createHelperTables`` -- create some helper tables with the main table, detailing original keywords etc
 
     **Return:**
         - ``None`` """
@@ -242,11 +244,19 @@ def convert_dictionary_to_mysql_table(
             raise ValueError(message)
 
     for k, v in dictionary.iteritems():
+        if isinstance(v, list) and len(v) != 2:
+            message = 'Please make sure the list values in "dictionary" 2 items in length'
+            log.critical("%s: in %s we have a %s (%s)" % (message,k,v,type(v)))
+            raise ValueError(message)
         if not (isinstance(v[0], str) or isinstance(v[0], int) or isinstance(v[0], bool) or isinstance(v[0], float) or v[0] == None):
             message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
             log.critical("%s: in %s we have a %s (%s)" % (message,k,v,type(v)))
             raise ValueError(message)
 
+    if not isinstance(createHelperTables, bool):
+        message = 'Please make sure "createHelperTables" is a True or False'
+        log.critical(message)
+        raise TypeError(message)
 
     qCreateColumnPreamble = \
         "IF NOT EXISTS( (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND COLUMN_NAME='my_additional_column' AND TABLE_NAME='my_table_name') ) THEN"
@@ -320,8 +330,8 @@ def convert_dictionary_to_mysql_table(
                 value[0] = yaml.dump(value[0])
                 value[0] = str(value[0])
             # REMOVE CHARACTERS THAT COLLIDE WITH MYSQL
-            if type(value[0]) == str or type(value[0]) == unicode:
-                value[0] = value[0].replace('"', """'""")
+            # if type(value[0]) == str or type(value[0]) == unicode:
+            #     value[0] = value[0].replace('"', """'""")
             # JOIN THE VALUES TOGETHER IN A LIST - EASIER TO GENERATE THE MYSQL COMMAND LATER
             if type(value[0]) == unicode:
                 myValues.extend(['%s' % value[0].strip()])

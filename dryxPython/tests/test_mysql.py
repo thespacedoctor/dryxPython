@@ -191,11 +191,21 @@ class test_convert_dictionary_to_mysql_table():
         kwargs["uniqueKeyList"] = ["someGoodKey",">>>>>>>>>>> not a good key <<<<<<<<<<<"]
         nose.tools.assert_raises(ValueError, mysql.convert_dictionary_to_mysql_table, **kwargs)
 
+    def test_raise_error_if_createHelperTables_is_not_boolean(self):
+        kwargs = {}
+        kwargs["dbConn"] = dbConn
+        kwargs["log"] = log
+        kwargs["dictionary"] = {"someGoodKey":"nice","another good key":"andother value"}
+        kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
+        kwargs["uniqueKeyList"] = ["someGoodKey",]
+        kwargs["createHelperTables"] = ">>>>>>>>>>> not a boolean <<<<<<<<<<<"
+        nose.tools.assert_raises(TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
+
     def test_to_create_a_table_to_see_if_code_completes(self):
         kwargs = {}
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        kwargs["dictionary"] = {"someGoodKey":"nice","and other":"nice, nice"}
+        kwargs["dictionary"] = {"someGoodKey":["nice","nice"],"and other":["nice","nice"]}
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
         kwargs["uniqueKeyList"] = ["someGoodKey","and other"]
         mysql.convert_dictionary_to_mysql_table(**kwargs)
