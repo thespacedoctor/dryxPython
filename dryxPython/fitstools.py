@@ -79,12 +79,14 @@ def main():
 ## AUTHOR : DRYX
 def convert_fits_header_to_dictionary(
         log,
-        pathToFitsFile):
+        pathToFitsFile,
+        headerExtension=0):
     """Convert a FITS file header keywords / values into a python dictionary
 
     **Key Arguments:**
         - ``log`` -- logger
         - ``pathToFitsFile`` -- path to the fits file
+        - ``headerExtension`` -- the header extension to look in
 
     **Return:**
         - ``headerDictionary`` -- the header converted to a dictionary suitable for mysql ingest
@@ -122,12 +124,16 @@ def convert_fits_header_to_dictionary(
 ## LAST MODIFIED : March 19, 2013
 ## CREATED : March 19, 2013
 ## AUTHOR : DRYX
-def get_fits_header(log, pathToFits):
+def get_fits_header(
+        log,
+        pathToFits,
+        headerExtension=0):
     """Return the HDU for the given fits file
 
     **Key Arguments:**
         - ``log`` -- logger
         - ``pathToFits`` -- the absolute path to the fits file
+        - ``headerExtension`` -- the header extension to look in
 
     **Return:**
         - ``hdu`` -- the FITS header requested
@@ -142,7 +148,7 @@ def get_fits_header(log, pathToFits):
 
     ################ >ACTION(S) ################
     try:
-        hdu = pf.getheader(pathToFits, 0)
+        hdu = pf.getheader(pathToFits, headerExtension)
     # FIX THE CARDS (SHOULD BE NO LONGER THAN 80 CHARACTERS)
     except:
         try:
@@ -150,7 +156,7 @@ def get_fits_header(log, pathToFits):
         except:
             sys.exit('image ' + str(
                 pathToFits) + ' is corrupted, delete it and start again')
-            hdu = pf.getheader(pathToFits, 0)
+            hdu = pf.getheader(pathToFits, headerExtension)
 
     return hdu
 
