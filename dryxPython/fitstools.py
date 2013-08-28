@@ -98,6 +98,7 @@ def convert_fits_header_to_dictionary(
 
     ################ > VARIABLE SETTINGS ######
     ################ >ACTION(S) ################
+    log.info('starting the ``convert_fits_header_to_dictionary`` function')
     if not isinstance(pathToFitsFile, str):
         raise TypeError("pathToFitsFile argument needs to be a string")
 
@@ -118,6 +119,8 @@ def convert_fits_header_to_dictionary(
         if len(cl.key) > 0:
             # log.debug('cl: %s' % (cl,))
             headerDictionary[cl.key] = [cl.value, cl.comment]
+
+    log.info('finished the ``convert_fits_header_to_dictionary`` function')
 
     return headerDictionary
 
