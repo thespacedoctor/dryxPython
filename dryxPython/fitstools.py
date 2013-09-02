@@ -110,10 +110,13 @@ def convert_fits_header_to_dictionary(
        fileExists = False
        raise IOError("the fits file %s does not exist" % (pathToFitsFile,))
 
-    fitsHeader = get_fits_header(log, pathToFitsFile, headerExtension=headerExtension)
-    cardList = fitsHeader.ascardlist()
-
     headerDictionary = {}
+    try:
+        fitsHeader = get_fits_header(log, pathToFitsFile, headerExtension=headerExtension)
+        cardList = fitsHeader.ascardlist()
+    except:
+        headerDictionary["corrupted"] = True
+        return headerDictionary
 
     for cl in cardList:
         if len(cl.key) > 0:
