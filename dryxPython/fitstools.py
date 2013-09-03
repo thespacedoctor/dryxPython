@@ -115,7 +115,7 @@ def convert_fits_header_to_dictionary(
         fitsHeader = get_fits_header(log, pathToFitsFile, headerExtension=headerExtension)
         cardList = fitsHeader.ascardlist()
     except:
-        headerDictionary["corrupted"] = True
+        headerDictionary["corrupted"] = [True, "file is corrupted"]
         return headerDictionary
 
     for cl in cardList:

@@ -362,11 +362,11 @@ def convert_dictionary_to_mysql_table(
                     qCreateColumn += ' datetime DEFAULT NULL'
                 elif formattedKey == 'updated_parsed' or formattedKey == 'published_parsed' or formattedKey \
                     == 'feedName' or formattedKey == 'title':
-                    qCreateColumn += ' varchar(200) DEFAULT NULL'
+                    qCreateColumn += ' varchar(100) DEFAULT NULL'
                 elif (type(value[0]) == str or type(value[0]) == unicode) and len(value[0]) < 30:
-                    qCreateColumn += ' varchar(200) DEFAULT NULL'
+                    qCreateColumn += ' varchar(100) DEFAULT NULL'
                 elif (type(value[0]) == str or type(value[0]) == unicode) and len(value[0]) >= 30 and len(value[0]) < 80:
-                    qCreateColumn += ' varchar(200) DEFAULT NULL'
+                    qCreateColumn += ' varchar(100) DEFAULT NULL'
                 elif type(value[0]) == str or type(value[0]) == unicode:
                     columnLength = 450 + len(value[0]) * 2
                     qCreateColumn += ' varchar(' + str(columnLength) + ') DEFAULT NULL'
