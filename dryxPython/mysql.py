@@ -432,11 +432,11 @@ def convert_dictionary_to_mysql_table(
 
             addUniqueKey = 'ALTER TABLE ' + dbTableName + ' ADD unique ' + indexName + """ (""" + uniqueKeyList + ')'
             # log.debug('HERE IS THE COMMAND:'+addUniqueKey)
-            # execute_mysql_write_query(
-            #     addUniqueKey,
-            #     dbConn,
-            #     log,
-            #     )
+            execute_mysql_write_query(
+                addUniqueKey,
+                dbConn,
+                log,
+                )
     # GENERATE THE INSERT COMMAND - IGNORE DUPLICATE ENTRIES
     myKeys = ','.join(formattedKeyList)
     myValues = '" ,"'.join(myValues)
@@ -453,7 +453,7 @@ def convert_dictionary_to_mysql_table(
     addValue = """INSERT INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     # log.debug(addValue)
     try:
-        log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
+        #log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
         execute_mysql_write_query(
             addValue,
             dbConn,
