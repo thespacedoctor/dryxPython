@@ -463,7 +463,7 @@ def convert_dictionary_to_mysql_table(
         log,
         )
     try:
-        log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
+        #log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
         execute_mysql_write_query(
             addValue,
             dbConn,
