@@ -120,19 +120,20 @@ def execute_mysql_write_query(
     except Exception, e:
         log.error('could not create the database cursor.')
     # EXECUTE THE SQL COMMAND
-    try:
-        cursor.execute(sqlQuery)
-    except MySQLdb.Error, e:
-        if e[0] == 1050 and 'already exists' in e[1]:
-            log.info(str(e) + '\n')
-        elif e[0] == 1062:
-                           # Duplicate Key error
-            log.debug('Duplicate Key error: %s' % (str(e), ))
-        else:
-            log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
-                      str(e)))
-    except Exception, e:
-        log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery, str(e)))
+    cursor.execute(sqlQuery)
+    # try:
+    #     cursor.execute(sqlQuery)
+    # except MySQLdb.Error, e:
+    #     if e[0] == 1050 and 'already exists' in e[1]:
+    #         log.info(str(e) + '\n')
+    #     elif e[0] == 1062:
+    #                        # Duplicate Key error
+    #         log.debug('Duplicate Key error: %s' % (str(e), ))
+    #     else:
+    #         log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
+    #                   str(e)))
+    # except Exception, e:
+    #     log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery, str(e)))
     # CLOSE THE CURSOR
     try:
         cursor.close()
@@ -221,15 +222,7 @@ def convert_dictionary_to_mysql_table(
     # import ordereddict as c  # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
     import collections as c
 
-    if "tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits" in dictionary["filename"][0]:
-            print "found tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits!!!!"
-
     log.info('starting convert_dictionary_to_mysql_table')
-
-    if "tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits" in dictionary["filename"][0]:
-            print "found tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits!!!!"
-    else:
-        print dictionary["filename"][0]
 
     ## TEST THE ARGUMENTS
     if str(type(dbConn).__name__) != "Connection":
@@ -461,7 +454,7 @@ def convert_dictionary_to_mysql_table(
     myValues = myValues.replace('!!python/unicode', '')
     # log.debug(myValues+" ------ POSTSTRIP")
     addValue = """INSERT INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
-    log.debug(addValue)
+    # log.debug(addValue)
     try:
         # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
         execute_mysql_write_query(
