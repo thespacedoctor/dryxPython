@@ -115,11 +115,6 @@ def execute_mysql_write_query(
     # >ACTION(S)                                              #
     # ##########################################################
     # CREATE DB CURSOR
-    cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute(sqlQuery)
-    cursor.close()
-    return
-
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
     except Exception, e:
@@ -437,11 +432,11 @@ def convert_dictionary_to_mysql_table(
 
             addUniqueKey = 'ALTER TABLE ' + dbTableName + ' ADD unique ' + indexName + """ (""" + uniqueKeyList + ')'
             # log.debug('HERE IS THE COMMAND:'+addUniqueKey)
-            execute_mysql_write_query(
-                addUniqueKey,
-                dbConn,
-                log,
-                )
+            # execute_mysql_write_query(
+            #     addUniqueKey,
+            #     dbConn,
+            #     log,
+            #     )
     # GENERATE THE INSERT COMMAND - IGNORE DUPLICATE ENTRIES
     myKeys = ','.join(formattedKeyList)
     myValues = '" ,"'.join(myValues)
@@ -457,19 +452,13 @@ def convert_dictionary_to_mysql_table(
     # log.debug(myValues+" ------ POSTSTRIP")
     addValue = """INSERT INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     # log.debug(addValue)
-    execute_mysql_write_query(
-        addValue,
-        dbConn,
-        log,
-        )
     try:
-        #log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
-        # execute_mysql_write_query(
-        #     addValue,
-        #     dbConn,
-        #     log,
-        #     )
-        pass
+        # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
+        execute_mysql_write_query(
+            addValue,
+            dbConn,
+            log,
+            )
     except Exception, e:
         log.error("could not add new data added to the table '" + dbTableName + "' : " + str(e) + '\n')
     return None
