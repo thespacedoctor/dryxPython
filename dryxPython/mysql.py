@@ -221,6 +221,16 @@ def convert_dictionary_to_mysql_table(
     # import ordereddict as c  # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
     import collections as c
 
+    if "tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits" in dictionary["filename"][0]:
+            print "found tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits!!!!"
+
+    log.info('starting convert_dictionary_to_mysql_table')
+
+    if "tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits" in dictionary["filename"][0]:
+            print "found tsnunt121_20120429_Gr16_OG530_slit1.0_56457_1_2df.fits!!!!"
+    else:
+        print dictionary["filename"][0]
+
     ## TEST THE ARGUMENTS
     if str(type(dbConn).__name__) != "Connection":
         message = 'Please use a valid MySQL DB connection.'
@@ -451,7 +461,7 @@ def convert_dictionary_to_mysql_table(
     myValues = myValues.replace('!!python/unicode', '')
     # log.debug(myValues+" ------ POSTSTRIP")
     addValue = """INSERT INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
-    # log.debug(addValue)
+    log.debug(addValue)
     try:
         # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
         execute_mysql_write_query(
@@ -461,6 +471,9 @@ def convert_dictionary_to_mysql_table(
             )
     except Exception, e:
         log.error("could not add new data added to the table '" + dbTableName + "' : " + str(e) + '\n')
+
+    log.info('finished convert_dictionary_to_mysql_table')
+
     return None
 
 
