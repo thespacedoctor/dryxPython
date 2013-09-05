@@ -452,15 +452,20 @@ def convert_dictionary_to_mysql_table(
     # log.debug(myValues+" ------ POSTSTRIP")
     addValue = """INSERT IGNORE INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     # log.debug(addValue)
-    try:
-        log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
-        execute_mysql_write_query(
-            addValue,
-            dbConn,
-            log,
-            )
-    except Exception, e:
-        log.error("could not add new data added to the table '" + dbTableName + "' : " + str(e) + '\n')
+    execute_mysql_write_query(
+        addValue,
+        dbConn,
+        log,
+        )
+    # try:
+    #     log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
+    #     execute_mysql_write_query(
+    #         addValue,
+    #         dbConn,
+    #         log,
+    #         )
+    # except Exception, e:
+    #     log.error("could not add new data added to the table '" + dbTableName + "' : " + str(e) + '\n')
     return None
 
 
