@@ -115,6 +115,11 @@ def execute_mysql_write_query(
     # >ACTION(S)                                              #
     # ##########################################################
     # CREATE DB CURSOR
+    cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute(sqlQuery)
+    cursor.close()
+    return
+
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
     except Exception, e:
