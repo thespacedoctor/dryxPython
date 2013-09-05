@@ -450,7 +450,7 @@ def convert_dictionary_to_mysql_table(
     myValues = myValues.replace('!!python/unicode:', '')
     myValues = myValues.replace('!!python/unicode', '')
     # log.debug(myValues+" ------ POSTSTRIP")
-    addValue = """INSERT IGNORE INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
+    addValue = """INSERT INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     log.debug(addValue)
     try:
         log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
