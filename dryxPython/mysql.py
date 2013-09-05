@@ -120,20 +120,19 @@ def execute_mysql_write_query(
     except Exception, e:
         log.error('could not create the database cursor.')
     # EXECUTE THE SQL COMMAND
-    cursor.execute(sqlQuery)
-    # try:
-    #     cursor.execute(sqlQuery)
-    # except MySQLdb.Error, e:
-    #     if e[0] == 1050 and 'already exists' in e[1]:
-    #         log.info(str(e) + '\n')
-    #     elif e[0] == 1062:
-    #                        # Duplicate Key error
-    #         log.debug('Duplicate Key error: %s' % (str(e), ))
-    #     else:
-    #         log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
-    #                   str(e)))
-    # except Exception, e:
-    #     log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery, str(e)))
+    try:
+        cursor.execute(sqlQuery)
+    except MySQLdb.Error, e:
+        if e[0] == 1050 and 'already exists' in e[1]:
+            log.info(str(e) + '\n')
+        elif e[0] == 1062:
+                           # Duplicate Key error
+            log.debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>> Duplicate Key error: %s' % (str(e), ))
+        else:
+            log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
+                      str(e)))
+    except Exception, e:
+        log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery, str(e)))
     # CLOSE THE CURSOR
     try:
         cursor.close()
