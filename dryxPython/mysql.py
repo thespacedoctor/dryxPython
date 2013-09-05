@@ -273,7 +273,7 @@ def convert_dictionary_to_mysql_table(
     # MySQL DOES NOT LIKE COMPOUNDED QUERIES FROM MYSQLDB - CREATE LIST OF QUERIES INSTEAD
     qCreateTableCommandList = []
     qCreateTableCommandList.extend(['SET @saved_cs_client = @@character_set_client'])
-    qCreateTableCommandList.extend(['SET character_set_client = utf8'])
+    qCreateTableCommandList.extend(['SET character_set_client = latin1'])
     qCreateTableCommandList.extend(['SET sql_notes = 0'])
     qCreateTableCommandList.extend(["""CREATE TABLE IF NOT EXISTS `""" + dbTableName
                                    + """`
