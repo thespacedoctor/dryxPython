@@ -243,10 +243,16 @@ def getCurrentMJD():
 
 def getDateFromMJD(mjd):
     """convert mjd to a date"""
+    from datetime import datetime
     unixtime = (mjd + 2400000.5 - 2440587.5) * 86400.0;
     theDate = datetime.utcfromtimestamp(unixtime)
-    return theDate.strftime("%Y-%m-%d %H:%M:%S")
+    return theDate.strftime("%Y-%m-%d %H:%M:%S.%f")
 
+def getSQLDateFromMJD(mjd):
+    """convert mjd to a date"""
+    unixtime = (mjd + 2400000.5 - 2440587.5) * 86400.0;
+    theDate = datetime.utcfromtimestamp(unixtime)
+    return theDate.strftime("%Y-%m-%dT%H:%M:%S.%f")
 
 # 2012-03-26 KWS Added function to convert from date to MJD
 def getMJDFromSqlDate(sqlDate):
