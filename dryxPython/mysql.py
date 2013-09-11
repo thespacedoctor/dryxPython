@@ -118,7 +118,6 @@ def execute_mysql_write_query(
 
     log.info('starting execute_mysql_write_query')
 
-    log.debug('sqlQuery: %s\n\n' % (sqlQuery,))
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
     except Exception, e:
@@ -131,7 +130,7 @@ def execute_mysql_write_query(
             log.info(str(e) + '\n')
         elif e[0] == 1062:
                            # Duplicate Key error
-            log.debug('>>>>>>>>>>>>>>>>>>>>>>>>>>>> Duplicate Key error: %s' % (str(e), ))
+            log.debug('Duplicate Key error: %s' % (str(e), ))
         else:
             log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
                       str(e)))
@@ -269,20 +268,15 @@ def convert_dictionary_to_mysql_table(
     qCreateColumnPreamble = \
         "IF NOT EXISTS( (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND COLUMN_NAME='my_additional_column' AND TABLE_NAME='my_table_name') ) THEN"
     qCreateColumnPostamble = \
-        'PRIMARY KEY (`primaryId`)) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;\nSET character_set_client = @saved_cs_client;\n'
+        'PRIMARY KEY (`primaryId`)) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;'
     # MySQL DOES NOT LIKE COMPOUNDED QUERIES FROM MYSQLDB - CREATE LIST OF QUERIES INSTEAD
     qCreateTableCommandList = []
-    qCreateTableCommandList.extend(['SET @saved_cs_client = @@character_set_client'])
-    qCreateTableCommandList.extend(['SET character_set_client = latin1'])
-    qCreateTableCommandList.extend(['SET sql_notes = 0'])
     qCreateTableCommandList.extend(["""CREATE TABLE IF NOT EXISTS `""" + dbTableName
                                    + """`
                                             (`primaryId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'An internal counter',
                                             PRIMARY KEY (`primaryId`))
                                             ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1"""
                                    ])
-    qCreateTableCommandList.extend(['SET @@character_set_client = @saved_cs_client'])
-    qCreateTableCommandList.extend(['SET sql_notes = 1'])
     reFeedParserClass = re.compile('FeedParserDict')
     reDatetime = re.compile('^[0-9]{4}-[0-9]{2}-[0-9]{2}T')
     reTypeTime = re.compile('struct_time')
@@ -674,42 +668,45 @@ def add_HTMIds_to_mysql_tables(
         )
     # NOW GENERATE THE HTMLIds FOR THESE ROWS
     for row in rows:
-        (thisRa, thisDec) = (float(row[raColName]), float(row[declColName]))
-        htm16ID = u.htmID(
-            thisRa,
-            thisDec,
-            16,
-            )
-        htm20ID = u.htmID(
-            thisRa,
-            thisDec,
-            20,
-            )
-        (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
-        sqlQuery = \
-            """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
-                                                where %s = '%s'""" \
-            % (
-            tableName,
-            htm16ID,
-            htm20ID,
-            cx,
-            cy,
-            cz,
-            primaryIdColumnName,
-            row[primaryIdColumnName],
-            )
-        try:
-            log.debug('attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
-            m.execute_mysql_write_query(
-                sqlQuery,
-                dbConn,
-                log,
+        if row[raColName] is None or row[declColName] is None:
+            continue
+        else:
+            (thisRa, thisDec) = (float(row[raColName]), float(row[declColName]))
+            htm16ID = u.htmID(
+                thisRa,
+                thisDec,
+                16,
                 )
-        except Exception, e:
-            log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
-                         % (tableName, str(e)))
-            return -1
+            htm20ID = u.htmID(
+                thisRa,
+                thisDec,
+                20,
+                )
+            (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
+            sqlQuery = \
+                """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
+                                                    where %s = '%s'""" \
+                % (
+                tableName,
+                htm16ID,
+                htm20ID,
+                cx,
+                cy,
+                cz,
+                primaryIdColumnName,
+                row[primaryIdColumnName],
+                )
+            try:
+                log.debug('attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
+                m.execute_mysql_write_query(
+                    sqlQuery,
+                    dbConn,
+                    log,
+                    )
+            except Exception, e:
+                log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
+                             % (tableName, str(e)))
+                return -1
     return None
 
 
