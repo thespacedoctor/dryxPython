@@ -1,2 +1,5 @@
 include README.rst
 include dryxPython/mmd/assets/*
+include dryxPython/htmlframework/*
+include dryxPython/kws/*
+include dryxPython/mmd/*
