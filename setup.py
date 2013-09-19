@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='dryxPython',
-      version='1.0',
+      version='1.02',
       description='A collection of useful commonly used python modules',
       long_description=readme(),
       classifiers=[
@@ -22,6 +22,8 @@ setup(name='dryxPython',
       packages=['dryxPython'],
       install_requires=[
           'pyyaml',
+          'docopt',
+          'numpy'
       ],
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],

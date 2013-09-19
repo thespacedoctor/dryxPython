@@ -76,7 +76,6 @@ def convert_to_html(
     readFile.close()
 
 
-
     pathToHtmlFile=pathToMMDFile
     for ext in [".md",".mmd",".markdown",".txt",".dat"]:
         pathToHtmlFile = pathToHtmlFile.replace(ext,".html")
