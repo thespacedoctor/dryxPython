@@ -33,7 +33,7 @@ _dryxTBS_images
 def image(
         src="http://placehold.it/200x200",
         href=False,
-        display="False", # [ rounded | circle | polaroid ]
+        display=False, # [ rounded | circle | polaroid ]
         pull="left", # [ "left" | "right" | "center" ]
         htmlClass=False,
         thumbnail=False,

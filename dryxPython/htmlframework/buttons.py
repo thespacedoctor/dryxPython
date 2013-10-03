@@ -31,60 +31,60 @@ _dryxTBS_buttons
 ## LAST MODIFIED : March 12, 2013
 ## CREATED : March 12, 2013
 ## AUTHOR : DRYX
-def get_button(size="large",
-                block=False,
-                color="blue",
-                text="button",
-                htmlId=False,
-                htmlClass=False,
-                extraAttr=False,
-                disabled=False):
-    """The button method (bases on the twitter bootstrap buttons)
+# def get_button(size="large",
+#                 block=False,
+#                 color="blue",
+#                 text="button",
+#                 htmlId=False,
+#                 htmlClass=False,
+#                 extraAttr=False,
+#                 disabled=False):
+#     """The button method (bases on the twitter bootstrap buttons)
 
-    **Key Arguments:**
-        - ``size`` - button size - mini, small, default, large
-        - ``block`` - block button?
-        - ``color`` - color
-        - ``text`` - button text
-        - ``htmlId`` -- the name of the button
-        - ``htmlClass`` -- the class of the button
-        - ``disabled`` -- disable the button if true (flatten & unclickable)
+#     **Key Arguments:**
+#         - ``size`` - button size - mini, small, default, large
+#         - ``block`` - block button?
+#         - ``color`` - color
+#         - ``text`` - button text
+#         - ``htmlId`` -- the name of the button
+#         - ``htmlClass`` -- the class of the button
+#         - ``disabled`` -- disable the button if true (flatten & unclickable)
 
-    **Return:**
-        - ``button``
-    """
-    ################ > IMPORTS ################
-    ## STANDARD LIB ##
-    ## THIRD PARTY ##
-    ## LOCAL APPLICATION ##
+#     **Return:**
+#         - ``button``
+#     """
+#     ################ > IMPORTS ################
+#     ## STANDARD LIB ##
+#     ## THIRD PARTY ##
+#     ## LOCAL APPLICATION ##
 
-    ################ > VARIABLE SETTINGS ######
-    size = "btn-%s" % (size,)
-    if block:
-        block = "btn-block"
-    else:
-        block = ""
-    if htmlId:
-        htmlId = """id="%s" """ % (htmlId,)
-    else:
-        htmlId = ""
-    if not htmlClass: htmlClass = ""
-    if not extraAttr:
-        extraAttr = ""
-    if disabled:
-        disabled = "disabled"
-    else:
-        disabled = ""
+#     ################ > VARIABLE SETTINGS ######
+#     size = "btn-%s" % (size,)
+#     if block:
+#         block = "btn-block"
+#     else:
+#         block = ""
+#     if htmlId:
+#         htmlId = """id="%s" """ % (htmlId,)
+#     else:
+#         htmlId = ""
+#     if not htmlClass: htmlClass = ""
+#     if not extraAttr:
+#         extraAttr = ""
+#     if disabled:
+#         disabled = "disabled"
+#     else:
+#         disabled = ""
 
-    color = "btn-%s" % (color,)
+#     color = "btn-%s" % (color,)
 
-    ################ >ACTION(S) ################
-    button = """
-        <button class="btn %s %s %s %s %s" %s %s type="button">
-        %s
-        </button>""" % (size, block, color, htmlClass, disabled, htmlId, extraAttr, text)
+#     ################ >ACTION(S) ################
+#     button = """
+#         <button class="btn %s %s %s %s %s" %s %s type="button">
+#         %s
+#         </button>""" % (size, block, color, htmlClass, disabled, htmlId, extraAttr, text)
 
-    return button
+#     return button
 
 # xxx-replace
 ## LAST MODIFIED : March 12, 2013
@@ -187,7 +187,7 @@ def button(
         block = ""
 
     if disable is True:
-        disable = "disable"
+        disable = "disabled"
     else:
         disable = ""
 
@@ -203,10 +203,7 @@ def button(
         elementOpen = """button type="button" """
         elementClose = """button"""
 
-    button = """
-        <%s class="btn %s %s %s %s" id="  " %s >
-            %s
-        </%s>""" % (elementOpen, buttonStyle, buttonSize, block, disable, submit, buttonText, elementClose)
+    button = """<%s class="btn %s %s %s %s" id="  " %s >%s</%s>""" % (elementOpen, buttonStyle, buttonSize, block, disable, submit, buttonText, elementClose)
 
     return button
 
@@ -215,7 +212,7 @@ def button(
 ## CREATED : April 29, 2013
 ## AUTHOR : DRYX
 def buttonGroup(
-        buttonList="",
+        buttonList=[],
         format="default"):
     """Generate a buttonGroup - TBS style
 
@@ -227,8 +224,10 @@ def buttonGroup(
         - ``buttonGroup`` -- the buttonGroup
     """
     thisButtonList = ""
+    count = 1
     for button in buttonList:
-        thisButtonList += button
+        thisButtonList += "%s" % (button)
+        count += 1
 
     if format is "vertical":
         vertical = "btn-group-vertical"
@@ -238,7 +237,7 @@ def buttonGroup(
     buttonGroup = """
         <div class="btn-group %s" id="  ">
             %s
-        </div>""" % (vertical, buttonList,)
+        </div>""" % (vertical, thisButtonList,)
 
     if format == "toolbar":
         buttonGroup = """

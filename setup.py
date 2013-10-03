@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='dryxPython',
-      version='1.0',
+      version='1.098',
       description='A collection of useful commonly used python modules',
       long_description=readme(),
       classifiers=[
@@ -19,9 +19,13 @@ setup(name='dryxPython',
       author='thespacedoctor',
       author_email='nothingbutdave@gmail.com',
       license='MIT',
-      packages=['dryxPython'],
+      packages=['dryxPython','dryxPython.tests','dryxPython.htmlframework','dryxPython.mmd','dryxPython.kws'],
+      package_data={'dryxPython.mmd': ['assets/*']},
       install_requires=[
           'pyyaml',
+          'docopt',
+          'numpy',
+          'matplotlib'
       ],
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],

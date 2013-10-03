@@ -138,7 +138,7 @@ def plot_polynomial(
     if yAxisLimits:
         ax.set_ylim(yAxisLimits[0], yAxisLimits[1])
 
-    theseColors = [ colors['blue'], colors['green'], colors['red'] ]
+    theseColors = [ colors['blue'], colors['green'], colors['red'], colors['violet'] ]
 
     count = 0
     if orginalDataDictionary:
@@ -150,6 +150,7 @@ def plot_polynomial(
 
     count = 0
     for snType, poly in polynomialDict.iteritems():
+        log.debug('x: %s' % (x,))
         ax.plot(x, poly(x), label='%s' % (snType,), color=theseColors[count])
         count += 1
         if count == 4:

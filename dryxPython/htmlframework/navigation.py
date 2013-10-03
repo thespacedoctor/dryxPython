@@ -181,62 +181,62 @@ def nav_list(
 
 
 
-# xxx-replace
-## LAST MODIFIED : December 11, 2012
-## CREATED : December 11, 2012
-## AUTHOR : DRYX
-def get_nav_block(attributeDict):
-  """Create a basic ``<nav>`` code block
+# # xxx-replace
+# ## LAST MODIFIED : December 11, 2012
+# ## CREATED : December 11, 2012
+# ## AUTHOR : DRYX
+# def get_nav_block(attributeDict):
+#   """Create a basic ``<nav>`` code block
 
-  **Variable Attributes:**
-    - ``attributeDict`` -- dictionary of the following keywords:
-    - ``htmlClass`` -- the html element class
-    - ``htmlId`` -- the html element id
-    - ``blockContent`` -- actual content to be placed in html code block
-    - ``jsEvents`` -- inline javascript event
-    - ``extraAttr`` -- extra inline css attributes and/or handles
+#   **Variable Attributes:**
+#     - ``attributeDict`` -- dictionary of the following keywords:
+#     - ``htmlClass`` -- the html element class
+#     - ``htmlId`` -- the html element id
+#     - ``blockContent`` -- actual content to be placed in html code block
+#     - ``jsEvents`` -- inline javascript event
+#     - ``extraAttr`` -- extra inline css attributes and/or handles
 
-  **Returns:**
-    - ``block`` -- the html block
+#   **Returns:**
+#     - ``block`` -- the html block
 
-  attributeDict template:
-    attributeDict = dict(
-                          htmlClass=___,
-                          htmlId=___,
-                          jsEvents=___,
-                          extraAttr=___,
-                          blockContent=___
-                        )
-  """
-  ################ > IMPORTS ################
+#   attributeDict template:
+#     attributeDict = dict(
+#                           htmlClass=___,
+#                           htmlId=___,
+#                           jsEvents=___,
+#                           extraAttr=___,
+#                           blockContent=___
+#                         )
+#   """
+#   ################ > IMPORTS ################
 
-  ################ > VARIABLE SETTINGS ######
-  block = "<div "   # THE HTML BLOCK
-  d = attributeDict
+#   ################ > VARIABLE SETTINGS ######
+#   block = "<div "   # THE HTML BLOCK
+#   d = attributeDict
 
-  ################ >ACTION(S) ################
-  ## SET THE ATTRIBUTES
-  if d.has_key("htmlClass"):
-    block += """class="%s" """ % (d["htmlClass"],)
-  if d.has_key("htmlId"):
-    block += """id="%s" """ % (d["htmlId"],)
-  if d.has_key("jsEvents"):
-    block += """%s """ % (d["jsEvents"],)
-  if d.has_key("extraAttr"):
-    block += """%s """ % (d["extraAttr"],)
-  block += "><nav><ul>"
+#   ################ >ACTION(S) ################
+#   ## SET THE ATTRIBUTES
+#   if d.has_key("htmlClass"):
+#     block += """class="%s" """ % (d["htmlClass"],)
+#   if d.has_key("htmlId"):
+#     block += """id="%s" """ % (d["htmlId"],)
+#   if d.has_key("jsEvents"):
+#     block += """%s """ % (d["jsEvents"],)
+#   if d.has_key("extraAttr"):
+#     block += """%s """ % (d["extraAttr"],)
+#   block += "><nav><ul>"
 
-  ## SET THE CONTENT
-  if d.has_key("blockContent"):
-    block += str(d["blockContent"])
+#   ## SET THE CONTENT
+#   if d.has_key("blockContent"):
+#     block += str(d["blockContent"])
 
-  ## CLOSE THE BLOCK
-  if d.has_key("htmlId"):
-    block += "</ul></nav></div><!--- /#%s --->" % (d["htmlId"],)
-  else:
-    block += "</ul></nav></div>"
+#   ## CLOSE THE BLOCK
+#   if d.has_key("htmlId"):
+#     block += "</ul></nav></div><!--- /#%s --->" % (d["htmlId"],)
+#   else:
+#     block += "</ul></nav></div>"
 
-  return block
+#   return block
 
 
 
@@ -307,9 +307,10 @@ def searchbox(
 ## AUTHOR : DRYX
 
 def tabbableNavigation(
-    contentDictionary={},
-    fadeIn=True,
-    direction='top',
+        log,
+        contentDictionary={},
+        fadeIn=True,
+        direction='top',
     ):
     """ Generate a tabbable Navigation
 
@@ -328,7 +329,12 @@ def tabbableNavigation(
     titleList = ''
     contentList = ''
     count = 0
-    for (k, v) in contentDictionary.iteritems():
+
+    if len(contentDictionary) == 0:
+        log.error('contentDictionary has no content')
+        return
+
+    for k, v in contentDictionary.iteritems():
         if count == 0:
             titleList += """<li class="active"><a href="#tab%s" data-toggle="tab">%s</a></li>""" % (count, k)
             contentList += \
@@ -409,7 +415,7 @@ def navBar(
     titleList = ''
     contentList = ''
     count = 0
-    for (k, v) in contentDictionary.iteritems():
+    for k, v in contentDictionary.iteritems():
         if count == 0:
             titleList += """<li class="active"><a href="%s">%s</a></li>%s""" % (v, k, dividers)
         else:
@@ -485,7 +491,7 @@ def pagination(
             <ul>
             %s
             </ul>
-        </div>""" % (content,)
+        </div>""" % (listItems,)
 
     return pagination
 

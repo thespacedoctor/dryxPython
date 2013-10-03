@@ -60,6 +60,11 @@ def p(
                 falseList[i] = ""
     [lead,textAlign,] = falseList
 
+    if textAlign:
+        textAlign = "text-%s" % (textAlign,)
+    else:
+        textAlign = ""
+
     if lead is True:
         lead = "lead"
 
@@ -133,7 +138,7 @@ def abbr(
         - abbr
     """
 
-    abbr = """<abbr title="%s" class="initialism">%s</abbr>""" % (abbreviation, fullWord)
+    abbr = """<abbr title="%s" class="initialism">%s</abbr>""" % (fullWord, abbreviation)
 
     return abbr
 
@@ -163,20 +168,43 @@ def address(
     **Return:**
         - address
     """
-    if not name:
-        name = "<strong><strong>%s</strong><br>" % (name,)
-    if not addressLine1:
+
+    falseList = [name, addressLine1 , addressLine2, addressLine3, phone, email, twitterHandle]
+    for item in falseList:
+        if not item:
+            item = ""
+
+    if name:
+        name = "<strong>%s</strong><br>" % (name,)
+    else:
+        name = ""
+
+    if addressLine1:
         addressLine1 = "%s<br>" % (addressLine1,)
-    if not addressLine2:
+    else:
+        addressLine1 = ""
+    if addressLine2:
         addressLine2 = "%s<br>" % (addressLine2,)
-    if not addressLine3:
+    else:
+        addressLine2 = ""
+    if addressLine3:
         addressLine3 = "%s<br>" % (addressLine3,)
-    if not phone:
+    else:
+        addressLine3 = ""
+    if phone:
         phone = """<abbr title="Phone">p:</abbr> %s<br>""" % (phone,)
-    if not email:
+    else:
+        phone = ""
+    if email:
         email = """<abbr title="email">e:</abbr> <a href="mailto:#">%s</a><br>""" % (email,)
-    if not twitterHandle:
+    else:
+        email = ""
+    if twitterHandle:
         twitterHandle = """<abbr title="twitter handle">t:</abbr> %s<br>""" % (twitterHandle,)
+    else:
+        twitterHandle = ""
+
+
 
     address = """
         <address>
@@ -273,7 +301,7 @@ def ul(
 
     thisList = ""
     for item in itemList:
-        thisList += """<li>%s<li>\n""" % (item,)
+        thisList += """<li>%s</li>\n""" % (item,)
 
     if unstyled:
         unstyled = "unstyled"
@@ -290,12 +318,19 @@ def ul(
         thisNavStyle = "nav"
     if navStyle in navStyleList:
         thisNavStyle += " nav-%s" % (navStyle,)
+    else:
+        thisNavStyle = ""
 
     if navPull:
         navPull = "pull-%s" % (navPull,)
 
     if navDirection == "stacked":
         navDirection = "nav-stacked"
+    elif navDirection == "horizontal":
+        navDirection = ""
+    else:
+        navDirection = ""
+
 
     if breadcrumb is True:
         breadcrumb = "breadcrumb"
@@ -345,6 +380,7 @@ def li(
     **Return:**
         - ``li`` -- the li
     """
+    submenuClass=False
     falseList = [disabled, submenuClass, submenuTitle, navStyle, navDropDown, pager, span]
     for i in range(len(falseList)):
             if not falseList[i]:
@@ -354,7 +390,7 @@ def li(
     if disabled:
         disabled = """disabled"""
 
-    if submenuTitle is True:
+    if submenuTitle:
         submenuClass = "dropdown-submenu"
         submenuTitle = """<a tabindex="-1" href="#">%s</a>""" % (submenuTitle,)
 
@@ -370,10 +406,10 @@ def li(
         span = "span%s" % (span,)
 
     li = """
-        <li class="%s %s %s %s %s" id="  ">
+        <li class="%s %s %s %s %s %s" id="  ">
             %s
             %s
-        </li>""" % (span, disabled, submenuClass, navStyle, submenuTitle, pager, navDropDown, content,)
+        </li>""" % (disabled, submenuClass, navStyle, pager, span, navDropDown, submenuTitle, content,)
 
     if divider is True:
         li = """<li class="divider"></li>"""
@@ -445,7 +481,7 @@ def ol(itemList=[]):
     """
     thisList = ""
     for item in itemList:
-        thisList += """<li>%s<li>\n""" % (item,)
+        thisList += """<li>%s</li>\n""" % (item,)
 
     ol = """
         <ol>
@@ -532,7 +568,8 @@ def heroUnit(
         headline="",
         tagline="",
         buttonStyle="primary",
-        buttonText=""
+        buttonText="",
+        buttonHref="#"
         ):
     """Generate a heroUnit - TBS style
 
@@ -578,7 +615,7 @@ def pageHeader(
     pageHeader = """
         <div class="page-header" id="  ">
             <h1>%s <small>%s</small></h1>
-        </div>""" % (content,)
+        </div>""" % (headline,headline)
 
     return pageHeader
 

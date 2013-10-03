@@ -28,121 +28,126 @@ _dryxTBS_dropdowns
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-# xxx-replace
-## LAST MODIFIED : December 17, 2012
-## CREATED : December 17, 2012
-## AUTHOR : DRYX
-def get_dropdown_menu_for(dbConn, log, menuName, title, linkList):
-  """Generate a dropdown menu with the provided list of links.
+# # xxx-replace
+# ## LAST MODIFIED : December 17, 2012
+# ## CREATED : December 17, 2012
+# ## AUTHOR : DRYX
+# def get_dropdown_menu_for(
+#       log,
+#       menuName,
+#       title,
+#       linkList
+#     ):
+#   """Generate a dropdown menu with the provided list of links.
 
-  **Key Arguments:**
-    - ``dbConn`` -- mysql database connection
-    - ``log`` -- logger
-    - ``menuName`` -- the name of the menu
-    - ``title`` -- the title of the menu
-    - ``linkList`` -- a list of links that the menu should display
+#   **Key Arguments:**
+#     - ``dbConn`` -- mysql database connection
+#     - ``log`` -- logger
+#     - ``menuName`` -- the name of the menu
+#     - ``title`` -- the title of the menu
+#     - ``linkList`` -- a list of links that the menu should display
 
-  **Return:**
-    - ``menu`` -- the dropdown menu
-  """
-  ################ > IMPORTS ################
-  import ordereddict as c # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
-  #import collections as c
+#   **Return:**
+#     - ``menu`` -- the dropdown menu
+#   """
+#   ################ > IMPORTS ################
+#   import ordereddict as c # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
+#   #import collections as c
 
-  ################ > VARIABLE SETTINGS ######
-  gh = lambda x: get_html_block(x)
+#   ################ > VARIABLE SETTINGS ######
+#   gh = lambda x: get_html_block(x)
 
-  ################ >ACTION(S) ################
-  ## BUTTONS
-  buttonDict = {}
-  i=0
-  for item in linkList:
-    key = ('%05i' % i)
-    buttonDict[key] = dict(
-                            tag="div",
-                            htmlClass=menuName+'MenuButton',
-                            blockContent=item
-                          )
-    i += 1
+#   ################ >ACTION(S) ################
+#   ## BUTTONS
+#   buttonDict = {}
+#   i=0
+#   for item in linkList:
+#     key = ('%05i' % i)
+#     buttonDict[key] = dict(
+#                             tag="div",
+#                             htmlClass=menuName+'MenuButton',
+#                             blockContent=item
+#                           )
+#     i += 1
 
-  blockDict = {}
-  blockDict[menuName+'Hover'] = gh(
-                                    dict (
-                                          tag="div",
-                                          htmlClass='dropDownMenu',
-                                          htmlId=menuName+'Hover',
-                                          blockContent = title
-                                    )
-                                  )
+#   blockDict = {}
+#   blockDict[menuName+'Hover'] = gh(
+#                                     dict (
+#                                           tag="div",
+#                                           htmlClass='dropDownMenu',
+#                                           htmlId=menuName+'Hover',
+#                                           blockContent = title
+#                                     )
+#                                   )
 
-  obuttonDict = c.OrderedDict(sorted(buttonDict.items()))
+#   obuttonDict = c.OrderedDict(sorted(buttonDict.items()))
 
-  blockContent = blockDict[menuName+'Hover']
-  for k, v in obuttonDict.iteritems():
-    blockContent += gh(v)
+#   blockContent = blockDict[menuName+'Hover']
+#   for k, v in obuttonDict.iteritems():
+#     blockContent += gh(v)
 
-  blockDict[menuName+'SubItems'] = gh(
-                                        dict (
-                                              tag="div",
-                                              htmlClass='dropDownMenu',
-                                              htmlId=menuName+'SubItems',
-                                              blockContent=blockContent
-                                        )
-                                      )
+#   blockDict[menuName+'SubItems'] = gh(
+#                                         dict (
+#                                               tag="div",
+#                                               htmlClass='dropDownMenu',
+#                                               htmlId=menuName+'SubItems',
+#                                               blockContent=blockContent
+#                                         )
+#                                       )
 
-  blockDict[menuName+'Menu'] = gh(
-                                    dict (
-                                          tag="div",
-                                          htmlClass='dropDownMenu',
-                                          blockContent=blockContent,
-                                          htmlId=menuName+'Menu'
-                                    )
-                                  )
+#   blockDict[menuName+'Menu'] = gh(
+#                                     dict (
+#                                           tag="div",
+#                                           htmlClass='dropDownMenu',
+#                                           blockContent=blockContent,
+#                                           htmlId=menuName+'Menu'
+#                                     )
+#                                   )
 
-  return blockDict[menuName+'Menu']
+#   return blockDict[menuName+'Menu']
 
-# xxx-replace
-## LAST MODIFIED : December 12, 2012
-## CREATED : December 12, 2012
-## AUTHOR : DRYX
-def get_option_list(optionList):
-  """Create a dropdown option list
+# # xxx-replace
+# ## LAST MODIFIED : December 12, 2012
+# ## CREATED : December 12, 2012
+# ## AUTHOR : DRYX
+# def get_option_list(optionList):
+#   """Create a dropdown option list
 
-    **Key Arguments:**
-        - ``optionList`` -- list of items to appear in option list
-        - ``attributeDict`` -- dictionary of the following keywords:
-        - ``htmlClass`` -- the html element class
-        - ``htmlId`` -- the html element id
-        - ``blockContent`` -- actual content to be placed in html code block
-        - ``jsEvents`` -- inline javascript events
-        - ``extraAttr`` -- extra inline css attributes and/or handles
-        - ``name`` -- an extra hook (much like "id")
-        - ``type`` -- HTML input types = color, date, datetime, datetime-local, email, month, number, range, search, tel, time, url, week
-        - ``placeholder`` -- text to be displayed by default in the input box
-        - ``required`` -- make input required (boolean)
-        - ``autofocus`` -- make this the auofocus element of the form (i.e. place cursor here)
-        - ``maxlength`` -- maximum character length for the form
+#     **Key Arguments:**
+#         - ``optionList`` -- list of items to appear in option list
+#         - ``attributeDict`` -- dictionary of the following keywords:
+#         - ``htmlClass`` -- the html element class
+#         - ``htmlId`` -- the html element id
+#         - ``blockContent`` -- actual content to be placed in html code block
+#         - ``jsEvents`` -- inline javascript events
+#         - ``extraAttr`` -- extra inline css attributes and/or handles
+#         - ``name`` -- an extra hook (much like "id")
+#         - ``type`` -- HTML input types = color, date, datetime, datetime-local, email, month, number, range, search, tel, time, url, week
+#         - ``placeholder`` -- text to be displayed by default in the input box
+#         - ``required`` -- make input required (boolean)
+#         - ``autofocus`` -- make this the auofocus element of the form (i.e. place cursor here)
+#         - ``maxlength`` -- maximum character length for the form
 
-    **Returns:**
-        - ``block`` -- the HTML code block
-  """
-  ################ > IMPORTS ################
+#     **Returns:**
+#         - ``block`` -- the HTML code block
+#   """
+#   ################ > IMPORTS ################
 
-  ################ > VARIABLE SETTINGS ######
-  block = ""
+#   ################ > VARIABLE SETTINGS ######
+#   block = ""
 
-  ################ >ACTION(S) ################
-  for option in optionList:
-    htmlId = option.replace(' ','')
-    block += get_html_block(
-                              dict(
-                                tag="option",
-                                htmlId=htmlId,
-                                value=option,
-                                blockContent=option
-                              )
-                            )
-  return block
+#   ################ >ACTION(S) ################
+#   for option in optionList:
+#     htmlId = option.replace(' ','')
+#     block += get_html_block(
+#       dict(
+#         tag="option",
+#         htmlId=htmlId,
+#         value=option,
+#         blockContent=option
+#       )
+#     )
+#   return block
 
 
 ## LAST MODIFIED : March 8, 2013
@@ -150,7 +155,7 @@ def get_option_list(optionList):
 ## AUTHOR : DRYX
 def dropdown(
         buttonSize="default",
-        color="grey",
+        buttonColor="default",
         menuTitle="#",
         splitButton=False,
         linkList=[],
@@ -184,6 +189,7 @@ def dropdown(
     # Add .dropdown-submenu to any li in an existing dropdown menu for automatic styling.
     thisLinkList = ""
     for link in linkList:
+        link = link.replace('<a ','<a tabindex="-1"')
         thisLinkList += """%s""" % (link, )
 
     thisSeparatedLinkList = ""
@@ -199,6 +205,8 @@ def dropdown(
     else:
         buttonSize = "btn-%s" % (buttonSize,)
 
+    buttonColor = "btn-%s" % (buttonColor,)
+
     if direction == "up":
         direction = "dropup"
     else:
@@ -212,10 +220,10 @@ def dropdown(
             </button>""" % (buttonSize, buttonColor, menuTitle, buttonSize, buttonColor)
     else:
         dropdownButton = """
-            <a class="btn %s %s dropdown-toggle" data-toggle="dropdown" href="#">
+            <button class="btn %s %s dropdown-toggle" data-toggle="dropdown" href="#">
               %s
               <span class="caret"></span>
-            </a>""" % (buttonSize, buttonColor, menuTitle,)
+            </button>""" % (buttonSize, buttonColor, menuTitle,)
 
     if pull:
         pull = """pull-%s""" % (pull,)
@@ -236,9 +244,9 @@ def dropdown(
         onDesktop = "hidden-desktop"
 
     dropdown = """
-        <div class="btn-group %s %s %s %s" id="" %s>
+        <div class="btn-group %s %s %s %s %s" id="">
             %s
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
                 <!-- dropdown menu links -->
                 %s
           </ul>

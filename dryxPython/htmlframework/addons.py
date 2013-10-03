@@ -61,8 +61,6 @@ def mediaObject(
             %s
             <div class="media-body">
                 <h4 class="media-heading">%s</h4>
-                ...
-
                 <!-- Nested media object -->
                 %s
             </div>
@@ -81,7 +79,9 @@ def mediaObject(
 ## CREATED : 20130508
 ## AUTHOR : DRYX
 
-def well(wellText='', wellSize='default'):
+def well(
+        wellText='',
+        wellSize='default'):
     """Get well. Use the well as a simple effect on an element to give it an inset effect.
 
     **Key Arguments:**
@@ -98,7 +98,7 @@ def well(wellText='', wellSize='default'):
     well = """
         <div class="well" id="  ">
             %s
-        </div>""" % (content, )
+        </div>""" % (wellText, )
     return well
 
 

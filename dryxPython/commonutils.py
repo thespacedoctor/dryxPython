@@ -314,11 +314,10 @@ def dryx_mkdir(log, directoryPath):
     ###########################################################
     if not os.path.exists(directoryPath):
         try:
-            log.debug('creating the ' + directoryPath + ' d i rectory')
+            log.debug('creating the ' + directoryPath + ' directory')
             os.mkdir(directoryPath)
         except Exception as e:
-            log.error("could not create the " +
-                      directoryPath + " directory" + str(e) + "\n")
+            log.error("could not create the " + directoryPath + " directory" + str(e) + "\n")
     else:
         log.debug(directoryPath + ' directory already exists')
 
@@ -634,6 +633,69 @@ def get_help_for_python_module(
     print basename
 
     log.info('completed the ``get_help_for_python_module`` function')
+    return None
+
+## LAST MODIFIED : July 22, 2013
+## CREATED : July 22, 2013
+## AUTHOR : DRYX
+def recursively_remove_empty_directories(
+        log,
+        basePath):
+    """recursively remove empty directories
+
+    **Key Arguments:**
+        - ``log`` -- logger
+        - ``basePath`` -- the path to the base directory to remove directories within
+
+    **Return:**
+        - None
+
+    **Todo**
+    - [ ] when complete, clean recursively_remove_empty_directories function & add logging
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    import os
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+
+    log.info('starting the ``recursively_remove_empty_directories`` function')
+    ## VARIABLES ##
+
+    count = 0
+    while os.listdir(basePath) and count < 20:
+        count += 1
+        foldersToClean = []
+
+        for d in os.listdir(basePath):
+            fullPath = os.path.join(basePath, d)
+            if os.path.isdir(os.path.join(basePath, d)):
+                foldersToClean.append(fullPath)
+
+        parentDirectoryList = [basePath,]
+
+        while len(parentDirectoryList) != 0:
+            childDirList = []
+            for parentDir in parentDirectoryList:
+                thisDirList = os.listdir(parentDir)
+                for d in thisDirList:
+                    fullPath = os.path.join(parentDir, d)
+                    if os.path.isdir(fullPath):
+                        foldersToClean.append(fullPath)
+                        childDirList.append(fullPath)
+                    # print '\n\nchildDirList %s' % (childDirList,)
+            parentDirectoryList = childDirList
+
+        for d in foldersToClean:
+            if os.path.isdir(os.path.join(basePath, d)):
+                try:
+                    os.rmdir(os.path.join(basePath, d))
+                    log.warning('removed this folder %s' % (
+                        os.path.join(basePath, d),))
+                except:
+                    pass
+
+    log.info('completed the ``recursively_remove_empty_directories`` function')
     return None
 
 if __name__ == '__main__':
