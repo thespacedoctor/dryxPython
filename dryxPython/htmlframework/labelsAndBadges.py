@@ -126,7 +126,7 @@ def progressBar(
     """Generate a progress bar - TBS style
 
     **Key Arguments:**
-        - ``barStyle`` -- style of the progress bar [ "plain" | "stripped" | "stripped-active" ]
+        - ``barStyle`` -- style of the progress bar [ "plain" | "striped" | "striped-active" ]
         - ``precentageWidth`` -- the current progress of the bar
         - ``barLevel`` -- the level color of the bar [ "info" | "warning" | "success" | "error" ]
 
@@ -135,10 +135,10 @@ def progressBar(
     """
     barLevel = "progress-%s" % (barLevel,)
 
-    if barStyle == "stripped":
-        barStyle == "progess-stripped"
-    elif barStyle == "stripped-active":
-        barStyle == "progess-stripped active"
+    if barStyle == "striped":
+        barStyle == "progess-striped"
+    elif barStyle == "striped-active":
+        barStyle == "progess-striped active"
     else:
         barStyle = ""
 
@@ -154,6 +154,7 @@ def progressBar(
 ## CREATED : 20130508
 ## AUTHOR : DRYX
 def stackedProgressBar(
+        barLevel="info",
         barStyle="plain",
         infoWidth="10",
         successWidth="10",
@@ -163,7 +164,8 @@ def stackedProgressBar(
     """Generate a progress bar - TBS style
 
     **Key Arguments:**
-        - ``barStyle`` -- style of the progress bar [ "plain" | "stripped" | "stripped-active" ]
+        - ``barLevel`` -- the level/color of progress [ "info" | "success" | "warning" | "danger"]
+        - ``barStyle`` -- style of the progress bar [ "plain" | "striped" | "striped-active" ]
         - ``infoWidth`` -- the precentage width of the info level bar
         - ``successWidth`` -- the precentage width of the success level bar
         - ``warningWidth`` -- the precentage width of the warning level bar
@@ -174,10 +176,10 @@ def stackedProgressBar(
     """
     barLevel = "progress-%s" % (barLevel,)
 
-    if barStyle == "stripped":
-        barStyle == "progess-stripped"
-    elif barStyle == "stripped-active":
-        barStyle == "progess-stripped active"
+    if barStyle == "striped":
+        barStyle == "progess-striped"
+    elif barStyle == "striped-active":
+        barStyle == "progess-striped active"
     else:
         barStyle = ""
 

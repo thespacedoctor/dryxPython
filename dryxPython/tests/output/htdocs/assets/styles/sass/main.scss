@@ -1,0 +1,75 @@
+// IMPORTS
+@import "screen";
+@import "dryx_colors";
+@import "modified_variables";
+@import "dryx_utils";
+@import "dryx_reset";
+@import "dryx_alerts";
+@import "dryx_anchors";
+@import "dryx_animations";
+@import "dryx_badges";
+@import "dryx_buttons";
+@import "dryx_dropdowns";
+@import "dryx_feature_blocks";
+@import "dryx_forms";
+@import "dryx_functions";
+@import "dryx_icons";
+@import "dryx_images";
+@import "dryx_layout";
+@import "dryx_logs";
+@import "dryx_modals";
+@import "dryx_navigation";
+@import "dryx_responsive_utils";
+@import "dryx_tables";
+@import "dryx_tooltip";
+@import "dryx_type";
+// @import "lopash_mmd";
+//@import "_solarised_dark";
+
+// INCLUDES
+
+// DEFAULT VARIABLES
+$clip: padding-box;
+$default-text-shadow-color: darken($solLightGrey, 10%);
+$default-text-shadow-h-offset: 2px;
+$default-text-shadow-v-offset: 2px;
+$default-text-shadow-blur: 5px;
+$default-box-shadow-color: $solDarkGrey;
+$default-box-shadow-h-offset: 5px;
+$default-box-shadow-v-offset: 5px;
+$default-box-shadow-blur: 5px;
+$default-box-shadow-spread: true;
+$default-box-shadow-inset: true;
+
+// MAIN MIXIN
+@mixin dryx_basic_setup(){
+    @include dryx_colors();
+    @include set_variables();
+    @include dry_alerts();
+    @include dryx_anchors();
+    @include dryx_animations();
+    @include dryx_badges();
+    @include dryx_buttons();
+    @include dryx_dropdowns();
+    @include dryx_feature_blocks();
+    @include dryx_forms();
+    @include dryx_functions();
+    @include dryx_icons();
+    @include dryx_images();
+    @include dryx_layout();
+    @include dryx_logs();
+    @include dryx_modals();
+    @include dryx_navigation();
+    @include dryx_reset();
+    @include dryx_responsive_utils();
+    @include dryx_tables();
+    @include dryx_tooltips();
+    @include dryx_type();
+    @include dryx_utils();
+}
+
+// SETUP-MIXINS
+@include dryx_basic_setup();
+
+// EXTRA MIXINS
+

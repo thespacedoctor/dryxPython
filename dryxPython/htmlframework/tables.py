@@ -45,10 +45,7 @@ def tr(
     if color is False:
         color = ""
 
-    tr = """
-        <tr class="%s">
-            %s
-        </tr>""" % (color, cellContent,)
+    tr = """<tr class="%s">%s</tr>""" % (color, cellContent,)
 
     return tr
 
@@ -71,10 +68,7 @@ def th(
     if color is False:
         color = ""
 
-    th = """
-        <th class="%s">
-            %s
-        </th>""" % (color, content,)
+    th = """<th class="%s">%s</th>""" % (color, content,)
 
     return th
 
@@ -97,10 +91,7 @@ def td(
     if color is False:
         color = ""
 
-    td = """
-        <td class="%s">
-            %s
-        </td>""" % (color, content,)
+    td = """<td class="%s">%s</td>""" % (color, content,)
 
     return td
 
@@ -118,10 +109,7 @@ def tableCaption(
     **Return:**
         - ``tableCaption`` -- the table caption
     """
-    tableCaption = """
-        <tableCaption class="">
-            %s
-        </tableCaption>""" % (content,)
+    tableCaption = """<caption class="">%s</caption>""" % (content,)
 
     return tableCaption
 
@@ -139,10 +127,7 @@ def thead(
     **Return:**
         - ``thead`` -- the table head
     """
-    thead = """
-        <thead class="">
-            %s
-        </thead>""" % (trContent,)
+    thead = """<thead class="">%s</thead>""" % (trContent,)
 
     return thead
 
@@ -160,10 +145,7 @@ def tbody(
     **Return:**
         - ``tbody`` -- the table body
     """
-    tbody = """
-        <tbody class="">
-            %s
-        </tbody>""" % (trContent,)
+    tbody = """<tbody class="">%s</tbody>""" % (trContent,)
 
     return tbody
 
@@ -175,7 +157,7 @@ def table(
         caption="",
         thead="",
         tbody="",
-        stripped=True,
+        striped=True,
         bordered=False,
         hover=True,
         condensed=False):
@@ -185,7 +167,7 @@ def table(
         - ``caption`` -- the table caption
         - ``thead`` -- the table head
         - ``tbody`` -- the table body
-        - ``stripped`` -- Adds zebra-striping to any odd table row
+        - ``striped`` -- Adds zebra-striping to any odd table row
         - ``bordered`` -- Add borders and rounded corners to the table.
         - ``hover`` -- Enable a hover state on table rows within a <tbody>
         - ``condensed`` -- Makes tables more compact by cutting cell padding in half.
@@ -193,15 +175,18 @@ def table(
     **Return:**
         - ``table`` -- the table
     """
-    if stripped is True:
-        stripped = "table-stripped"
+    if striped is True:
+        striped = "table-striped"
     else:
-        stripped = ""
+        striped = ""
+
+    if caption is False:
+        caption = ""
 
     if bordered is True:
-        bordered = "table-bordered"
-    else:
         bordered = ""
+    else:
+        bordered = "table-bordered"
 
     if hover is True:
         hover = "table-hover"
@@ -213,12 +198,7 @@ def table(
     else:
         condensed = ""
 
-    table = """
-        <table class="table %s %s %s %s">
-            %s
-            %s
-            %s
-        </table>""" % (stripped, bordered, hover, condensed, caption, thead, tbody)
+    table = """<table class="table %s %s %s %s">%s%s%s</table>""" % (striped, bordered, hover, condensed, caption, thead, tbody)
 
     return table
 

@@ -36,7 +36,7 @@ if __name__ == '__main__':
 ## LAST MODIFIED : May 28, 2013
 ## CREATED : May 28, 2013
 ## AUTHOR : DRYX
-def unescape_html(dbConn, log, html):
+def unescape_html(html):
     """Unescape a string previously escaped with cgi.escape()
 
     **Key Arguments:**

@@ -30,23 +30,30 @@
 ## LAST MODIFIED : April 11, 2013
 ## CREATED : April 11, 2013
 ## AUTHOR : DRYX
-def htmlDocument(content=''):
+def htmlDocument(
+        contentType=False,
+        content=''):
     """The doctype and html tags
 
     **Key Arguments:**
         - ``content`` -- the head and body of the html page
 
     **Return:**
-        - ``doctype`` -- the HTML5 doctype """
+        - ``contentType`` -- the content type [ "text/html" ]
+        - ``doctype`` -- the HTML5 doctype
+    """
+
+    if not contentType:
+        contentType = ""
 
     htmlDocument = \
-        """Content-Type: text/html\n
+        """%s\n
         <!DOCTYPE html>
         <html lang="en">
             %s
         </html>
     """ \
-        % (content, )
+        % (contentType, content, )
     return htmlDocument
 
 
@@ -178,7 +185,7 @@ def body(
 ## LAST MODIFIED : March 27, 2013
 ## CREATED : March 27, 2013
 ## AUTHOR : DRYX
-def row(
+def grid_row(
     responsive=True,
     columns='',
     htmlId=False,
@@ -261,30 +268,30 @@ def row(
 
 
 
-# xxx-replace
-## LAST MODIFIED : December 17, 2012
-## CREATED : December 17, 2012
-## AUTHOR : DRYX
+# # xxx-replace
+# ## LAST MODIFIED : December 17, 2012
+# ## CREATED : December 17, 2012
+# ## AUTHOR : DRYX
 
-def get_simple_div(htmlId=None, blockContent=None):
-    """ Generate a basic <div> with block-content
+# def get_simple_div(htmlId=None, blockContent=None):
+#     """ Generate a basic <div> with block-content
 
-  ****Key Arguments:****
-    - ``htmlId`` -- the html id attribute
-    - ``blockContent`` -- content to be surrounded by html div tag
+#   ****Key Arguments:****
+#     - ``htmlId`` -- the html id attribute
+#     - ``blockContent`` -- content to be surrounded by html div tag
 
-  **Return:**
-    - ``div`` """
+#   **Return:**
+#     - ``div`` """
 
-  # ############### > IMPORTS ################
-  # ############### > VARIABLE SETTINGS ######
-  # ############### >ACTION(S) ################
-    div = get_html_block(dict(
-        tag='div',
-        htmlId=htmlId,
-        blockContent=blockContent,
-        ))
-    return div
+#   # ############### > IMPORTS ################
+#   # ############### > VARIABLE SETTINGS ######
+#   # ############### >ACTION(S) ################
+#     div = get_html_block(dict(
+#         tag='div',
+#         htmlId=htmlId,
+#         blockContent=blockContent,
+#         ))
+#     return div
 
 
 # xxx-replace
@@ -292,61 +299,61 @@ def get_simple_div(htmlId=None, blockContent=None):
 ## CREATED : December 12, 2012
 ## AUTHOR : DRYX
 
-def get_javascript_block(jsPath):
-    """ Create a javascript *<script>* html code block
+# def get_javascript_block(jsPath):
+#     """ Create a javascript *<script>* html code block
 
-  ****Key Arguments:****
-    - ``jsPath`` -- path the js file
+#   ****Key Arguments:****
+#     - ``jsPath`` -- path the js file
 
-  **Return:**
-    - ``block`` -- HTML code block """
+#   **Return:**
+#     - ``block`` -- HTML code block """
 
-  # ############### > IMPORTS ################
-  # ############### > VARIABLE SETTINGS ######
-  # ############### >ACTION(S) ################
-    block = """<script src="%s" type="text/javascript" charset="utf-8"></script>""" % (jsPath, )
-    return block
+#   # ############### > IMPORTS ################
+#   # ############### > VARIABLE SETTINGS ######
+#   # ############### >ACTION(S) ################
+#     block = """<script src="%s" type="text/javascript" charset="utf-8"></script>""" % (jsPath, )
+#     return block
 
 
-# xxx-replace
-## LAST MODIFIED : December 11, 2012
-## CREATED : December 11, 2012
-## AUTHOR : DRYX
+# # xxx-replace
+# ## LAST MODIFIED : December 11, 2012
+# ## CREATED : December 11, 2012
+# ## AUTHOR : DRYX
 
-def get_html_block(attributeDict):
-    """Get an HTML code block (tag) which in turn can be meshed together to build webpages.
+# def get_html_block(attributeDict):
+#     """Get an HTML code block (tag) which in turn can be meshed together to build webpages.
 
-    **Variable Attributes:**
-      - ``attributeDict`` -- dictionary with the following keywords:
-      - ``tag`` -- the html tag (a, div, span ...)
-      - ``htmlClass`` -- the html element class
-      - ``htmlId`` -- the html element id
-      - ``href`` -- linked url
-      - ``blockContent`` -- actual content to be placed in html code block
-      - ``jsEvents`` -- inline javascript event
-      - ``extraAttr`` -- extra incline css attributes and/or handles
-      - ``src`` -- source for images
-      - ``alt`` -- alternative text for images
-      - ``action`` -- action used in forms
-      - ``method`` -- method used in forms
-      - ``type`` -- type of object
+#     **Variable Attributes:**
+#       - ``attributeDict`` -- dictionary with the following keywords:
+#       - ``tag`` -- the html tag (a, div, span ...)
+#       - ``htmlClass`` -- the html element class
+#       - ``htmlId`` -- the html element id
+#       - ``href`` -- linked url
+#       - ``blockContent`` -- actual content to be placed in html code block
+#       - ``jsEvents`` -- inline javascript event
+#       - ``extraAttr`` -- extra incline css attributes and/or handles
+#       - ``src`` -- source for images
+#       - ``alt`` -- alternative text for images
+#       - ``action`` -- action used in forms
+#       - ``method`` -- method used in forms
+#       - ``type`` -- type of object
 
-    **Returns:**
-      - ``block`` -- the html block
+#     **Returns:**
+#       - ``block`` -- the html block
 
-    attributeDict template -- dict(tag=___,
-                                    htmlClass:divVerticalKids/divHorizontalKids,
-                                    htmlId=___,
-                                    jsEvents=___,
-                                    extraAttr=___,
-                                    blockContent=___,
-                                    href=___,
-                                    src=___,
-                                    alt=___,
-                                    action=___,
-                                    method=___,
-                                    type=___
-                                  ) """
+#     attributeDict template -- dict(tag=___,
+#                                     htmlClass:divVerticalKids/divHorizontalKids,
+#                                     htmlId=___,
+#                                     jsEvents=___,
+#                                     extraAttr=___,
+#                                     blockContent=___,
+#                                     href=___,
+#                                     src=___,
+#                                     alt=___,
+#                                     action=___,
+#                                     method=___,
+#                                     type=___
+#                                   ) """
 
   # ############### > IMPORTS ################
   # ############### > VARIABLE SETTINGS ######
