@@ -690,7 +690,7 @@ def recursively_remove_empty_directories(
             if os.path.isdir(os.path.join(basePath, d)):
                 try:
                     os.rmdir(os.path.join(basePath, d))
-                    log.warning('removed this folder %s' % (
+                    log.info('removed this folder %s' % (
                         os.path.join(basePath, d),))
                 except:
                     pass

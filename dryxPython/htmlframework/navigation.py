@@ -54,26 +54,31 @@ def responsive_navigation_bar(
     **Return:**
         - ``navBar`` -- """
 
-    if 'dark' in shade:
-        shade = 'navbar-inverse'
-    else:
+    if not shade:
         shade = ''
+    else:
+        shade = 'navbar-inverse'
     if not brand:
         brand = ''
     else:
         brand = """<a class="brand" href="#">%s</a>""" % (brand, )
-    if not outsideNavList:
+
+    thisList = ""
+    if outsideNavList:
+        for item in outsideNavList:
+            thisList += item
+        outsideNavList = thisList
+    else:
         outsideNavList = ''
+
+    thisList = ""
     if insideNavList:
-        insideNavList = \
-            """
-            <div class="nav-collapse collapse">
-                %s
-            </div>
-        """ \
-            % (insideNavList, )
+        for item in insideNavList:
+            thisList += item
+        insideNavList = """<div class="nav-collapse collapse"><ul class="nav">%s</ul></div>""" % (thisList, )
     else:
         insideNavList = ''
+
     if htmlId:
         htmlId = """id="%s" """ % (htmlId, )
     else:
@@ -90,24 +95,18 @@ def responsive_navigation_bar(
         onDesktop = ''
     else:
         onDesktop = 'hidden-desktop'
-    navBar = \
-        """
-        <div class="navbar %s %s %s %s" %s>
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    %s
-                    %s
-                    %s
-                </div>
-            </div>
-         </div>
-    """ \
-        % (
+    navBar = """<div class="navbar %s %s %s %s" %s>
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            %s%s%s
+        </div>
+    </div>
+ </div>""" % (
         shade,
         onPhone,
         onTablet,
@@ -307,8 +306,7 @@ def searchbox(
 ## AUTHOR : DRYX
 
 def tabbableNavigation(
-        log,
-        contentDictionary={},
+        contentDictionary={},  # { name : content }
         fadeIn=True,
         direction='top',
     ):
@@ -329,10 +327,6 @@ def tabbableNavigation(
     titleList = ''
     contentList = ''
     count = 0
-
-    if len(contentDictionary) == 0:
-        log.error('contentDictionary has no content')
-        return
 
     for k, v in contentDictionary.iteritems():
         if count == 0:
@@ -384,8 +378,9 @@ def tabbableNavigation(
 
 def navBar(
     brand='',
-    contentDictionary={},
+    contentList=[],
     dividers=False,
+    forms=False,
     fixedOrStatic=False,
     location='top',
     responsive=False,
@@ -395,7 +390,7 @@ def navBar(
 
     **Key Arguments:**
         - ``brand`` -- the website brand [ image | text ]
-        - ``contentDictionary`` -- the content dictionary { text : href }
+        - ``contentList`` -- the content list of li and dropdowns
         - ``fixedOrStatic`` -- Fix the navbar to the top or bottom of the viewport, or create a static full-width navbar that scrolls away with the page [ False | fixed | static ]
         - ``location`` -- location of the navigation bar if fixed or static
         - ``dark`` -- Modify the look of the navbar by making it dark
@@ -413,19 +408,31 @@ def navBar(
     if dividers:
         dividers = """<li class="divider-vertical"></li>"""
     titleList = ''
-    contentList = ''
+    # contentList = ''
     count = 0
-    for k, v in contentDictionary.iteritems():
-        if count == 0:
-            titleList += """<li class="active"><a href="%s">%s</a></li>%s""" % (v, k, dividers)
-        else:
-            titleList += """<li><a href="%s">%s</a></li>%s""" % (v, k, dividers)
-        count += 1
+
+    for item in contentList:
+        titleList += item+dividers
+
+
+    # for k, v in contentDictionary.iteritems():
+    #     if count == 0:
+    #         titleList += """<li class="active"><a href="%s">%s</a></li>%s""" % (v, k, dividers)
+    #         count += 1
+    #     else:
+    #         titleList += """<li><a href="%s">%s</a></li>%s""" % (v, k, dividers)
+
     titleList = """
     <ul class="nav" id="  ">
         %s
     </ul>
     """ % (titleList, )
+
+    formList = ""
+    if forms:
+        for form in forms:
+            formList += form
+
     if fixedOrStatic:
         fixedOrStatic = 'navbar-%s-%s' % (fixedOrStatic, location)
     if responsive:
@@ -452,10 +459,11 @@ def navBar(
           <div class="navbar-inner">
             %s
             %s
+            %s
           </div>
         </div>
         """ \
-        % (fixedOrStatic, dark, brand, titleList)
+        % (fixedOrStatic, dark, brand, titleList, formList)
     return navBar
 
 
@@ -487,11 +495,11 @@ def pagination(
         align = "pagination-%s" % (align,)
 
     pagination = """
-        <div class="pagination" id="  ">
+        <div class="pagination %s %s" id="  ">
             <ul>
             %s
             </ul>
-        </div>""" % (listItems,)
+        </div>""" % (size, align, listItems)
 
     return pagination
 

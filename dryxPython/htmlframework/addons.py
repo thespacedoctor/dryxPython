@@ -34,6 +34,7 @@ def mediaObject(
     displayType='div',
     img='',
     headlineText='',
+    otherContent=False,
     nestedMediaObjects=False,
     ):
     """ Generate an abstract object style for building various types of components (like blog comments, Tweets, etc) that feature a left- or right-aligned image alongside textual content.
@@ -42,6 +43,7 @@ def mediaObject(
         - ``displayType`` -- the display style of the media object [ "div" | "li" ]
         - ``img`` -- the image to include
         - ``headlineText`` -- the headline text for the object
+        - ``otherContent`` -- other content to be displayed inside the media object
         - ``nestedMediaObjects`` -- nested media objects to be appended
 
     **Return:**
@@ -55,12 +57,16 @@ def mediaObject(
 
     [nestedMediaObjects] = falseList
 
+    if not otherContent:
+        otherContent = ""
+
     mediaObject = \
         """
         <%s class="media" id="  ">
             %s
             <div class="media-body">
                 <h4 class="media-heading">%s</h4>
+                %s
                 <!-- Nested media object -->
                 %s
             </div>
@@ -69,6 +75,7 @@ def mediaObject(
         displayType,
         img,
         headlineText,
+        otherContent,
         nestedMediaObjects,
         displayType,
         )
@@ -96,9 +103,9 @@ def well(
     else:
         wellSize = 'well-%s' % (wellSize, )
     well = """
-        <div class="well" id="  ">
+        <div class="well %s" id="  ">
             %s
-        </div>""" % (wellText, )
+        </div>""" % (wellSize, wellText, )
     return well
 
 

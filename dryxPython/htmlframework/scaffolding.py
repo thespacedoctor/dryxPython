@@ -45,6 +45,8 @@ def htmlDocument(
 
     if not contentType:
         contentType = ""
+    else:
+        contentType = "Content-type: %s" % (contentType,)
 
     htmlDocument = \
         """%s\n

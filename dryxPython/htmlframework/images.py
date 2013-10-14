@@ -105,8 +105,9 @@ def image(
 ## LAST MODIFIED : 20130508
 ## CREATED : 20130508
 ## AUTHOR : DRYX
-def thumbnail(
-        htmlContent=""):
+def thumbnails(
+        listItems=[]
+    ):
     """Generate a thumbnail - TBS style
 
     **Key Arguments:**
@@ -115,12 +116,31 @@ def thumbnail(
     **Return:**
         - ``thumbnail`` -- the thumbnail with HTML content
     """
-    thumbnail = """
-        <div class="thumbnail" id="  ">
-            %s
-        </div>""" % (htmlContent,)
+    theseItems = ""
+    for item in listItems:
+        theseItems += item
 
-    return thumbnail
+    thumbnails = """<ul class="thumbnails" id="  ">%s</ul>""" % (theseItems,)
+
+    return thumbnails
+
+## LAST MODIFIED : 20130508
+## CREATED : 20130508
+## AUTHOR : DRYX
+def thumbnail_div(
+        div_content=""
+    ):
+    """Generate a thumbnail - TBS style
+
+    **Key Arguments:**
+        - ``div_content`` -- the html content of the thumbnail
+
+    **Return:**
+        - ``thumbnail`` -- the thumbnail with HTML content
+    """
+    thumbnail_div = """<div class="thumbnail" id="  ">%s</div>""" % (div_content,)
+
+    return thumbnail_div
 
 
 ###################################################################

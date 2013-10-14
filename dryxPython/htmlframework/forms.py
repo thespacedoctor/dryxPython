@@ -444,10 +444,17 @@ def form(
     if formType in thisList:
         formType = """form-%s""" % (formType,)
 
-    form = """
-        <form class="%s">
-            %s
-        </form>""" % (formType, content,)
+    htmlInput = ""
+    if formType == "navbar-search":
+      htmlInput += """<input type="text" class="search-query" placeholder="search">"""
+
+    if formType == "navbar-form":
+      htmlInput += """<input type="text" class="span2">
+        <button type="submit" class="btn">Submit</button>"""
+
+
+
+    form = """<form class="%s %s">%s%s</form>""" % (formType, navBarPull, content,htmlInput)
 
     return form
 
@@ -1050,6 +1057,58 @@ def formActions(
         </div>%s%s""" % (primaryButton, button2, button3, button4, button5, inlineHelpText, blockHelpText)
 
     return formActions
+
+
+## LAST MODIFIED : October 9, 2013
+## CREATED : October 9, 2013
+## AUTHOR : DRYX
+def modal(
+        modalHeaderContent="",
+        modalBodyContent="",
+        modalFooterContent="",
+        htmlId=False
+      ):
+    """generate a modal to by generated with a js event
+
+    **Key Arguments:**
+      - ``modalHeaderContent`` -- the heading for the modal
+      - ``modalBodyContent`` -- the content (form or text)
+      - ``modalFooterContent`` -- the foot (usually buttons)
+      - ``htmlId`` -- id for button to hook onto with href
+
+    **Return:**
+        - ``modal`` -- the modal
+
+    **Todo**
+        - @review: when complete, clean modal function
+        - @review: when complete add logging
+        - @review: when complete, decide whether to abstract function to another module
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+
+    if htmlId is False:
+        htmlId = ""
+    else:
+        htmlId = """id="%s" """ % (htmlId,)
+
+    ## VARIABLES ##
+    modal = """<div class="modal hide fade" %s>
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>%s</h3>
+                  </div>
+                  <div class="modal-body">
+                    %s
+                  </div>
+                  <div class="modal-footer">
+                    %s
+                  </div>
+                </div>""" % (htmlId, modalHeaderContent, modalBodyContent, modalFooterContent)
+
+    return modal
 
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #

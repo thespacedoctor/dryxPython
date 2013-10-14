@@ -94,10 +94,10 @@ def alert(alertText='',
                 falseList[i] = ""
     [extraPadding,]  = falseList
 
-    if alertLevel == "warning":
+    if alertLevel == "default":
         alertLevel = ""
     else:
-        alertHeading = "alert-%s" % (alertLevel,)
+        alertLevel = "alert-%s" % (alertLevel,)
 
     if extraPadding:
         extraPadding = "alert-block"
@@ -136,9 +136,9 @@ def progressBar(
     barLevel = "progress-%s" % (barLevel,)
 
     if barStyle == "striped":
-        barStyle == "progess-striped"
+        barStyle = "progress-striped"
     elif barStyle == "striped-active":
-        barStyle == "progess-striped active"
+        barStyle = "progress-striped active"
     else:
         barStyle = ""
 
@@ -154,7 +154,6 @@ def progressBar(
 ## CREATED : 20130508
 ## AUTHOR : DRYX
 def stackedProgressBar(
-        barLevel="info",
         barStyle="plain",
         infoWidth="10",
         successWidth="10",
@@ -174,22 +173,20 @@ def stackedProgressBar(
     **Return:**
         - ``progressBar`` -- the progressBar
     """
-    barLevel = "progress-%s" % (barLevel,)
-
     if barStyle == "striped":
-        barStyle == "progess-striped"
+        barStyle = "progress-striped"
     elif barStyle == "striped-active":
-        barStyle == "progess-striped active"
+        barStyle = "progress-striped active"
     else:
         barStyle = ""
 
     stackedProgressBar = """
-        <div class="progress %s %s">
+        <div class="progress %s">
           <div class="bar bar-info" style="width: %s%%;"></div>
           <div class="bar bar-success" style="width: %s%%;"></div>
           <div class="bar bar-warning" style="width: %s%%;"></div>
-          <div class="bar bar-error" style="width: %s%%;"></div>
-        </div>""" % (barLevel, barStyle, infoWidth, successWidth, warningWidth, errorWidth)
+          <div class="bar bar-danger" style="width: %s%%;"></div>
+        </div>""" % (barStyle, infoWidth, successWidth, warningWidth, errorWidth)
 
     return stackedProgressBar
 
