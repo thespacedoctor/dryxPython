@@ -114,7 +114,7 @@ def convert_fits_header_to_dictionary(
     try:
         fitsHeader = get_fits_header(log, pathToFitsFile, headerExtension=headerExtension)
         cardList = fitsHeader.ascardlist()
-        print cardList
+        # print cardList
     except:
         headerDictionary["corrupted"] = [True, "file is corrupted"]
         return headerDictionary

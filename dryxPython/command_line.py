@@ -105,21 +105,36 @@ def dft_print_fits_header(clArgs=None):
     pathToFitsFile = clArgs["<path-to-fits-file>"]
 
     hduList = pf.open(pathToFitsFile)
-    fitsHeader=hduList[0].header
 
-    fitsHeader = hduList[0].header
-    cardList = fitsHeader.ascardlist()
-    result = cardList
-    hduList.close()
+    for i in range(len(hduList)):
+        result = ""
+        if i == 0:
+            print "\n# PRIMARY EXTENSION:\n"
+        else:
+            print "\n# EXTENSION %s:\n" % (i,)
 
-    if clArgs["--pydict"]:
-        thisDict = dft.convert_fits_header_to_dictionary(
-            log,
-            pathToFitsFile=pathToFitsFile
-        )
-        result = thisDict
+        if clArgs["--pydict"]:
+            thisDict = dft.convert_fits_header_to_dictionary(
+                log,
+                pathToFitsFile=pathToFitsFile
+            )
+            result += str(thisDict)
+        else:
+            fitsHeader=hduList[i].header
+            cardList = fitsHeader.ascardlist()
+            result += str(cardList)
+            hduList.close()
 
-    print result
+        if not clArgs["--pydict"]:
+            thisResult = ""
+            import string
+            theseLines= string.split(result, '\n')
+            for line in theseLines:
+                thisResult += "    %s\n" % (line,)
+            print thisResult
+        else:
+            print result
+
     return None
 
 

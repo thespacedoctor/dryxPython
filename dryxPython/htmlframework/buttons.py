@@ -156,7 +156,8 @@ def button(
         href=False,
         submit=False,
         block=False,
-        disable=False):
+        disable=False,
+        dataToggle=False):
     """Generate a button - TBS style
 
     **Key Arguments:**
@@ -167,6 +168,7 @@ def button(
         - ``submit`` -- set to true if a form button [ true | false ]
         - ``block`` -- create block level buttons—those that span the full width of a parent [ True | False ]
         - ``disable`` -- this class is only for aesthetic; you must use custom JavaScript to disable links here
+        - ``dataToggle`` -- for use with js to launch, for example, a modal
 
     **Return:**
         - ``button`` -- the button
@@ -196,6 +198,11 @@ def button(
     else:
         submit = ""
 
+    if not dataToggle:
+        dataToggle = ""
+    else:
+        dataToggle = """data-toggle="%s" """ % (dataToggle,)
+
     if href:
         elementOpen = """a href="%s" """ % (href,)
         elementClose = """a"""
@@ -203,7 +210,7 @@ def button(
         elementOpen = """button type="button" """
         elementClose = """button"""
 
-    button = """<%s class="btn %s %s %s %s" id="  " %s >%s</%s>""" % (elementOpen, buttonStyle, buttonSize, block, disable, submit, buttonText, elementClose)
+    button = """<%s class="btn %s %s %s %s" id="  " %s %s>%s</%s>""" % (elementOpen, buttonStyle, buttonSize, block, disable, submit, dataToggle, buttonText, elementClose)
 
     return button
 

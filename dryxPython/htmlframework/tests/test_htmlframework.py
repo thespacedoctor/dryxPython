@@ -335,7 +335,6 @@ class emptyLogger:
 class test_stackedProgressBar():
     def test_stackedProgressBar_works_as_expected(self):
         kwargs = {}
-        kwargs["barLevel"]="info"
         kwargs["barStyle"]="plain"
         kwargs["infoWidth"]="10"
         kwargs["successWidth"]="10"
@@ -466,7 +465,6 @@ class test_searchbox():
 class test_tabbableNavigation():
     def test_tabbableNavigation_works_as_expected(self):
         kwargs = {}
-        kwargs["log"]=log
         kwargs["contentDictionary"]={}
         kwargs["fadeIn"]=True
         kwargs["direction"]='top'
@@ -486,7 +484,7 @@ class test_navBar():
     def test_navBar_works_as_expected(self):
         kwargs = {}
         kwargs["brand"]=''
-        kwargs["contentDictionary"]={}
+        kwargs["contentList"]=[]
         kwargs["dividers"]=False
         kwargs["fixedOrStatic"]=False
         kwargs["location"]='top'
@@ -806,7 +804,15 @@ class test_0001_htmlDocument():
         ## PAGE DETAILS
         text = "Page Details:\n"
         content += lt(text)
+
+        text = dhf.p(
+            content="webpage-head-and-body",
+            color="success",  #  [ muted | warning | info | error | success ]
+        )
+        content += "<br><br><em>Snippet:</em> " + text
         content += "Page constructed from a %s and %s in an %s" % (ct("head"), ct("body"), ct("htmlDocument"))
+
+
 
         ## BASIC GRIDS
         text = "Basic grid HTML"
@@ -1846,49 +1852,753 @@ class test_0001_htmlDocument():
         )
         content +=  tabs
 
+
+        pills = dhf.ul(
+           itemList=[liveLink, disabledLink, liveLink, linkListItem,], # e.g a list links
+           unstyled=False,
+           inline=False,
+           dropDownMenu=False,  #  [ false | true ]
+           navStyle="pills",  # [ nav | tabs | pills | list ]
+           navPull="right",  #  [ false | left | right ]
+           navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
+           breadcrumb=False,  #  [ False | True ]
+           pager=False,
+           thumbnails=False,
+           mediaList=False
+        )
+        content +=  pills
+
+
+        stackedTabs = dhf.ul(
+           itemList=[liveLink, disabledLink, liveLink, linkListItem,], # e.g a list links
+           unstyled=False,
+           inline=False,
+           dropDownMenu=False,  #  [ false | true ]
+           navStyle="tabs",  # [ nav | tabs | pills | list ]
+           navPull=False,  #  [ false | left | right ]
+           navDirection='stacked',  # [ 'default' | 'stacked' | 'horizontal' ]
+           breadcrumb=False,  #  [ False | True ]
+           pager=False,
+           thumbnails=False,
+           mediaList=False
+        )
+        content +=  stackedTabs
+
+        droplink = dhf.a(
+            content='dropdown',
+            href=False,
+            tableIndex=False,
+            triggerStyle='dropdown' # [ False | "dropdown" | "tab" ]
+        )
+        ul = dhf.ul(
+            itemList=[link, link, link], # e.g a list links
+            unstyled=False,
+            inline=False,
+            dropDownMenu=True,  #  [ false | true ]
+            navStyle=False,  # [ nav | tabs | pills | list ]
+            navPull=False,  #  [ false | left | right ]
+            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  #  [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
+        )
+        dropdown = dhf.li(
+            content=droplink+ul,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=True,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        stackedPills = dhf.ul(
+           itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem], # e.g a list links
+           unstyled=False,
+           inline=False,
+           dropDownMenu=False,  #  [ false | true ]
+           navStyle="pills",  # [ nav | tabs | pills | list ]
+           navPull=False,  #  [ false | left | right ]
+           navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
+           breadcrumb=False,  #  [ False | True ]
+           pager=False,
+           thumbnails=False,
+           mediaList=False
+        )
+        content +=  stackedPills
+
+        tabPills = dhf.ul(
+           itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem], # e.g a list links
+           unstyled=False,
+           inline=False,
+           dropDownMenu=False,  #  [ false | true ]
+           navStyle="tabs",  # [ nav | tabs | pills | list ]
+           navPull=False,  #  [ false | left | right ]
+           navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
+           breadcrumb=False,  #  [ False | True ]
+           pager=False,
+           thumbnails=False,
+           mediaList=False
+        )
+        content +=  tabPills
+
+
+        header = dhf.li(
+            content='header title',  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle="header",  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        active = dhf.li(
+            content=link,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle="active",  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        item = dhf.li(
+            content=link,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        item = dhf.li(
+            content=link,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        divider = dhf.li(
+            content='',  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=True,
+            navStyle=False,  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        navList = dhf.ul(
+            itemList=[header,active,link,link,divider,header,active,link,link,], # e.g a list links
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  #  [ false | true ]
+            navStyle="list",  # [ nav | tabs | pills | list ]
+            navPull=False,  #  [ false | left | right ]
+            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  #  [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
+        )
+        content += navList
+
+        tabbableNavigation = dhf.tabbableNavigation(
+            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            fadeIn=True,
+            direction='top'
+        )
+        content += tabbableNavigation
+
+        tabbableNavigation = dhf.tabbableNavigation(
+            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            fadeIn=True,
+            direction='below'
+        )
+        content += tabbableNavigation
+
+        tabbableNavigation = dhf.tabbableNavigation(
+            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            fadeIn=True,
+            direction='left'
+        )
+        content += tabbableNavigation
+
+        tabbableNavigation = dhf.tabbableNavigation(
+            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            fadeIn=True,
+            direction='right'
+        )
+        content += tabbableNavigation
+
         ##Navbar
         text = "Navbar"
         content += lt(text)
+
+
+        searchForm = dhf.form(
+            content='',  # dictionary
+            formType='navbar-search', #  [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            navBarPull="right"  # [ false | right | left ]
+        )
+
+
+        pageLink = dhf.a(
+            content='Page',
+            href='#'
+        )
+        itemName = dhf.li(
+            content=pageLink,  # if a subMenu for dropdown this should be <ul>
+        )
+        droplink = dhf.a(
+            content='dropdown',
+            href=False,
+            tableIndex=False,
+            triggerStyle='dropdown' # [ False | "dropdown" | "tab" ]
+        )
+        ul = dhf.ul(
+            itemList=[link, link, link], # e.g a list links
+            unstyled=False,
+            inline=False,
+            dropDownMenu=True,  #  [ false | true ]
+            navStyle=False,  # [ nav | tabs | pills | list ]
+            navPull=False,  #  [ false | left | right ]
+            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  #  [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
+        )
+        dropdown = dhf.li(
+            content=droplink+ul,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=True,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        navbarForm = dhf.form(
+            content='',  # dictionary
+            formType='navbar-form', #  [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            navBarPull="left"  # [ false | right | left ]
+        )
+
+        navBar = dhf.navBar(
+            brand='DRYX',
+            contentList=[itemName,itemName,dropdown],  # list of li, dropdown
+            forms=[searchForm, navbarForm],
+            dividers=True,
+            fixedOrStatic=False,
+            location='top',
+            responsive=False,
+            dark=False
+        )
+        content += navBar
+
+        navBar = dhf.navBar(
+            brand='bot fixed',
+            contentList=[itemName,itemName,dropdown],  # list of li, dropdown
+            forms=[searchForm, navbarForm],
+            dividers=True,
+            fixedOrStatic="fixed",
+            location='bottom',
+            responsive=False,
+            dark=False
+        )
+        content += navBar
+
+        navBar = dhf.navBar(
+            brand='top fixed',
+            contentList=[itemName,itemName,dropdown],  # list of li, dropdown
+            forms=[searchForm, navbarForm],
+            dividers=True,
+            fixedOrStatic="fixed",
+            location='top',
+            responsive=False,
+            dark=False
+        )
+        content += navBar
+
+        searchForm = dhf.form(
+            formType='navbar-search', #  [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            navBarPull="right"  # [ false | right | left ]
+        )
+        pageLink = dhf.a(
+            content='page',
+            href='#'
+        )
+        itemName = dhf.li(
+            content=pageLink,  # if a subMenu for dropdown this should be <ul>
+        )
+        outsideNavList = [searchForm]
+        insideNavList=[itemName,itemName,dropdown],
+        topNavBar = dhf.responsive_navigation_bar(
+            shade='dark', #  [ False | 'dark' ]
+            brand='resp', # [ image | text ]
+            outsideNavList=outsideNavList,
+            insideNavList=insideNavList,
+            htmlId=False,
+        )
+        content += topNavBar
 
         ##Breadcrumbs
         text = "Breadcrumbs"
         content += lt(text)
 
+        activeItem = dhf.li(
+            content=pageLink,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle="active",  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+
+        Breadcrumbs = dhf.ul(
+            itemList=[itemName,itemName,activeItem], # e.g a list links
+            unstyled=False,
+            inline=True,
+            dropDownMenu=False,  #  [ false | true ]
+            navStyle=False,  # [ nav | tabs | pills | list ]
+            navPull=False,  #  [ false | left | right ]
+            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=True,  #  [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
+        )
+        content += Breadcrumbs
+
+
         ##Pagination
         text = "Pagination"
         content += lt(text)
+
+        pagination = dhf.pagination(
+            listItems=itemName+itemName+activeItem,
+            size='default',
+            align='left'
+        )
+        content += pagination
+
+        pagination = dhf.pagination(
+            listItems=itemName+itemName+activeItem,
+            size='large',
+            align='left'
+        )
+        content += pagination
+
+        pagination = dhf.pagination(
+            listItems=itemName+itemName+activeItem,
+            size='small',
+            align='centered'
+        )
+        content += pagination
+
+        pagination = dhf.pagination(
+            listItems=itemName+itemName+activeItem,
+            size='mini',
+            align='right'
+        )
+        content += pagination
+
+        pager = dhf.ul(
+            itemList=[itemName,itemName], # e.g a list links
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  #  [ false | true ]
+            navStyle=False,  # [ nav | tabs | pills | list ]
+            navPull=False,  #  [ false | left | right ]
+            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  #  [ False | True ]
+            pager=True,
+            thumbnails=False,
+            mediaList=False
+        )
+
+        content += pager
+
+        next = dhf.a(
+            content='next',
+            href="#",
+            tableIndex=False,
+            triggerStyle=False # [ False | "dropdown" | "tab" ]
+        )
+        next = dhf.li(
+            content=next,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=True,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=False,
+            pager="next"  # [ False | "previous" | "next" ]
+        )
+
+
+        previous = dhf.a(
+            content='previous',
+            href="#",
+            tableIndex=False,
+            triggerStyle=False # [ False | "dropdown" | "tab" ]
+        )
+        previous = dhf.li(
+            content=previous,  # if a subMenu for dropdown this should be <ul>
+            span=False,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=False,
+            pager="previous"  # [ False | "previous" | "next" ]
+        )
+
+        pager = dhf.ul(
+            itemList=[next,previous], # e.g a list links
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  #  [ false | true ]
+            navStyle=False,  # [ nav | tabs | pills | list ]
+            navPull=False,  #  [ false | left | right ]
+            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  #  [ False | True ]
+            pager=True,
+            thumbnails=False,
+            mediaList=False
+        )
+
+        content += pager
 
         ##Labels and Badges
         text = "Labels and Badges"
         content += lt(text)
 
+        label = dhf.label(
+            text='default',
+            level='default'
+        )
+        content += label
+
+        label = dhf.label(
+            text='success',
+            level='success'
+        )
+        content += label
+
+        label = dhf.label(
+            text='warning',
+            level='warning'
+        )
+        content += label
+
+        label = dhf.label(
+            text='important',
+            level='important'
+        )
+        content += label
+
+        label = dhf.label(
+            text='info',
+            level='info'
+        )
+        content += label
+
+        label = dhf.label(
+            text='inverse',
+            level='inverse'
+        )
+        content += label
+
+        badge = dhf.badge(
+            text='1',
+            level='default'
+        )
+        content += badge
+
+        badge = dhf.badge(
+            text='2',
+            level='success'
+        )
+        content += badge
+
+        badge = dhf.badge(
+            text='3',
+            level='warning'
+        )
+        content += badge
+
+        badge = dhf.badge(
+            text='4',
+            level='important'
+        )
+        content += badge
+
+        badge = dhf.badge(
+            text='5',
+            level='info'
+        )
+        content += badge
+
+        badge = dhf.badge(
+            text='6',
+            level='inverse'
+        )
+        content += badge
+
         ##Typography
         text = "Typography"
         content += lt(text)
+
+        heroUnit = dhf.heroUnit(
+            headline='Hero Unit',
+            tagline='This is the hero unit',
+            buttonStyle='primary',
+            buttonText='push'
+        )
+        content += heroUnit
+
+        pageHeader = dhf.pageHeader(
+            headline='Page Header',
+            tagline='... and subtext'
+        )
+        content += pageHeader
 
         ##Thumbnails
         text = "Thumbnails"
         content += lt(text)
 
+
+
+        Image = dhf.image(
+            src='holder.js/200x200/industrial/text:test mediaobject',
+            href=False,
+            display=False, # [ rounded | circle | polaroid ]
+            pull="left", # [ "left" | "right" | "center" ]
+            htmlClass=False,
+            thumbnail=False,
+            width=False,
+            onPhone=True,
+            onTablet=True,
+            onDesktop=True
+        )
+        link = dhf.a(
+            content=Image,
+            href="#",
+            tableIndex=False,
+            thumbnail=True,
+            triggerStyle=False # [ False | "dropdown" | "tab" ]
+        )
+        itemName = dhf.li(
+            content=link,  # if a subMenu for dropdown this should be <ul>
+            span=4,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        thumbnails = dhf.thumbnails(
+            listItems=[itemName]
+        )
+        content += thumbnails
+
+        thumbnail_div = dhf.thumbnail_div(
+            div_content="<h3>header</h3>"+Image+"<small>some text</small>"
+        )
+        itemName = dhf.li(
+            content=thumbnail_div,  # if a subMenu for dropdown this should be <ul>
+            span=4,  # [ False | 1-12 ]
+            disabled=False,
+            submenuTitle=False,
+            divider=False,
+            navStyle=False,  # [ active | header ]
+            navDropDown=False,
+            pager=False  # [ False | "previous" | "next" ]
+        )
+        thumbnails = dhf.thumbnails(
+            listItems=[itemName]
+        )
+        content += thumbnails
+
         ##Alerts
         text = "Alerts"
         content += lt(text)
+
+        alert = dhf.alert(
+            alertText='This is an alert',
+            alertHeading='Warning',
+            extraPadding=False,
+            alertLevel='warning'
+        )
+        content += alert
+
+        alert = dhf.alert(
+            alertText='This is an alert - with more padding',
+            alertHeading='Warning',
+            extraPadding=True,
+            alertLevel='error'
+        )
+        content += alert
+        # UNEDITED #
+        # Generate a alert - TBS style #
+        # alert #
+        # dhf:var:get_alert_-_tbs_style.sublime-snippet #
 
         ##Progress Bars
         text = "Progress Bars"
         content += lt(text)
 
+        progressBar = dhf.progressBar(
+            barStyle="plain",
+            precentageWidth="10",
+            barLevel="info"
+        )
+        content += progressBar
+
+        progressBar = dhf.progressBar(
+            barStyle="striped",
+            precentageWidth="10",
+            barLevel="info"
+        )
+        content += progressBar
+
+        progressBar = dhf.progressBar(
+            barStyle="striped-active",
+            precentageWidth="50",
+            barLevel="danger"
+        )
+        content += progressBar
+
+        stackedProgressBar = dhf.stackedProgressBar(
+            barStyle='plain',
+            infoWidth='10',
+            successWidth='10',
+            warningWidth='10',
+            errorWidth='10'
+        )
+        content += stackedProgressBar
+
+        Image = dhf.image(
+            src='holder.js/64x64/industrial/text:test mediaobject',
+            href=False,
+            display=False, # [ rounded | circle | polaroid ]
+            pull="left", # [ "left" | "right" | "center" ]
+            htmlClass=False,
+            thumbnail=False,
+            width=False,
+            onPhone=True,
+            onTablet=True,
+            onDesktop=True
+        )
+
+        link = dhf.a(
+            content=Image,
+            href='#',
+            tableIndex=False,
+            pull="left",
+            triggerStyle=False # [ False | "dropdown" | "tab" ]
+        )
         ##Media Object
         text = "Media Object"
         content += lt(text)
+        mediaObject = dhf.mediaObject(
+            displayType='div',
+            img=link,
+            headlineText="Media Object Headline",
+            otherContent="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            nestedMediaObjects=False
+        )
+        content += mediaObject
+
+        mediaObject = dhf.mediaObject(
+            displayType='div',
+            img=link,
+            headlineText="Media Object Headline",
+            otherContent="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            nestedMediaObjects=mediaObject
+        )
+        content += mediaObject
 
         ##Misc
         text = "Misc"
         content += lt(text)
+        well = dhf.well(
+            wellText='In a well',
+            wellSize='default'
+        )
+        content += well
+
+        well = dhf.well(
+            wellText='In a large well',
+            wellSize='large'
+        )
+        content += well
+
+        well = dhf.well(
+            wellText='In a small well',
+            wellSize='small'
+        )
+        content += well
+
+        content += dhf.closeIcon()
 
 
+        button1 = dhf.button(
+            buttonText='ok',
+            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonSize='default',  # [ large | default | small | mini ]
+            href="#",
+            submit=False,
+            block=False,
+            disable=False
+        )
 
+        button2 = dhf.button(
+            buttonText='save',
+            buttonStyle='info', # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonSize='default',  # [ large | default | small | mini ]
+            href="#",
+            submit=False,
+            block=False,
+            disable=False,
+            dataToggle=False
+        )
 
+        buttonGroup = dhf.buttonGroup(
+            buttonList=[button1,button2],
+            format='default'  # [ default | toolbar | vertical ]
+        )
+
+        modal = dhf.modal(
+            modalHeaderContent="This is a modal",
+            modalBodyContent="<p>Put text or a form in here",
+            modalFooterContent=buttonGroup,
+            htmlId="hookId"
+        )
+        content += modal
+
+        modalButton = dhf.button(
+            buttonText='Launch Modal',
+            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonSize='default',  # [ large | default | small | mini ]
+            href="#hookId",
+            submit=False,
+            block=False,
+            disable=False,
+            dataToggle="modal"
+        )
+        content += modalButton
 
         text = "mediaObject"
         content += lt(text)
@@ -1932,7 +2642,6 @@ class test_0001_htmlDocument():
         kwargs["buttonList"]=[oneButton,oneButton,oneButton]
         kwargs["format"]="default"
         content += dhf.buttonGroup(**kwargs)
-
 
         link = dhf.a(
             content='a link',
@@ -1994,8 +2703,8 @@ class test_0001_htmlDocument():
         text = "thumbnail"
         content += lt(text)
         kwargs = {}
-        kwargs["htmlContent"]=text
-        content += dhf.thumbnail(**kwargs)
+        kwargs["listItems"]=text
+        content += dhf.thumbnails(**kwargs)
 
         text = "label"
         content += lt(text)
@@ -2031,7 +2740,6 @@ class test_0001_htmlDocument():
         text = "stackedProgressBar"
         content += lt(text)
         kwargs = {}
-        kwargs["barLevel"]="info"
         kwargs["barStyle"]="plain"
         kwargs["infoWidth"]="10"
         kwargs["successWidth"]="10"
@@ -2076,7 +2784,6 @@ class test_0001_htmlDocument():
         text = "tabbableNavigation"
         content += lt(text)
         kwargs = {}
-        kwargs["log"]=log
         kwargs["contentDictionary"]={"link": "link"}
         kwargs["fadeIn"]=True
         kwargs["direction"]='top'
@@ -2086,7 +2793,7 @@ class test_0001_htmlDocument():
         content += lt(text)
         kwargs = {}
         kwargs["brand"]="brand"
-        kwargs["contentDictionary"]={"link": "link"}
+        kwargs["contentList"]=["link", "link"]
         kwargs["dividers"]=False
         kwargs["fixedOrStatic"]=False
         kwargs["location"]='top'

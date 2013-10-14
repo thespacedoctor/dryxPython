@@ -68,25 +68,14 @@ class emptyLogger:
     critical=None
     warning=None
 
-class test_get_help_for_python_module():
-    def test_fail_for_no_argv(self):
-        result = cl.py_get_help_for_python_module()
-        assert result == -1
 
 class test_fits_print_fits_header():
 
-    def test_docopt(self):
+    def test_result_to_python_dictionary(self):
         clArgs = {}
-        clArgs["<path-to-fits-file>"] = pathToInputDataDir + "LSQ12dwl_20120808_B639_56462_1.fits"
+        clArgs["<path-to-fits-file>"] = pathToInputDataDir + "SN2012ec_20130113_GB_merge_56478_1_sb.fits"
         clArgs["--pydict"] = False
         clArgs["--help"] = False
         result = cl.dft_print_fits_header(clArgs)
-        nose.tools.assert_is_instance(result, list)
+        # nose.tools.assert_is_instance(result, dict)
 
-    def test_result_to_python_dictionary(self):
-        clArgs = {}
-        clArgs["<path-to-fits-file>"] = pathToInputDataDir + "LSQ12dwl_20120808_B639_56462_1.fits"
-        clArgs["--pydict"] = True
-        clArgs["--help"] = False
-        result = cl.dft_print_fits_header(clArgs)
-        nose.tools.assert_is_instance(result, dict)

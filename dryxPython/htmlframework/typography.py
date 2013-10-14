@@ -301,7 +301,13 @@ def ul(
 
     thisList = ""
     for item in itemList:
-        thisList += """<li>%s</li>\n""" % (item,)
+        if "<li" in item:
+            thisList += """%s""" % (item,)
+        else:
+            thisList += """<li>%s</li>""" % (item,)
+
+    if breadcrumb:
+        thisList = thisList.replace("</li>",""" <span class="divider">/</span></li>""")
 
     if unstyled:
         unstyled = "unstyled"
@@ -344,11 +350,8 @@ def ul(
     if mediaList is True:
         mediaList = "media-list"
 
-    ul = """
-        <ul class="%s %s %s %s %s %s %s %s %s %s %s">
-            %s
-        </ul>
-    """ % (unstyled, inline, dropDownMenu, role, navPull, thisNavStyle, navDirection, breadcrumb, pager, thumbnails, mediaList, thisList,)
+    ul = """<ul class="%s %s %s %s %s %s %s %s %s %s %s">%s</ul>""" % (
+        unstyled, inline, dropDownMenu, role, navPull, thisNavStyle, navDirection, breadcrumb, pager, thumbnails, mediaList, thisList,)
 
     return ul
 
@@ -405,11 +408,7 @@ def li(
     if span:
         span = "span%s" % (span,)
 
-    li = """
-        <li class="%s %s %s %s %s %s" id="  ">
-            %s
-            %s
-        </li>""" % (disabled, submenuClass, navStyle, pager, span, navDropDown, submenuTitle, content,)
+    li = """<li class="%s %s %s %s %s %s" id="  ">%s%s</li>""" % (disabled, submenuClass, navStyle, pager, span, navDropDown, submenuTitle, content,)
 
     if divider is True:
         li = """<li class="divider"></li>"""
@@ -424,6 +423,8 @@ def a(
         content="",
         href=False,
         tableIndex=False,
+        thumbnail=False,
+        pull=False,
         triggerStyle=False):
     """Generate an anchor - TBS style
 
@@ -431,7 +432,8 @@ def a(
         - ``content`` -- the content
         - ``href`` -- the href link for the anchor
         - ``tableIndex`` -- table index for the dropdown menus [ False | -1 ]
-        - ``triggerStyle`` -- link to be used as a dropDown or tab trigger? [ False | "dropdown" | "tab" ]
+        - ``pull`` -- direction to float the link (esp if image)
+        - ``triggerStyle`` -- link to be used as a dropDown or tab trigger? [ False | "dropdown" | "tab" | "thumbnail" ]
 
 
     **Return:**
@@ -440,14 +442,22 @@ def a(
     triggerClass = ""
     dropdownCaret = ""
 
-    falseList = [href, triggerClass, triggerStyle, tableIndex, dropdownCaret]
+    falseList = [href, triggerClass, triggerStyle, tableIndex, dropdownCaret, pull]
     for i in range(len(falseList)):
             if not falseList[i]:
                 falseList[i] = ""
-    [href, triggerClass, triggerStyle, tableIndex, dropdownCaret] = falseList
+    [href, triggerClass, triggerStyle, tableIndex, dropdownCaret, pull] = falseList
 
     if tableIndex is True:
         tableIndex = """tableIndex = "%s" """ % (tableIndex,)
+
+    if thumbnail:
+        thumbnail = "thumbnail"
+    else:
+        thumbnail = ""
+
+    if pull:
+        pull = "pull-%s" % (pull,)
 
     if triggerStyle == "dropdown":
         triggerClass = "dropdown-toggle"
@@ -458,11 +468,7 @@ def a(
     else:
         triggerToggle = ""
 
-    a = """
-        <a %s href="%s" class="%s  " id="  " %s>
-            %s
-            %s
-        </a>""" % (tableIndex, href, triggerClass, triggerToggle, content, dropdownCaret)
+    a = """<a %s href="%s" class="%s %s %s" id="  " %s>%s%s</a>""" % (tableIndex, href, triggerClass, thumbnail, pull, triggerToggle, content, dropdownCaret)
 
     return a
 
@@ -614,8 +620,8 @@ def pageHeader(
     """
     pageHeader = """
         <div class="page-header" id="  ">
-            <h1>%s <small>%s</small></h1>
-        </div>""" % (headline,headline)
+            <h1>%s<br><small>%s</small></h1>
+        </div>""" % (headline,tagline)
 
     return pageHeader
 
