@@ -118,7 +118,7 @@ def execute_mysql_write_query(
 
     log.info('starting execute_mysql_write_query')
 
-    print sqlQuery = '\n\n'
+    print sqlQuery + '\n\n'
 
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
