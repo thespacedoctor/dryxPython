@@ -74,726 +74,6 @@ class emptyLogger:
     warning=None
 
 
-# class test_mediaObject():
-#     def test_mediaObject_works_as_expected(self):
-#         ## MEDIA OBJECT
-#         kwargs = {}
-#         kwargs["displayType"]='div'
-#         kwargs["img"]=dhf.image(
-#             src='holder.js/200x200/industrial/text:test mediaobject',  # [ industrial | gray | social ]
-#         )
-#         kwargs["headlineText"]='This is a mediaObject'
-#         kwargs["nestedMediaObjects"]=False
-#         content += dhf.mediaObject(**kwargs)
-
-# class test_well():
-#     def test_well_works_as_expected(self):
-#         text = "This is a well"
-#         kwargs = {}
-#         kwargs["wellText"]=text
-#         wellSize='default'
-#         content += dhf.well(**kwargs)
-
-# class test_closeIcon():
-#     def test_closeIcon_works_as_expected(self):
-#         kwargs = {}
-#         content = dhf.closeIcon(**kwargs)
-
-# class test_button():
-#     def test_button_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["buttonText"]=""
-#         kwargs["buttonStyle"]="default"
-#         kwargs["buttonSize"]="default"
-#         kwargs["href"]=False
-#         kwargs["submit"]=False
-#         kwargs["block"]=False
-#         kwargs["disable"]=False
-#         content = dhf.button(**kwargs)
-
-# class test_buttonGroup():
-#     def test_buttonGroup_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["buttonList"]=""
-#         kwargs["format"]="default"
-#         content = dhf.buttonGroup(**kwargs)
-
-# class test_code():
-#     def test_code_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["content"]=""
-#         kwargs["inline"]=True
-#         kwargs["scroll"]=False
-#         content = dhf.code(**kwargs)
-
-
-# class test_dropdown():
-#     def test_dropdown_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["buttonColor"]="default"
-#         kwargs["buttonSize"]="default"
-#         kwargs["buttonColor"]="default"
-#         kwargs["menuTitle"]="#"
-#         kwargs["splitButton"]=False
-#         kwargs["linkList"]=[]
-#         kwargs["separatedLinkList"]=False
-#         kwargs["pull"]=False
-#         kwargs["direction"]="down"
-#         kwargs["onPhone"]=True
-#         kwargs["onTablet"]=True
-#         kwargs["onDesktop"]=True
-#         content = dhf.dropdown(**kwargs)
-
-
-# class test_searchForm():
-#     def test_searchForm_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["buttonText"]=""
-#         kwargs["span"]=2
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         kwargs["focusedInputText"]=False
-#         content = dhf.searchForm(**kwargs)
-
-# class test_form():
-#     def test_form_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["content"]=""
-#         kwargs["formType"]="inline"
-#         kwargs["navBarPull"]=False
-#         content = dhf.form(**kwargs)
-
-# class test_horizontalFormControlGroup():
-#     def test_horizontalFormControlGroup_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["content"]=""
-#         kwargs["validationLevel"]=False  #  [ warning | error | info | success ]
-#         content = dhf.horizontalFormControlGroup(**kwargs)
-
-# class test_horizontalFormControlLabel():
-#     def test_horizontalFormControlLabel_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["labelText"]=""
-#         kwargs["forId"]=False
-#         content = dhf.horizontalFormControlLabel(**kwargs)
-
-# class test_formInput():
-#     def test_formInput_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["ttype"]="text"  # [ text | password | datetime | datetime-local | date | month | time | week | number | email | url | search | tel | color ]
-#         kwargs["placeholder"]=""
-#         kwargs["span"]=2
-#         kwargs["searchBar"]=False
-#         kwargs["pull"]=False  # [ false | right | left ]
-#         kwargs["prepend"]=False
-#         kwargs["append"]=False
-#         button1=False
-#         button2=False
-#         kwargs["prependDropdown"]=False
-#         kwargs["appendDropdown"]=False
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         kwargs["focusedInput"]=False
-#         kwargs["required"]=False
-#         kwargs["disabled"]=False
-#         content = dhf.formInput(**kwargs)
-
-# class test_textarea():
-#     def test_textarea_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["rows"]=""
-#         kwargs["span"]=2
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         kwargs["focusedInputText"]=False
-#         kwargs["required"]=False
-#         kwargs["disabled"]=False
-#         content = dhf.textarea(**kwargs)
-
-# class test_checkbox():
-#     def test_checkbox_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["optionText"]=""
-#         kwargs["inline"]=False
-#         kwargs["optionNumber"]=1
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         kwargs["disabled"]=False
-#         content = dhf.checkbox(**kwargs)
-
-# class test_select():
-#     def test_select_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["optionList"]=[]
-#         kwargs["multiple"]=False
-#         kwargs["span"]=2
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         kwargs["required"]=False
-#         kwargs["disabled"]=False
-#         content = dhf.select(**kwargs)
-
-# class test_radio():
-#     def test_radio_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["optionText"]=""
-#         kwargs["optionNumber"]=1
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         kwargs["disabled"]=False
-#         content = dhf.radio(**kwargs)
-
-# class test_controlRow():
-#     def test_controlRow_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["inputList"]=[]
-#         content = dhf.controlRow(**kwargs)
-
-# class test_uneditableInput():
-#     def test_uneditableInput_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["placeholder"]=""
-#         kwargs["span"]=2
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         content = dhf.uneditableInput(**kwargs)
-
-# class test_formActions():
-#     def test_formActions_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["primaryButton"]=""
-#         button2=False
-#         button3=False
-#         button4=False
-#         button5=False
-#         kwargs["inlineHelpText"]=False
-#         kwargs["blockHelpText"]=False
-#         content = dhf.formActions(**kwargs)
-
-# # xxx-replace
-# ## LAST MODIFIED : May 28, 2013
-# ## CREATED : May 28, 2013
-# ## AUTHOR : DRYX
-# class test_unescape_html():
-#     def test_unescape_html_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["html"] = "&@$^(*^)  123 {}()_+~?><?><"
-#         content = dhf.unescape_html(**kwargs)
-
-# class test_image():
-#     def test_image_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["src"]="http://placehold.it/200x200"
-#         kwargs["href"]=False
-#         kwargs["display"]="False", # [ rounded | circle | polaroid ]
-#         kwargs["pull"]="left", # [ "left" | "right" | "center" ]
-#         kwargs["htmlClass"]=False
-#         kwargs["thumbnail"]=False
-#         kwargs["width"]=False
-#         kwargs["onPhone"]=True
-#         kwargs["onTablet"]=True
-#         kwargs["onDesktop"]=True
-#         content = dhf.image(**kwargs)
-
-# class test_thumbnail():
-#     def test_thumbnail_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["htmlContent"]=""
-#         content = dhf.thumbnail(**kwargs)
-
-# class test_label():
-#     def test_label_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["text"]=''
-#         level='default'  # [ "default" | "success" | "warning" | "important" | "info" | "inverse" ]
-#         content = dhf.label(**kwargs)
-
-# class test_badge():
-#     def test_badge_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["text"]=''
-#         level='default'
-#         content = dhf.badge(**kwargs)
-
-# class test_alert():
-#     def test_alert_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["alertText"]=''
-#         kwargs["alertHeading"]=""
-#         kwargs["extraPadding"]=False
-#         kwargs["alertLevel"]="warning"
-#         content = dhf.alert(**kwargs)
-
-# class test_progressBar():
-#     def test_progressBar_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["barStyle"]="plain"
-#         kwargs["precentageWidth"]="10"
-#         kwargs["barLevel"]="info"
-#         content = dhf.progressBar(**kwargs)
-
-class test_stackedProgressBar():
-    def test_stackedProgressBar_works_as_expected(self):
-        kwargs = {}
-        kwargs["barStyle"]="plain"
-        kwargs["infoWidth"]="10"
-        kwargs["successWidth"]="10"
-        kwargs["warningWidth"]="10"
-        kwargs["errorWidth"]="10"
-
-        content = dhf.stackedProgressBar(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """Generate a progress bar - TBS style
-#
-#    **Key Arguments:**
-#        - ``barStyle`` -- style of the progress bar [ "plain" | "striped" | "striped-active" ]
-#        - ``infoWidth`` -- the precentage width of the info level bar
-#        - ``successWidth`` -- the precentage width of the success level bar
-#        - ``warningWidth`` -- the precentage width of the warning level bar
-#        - ``errorWidth`` -- the precentage width of the error level bar
-#
-#    **Return:**
-#        - ``progressBar`` -- the progressBar
-#    """
-class test_responsive_navigation_bar():
-    def test_responsive_navigation_bar_works_as_expected(self):
-        kwargs = {}
-        kwargs["brand"]=False
-        kwargs["outsideNavList"]=False
-        kwargs["insideNavList"]=False
-        kwargs["htmlId"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
-
-        content = dhf.responsive_navigation_bar(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """ Create a twitter bootstrap responsive nav-bar component
-#
-#    **Key Arguments:**
-#        - ``shade`` -- if dark then colors are inverted [ False | 'dark' ]
-#        - ``brand`` -- the website brand [ image | text ]
-#        - ``outsideNavList`` -- nav-list to be contained outside collapsible content
-#        - ``insideNavList`` -- nav-list to be contained inside collapsible content
-#        - ``htmlId`` --
-#        - ``onPhone`` -- does this container get displayed on a phone sized screen
-#        - ``onTablet`` -- does this container get displayed on a tablet sized screen
-#        - ``onDesktop`` -- does this container get displayed on a desktop sized screen
-#
-#    **Return:**
-#        - ``navBar`` --
-#    """
-class test_nav_list():
-    def test_nav_list_works_as_expected(self):
-        kwargs = {}
-        kwargs["itemList"]=[]
-        kwargs["pull"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
-        content = dhf.nav_list(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """Create an html list of navigation items from the required python list
-#
-#    **Key Arguments:**
-#        - ``itemList`` -- items to be included in the navigation list
-#        - ``pull`` -- float the nav-list [ False | 'right' | 'left' ]
-#        - ``onPhone`` -- does this container get displayed on a phone sized screen
-#        - ``onTablet`` -- does this container get displayed on a tablet sized screen
-#        - ``onDesktop`` -- does this container get displayed on a desktop sized screen
-#
-#    **Return:**
-#        - navList
-#    """
-# class test_get_nav_block():
-#     def test_get_nav_block_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["htmlClass"]="test"
-#         kwargs["htmlId"]="test"
-#         kwargs["blockContent"]="test"
-#         kwargs["jsEvents"]="test"
-#         kwargs["extraAttr"]="test"
-#         attributeDict=kwargs
-#         content = dhf.get_nav_block(**attributeDict)
-
-#  """Create a basic ``<nav>`` code block
-#
-#  **Variable Attributes:**
-#    - ``attributeDict`` -- dictionary of the following keywords:
-#    - ``htmlClass`` -- the html element class
-#    - ``htmlId`` -- the html element id
-#    - ``blockContent`` -- actual content to be placed in html code block
-#    - ``jsEvents`` -- inline javascript event
-#    - ``extraAttr`` -- extra inline css attributes and/or handles
-#
-#  **Returns:**
-#    - ``block`` -- the html block
-#
-#  attributeDict template:
-#    attributeDict = dict(
-#                          kwargs["htmlClass"]=___
-#                          kwargs["htmlId"]=___
-#                          kwargs["jsEvents"]=___
-#                          kwargs["extraAttr"]=___
-#                          kwargs["blockContent"]=___
-#                        )
-#  """
-class test_searchbox():
-    def test_searchbox_works_as_expected(self):
-        kwargs = {}
-        kwargs["size"]='medium'
-        kwargs["placeHolder"]=False
-        kwargs["button"]=False
-        kwargs["buttonSize"]='small'
-        kwargs["buttonColor"]='grey'
-        kwargs["navBar"]=False
-        kwargs["pull"]=False
-        content = dhf.searchbox(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """Create a Search box
-#
-#    **Key Arguments:**
-#        - ``size`` -- size = mini | small | medium | large | xlarge | xxlarge
-#        - ``placeholder`` -- placeholder text
-#        - ``button`` -- do you want a search button?
-#        - ``buttonSize``
-#        - ``buttonColor``
-#
-#    **Return:**
-#        - ``markup`` -- markup for the searchbar
-#    """
-class test_tabbableNavigation():
-    def test_tabbableNavigation_works_as_expected(self):
-        kwargs = {}
-        kwargs["contentDictionary"]={}
-        kwargs["fadeIn"]=True
-        kwargs["direction"]='top'
-        content = dhf.tabbableNavigation(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """ Generate a tabbable Navigation
-#
-#    **Key Arguments:**
-#        - ``contentDictionary`` -- the content dictionary { name : content }
-#        - ``fadeIn`` -- make tabs fade in
-#        - ``direction`` -- the position of the tabs [ above | below | left | right ]
-#
-#    **Return:**
-#        - ``tabbableNavigation`` -- the tabbableNavigation
-#    """
-class test_navBar():
-    def test_navBar_works_as_expected(self):
-        kwargs = {}
-        kwargs["brand"]=''
-        kwargs["contentList"]=[]
-        kwargs["dividers"]=False
-        kwargs["fixedOrStatic"]=False
-        kwargs["location"]='top'
-        kwargs["responsive"]=False
-        kwargs["dark"]=False
-        content = dhf.navBar(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """ Generate a navBar - TBS style
-#
-#    **Key Arguments:**
-#        - ``brand`` -- the website brand [ image | text ]
-#        - ``contentDictionary`` -- the content dictionary { text : href }
-#        - ``fixedOrStatic`` -- Fix the navbar to the top or bottom of the viewport, or create a static full-width navbar that scrolls away with the page [ False | fixed | static ]
-#        - ``location`` -- location of the navigation bar if fixed or static
-#        - ``dark`` -- Modify the look of the navbar by making it dark
-#
-#    **Return:**
-#        - ``navBar`` -- the navBar
-#    """
-class test_pagination():
-    def test_pagination_works_as_expected(self):
-        kwargs = {}
-        kwargs["listItems"]=""
-        kwargs["size"]="default"
-        kwargs["align"]="left"
-        content = dhf.pagination(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """Generate pagination - TBS style. Simple pagination inspired by Rdio, great for apps and search results.
-#
-#    **Key Arguments:**
-#        - ``listItems`` -- the numbered items to be listed within the <ul> of the pagination block
-#        - ``size`` -- additional pagination block sizes [ "mini" | "small" | "default" | "large" ]
-#        - ``align`` -- change the alignment of pagination links [ "left" | "center" | "right" ]
-#
-#    **Return:**
-#        - ``pagination`` -- the pagination
-#    """
-
-#    """The doctype and html tags
-#
-#    **Key Arguments:**
-#        - ``content`` -- the head and body of the html page
-#
-#    **Return:**
-#        - ``doctype`` -- the HTML5 doctype
-#    """
-
-
-
-#    """Generate an html head element for your webpage
-#
-#    **Key Arguments:**
-#        ``relativeUrlBase`` -- relative base url for js, css, image folders
-#        ``pageTitle`` -- well, the page title!
-#        ``mainCssFileName`` -- css file name
-#        ``extras`` -- any extra info to be included in the ``head`` element
-#
-#    **Return:**
-#        - ``head`` -- the head
-#    """
-
-#    """Generate an HTML body
-#
-#    **Key Arguments:**
-#        - ``navBar`` -- the top navigation bar
-#        - ``htmlId`` -- *id* attribute of the body
-#        - ``content`` -- body content built from smaller HTML code blocks
-#        - ``extraAttr`` -- an extra attributes to be added to the body definition
-#        - ``relativeUrlBase`` -- how to get back to the document root
-#        - ``responsive`` -- should the webpage be responsive to screen-size?
-#        - ``googleAnalyticsCode`` -- google analytics code for the website
-#        - ``jsFileName`` -- the name of the main javascript file
-#
-#    **Return:**
-#        - ``body`` -- the body
-#    """
-class test_row():
-    def test_row_works_as_expected(self):
-        kwargs = {}
-        kwargs["responsive"]=True
-        kwargs["columns"]=''
-        kwargs["htmlId"]=False
-        kwargs["htmlClass"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
-        content = dhf.grid_row(**kwargs)
-        # if content is not None: cheatsheet.write(content)
-#    """Create a row using the Twitter Bootstrap static layout grid.
-#    The static Bootstrap grid system utilizes 12 columns.
-#
-#    **Key Arguments:**
-#        - ``responsive`` -- fluid layout if true, fixed if false
-#        - ``columns`` -- coulmns to be included in this row
-#        - ``htmlId`` -- the id of the row
-#        - ``htmlClass`` -- the class of the row
-#        - ``onPhone`` -- does this row get displayed on a phone sized screen
-#        - ``onTablet`` -- does this row get displayed on a tablet sized screen
-#        - ``onDesktop`` -- does this row get displayed on a desktop sized screen
-#
-#    **Return:**
-#        - ``row`` -- the row
-#    """
-# class test_get_simple_div():
-#     def test_get_simple_div_works_as_expected(self):
-#         kwargs = {}
-#         kwargs["htmlId"]=None
-#         blockContent=None
-#         content = dhf.get_simple_div(**kwargs)
-
-#    """ Generate a basic <div> with block-content
-#
-#  ****Key Arguments:****
-#    - ``htmlId`` -- the html id attribute
-#    - ``blockContent`` -- content to be surrounded by html div tag
-#
-#  **Return:**
-#    - ``div``
-#    """
-
-class test_grid_column():
-    def test_grid_column_works_as_expected(self):
-        kwargs = {}
-        kwargs["log"]=log
-        kwargs["span"]=1
-        kwargs["offset"]=0
-        kwargs["content"]=''
-        kwargs["htmlId"]=False
-        kwargs["htmlClass"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
-        content = dhf.grid_column(**kwargs)
-
-class test_tr():
-    def test_tr_works_as_expected(self):
-        kwargs = {}
-        kwargs["cellContent"]=""
-        kwargs["color"]=False
-        content = dhf.tr(**kwargs)
-
-class test_th():
-    def test_th_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        kwargs["color"]=False
-        content = dhf.th(**kwargs)
-
-class test_td():
-    def test_td_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        kwargs["color"]=False
-        content = dhf.td(**kwargs)
-
-class test_tableCaption():
-    def test_tableCaption_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        content = dhf.tableCaption(**kwargs)
-
-class test_thead():
-    def test_thead_works_as_expected(self):
-        kwargs = {}
-        kwargs["trContent"]=""
-        content = dhf.thead(**kwargs)
-
-class test_tbody():
-    def test_tbody_works_as_expected(self):
-        kwargs = {}
-        kwargs["trContent"]=""
-        content = dhf.tbody(**kwargs)
-
-class test_table():
-    def test_table_works_as_expected(self):
-        kwargs = {}
-        kwargs["caption"]=""
-        kwargs["thead"]=""
-        kwargs["tbody"]=""
-        kwargs["striped"]=True
-        kwargs["bordered"]=False
-        kwargs["hover"]=True
-        kwargs["condensed"]=False
-        content = dhf.table(**kwargs)
-
-class test_p():
-    def test_p_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        kwargs["lead"]=False
-        kwargs["textAlign"]=False
-        kwargs["color"]=False
-        kwargs["navBar"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
-        content = dhf.p(**kwargs)
-
-class test_emphasizeText():
-    def test_emphasizeText_works_as_expected(self):
-        kwargs = {}
-        kwargs["style"]="em"
-        kwargs["text"]=""
-        content = dhf.emphasizeText(**kwargs)
-
-class test_abbr():
-    def test_abbr_works_as_expected(self):
-        kwargs = {}
-        kwargs["abbreviation"]=""
-        kwargs["fullWord"]=""
-        content = dhf.abbr(**kwargs)
-
-class test_address():
-    def test_address_works_as_expected(self):
-        kwargs = {}
-        kwargs["name"]=False
-        addressLine1=False
-        addressLine2=False
-        addressLine3=False
-        kwargs["phone"]=False
-        kwargs["email"]=False
-        kwargs["twitterHandle"]=False
-        content = dhf.address(**kwargs)
-
-class test_blockquote():
-    def test_blockquote_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        kwargs["source"]=False
-        kwargs["pullRight"]=False
-        content = dhf.blockquote(**kwargs)
-
-class test_ul():
-    def test_ul_works_as_expected(self):
-        kwargs = {}
-        kwargs["itemList"]=[]
-        kwargs["unstyled"]=False
-        kwargs["inline"]=False
-        kwargs["dropDownMenu"]=False
-        kwargs["navStyle"]=False
-        kwargs["navPull"]=False
-        kwargs["navDirection"]="horizontal"
-        kwargs["breadcrumb"]=False
-        kwargs["pager"]=False
-        kwargs["thumbnails"]=False
-        kwargs["mediaList"]=False
-
-        content = dhf.ul(**kwargs)
-
-class test_li():
-    def test_li_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        kwargs["span"]=False
-        kwargs["disabled"]=False
-        kwargs["submenuTitle"]=False
-        kwargs["divider"]=False
-        kwargs["navStyle"]=False
-        kwargs["navDropDown"]=False
-        kwargs["pager"]=False  #  [ False | "previous" | "next" ]
-        content = dhf.li(**kwargs)
-
-class test_a():
-    def test_a_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        kwargs["href"]=False
-        kwargs["tableIndex"]=False
-        kwargs["triggerStyle"]=False
-        content = dhf.a(**kwargs)
-
-class test_ol():
-    def test_ol_works_as_expected(self):
-        kwargs = {}
-        kwargs["itemList"]=[]
-        content = dhf.ol(**kwargs)
-
-class test_descriptionLists():
-    def test_descriptionLists_works_as_expected(self):
-        kwargs = {}
-        kwargs["orderedDictionary"]={}
-        kwargs["sideBySide"]=False
-        content = dhf.descriptionLists(**kwargs)
-
-class test_code():
-    def test_code_works_as_expected(self):
-        kwargs = {}
-        kwargs["content"]=""
-        kwargs["inline"]=True
-        kwargs["scroll"]=False
-        content = dhf.code(**kwargs)
-
-class test_heroUnit():
-    def test_heroUnit_works_as_expected(self):
-        kwargs = {}
-        kwargs["headline"]=""
-        kwargs["tagline"]=""
-        kwargs["buttonStyle"]="primary"
-        kwargs["buttonText"]=""
-        kwargs["buttonHref"]="#"
-        content = dhf.heroUnit(**kwargs)
-
-class test_pageHeader():
-    def test_pageHeader_works_as_expected(self):
-        kwargs = {}
-        kwargs["headline"]=""
-        kwargs["tagline"]=""
-        content = dhf.pageHeader(**kwargs)
-
 class test_0001_htmlDocument():
     def test_htmlDocument_works_as_expected(self):
         content = ""
@@ -804,7 +84,6 @@ class test_0001_htmlDocument():
         ## PAGE DETAILS
         text = "Page Details:\n"
         content += lt(text)
-
         text = dhf.p(
             content="webpage-head-and-body",
             color="success",  #  [ muted | warning | info | error | success ]
@@ -812,11 +91,15 @@ class test_0001_htmlDocument():
         content += "<br><br><em>Snippet:</em> " + text
         content += "Page constructed from a %s and %s in an %s" % (ct("head"), ct("body"), ct("htmlDocument"))
 
-
-
         ## BASIC GRIDS
         text = "Basic grid HTML"
         content += lt(text)
+        text = dhf.p(
+            content="grid-row-with-two-columns",
+            color="success",  #  [ muted | warning | info | error | success ]
+        )
+        content += "<br><br><em>Snippet:</em> " + text
+
         placeHolder1 = dhf.image(
             src='holder.js/50x50/social/text:1',  # [ industrial | gray | social ]
         )
@@ -829,7 +112,6 @@ class test_0001_htmlDocument():
         text = "%s with %s and %s. Use these items to structure and build your pages.<br><br>" % (ct("grid_row"),ct("grid_coulmn"),ct("placeHolders"))
         content += text
         column = dhf.grid_column(
-            log,
             span=1, # 1-12
             offset=0, # 1-12
             content=placeHolder1
@@ -840,7 +122,6 @@ class test_0001_htmlDocument():
         )
         content += row + "<br>"
         column = dhf.grid_column(
-            log,
             span=2, # 1-12
             offset=0, # 1-12
             content=placeHolder2
@@ -851,7 +132,6 @@ class test_0001_htmlDocument():
         )
         content += row + "<br>"
         column = dhf.grid_column(
-            log,
             span=3, # 1-12
             offset=3, # 1-12
             content=placeHolder3
@@ -861,6 +141,9 @@ class test_0001_htmlDocument():
             columns=column*2,
         )
         content += row + "<br>"
+
+
+
 
         ## TEXT
         text = "Typography"
@@ -2127,6 +1410,12 @@ class test_0001_htmlDocument():
         )
         content += navBar
 
+
+        text = dhf.p(
+            content="responsive-navigation-bar-tmpx",
+            color="success",  #  [ muted | warning | info | error | success ]
+        )
+        content += "<br><br><em>Snippet:</em> " + text
         searchForm = dhf.form(
             formType='navbar-search', #  [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
             navBarPull="right"  # [ false | right | left ]
@@ -2139,13 +1428,13 @@ class test_0001_htmlDocument():
             content=pageLink,  # if a subMenu for dropdown this should be <ul>
         )
         outsideNavList = [searchForm]
-        insideNavList=[itemName,itemName,dropdown],
+        insideNavList=[itemName,itemName,dropdown]
         topNavBar = dhf.responsive_navigation_bar(
             shade='dark', #  [ False | 'dark' ]
             brand='resp', # [ image | text ]
             outsideNavList=outsideNavList,
             insideNavList=insideNavList,
-            htmlId=False,
+            htmlId=False
         )
         content += topNavBar
 
@@ -2824,7 +2113,6 @@ class test_0001_htmlDocument():
         text = "grid_column"
         content += lt(text)
         kwargs = {}
-        kwargs["log"]=log
         kwargs["span"]=1
         kwargs["offset"]=0
         kwargs["content"]=text

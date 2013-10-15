@@ -212,8 +212,6 @@ def append_now_datestamp_to_filename(log, filename):
 ## LAST MODIFIED : December 12, 2012
 ## CREATED : December 12, 2012
 ## AUTHOR : DRYX
-
-
 def pretty_date(date):
     """convert date to a relative datetime (e.g. +15m, +2hr, +1w)
 
