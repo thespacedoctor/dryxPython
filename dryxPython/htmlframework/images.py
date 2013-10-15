@@ -95,7 +95,7 @@ def image(
     else:
         onDesktop = "hidden-desktop"
 
-    image = """<img src="%s" class="%s %s %s %s %s" %s>""" % (src, display, htmlClass, onPhone, onTablet, onDesktop, width)
+    image = """<img src="%s" class="%s %s %s %s %s %s" %s>""" % (src, display, htmlClass, onPhone, onTablet, onDesktop, pull, width)
 
     if href:
         image = """<a href="%s" class="%s %s %s %s %s">%s</a>""" % (href, thumbnail, onPhone, onTablet, onDesktop, pull, image)

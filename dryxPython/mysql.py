@@ -271,11 +271,14 @@ def convert_dictionary_to_mysql_table(
         'PRIMARY KEY (`primaryId`)) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;'
     # MySQL DOES NOT LIKE COMPOUNDED QUERIES FROM MYSQLDB - CREATE LIST OF QUERIES INSTEAD
     qCreateTableCommandList = []
-    qCreateTableCommandList.extend(["""CREATE TABLE IF NOT EXISTS `""" + dbTableName
+    qCreateTableCommandList.extend(["""
+                                    SET sql_notes = 0;
+                                    CREATE TABLE IF NOT EXISTS `""" + dbTableName
                                    + """`
                                             (`primaryId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'An internal counter',
                                             PRIMARY KEY (`primaryId`))
-                                            ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1"""
+                                            ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+                                    SET sql_notes = 1;"""
                                    ])
     reFeedParserClass = re.compile('FeedParserDict')
     reDatetime = re.compile('^[0-9]{4}-[0-9]{2}-[0-9]{2}T')

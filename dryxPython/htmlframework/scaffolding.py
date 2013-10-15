@@ -403,7 +403,6 @@ def grid_row(
 ## AUTHOR : DRYX
 
 def grid_column(
-    log,
     span=1,
     offset=0,
     content='',
