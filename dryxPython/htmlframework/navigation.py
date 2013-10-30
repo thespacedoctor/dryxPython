@@ -38,7 +38,7 @@ def responsive_navigation_bar(
     onPhone=True,
     onTablet=True,
     onDesktop=True,
-    ):
+):
     """ Create a twitter bootstrap responsive nav-bar component
 
     **Key Arguments:**
@@ -75,7 +75,8 @@ def responsive_navigation_bar(
     if insideNavList:
         for item in insideNavList:
             thisList += item
-        insideNavList = """<div class="nav-collapse collapse"><ul class="nav">%s</ul></div>""" % (thisList, )
+        insideNavList = """<div class="nav-collapse collapse"><ul class="nav pull-right">%s</ul></div>""" % (
+            thisList, )
     else:
         insideNavList = ''
 
@@ -115,7 +116,7 @@ def responsive_navigation_bar(
         brand,
         outsideNavList,
         insideNavList,
-        )
+    )
     return navBar
 
 
@@ -129,7 +130,7 @@ def nav_list(
     onPhone=True,
     onTablet=True,
     onDesktop=True,
-    ):
+):
     """Create an html list of navigation items from the required python list
 
     **Key Arguments:**
@@ -163,7 +164,7 @@ def nav_list(
         onPhone,
         onTablet,
         onDesktop,
-        )
+    )
     for item in itemList:
         navList += """
             <li>
@@ -173,20 +174,13 @@ def nav_list(
     return navList
 
 
-
-
-
 # xxxxxxxxxxxxxx do more work on below and create snippets xxxxxxxxxxxxxxx
-
-
-
 # # xxx-replace
 # ## LAST MODIFIED : December 11, 2012
 # ## CREATED : December 11, 2012
 # ## AUTHOR : DRYX
 # def get_nav_block(attributeDict):
 #   """Create a basic ``<nav>`` code block
-
 #   **Variable Attributes:**
 #     - ``attributeDict`` -- dictionary of the following keywords:
 #     - ``htmlClass`` -- the html element class
@@ -194,10 +188,8 @@ def nav_list(
 #     - ``blockContent`` -- actual content to be placed in html code block
 #     - ``jsEvents`` -- inline javascript event
 #     - ``extraAttr`` -- extra inline css attributes and/or handles
-
 #   **Returns:**
 #     - ``block`` -- the html block
-
 #   attributeDict template:
 #     attributeDict = dict(
 #                           htmlClass=___,
@@ -208,11 +200,9 @@ def nav_list(
 #                         )
 #   """
 #   ################ > IMPORTS ################
-
 #   ################ > VARIABLE SETTINGS ######
 #   block = "<div "   # THE HTML BLOCK
 #   d = attributeDict
-
 #   ################ >ACTION(S) ################
 #   ## SET THE ATTRIBUTES
 #   if d.has_key("htmlClass"):
@@ -224,29 +214,18 @@ def nav_list(
 #   if d.has_key("extraAttr"):
 #     block += """%s """ % (d["extraAttr"],)
 #   block += "><nav><ul>"
-
 #   ## SET THE CONTENT
 #   if d.has_key("blockContent"):
 #     block += str(d["blockContent"])
-
 #   ## CLOSE THE BLOCK
 #   if d.has_key("htmlId"):
 #     block += "</ul></nav></div><!--- /#%s --->" % (d["htmlId"],)
 #   else:
 #     block += "</ul></nav></div>"
-
 #   return block
-
-
-
-
-
-
-
 ## LAST MODIFIED : March 15, 2013
 ## CREATED : March 15, 2013
 ## AUTHOR : DRYX
-
 def searchbox(
     size='medium',
     placeHolder=False,
@@ -255,7 +234,7 @@ def searchbox(
     buttonColor='grey',
     navBar=False,
     pull=False,
-    ):
+):
     """Create a Search box
 
     **Key Arguments:**
@@ -269,7 +248,8 @@ def searchbox(
         - ``markup`` -- markup for the searchbar """
 
     if button:
-        button = """<button type="submit" class="btn-%s btn-%s">Search</button>""" % (buttonSize, buttonColor)
+        button = """<button type="submit" class="btn-%s btn-%s">Search</button>""" % (
+            buttonSize, buttonColor)
     else:
         button = ''
     if placeHolder:
@@ -297,7 +277,7 @@ def searchbox(
         pull,
         placeHolder,
         button,
-        )
+    )
     return markup
 
 
@@ -309,7 +289,7 @@ def tabbableNavigation(
         contentDictionary={},  # { name : content }
         fadeIn=True,
         direction='top',
-    ):
+):
     """ Generate a tabbable Navigation
 
     **Key Arguments:**
@@ -330,7 +310,8 @@ def tabbableNavigation(
 
     for k, v in contentDictionary.iteritems():
         if count == 0:
-            titleList += """<li class="active"><a href="#tab%s" data-toggle="tab">%s</a></li>""" % (count, k)
+            titleList += """<li class="active"><a href="#tab%s" data-toggle="tab">%s</a></li>""" % (
+                count, k)
             contentList += \
                 """
                 <div class="tab-pane active %s" id="tab%s">
@@ -338,7 +319,8 @@ def tabbableNavigation(
                 </div>""" \
                 % (fadeIn, count, v)
         else:
-            titleList += """<li><a href="#tab%s" data-toggle="tab">%s</a></li>""" % (count, k)
+            titleList += """<li><a href="#tab%s" data-toggle="tab">%s</a></li>""" % (
+                count, k)
             contentList += \
                 """
                 <div class="tab-pane %s" id="tab%s">
@@ -385,7 +367,7 @@ def navBar(
     location='top',
     responsive=False,
     dark=False
-    ):
+):
     """ Generate a navBar - TBS style
 
     **Key Arguments:**
@@ -412,8 +394,7 @@ def navBar(
     count = 0
 
     for item in contentList:
-        titleList += item+dividers
-
+        titleList += item + dividers
 
     # for k, v in contentDictionary.iteritems():
     #     if count == 0:
@@ -421,7 +402,6 @@ def navBar(
     #         count += 1
     #     else:
     #         titleList += """<li><a href="%s">%s</a></li>%s""" % (v, k, dividers)
-
     titleList = """
     <ul class="nav" id="  ">
         %s

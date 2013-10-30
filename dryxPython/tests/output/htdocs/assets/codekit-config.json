@@ -1,6 +1,6 @@
 {
   "CodeKitInfo" : "This is a CodeKit project configuration file. It is designed to sync project settings across multiple machines. Modifying the contents of this file can be a poor life decision if you don't know what you're doing. This file is not useful unless accompanied by the project that created it in CodeKit. For more information, see: http:\/\/incident57.com\/codekit",
-  "creatorBuild" : "8326",
+  "creatorBuild" : "8376",
   "files" : {
     "\/styles\/css\/screen.css" : {
       "ignoreWasSetByUser" : 0,
@@ -44,18 +44,6 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/styles\/sass\/ie.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/sass\/ie.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/styles\/css\/ie.css",
-      "fileType" : 4,
-      "debugStyle" : 2
-    },
     "\/styles\/sass\/main.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -67,6 +55,15 @@
       "outputAbbreviatedPath" : "\/styles\/css\/main.css",
       "fileType" : 4,
       "debugStyle" : 2
+    },
+    "\/config.rb" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/config.rb",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 32768
     },
     "\/icons\/glyphicons-halflings.png" : {
       "ignoreWasSetByUser" : 0,
@@ -88,14 +85,17 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/config.rb" : {
+    "\/styles\/sass\/ie.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/config.rb",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 32768
+      "inputAbbreviatedPath" : "\/styles\/sass\/ie.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/styles\/css\/ie.css",
+      "fileType" : 4,
+      "debugStyle" : 2
     },
     "\/icons\/dryx_data_icons.html" : {
       "ignoreWasSetByUser" : 0,
@@ -115,17 +115,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/js\/holder.js" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/js\/holder.js",
-      "outputStyle" : 1,
-      "syntaxCheckerStyle" : 1,
-      "outputAbbreviatedPath" : "\/js\/holder-ck.js",
-      "fileType" : 64
-    },
     "\/icons\/glyphicons-halflings-white.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -136,6 +125,17 @@
       "outputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
       "initialSize" : 8777,
       "fileType" : 8192
+    },
+    "\/js\/holder.js" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/js\/holder.js",
+      "outputStyle" : 1,
+      "syntaxCheckerStyle" : 1,
+      "outputAbbreviatedPath" : "\/js\/holder-ck.js",
+      "fileType" : 64
     },
     "\/styles\/css\/ie.css" : {
       "ignoreWasSetByUser" : 0,
@@ -245,6 +245,7 @@
       "trailing" : 1,
       "nonew" : 1,
       "es3" : 0,
+      "freeze" : true,
       "yui" : 0,
       "mootools" : 0,
       "proto" : 0,
@@ -280,6 +281,7 @@
       "unused" : 1,
       "debug" : 0,
       "bitwise" : 1,
+      "notypeof" : true,
       "white" : 0,
       "browser" : 1,
       "worker" : 0,
@@ -306,7 +308,6 @@
       "newcap" : 0,
       "sloppy" : 0,
       "closure" : 0,
-      "es5" : 0,
       "browser" : 1,
       "properties" : 0,
       "plusplus" : 0,
