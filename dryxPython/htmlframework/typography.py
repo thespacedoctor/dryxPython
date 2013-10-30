@@ -30,6 +30,8 @@ _dryxTBS_elements
 ## LAST MODIFIED : April 11, 2013
 ## CREATED : April 11, 2013
 ## AUTHOR : DRYX
+
+
 def p(
         content="",
         lead=False,
@@ -54,11 +56,11 @@ def p(
     **Return:**
         - ``p`` -- the html paragraph element
     """
-    falseList = [lead,textAlign,]
+    falseList = [lead, textAlign, ]
     for i in range(len(falseList)):
             if not falseList[i]:
                 falseList[i] = ""
-    [lead,textAlign,] = falseList
+    [lead, textAlign, ] = falseList
 
     if textAlign:
         textAlign = "text-%s" % (textAlign,)
@@ -102,6 +104,8 @@ def p(
 ## LAST MODIFIED : 20130508
 ## CREATED : 20130508
 ## AUTHOR : DRYX
+
+
 def emphasizeText(
         style="em",
         text=""):
@@ -138,7 +142,8 @@ def abbr(
         - abbr
     """
 
-    abbr = """<abbr title="%s" class="initialism">%s</abbr>""" % (fullWord, abbreviation)
+    abbr = """<abbr title="%s" class="initialism">%s</abbr>""" % (
+        fullWord, abbreviation)
 
     return abbr
 
@@ -169,7 +174,8 @@ def address(
         - address
     """
 
-    falseList = [name, addressLine1 , addressLine2, addressLine3, phone, email, twitterHandle]
+    falseList = [name, addressLine1, addressLine2,
+                 addressLine3, phone, email, twitterHandle]
     for item in falseList:
         if not item:
             item = ""
@@ -196,15 +202,15 @@ def address(
     else:
         phone = ""
     if email:
-        email = """<abbr title="email">e:</abbr> <a href="mailto:#">%s</a><br>""" % (email,)
+        email = """<abbr title="email">e:</abbr> <a href="mailto:#">%s</a><br>""" % (
+            email,)
     else:
         email = ""
     if twitterHandle:
-        twitterHandle = """<abbr title="twitter handle">t:</abbr> %s<br>""" % (twitterHandle,)
+        twitterHandle = """<abbr title="twitter handle">t:</abbr> %s<br>""" % (
+            twitterHandle,)
     else:
         twitterHandle = ""
-
-
 
     address = """
         <address>
@@ -238,7 +244,8 @@ def blockquote(
         - None
     """
     if source:
-        source = """<small><cite title="%s">%s</cite></small>""" % (source, source)
+        source = """<small><cite title="%s">%s</cite></small>""" % (
+            source, source)
     else:
         source = ""
 
@@ -270,8 +277,9 @@ def ul(
         breadcrumb=False,
         pager=False,
         thumbnails=False,
-        mediaList=False
-        ):
+        mediaList=False,
+        htmlId=False
+):
     """Get An unordered list -- can be used for navigation, stacked tab and pill
 
     **Key Arguments:**
@@ -286,18 +294,21 @@ def ul(
         - ``pager`` -- use <ul> for a pager
         - ``thumbnails`` -- use the <ul> for a thumnail block?
         - ``mediaList`` -- use the <ul> for a media object list?
+        - ``htmlId`` -- the html id of the ul
 
     **Return:**
         - ul
     """
     role = False
-    falseList = [unstyled, inline, dropDownMenu, role, navStyle, navPull, navDirection, breadcrumb, pager, thumbnails, mediaList]
+    falseList = [unstyled, inline, dropDownMenu, role, navStyle,
+                 navPull, navDirection, breadcrumb, pager, thumbnails, mediaList]
 
     for i in range(len(falseList)):
         if not falseList[i]:
             falseList[i] = ""
 
-    [unstyled, inline, dropDownMenu, role, navStyle, navPull, navDirection, breadcrumb, pager, thumbnails, mediaList] = falseList
+    [unstyled, inline, dropDownMenu, role, navStyle, navPull,
+        navDirection, breadcrumb, pager, thumbnails, mediaList] = falseList
 
     thisList = ""
     for item in itemList:
@@ -307,7 +318,8 @@ def ul(
             thisList += """<li>%s</li>""" % (item,)
 
     if breadcrumb:
-        thisList = thisList.replace("</li>",""" <span class="divider">/</span></li>""")
+        thisList = thisList.replace(
+            "</li>", """ <span class="divider">/</span></li>""")
 
     if unstyled:
         unstyled = "unstyled"
@@ -337,7 +349,6 @@ def ul(
     else:
         navDirection = ""
 
-
     if breadcrumb is True:
         breadcrumb = "breadcrumb"
 
@@ -350,8 +361,13 @@ def ul(
     if mediaList is True:
         mediaList = "media-list"
 
-    ul = """<ul class="%s %s %s %s %s %s %s %s %s %s %s">%s</ul>""" % (
-        unstyled, inline, dropDownMenu, role, navPull, thisNavStyle, navDirection, breadcrumb, pager, thumbnails, mediaList, thisList,)
+    if not htmlId:
+        htmlId = ""
+    else:
+        htmlId = 'id="%s"' % (htmlId,)
+
+    ul = """<ul class="%s %s %s %s %s %s %s %s %s %s %s" %s>%s</ul>""" % (
+        unstyled, inline, dropDownMenu, role, navPull, thisNavStyle, navDirection, breadcrumb, pager, thumbnails, mediaList, htmlId, thisList,)
 
     return ul
 
@@ -383,12 +399,14 @@ def li(
     **Return:**
         - ``li`` -- the li
     """
-    submenuClass=False
-    falseList = [disabled, submenuClass, submenuTitle, navStyle, navDropDown, pager, span]
+    submenuClass = False
+    falseList = [disabled, submenuClass,
+                 submenuTitle, navStyle, navDropDown, pager, span]
     for i in range(len(falseList)):
             if not falseList[i]:
                 falseList[i] = ""
-    [disabled, submenuClass, submenuTitle, navStyle, navDropDown, pager, span] =falseList
+    [disabled, submenuClass, submenuTitle,
+        navStyle, navDropDown, pager, span] = falseList
 
     if disabled:
         disabled = """disabled"""
@@ -408,7 +426,8 @@ def li(
     if span:
         span = "span%s" % (span,)
 
-    li = """<li class="%s %s %s %s %s %s" id="  ">%s%s</li>""" % (disabled, submenuClass, navStyle, pager, span, navDropDown, submenuTitle, content,)
+    li = """<li class="%s %s %s %s %s %s" id="  ">%s%s</li>""" % (
+        disabled, submenuClass, navStyle, pager, span, navDropDown, submenuTitle, content,)
 
     if divider is True:
         li = """<li class="divider"></li>"""
@@ -442,11 +461,13 @@ def a(
     triggerClass = ""
     dropdownCaret = ""
 
-    falseList = [href, triggerClass, triggerStyle, tableIndex, dropdownCaret, pull]
+    falseList = [href, triggerClass,
+                 triggerStyle, tableIndex, dropdownCaret, pull]
     for i in range(len(falseList)):
             if not falseList[i]:
                 falseList[i] = ""
-    [href, triggerClass, triggerStyle, tableIndex, dropdownCaret, pull] = falseList
+    [href, triggerClass, triggerStyle,
+        tableIndex, dropdownCaret, pull] = falseList
 
     if tableIndex is True:
         tableIndex = """tableIndex = "%s" """ % (tableIndex,)
@@ -468,7 +489,8 @@ def a(
     else:
         triggerToggle = ""
 
-    a = """<a %s href="%s" class="%s %s %s" id="  " %s>%s%s</a>""" % (tableIndex, href, triggerClass, thumbnail, pull, triggerToggle, content, dropdownCaret)
+    a = """<a %s href="%s" class="%s %s %s" id="  " %s>%s%s</a>""" % (
+        tableIndex, href, triggerClass, thumbnail, pull, triggerToggle, content, dropdownCaret)
 
     return a
 
@@ -537,6 +559,8 @@ def descriptionLists(
 ## LAST MODIFIED : April 16, 2013
 ## CREATED : April 16, 2013
 ## AUTHOR : DRYX
+
+
 def code(
         content="",
         inline=True,
@@ -576,7 +600,7 @@ def heroUnit(
         buttonStyle="primary",
         buttonText="",
         buttonHref="#"
-        ):
+):
     """Generate a heroUnit - TBS style
 
     **Key Arguments:**
@@ -621,7 +645,7 @@ def pageHeader(
     pageHeader = """
         <div class="page-header" id="  ">
             <h1>%s<br><small>%s</small></h1>
-        </div>""" % (headline,tagline)
+        </div>""" % (headline, tagline)
 
     return pageHeader
 
@@ -636,3 +660,4 @@ if __name__ == '__main__':
 ###################################################################
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
+########

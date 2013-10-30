@@ -3,6 +3,8 @@ import nose
 from .. import mysql
 
 ## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+
+
 def setUpModule():
     import logging
     import logging.config
@@ -13,10 +15,10 @@ def setUpModule():
 
     # SETUP PATHS TO COMMONG DIRECTORIES FOR TEST DATA
     global pathToInputDataDir, pathToOutputDir, pathToOutputDataDir, pathToInputDir
-    pathToInputDir = moduleDirectory+"/input/"
+    pathToInputDir = moduleDirectory + "/input/"
     pathToInputDataDir = pathToInputDir + "data/"
-    pathToOutputDir = moduleDirectory+"/output/"
-    pathToOutputDataDir = pathToOutputDir+"data/"
+    pathToOutputDir = moduleDirectory + "/output/"
+    pathToOutputDataDir = pathToOutputDir + "data/"
 
     # SETUP THE TEST LOG FILE
     global testlog
@@ -119,7 +121,7 @@ def setUpModule():
                 %s, \
                 %s \
             ) \
-        """ % (testTableName, r,d)
+        """ % (testTableName, r, d)
 
         print insertMe
 
@@ -129,28 +131,33 @@ def setUpModule():
 
     return None
 
+
 def tearDownModule():
     "tear down test fixtures"
     # CLOSE THE TEST LOG FILE
     testlog.close()
     return None
 
+
 class emptyLogger:
-    info=None
-    error=None
-    debug=None
-    critical=None
-    warning=None
+    info = None
+    error = None
+    debug = None
+    critical = None
+    warning = None
+
 
 class test_convert_dictionary_to_mysql_table():
+
     def test_raise_error_if_dbConn_is_not_a_working_db_connection(self):
         kwargs = {}
         kwargs["dbConn"] = "garbage"
         kwargs["log"] = log
-        kwargs["dictionary"] = {"someGoodKey":"nice"}
+        kwargs["dictionary"] = {"someGoodKey": "nice"}
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
-        kwargs["uniqueKeyList"] = ["someGoodKey",]
-        nose.tools.assert_raises(TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
+        kwargs["uniqueKeyList"] = ["someGoodKey", ]
+        nose.tools.assert_raises(
+            TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
 
     def test_raise_error_if_dictionary_argu_not_a_dictionary(self):
         kwargs = {}
@@ -158,60 +165,69 @@ class test_convert_dictionary_to_mysql_table():
         kwargs["log"] = log
         kwargs["dictionary"] = "not a dictionary"
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
-        kwargs["uniqueKeyList"] = ["not a dictionary",]
-        nose.tools.assert_raises(TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
+        kwargs["uniqueKeyList"] = ["not a dictionary", ]
+        nose.tools.assert_raises(
+            TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
 
     def test_raise_error_if_dictionary_has_not_simple_values(self):
         kwargs = {}
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        kwargs["dictionary"] = {"someGoodKey":"nice","someOtherBadKey":["ev!l","list",42]}
+        kwargs["dictionary"] = {
+            "someGoodKey": "nice", "someOtherBadKey": ["ev!l", "list", 42]}
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
-        kwargs["uniqueKeyList"] = ["someGoodKey","someOtherBadKey",]
-        nose.tools.assert_raises(ValueError, mysql.convert_dictionary_to_mysql_table, **kwargs)
-
-    # @action : add in test to test the database connection where i first setup dbConn (code in test database connection snippet)
+        kwargs["uniqueKeyList"] = ["someGoodKey", "someOtherBadKey", ]
+        nose.tools.assert_raises(
+            ValueError, mysql.convert_dictionary_to_mysql_table, **kwargs)
 
     def test_raise_error_if_uniqueKeyList_is_not_list(self):
         kwargs = {}
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        kwargs["dictionary"] = {"someGoodKey":"nice"}
+        kwargs["dictionary"] = {"someGoodKey": "nice"}
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
         kwargs["uniqueKeyList"] = ">>>>>>>>>>> not a list <<<<<<<<<<<"
-        nose.tools.assert_raises(TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
+        nose.tools.assert_raises(
+            TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
         pass
 
     def test_raise_error_if_uniqueKeyList_values_not_in_dictionary(self):
         kwargs = {}
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        kwargs["dictionary"] = {"someGoodKey":"nice","another good key":"andother value"}
+        kwargs["dictionary"] = {
+            "someGoodKey": "nice", "another good key": "andother value"}
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
-        kwargs["uniqueKeyList"] = ["someGoodKey",">>>>>>>>>>> not a good key <<<<<<<<<<<"]
-        nose.tools.assert_raises(ValueError, mysql.convert_dictionary_to_mysql_table, **kwargs)
+        kwargs["uniqueKeyList"] = [
+            "someGoodKey", ">>>>>>>>>>> not a good key <<<<<<<<<<<"]
+        nose.tools.assert_raises(
+            ValueError, mysql.convert_dictionary_to_mysql_table, **kwargs)
 
     def test_raise_error_if_createHelperTables_is_not_boolean(self):
         kwargs = {}
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        kwargs["dictionary"] = {"someGoodKey":"nice","another good key":"andother value"}
+        kwargs["dictionary"] = {
+            "someGoodKey": "nice", "another good key": "andother value"}
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
-        kwargs["uniqueKeyList"] = ["someGoodKey",]
+        kwargs["uniqueKeyList"] = ["someGoodKey", ]
         kwargs["createHelperTables"] = ">>>>>>>>>>> not a boolean <<<<<<<<<<<"
-        nose.tools.assert_raises(TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
+        nose.tools.assert_raises(
+            TypeError, mysql.convert_dictionary_to_mysql_table, **kwargs)
 
     def test_to_create_a_table_to_see_if_code_completes(self):
         kwargs = {}
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        kwargs["dictionary"] = {"someGoodKey":["nice","nice"],"and other":["nice","nice"]}
+        kwargs["dictionary"] = {
+            "someGoodKey": ["nice", "nice"], "and other": ["nice", "nice"]}
         kwargs["dbTableName"] = "python_unit_testing_dict_to_mysql"
-        kwargs["uniqueKeyList"] = ["someGoodKey","and other"]
+        kwargs["uniqueKeyList"] = ["someGoodKey", "and other"]
         mysql.convert_dictionary_to_mysql_table(**kwargs)
 
 
 class test_add_HTMIds_to_mysql_tables():
+
     def test_table_exits(self):
         kwargs = {}
         kwargs["primaryIdColumnName"] = "id"
@@ -220,7 +236,8 @@ class test_add_HTMIds_to_mysql_tables():
         kwargs["tableName"] = ">>>>>>>>>>>not_a_valid_name<<<<<<<<<<<"
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        nose.tools.assert_raises(IOError, mysql.add_HTMIds_to_mysql_tables, **kwargs)
+        nose.tools.assert_raises(
+            IOError, mysql.add_HTMIds_to_mysql_tables, **kwargs)
 
     def test_ra_column_exits(self):
         kwargs = {}
@@ -230,7 +247,8 @@ class test_add_HTMIds_to_mysql_tables():
         kwargs["tableName"] = testTableName
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        nose.tools.assert_raises(IOError, mysql.add_HTMIds_to_mysql_tables, **kwargs)
+        nose.tools.assert_raises(
+            IOError, mysql.add_HTMIds_to_mysql_tables, **kwargs)
 
     def test_dec_column_exits(self):
         kwargs = {}
@@ -240,7 +258,8 @@ class test_add_HTMIds_to_mysql_tables():
         kwargs["tableName"] = testTableName
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-        nose.tools.assert_raises(IOError, mysql.add_HTMIds_to_mysql_tables, **kwargs)
+        nose.tools.assert_raises(
+            IOError, mysql.add_HTMIds_to_mysql_tables, **kwargs)
 
     def test_htmIds_are_generated_after_function_has_run(self):
         kwargs = {}
@@ -250,8 +269,3 @@ class test_add_HTMIds_to_mysql_tables():
         kwargs["tableName"] = testTableName
         kwargs["dbConn"] = dbConn
         kwargs["log"] = log
-
-
-
-
-

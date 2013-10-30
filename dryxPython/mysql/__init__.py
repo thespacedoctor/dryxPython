@@ -1,3 +1,4 @@
+import execute_mysql_script
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """ **mysql**
@@ -37,9 +38,9 @@ import os
 #     ## FINISH LOGGING ##
 #     log.info('----- FINISHED ATTEMPT TO RUN THE mysql -----')
 #     return
-#############################################################################################
+##########################################################################
 # CLASSES                                                                                   #
-#############################################################################################
+##########################################################################
 ############################################
 # PUBLIC FUNCTIONS                         #
 ############################################
@@ -68,30 +69,33 @@ def set_db_connection(pathToYamlFile):
     import sys
     # # IMPORT THE YAML CONNECTION DICTIONARY ##
     try:
-        logging.info('importing the yaml database connection dictionary from ' + pathToYamlFile)
+        logging.info(
+            'importing the yaml database connection dictionary from ' + pathToYamlFile)
         stream = file(pathToYamlFile, 'r')
         connDict = yaml.load(stream)
     except:
-        logging.critical('could not load the connect dictionary from ' + pathToYamlFile)
+        logging.critical(
+            'could not load the connect dictionary from ' + pathToYamlFile)
         sys.exit(1)
     # # ESTABLISH A DB CONNECTION
     try:
-        logging.info('connecting to the ' + connDict['db'] + ' database on ' + connDict['host'])
+        logging.info('connecting to the ' + connDict[
+                     'db'] + ' database on ' + connDict['host'])
         dbConn = ms.connect(
             host=connDict['host'],
             user=connDict['user'],
             passwd=connDict['password'],
             db=connDict['db'],
-            )
-    except Exception, e:
+        )
+    except Exception as e:
         logging.critical('could not connect to the ' + connDict['db'] + ' database on ' + connDict['host'] + ' : '
                          + str(e) + '\n')
     return dbConn
 
 
-####################################################################################
+##########################################################################
 # EXECUTE A MYSQL WRITE COMMAND GIVEN A QUERY (STRING) AND A DATABASE CONNECTION   #
-####################################################################################
+##########################################################################
 ## LAST MODIFIED : 20121023
 ## CREATED : 20121023
 
@@ -99,7 +103,7 @@ def execute_mysql_write_query(
     sqlQuery,
     dbConn,
     log,
-    ):
+):
     """ Execute a MySQL write command given a sql query
 
             ****Key Arguments:****
@@ -120,35 +124,38 @@ def execute_mysql_write_query(
 
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
-    except Exception, e:
+    except Exception as e:
         log.error('could not create the database cursor.')
     # EXECUTE THE SQL COMMAND
     try:
         cursor.execute(sqlQuery)
-    except MySQLdb.Error, e:
+    except MySQLdb.Error as e:
         if e[0] == 1050 and 'already exists' in e[1]:
             log.info(str(e) + '\n')
         elif e[0] == 1062:
                            # Duplicate Key error
             log.debug('Duplicate Key error: %s' % (str(e), ))
         else:
-            log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
-                      str(e)))
-    except Exception, e:
-        log.error('MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery, str(e)))
+            log.error(
+                'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
+                                                                                                   str(e)))
+    except Exception as e:
+        log.error(
+            'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
+            (sqlQuery, str(e)))
     # CLOSE THE CURSOR
     try:
         cursor.close()
-    except Exception, e:
+    except Exception as e:
         log.warning('could not close the db cursor ' + str(e) + '\n')
 
     log.info('finished execute_mysql_write_query')
     return None
 
 
-####################################################################################
+##########################################################################
 # EXECUTE A MYSQL SELECT COMMAND GIVEN A QUERY (STRING) AND A DATABASE CONNECTION  #
-####################################################################################
+##########################################################################
 ## LAST MODIFIED : 20121023
 ## CREATED : 20121023
 
@@ -156,7 +163,7 @@ def execute_mysql_read_query(
     sqlQuery,
     dbConn,
     log,
-    ):
+):
     """ Execute a MySQL select command given a query
 
             ****Key Arguments:****
@@ -174,19 +181,21 @@ def execute_mysql_read_query(
     # CREATE DB CURSOR
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
-    except Exception, e:
+    except Exception as e:
         log.error('could not create the database cursor: %s' % (e, ))
+        raise IOError('could not create the database cursor: %s' % (e, ))
     # EXECUTE THE SQL COMMAND
     try:
         cursor.execute(sqlQuery)
         rows = cursor.fetchall()
-    except Exception, e:
-        log.error('MySQL raised an error - write command not executed.\n' + str(e) + '\n')
+    except Exception as e:
+        log.error(
+            'MySQL raised an error - write command not executed.\n' + str(e) + '\n')
         raise e
     # CLOSE THE CURSOR
     try:
         cursor.close()
-    except Exception, e:
+    except Exception as e:
         log.warning('could not close the db cursor ' + str(e) + '\n')
     return rows
 
@@ -253,11 +262,13 @@ def convert_dictionary_to_mysql_table(
     for k, v in dictionary.iteritems():
         if isinstance(v, list) and len(v) != 2:
             message = 'Please make sure the list values in "dictionary" 2 items in length'
-            log.critical("%s: in %s we have a %s (%s)" % (message,k,v,type(v)))
+            log.critical("%s: in %s we have a %s (%s)" %
+                         (message, k, v, type(v)))
             raise ValueError(message)
         if not (isinstance(v[0], str) or isinstance(v[0], int) or isinstance(v[0], bool) or isinstance(v[0], float) or v[0] == None):
             message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
-            log.critical("%s: in %s we have a %s (%s)" % (message,k,v,type(v)))
+            log.critical("%s: in %s we have a %s (%s)" %
+                         (message, k, v, type(v)))
             raise ValueError(message)
 
     if not isinstance(createHelperTables, bool):
@@ -269,7 +280,8 @@ def convert_dictionary_to_mysql_table(
         "IF NOT EXISTS( (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND COLUMN_NAME='my_additional_column' AND TABLE_NAME='my_table_name') ) THEN"
     qCreateColumnPostamble = \
         'PRIMARY KEY (`primaryId`)) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;'
-    # MySQL DOES NOT LIKE COMPOUNDED QUERIES FROM MYSQLDB - CREATE LIST OF QUERIES INSTEAD
+    # MySQL DOES NOT LIKE COMPOUNDED QUERIES FROM MYSQLDB - CREATE LIST OF
+    # QUERIES INSTEAD
     qCreateTableCommandList = []
     qCreateTableCommandList.extend(["""
                                     SET sql_notes = 0;
@@ -279,7 +291,7 @@ def convert_dictionary_to_mysql_table(
                                             PRIMARY KEY (`primaryId`))
                                             ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
                                     SET sql_notes = 1;"""
-                                   ])
+                                    ])
     reFeedParserClass = re.compile('FeedParserDict')
     reDatetime = re.compile('^[0-9]{4}-[0-9]{2}-[0-9]{2}T')
     reTypeTime = re.compile('struct_time')
@@ -296,22 +308,28 @@ def convert_dictionary_to_mysql_table(
                 command,
                 dbConn,
                 log,
-                )
-    except MySQLdb.Error, e:
+            )
+    except MySQLdb.Error as e:
         if e[0] == 1050 and 'already exists' in e[1]:
             # MYSQL WARNING
             pass
         else:
-            log.critial('could not create the table ' + dbTableName + ' ' + str(e) + '\n')
+            log.critial(
+                'could not create the table ' + dbTableName + ' ' + str(e) + '\n')
             sys.exit(e)
-    except Exception, e:
-        log.critical('could not create the table ' + dbTableName + ' ' + str(e) + '\n')
+    except Exception as e:
+        log.critical(
+            'could not create the table ' + dbTableName + ' ' + str(e) + '\n')
         sys.exit(e)
     # ADD EXTRA COLUMNS TO THE DICTIONARY
-    dictionary['dateCreated'] = [str(dcu.get_now_sql_datetime()),"date row was created"]
-    dictionary['dateLastModified'] = [str(dcu.get_now_sql_datetime()),"date row was modified"]
-    dictionary['dateLastRead'] = [str(dcu.get_now_sql_datetime()),"date row was last read"]
-    # ITERATE THROUGH THE DICTIONARY AND GENERATE THE A TABLE COLUMN WITH THE NAME OF THE KEY, IF IT DOES NOT EXIST
+    dictionary['dateCreated'] = [
+        str(dcu.get_now_sql_datetime()), "date row was created"]
+    dictionary['dateLastModified'] = [
+        str(dcu.get_now_sql_datetime()), "date row was modified"]
+    dictionary['dateLastRead'] = [
+        str(dcu.get_now_sql_datetime()), "date row was last read"]
+    # ITERATE THROUGH THE DICTIONARY AND GENERATE THE A TABLE COLUMN WITH THE
+    # NAME OF THE KEY, IF IT DOES NOT EXIST
     count = len(dictionary)
     i = 1
     for (key, value) in dictionary.items():
@@ -321,7 +339,7 @@ def convert_dictionary_to_mysql_table(
     odictionary = c.OrderedDict(sorted(dictionary.items()))
     for (key, value) in odictionary.iteritems():
 
-        formattedKey = key.replace(" ","_").replace("-","_")
+        formattedKey = key.replace(" ", "_").replace("-", "_")
         # DEC A KEYWORD IN MYSQL - NEED TO CHANGE BEFORE INGEST
         if formattedKey == "dec":
             formattedKey = "decl"
@@ -330,15 +348,17 @@ def convert_dictionary_to_mysql_table(
 
         formattedKeyList.extend([formattedKey])
         if len(key) > 0:
-            # CONVERT LIST AND FEEDPARSER VALUES TO YAML (SO I CAN PASS IT AS A STRING TO MYSQL)
-            if type(value[0]) == list or reFeedParserClass.search(str(type(value[0]))):
+            # CONVERT LIST AND FEEDPARSER VALUES TO YAML (SO I CAN PASS IT AS A
+            # STRING TO MYSQL)
+            if isinstance(value[0], list) or reFeedParserClass.search(str(type(value[0]))):
                 value[0] = yaml.dump(value[0])
                 value[0] = str(value[0])
             # REMOVE CHARACTERS THAT COLLIDE WITH MYSQL
             # if type(value[0]) == str or type(value[0]) == unicode:
             #     value[0] = value[0].replace('"', """'""")
-            # JOIN THE VALUES TOGETHER IN A LIST - EASIER TO GENERATE THE MYSQL COMMAND LATER
-            if type(value[0]) == unicode:
+            # JOIN THE VALUES TOGETHER IN A LIST - EASIER TO GENERATE THE MYSQL
+            # COMMAND LATER
+            if isinstance(value[0], unicode):
                 myValues.extend(['%s' % value[0].strip()])
             else:
                 myValues.extend(['%s' % (value[0], )])
@@ -356,34 +376,36 @@ def convert_dictionary_to_mysql_table(
                     colExists,
                     dbConn,
                     log,
-                    )
-            except Exception, e:
+                )
+            except Exception as e:
                 log.error('something went wrong' + str(e) + '\n')
             # IF COLUMN DOESN'T EXIT - GENERATE IT
             if len(rows) == 0:
-                qCreateColumn = """ALTER TABLE %s ADD %s""" % (dbTableName,formattedKey)
+                qCreateColumn = """ALTER TABLE %s ADD %s""" % (
+                    dbTableName, formattedKey)
                 if reDatetime.search(str(value[0])):
                     # log.debug('Ok - a datetime string was found')
                     qCreateColumn += ' datetime DEFAULT NULL'
                 elif formattedKey == 'updated_parsed' or formattedKey == 'published_parsed' or formattedKey \
-                    == 'feedName' or formattedKey == 'title':
+                        == 'feedName' or formattedKey == 'title':
                     qCreateColumn += ' varchar(100) DEFAULT NULL'
-                elif (type(value[0]) == str or type(value[0]) == unicode) and len(value[0]) < 30:
+                elif (isinstance(value[0], str) or isinstance(value[0], unicode)) and len(value[0]) < 30:
                     qCreateColumn += ' varchar(100) DEFAULT NULL'
-                elif (type(value[0]) == str or type(value[0]) == unicode) and len(value[0]) >= 30 and len(value[0]) < 80:
+                elif (isinstance(value[0], str) or isinstance(value[0], unicode)) and len(value[0]) >= 30 and len(value[0]) < 80:
                     qCreateColumn += ' varchar(100) DEFAULT NULL'
-                elif type(value[0]) == str or type(value[0]) == unicode:
+                elif isinstance(value[0], str) or isinstance(value[0], unicode):
                     columnLength = 450 + len(value[0]) * 2
-                    qCreateColumn += ' varchar(' + str(columnLength) + ') DEFAULT NULL'
-                elif type(value[0]) == int and abs(value[0]) <= 9:
+                    qCreateColumn += ' varchar(' + str(
+                        columnLength) + ') DEFAULT NULL'
+                elif isinstance(value[0], int) and abs(value[0]) <= 9:
                     qCreateColumn += ' tinyint DEFAULT NULL'
-                elif type(value[0]) == int:
+                elif isinstance(value[0], int):
                     qCreateColumn += ' int DEFAULT NULL'
-                elif type(value[0]) == float or type(value[0]) == long:
+                elif isinstance(value[0], float) or isinstance(value[0], long):
                     qCreateColumn += ' double DEFAULT NULL'
-                elif type(value[0]) == bool:
+                elif isinstance(value[0], bool):
                     qCreateColumn += ' tinyint DEFAULT NULL'
-                elif type(value[0]) == list:
+                elif isinstance(value[0], list):
                     qCreateColumn += ' varchar(1024) DEFAULT NULL'
                 else:
                     log.debug('Do not know what format to add this key in MySQL - removing from dictionary: %s, %s'
@@ -394,16 +416,18 @@ def convert_dictionary_to_mysql_table(
                 if qCreateColumn:
                     # # ADD COMMENT TO GIVE THE ORGINAL KEYWORD IF formatted FOR MYSQL
                     if key is not formattedKey:
-                        qCreateColumn += " COMMENT 'original keyword: " + key + """'"""
+                        qCreateColumn += " COMMENT 'original keyword: " + \
+                            key + """'"""
                     # # CREATE THE COLUMN IF IT DOES NOT EXIST
                     try:
-                        log.info('creating the ' + formattedKey + ' column in the ' + dbTableName + ' table')
+                        log.info('creating the ' +
+                                 formattedKey + ' column in the ' + dbTableName + ' table')
                         execute_mysql_write_query(
                             qCreateColumn,
                             dbConn,
                             log,
-                            )
-                    except Exception, e:
+                        )
+                    except Exception as e:
                         log.debug('qCreateColumn: %s' % (qCreateColumn, ))
                         log.error('could not create the ' + formattedKey + ' column in the ' + dbTableName
                                   + ' table -- ' + str(e) + '\n')
@@ -411,13 +435,14 @@ def convert_dictionary_to_mysql_table(
     # # GENERATE THE INDEX NAME - THEN CREATE INDEX IF IT DOES NOT YET EXIST
     if len(uniqueKeyList):
         for i in range(len(uniqueKeyList)):
-            uniqueKeyList[i] = uniqueKeyList[i].replace(" ","_").replace("-","_")
+            uniqueKeyList[i] = uniqueKeyList[
+                i].replace(" ", "_").replace("-", "_")
             if uniqueKeyList[i] == "dec":
                 uniqueKeyList[i] = "decl"
             if uniqueKeyList[i] == "DEC":
                 uniqueKeyList[i] = "DECL"
 
-        indexName = uniqueKeyList[0].replace(" ","_").replace("-","_")
+        indexName = uniqueKeyList[0].replace(" ", "_").replace("-", "_")
         for i in range(len(uniqueKeyList) - 1):
             indexName += '_' + uniqueKeyList[i + 1]
 
@@ -425,37 +450,42 @@ def convert_dictionary_to_mysql_table(
         rows = execute_mysql_read_query(
             """SELECT COUNT(*) FROM INFORMATION_SCHEMA.STATISTICS WHERE TABLE_SCHEMA = DATABASE() AND
                                     TABLE_NAME = '"""
-                 + dbTableName + """' AND INDEX_NAME = '""" + indexName + """'""",
+            + dbTableName + """' AND INDEX_NAME = '""" +
+            indexName + """'""",
             dbConn,
             log,
-            )
+        )
         exists = rows[0]['COUNT(*)']
         log.debug('uniqueKeyList: %s' % (uniqueKeyList,))
         if exists == 0:
-            if type(uniqueKeyList) is list:
+            if isinstance(uniqueKeyList, list):
                 uniqueKeyList = ','.join(uniqueKeyList)
 
-            addUniqueKey = 'ALTER TABLE ' + dbTableName + ' ADD unique ' + indexName + """ (""" + uniqueKeyList + ')'
+            addUniqueKey = 'ALTER TABLE ' + dbTableName + \
+                ' ADD unique ' + indexName + """ (""" + uniqueKeyList + ')'
             # log.debug('HERE IS THE COMMAND:'+addUniqueKey)
             execute_mysql_write_query(
                 addUniqueKey,
                 dbConn,
                 log,
-                )
+            )
     # GENERATE THE INSERT COMMAND - IGNORE DUPLICATE ENTRIES
     myKeys = ','.join(formattedKeyList)
     myValues = '" ,"'.join(myValues)
     # log.debug(myValues+" ------ PRESTRIP")
     # REMOVE SOME CONVERSION NOISE
     myValues = myValues.replace('time.struct_time', '')
-    myValues = myValues.replace('- !!python/object/new:feedparser.FeedParserDict', '')
-    myValues = myValues.replace('!!python/object/new:feedparser.FeedParserDict', '')
+    myValues = myValues.replace(
+        '- !!python/object/new:feedparser.FeedParserDict', '')
+    myValues = myValues.replace(
+        '!!python/object/new:feedparser.FeedParserDict', '')
     myValues = myValues.replace('dictitems:', '')
     myValues = myValues.replace('dictitems', '')
     myValues = myValues.replace('!!python/unicode:', '')
     myValues = myValues.replace('!!python/unicode', '')
     # log.debug(myValues+" ------ POSTSTRIP")
-    addValue = """INSERT INTO """ + dbTableName + """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
+    addValue = """INSERT INTO """ + dbTableName + \
+        """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     # log.debug(addValue)
     try:
         # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
@@ -463,9 +493,10 @@ def convert_dictionary_to_mysql_table(
             addValue,
             dbConn,
             log,
-            )
-    except Exception, e:
-        log.error("could not add new data added to the table '" + dbTableName + "' : " + str(e) + '\n')
+        )
+    except Exception as e:
+        log.error("could not add new data added to the table '" +
+                  dbTableName + "' : " + str(e) + '\n')
 
     log.info('finished convert_dictionary_to_mysql_table')
 
@@ -486,7 +517,7 @@ def set_flag(
     flagValue,
     primaryKeyColumn,
     primaryKeyId,
-    ):
+):
     """ Set a flag in a db table to a given value
 
             ****Key Arguments:****
@@ -515,14 +546,15 @@ def set_flag(
             sqlQuery,
             dbConn,
             log,
-            )
-    except Exception, e:
-        log.error('cound not update the ingested flags for %s, error: %s' % (tableName, str(e)))
+        )
+    except Exception as e:
+        log.error('cound not update the ingested flags for %s, error: %s' %
+                  (tableName, str(e)))
         return -1
     return None
 
 
-######################################################################################################################
+##########################################################################
 ## LAST MODIFIED : November 23, 2012
 ## CREATED : November 23, 2012
 ## AUTHOR : DRYX
@@ -532,7 +564,7 @@ def add_column_to_db_table(
     colName,
     colType,
     dbConn,
-    ):
+):
     """ Add a column of agiven name to a database table
 
             ****Key Arguments:****
@@ -562,9 +594,10 @@ def add_column_to_db_table(
             colExists,
             dbConn,
             log,
-            )
+        )
         if not colExists:
-            sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + key + ' ' + colsToAdd[key] + ' DEFAULT NULL'
+            sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + \
+                key + ' ' + colsToAdd[key] + ' DEFAULT NULL'
             (sqlQuery, dbConn, log)
     return None
 
@@ -599,7 +632,7 @@ def add_HTMIds_to_mysql_tables(
 
     ## TEST TABLE EXIST
     sqlQuery = """show tables"""
-    rows =  execute_mysql_read_query(
+    rows = execute_mysql_read_query(
         sqlQuery=sqlQuery,
         dbConn=dbConn,
         log=log
@@ -633,12 +666,14 @@ def add_HTMIds_to_mysql_tables(
         'cx': 'DOUBLE',
         'cy': 'DOUBLE',
         'cz': 'DOUBLE',
-        }
+    }
 
     # CHECK IF COLUMNS EXISTS YET - IF NOT CREATE FROM
     for key in htmCols.keys():
         try:
-            log.debug('attempting to check and generate the HTMId columns for the %s db table' % (tableName, ))
+            log.debug(
+                'attempting to check and generate the HTMId columns for the %s db table' %
+                (tableName, ))
             colExists = \
                 """SELECT *
                     FROM information_schema.COLUMNS
@@ -650,25 +685,27 @@ def add_HTMIds_to_mysql_tables(
                 colExists,
                 dbConn,
                 log,
-                )
+            )
             if not colExists:
-                sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + key + ' ' + htmCols[key] + ' DEFAULT NULL'
+                sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + \
+                    key + ' ' + htmCols[key] + ' DEFAULT NULL'
                 m.execute_mysql_write_query(
                     sqlQuery,
                     dbConn,
                     log,
-                    )
-        except Exception, e:
+                )
+        except Exception as e:
             log.critical('could not check and generate the HTMId columns for the %s db table - failed with this error: %s '
-                          % (tableName, str(e)))
+                         % (tableName, str(e)))
             return -1
     # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
-    sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL""" % (primaryIdColumnName,raColName, declColName,tableName)
+    sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL""" % (
+        primaryIdColumnName, raColName, declColName, tableName)
     rows = m.execute_mysql_read_query(
         sqlQuery,
         dbConn,
         log,
-        )
+    )
     # NOW GENERATE THE HTMLIds FOR THESE ROWS
     for row in rows:
         if row[raColName] is None or row[declColName] is None:
@@ -679,12 +716,12 @@ def add_HTMIds_to_mysql_tables(
                 thisRa,
                 thisDec,
                 16,
-                )
+            )
             htm20ID = u.htmID(
                 thisRa,
                 thisDec,
                 20,
-                )
+            )
             (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
             sqlQuery = \
                 """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
@@ -698,15 +735,16 @@ def add_HTMIds_to_mysql_tables(
                 cz,
                 primaryIdColumnName,
                 row[primaryIdColumnName],
-                )
+            )
             try:
-                log.debug('attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
+                log.debug(
+                    'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
                 m.execute_mysql_write_query(
                     sqlQuery,
                     dbConn,
                     log,
-                    )
-            except Exception, e:
+                )
+            except Exception as e:
                 log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
                              % (tableName, str(e)))
                 return -1
@@ -721,7 +759,7 @@ def get_db_table_column_names(
     dbConn,
     log,
     dbTable,
-    ):
+):
     """get database table column names
 
     ****Key Arguments:****
@@ -740,14 +778,17 @@ def get_db_table_column_names(
         % (dbTable, )
     # ############### >ACTION(S) ################
     try:
-        log.debug('attempting to find column names for dbTable %s' % (dbTable, ))
+        log.debug('attempting to find column names for dbTable %s' %
+                  (dbTable, ))
         rows = execute_mysql_read_query(
             sqlQuery,
             dbConn,
             log,
-            )
-    except Exception, e:
-        log.error('could not find column names for dbTable %s - failed with this error: %s ' % (dbTable, str(e)))
+        )
+    except Exception as e:
+        log.error(
+            'could not find column names for dbTable %s - failed with this error: %s ' %
+            (dbTable, str(e)))
         return -1
     columnNames = rows[0].keys()
     return columnNames

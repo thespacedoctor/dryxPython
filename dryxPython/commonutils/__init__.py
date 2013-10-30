@@ -113,7 +113,7 @@ def get_now_sql_datetime():
     return now
 
 
-######################################################################################################################
+##########################################################################
 ## LAST MODIFIED : 20121108
 ## CREATED : 20121108
 ## AUTHOR : DRYX
@@ -175,9 +175,9 @@ def extract_filename_from_url(log, url):
     return filename
 
 
-########################################################################################################
+##########################################################################
 #  GIVEN A FILENAME AND A DATE, WILL APPEND A DATE STAMP TO AND RETURN THE FILENAME (WRTITEN BY DRYX)  #
-########################################################################################################
+##########################################################################
 ## LAST MODIFIED : 20121031
 ## CREATED : 20121031
 def append_now_datestamp_to_filename(log, filename):
@@ -212,6 +212,8 @@ def append_now_datestamp_to_filename(log, filename):
 ## LAST MODIFIED : December 12, 2012
 ## CREATED : December 12, 2012
 ## AUTHOR : DRYX
+
+
 def pretty_date(date):
     """convert date to a relative datetime (e.g. +15m, +2hr, +1w)
 
@@ -288,6 +290,10 @@ def calculate_time_difference(startDate, endDate):
     if d.seconds > 0:
         relTime += str(d.seconds) + "s"
     ###############################
+
+    if relTime == "":
+        relTime = "0s"
+
     return relTime
 
 
@@ -315,7 +321,8 @@ def dryx_mkdir(log, directoryPath):
             log.debug('creating the ' + directoryPath + ' directory')
             os.mkdir(directoryPath)
         except Exception as e:
-            log.error("could not create the " + directoryPath + " directory" + str(e) + "\n")
+            log.error("could not create the " +
+                      directoryPath + " directory" + str(e) + "\n")
     else:
         log.debug(directoryPath + ' directory already exists')
 
@@ -452,7 +459,7 @@ def recusively_add_directories_to_path(
     ################ >ACTION(S) ################
     # ADD TOP LEVEL DIRS TO PATH
     add_directories_to_path(directoryPath)
-    parentDirectoryList = [directoryPath,]
+    parentDirectoryList = [directoryPath, ]
 
     while len(parentDirectoryList) != 0:
         # print "\n\n len(parentDirectoryList): %s" %
@@ -510,7 +517,7 @@ def get_python_module_partials(
     baseName = os.path.basename(pathToModuleFile).replace(".py", "")
 
     if baseName == "__init__":
-        pathToModuleFile = pathToModuleFile.replace("__init__.py","")
+        pathToModuleFile = pathToModuleFile.replace("__init__.py", "")
         baseName = os.path.basename(pathToModuleFile)
 
     reBaseName = re.compile(r"%s" % (baseName,))
@@ -519,7 +526,9 @@ def get_python_module_partials(
         if reBaseName.search(name):
             importList = []
             for key in mod.globalnames.keys():
-                # if ("/Library/Frameworks/Python.framework/" in mod.__file__ or "macports" in mod.__file__) and "site-packages" not in mod.__file__:
+                # if ("/Library/Frameworks/Python.framework/" in mod.__file__ or
+                # "macports" in mod.__file__) and "site-packages" not in
+                # mod.__file__:
                 if "/Users/" not in mod.__file__:
                     # print "skipping %s" % (mod.__file__,)
                     continue
@@ -540,7 +549,7 @@ def get_recursive_list_of_directory_contents(
         log,
         baseFolderPath,
         whatToList="all"
-    ):
+):
     """list directory contents recursively.
 
     Options to list only files or only directories.
@@ -559,11 +568,12 @@ def get_recursive_list_of_directory_contents(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``get_recursive_list_of_directory_contents`` function')
+    log.info(
+        'starting the ``get_recursive_list_of_directory_contents`` function')
 
     ## VARIABLES ##
     matchedPathList = []
-    parentDirectoryList = [baseFolderPath,]
+    parentDirectoryList = [baseFolderPath, ]
 
     count = 0
     while os.listdir(baseFolderPath) and count < 20:
@@ -583,7 +593,8 @@ def get_recursive_list_of_directory_contents(
                     elif whatToList is "files":
                         matched = os.path.isfile(fullPath)
                     else:
-                        log.error('cound not list files in %s, `whatToList` variable incorrect: [ "files" | "dirs" | "all" ]' % (baseFolderPath,))
+                        log.error(
+                            'cound not list files in %s, `whatToList` variable incorrect: [ "files" | "dirs" | "all" ]' % (baseFolderPath,))
                         sys.exit(0)
 
                     if matched:
@@ -595,7 +606,8 @@ def get_recursive_list_of_directory_contents(
 
                 parentDirectoryList = childDirList
 
-    log.info('completed the ``get_recursive_list_of_directory_contents`` function')
+    log.info(
+        'completed the ``get_recursive_list_of_directory_contents`` function')
     return matchedPathList
 
 
@@ -636,6 +648,8 @@ def get_help_for_python_module(
 ## LAST MODIFIED : July 22, 2013
 ## CREATED : July 22, 2013
 ## AUTHOR : DRYX
+
+
 def recursively_remove_empty_directories(
         log,
         basePath):
@@ -670,7 +684,7 @@ def recursively_remove_empty_directories(
             if os.path.isdir(os.path.join(basePath, d)):
                 foldersToClean.append(fullPath)
 
-        parentDirectoryList = [basePath,]
+        parentDirectoryList = [basePath, ]
 
         while len(parentDirectoryList) != 0:
             childDirList = []
