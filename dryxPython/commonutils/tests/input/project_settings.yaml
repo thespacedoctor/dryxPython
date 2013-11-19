@@ -6,5 +6,5 @@ database settings:
     password: root
 
 git repos:
-    - path: /Users/Dave/Dropbox/github_projects/pessto_marshall_engine
+    - path: /Users/Dave/Dropbox/github_projects/dryxPython
       branchToUpdate: master
