@@ -22,3 +22,5 @@ html_test_coverage_report/
 /*.egg-info
 /*.egg
 
+
+git_update_script.py
