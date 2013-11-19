@@ -133,6 +133,7 @@ def update_git_repos(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
     os.chdir(gitProjectRoot)
+    call(["git", "checkout", branchToUpdate])
     call(["git", "pull", "origin", branchToUpdate])
 
     return None
