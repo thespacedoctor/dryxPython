@@ -133,7 +133,10 @@ def update_git_repos(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
     os.chdir(gitProjectRoot)
+    call(["git", "add", "."])
     call(["git", "checkout", branchToUpdate])
+    call(["git", "commit", "-am",
+         "'auto commit from python git repo updater script before pull from origin'"])
     call(["git", "pull", "origin", branchToUpdate])
 
     return None
