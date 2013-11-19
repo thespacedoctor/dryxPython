@@ -87,7 +87,6 @@ def main(arguments=None):
     # call the worker function
     # x-if-settings-or-database-credientials
     if "git repos" in settings:
-        print "nice"
         for repo in settings["git repos"]:
             log.debug('repo["path"]: %s' % (repo["path"],))
             log.debug('repo["branchToUpdate"]: %s' % (repo["branchToUpdate"],))
