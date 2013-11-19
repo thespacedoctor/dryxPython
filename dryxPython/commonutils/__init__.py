@@ -1,3 +1,4 @@
+import update_gitrepo
 #!/usr/local/bin/python
 # encoding: utf-8
 """
