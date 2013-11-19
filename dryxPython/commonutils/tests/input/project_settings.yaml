@@ -1,0 +1,10 @@
+version: 1
+database settings:
+    db: pessto_marshall_sandbox
+    host: localhost
+    user: root
+    password: root
+
+git repos:
+    - path: /Users/Dave/Dropbox/github_projects/dryxPython
+      branchToUpdate: master
