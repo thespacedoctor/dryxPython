@@ -137,6 +137,7 @@ def update_git_repos(
     call(["git", "commit", "-am",
          "'auto commit from python git repo updater script before pull from origin'"])
     call(["git", "pull", "origin", branchToUpdate])
+    call(["git", "push", "origin", branchToUpdate])
 
     return None
 
