@@ -22,7 +22,7 @@ update_git_repos.py
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
-    pm_update_git_repos --settingsFile=<pathToSettingsFile>
+    dcu_update_git_repos --settingsFile=<pathToSettingsFile>
 
     -h, --help    show this help message
     -v, --version show version
