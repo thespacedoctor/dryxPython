@@ -1,6 +1,6 @@
 import os
 import nose
-from .. import update_gitrepo
+from .. import update_git_repos
 
 ## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 
@@ -67,7 +67,7 @@ class test_command_line():
     def test_command_line_method_01(self):
         kwargs = {}
         kwargs["--settingsFile"] = pathToInputDir + "project_settings.yaml"
-        update_gitrepo.main(kwargs)
+        update_git_repos.main(kwargs)
 
     # x-class-method-to-test-a-command-line-usage
 # x-class-to-test-named-worker-function
