@@ -87,7 +87,6 @@ def main(arguments=None):
     # call the worker function
     # x-if-settings-or-database-credientials
     if "git repos" in settings:
-        print "nice"
         for repo in settings["git repos"]:
             log.debug('repo["path"]: %s' % (repo["path"],))
             log.debug('repo["branchToUpdate"]: %s' % (repo["branchToUpdate"],))
@@ -133,7 +132,10 @@ def update_git_repos(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
     os.chdir(gitProjectRoot)
+    call(["git", "add", "."])
     call(["git", "checkout", branchToUpdate])
+    call(["git", "commit", "-am",
+         "'auto commit from python git repo updater script before pull from origin'"])
     call(["git", "pull", "origin", branchToUpdate])
 
     return None
