@@ -649,6 +649,45 @@ def pageHeader(
 
     return pageHeader
 
+
+## LAST MODIFIED : November 21, 2013
+## CREATED : November 21, 2013
+## AUTHOR : DRYX
+# copy usage method(s) into function below and select the following snippet from the command palette:
+# x-setup-worker-function-parameters-from-usage-method
+def coloredText(
+        text="",
+        color="red",
+        htmlClass=""
+):
+    """Colour text a given colour
+
+    **Key Arguments:**
+        - ``text`` -- the text to color
+        - ``color`` -- the color
+        - ``htmlClass`` -- the class for the text
+
+    **Return:**
+        - None
+
+    **Todo**
+        - @review: when complete, clean coloredText function
+        - @review: when complete add logging
+        - @review: when complete, decide whether to abstract function to another module
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+
+    text = """<span class="colortext %s %s">%s</span>""" % (color,
+                                                            htmlClass, text,)
+
+    return text
+
+# use the tab-trigger below for new function
+# x-def-with-logger
+
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
 ###################################################################

@@ -3,6 +3,8 @@ import nose
 from ... import htmlframework as dhf
 
 ## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+
+
 def setUpModule():
     import logging
     import logging.config
@@ -13,10 +15,10 @@ def setUpModule():
 
     # SETUP PATHS TO COMMONG DIRECTORIES FOR TEST DATA
     global pathToInputDataDir, pathToOutputDir, pathToOutputDataDir, pathToInputDir
-    pathToInputDir = moduleDirectory+"/input/"
+    pathToInputDir = moduleDirectory + "/input/"
     pathToInputDataDir = pathToInputDir + "data/"
-    pathToOutputDir = moduleDirectory+"/output/"
-    pathToOutputDataDir = pathToOutputDir+"data/"
+    pathToOutputDir = moduleDirectory + "/output/"
+    pathToOutputDataDir = pathToOutputDir + "data/"
 
     # SETUP THE TEST LOG FILE
     global testlog
@@ -50,7 +52,8 @@ def setUpModule():
     log = logging.getLogger(__name__)
 
     global cheatsheet
-    cheatsheet = open(pathToOutputDir + "htdocs/dryxPython_htmlframework_cheatsheet.html", 'w')
+    cheatsheet = open(pathToOutputDir +
+                      "htdocs/dryxPython_htmlframework_cheatsheet.html", 'w')
 
     global fillerText
     fillerText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -59,6 +62,7 @@ def setUpModule():
 
     return None
 
+
 def tearDownModule():
     "tear down test fixtures"
     # CLOSE THE TEST LOG FILE
@@ -66,15 +70,17 @@ def tearDownModule():
     testlog.close()
     return None
 
+
 class emptyLogger:
-    info=None
-    error=None
-    debug=None
-    critical=None
-    warning=None
+    info = None
+    error = None
+    debug = None
+    critical = None
+    warning = None
 
 
 class test_0001_htmlDocument():
+
     def test_htmlDocument_works_as_expected(self):
         content = ""
         lt = lambda x: "<BR/><h2>%s</h2>" % (x,)
@@ -86,64 +92,66 @@ class test_0001_htmlDocument():
         content += lt(text)
         text = dhf.p(
             content="webpage-head-and-body",
-            color="success",  #  [ muted | warning | info | error | success ]
+            color="success",  # [ muted | warning | info | error | success ]
         )
         content += "<br><br><em>Snippet:</em> " + text
-        content += "Page constructed from a %s and %s in an %s" % (ct("head"), ct("body"), ct("htmlDocument"))
+        content += "Page constructed from a %s and %s in an %s" % (ct("head"),
+                                                                   ct("body"), ct("htmlDocument"))
 
         ## BASIC GRIDS
         text = "Basic grid HTML"
         content += lt(text)
         text = dhf.p(
             content="grid-row-with-two-columns",
-            color="success",  #  [ muted | warning | info | error | success ]
+            color="success",  # [ muted | warning | info | error | success ]
         )
         content += "<br><br><em>Snippet:</em> " + text
 
         placeHolder1 = dhf.image(
-            src='holder.js/50x50/social/text:1',  # [ industrial | gray | social ]
+            # [ industrial | gray | social ]
+            src='holder.js/50x50/social/text:1',
         )
         placeHolder2 = dhf.image(
-            src='holder.js/100x50/social/text:2',  # [ industrial | gray | social ]
+            # [ industrial | gray | social ]
+            src='holder.js/100x50/social/text:2',
         )
         placeHolder3 = dhf.image(
-            src='holder.js/200x50/social/text:3 offset 3',  # [ industrial | gray | social ]
+            # [ industrial | gray | social ]
+            src='holder.js/200x50/social/text:3 offset 3',
         )
-        text = "%s with %s and %s. Use these items to structure and build your pages.<br><br>" % (ct("grid_row"),ct("grid_coulmn"),ct("placeHolders"))
+        text = "%s with %s and %s. Use these items to structure and build your pages.<br><br>" % (
+            ct("grid_row"), ct("grid_coulmn"), ct("placeHolders"))
         content += text
         column = dhf.grid_column(
-            span=1, # 1-12
-            offset=0, # 1-12
+            span=1,  # 1-12
+            offset=0,  # 1-12
             content=placeHolder1
         )
         row = dhf.grid_row(
             responsive=True,
-            columns=column*12,
+            columns=column * 12,
         )
         content += row + "<br>"
         column = dhf.grid_column(
-            span=2, # 1-12
-            offset=0, # 1-12
+            span=2,  # 1-12
+            offset=0,  # 1-12
             content=placeHolder2
         )
         row = dhf.grid_row(
             responsive=True,
-            columns=column*6,
+            columns=column * 6,
         )
         content += row + "<br>"
         column = dhf.grid_column(
-            span=3, # 1-12
-            offset=3, # 1-12
+            span=3,  # 1-12
+            offset=3,  # 1-12
             content=placeHolder3
         )
         row = dhf.grid_row(
             responsive=True,
-            columns=column*2,
+            columns=column * 2,
         )
         content += row + "<br>"
-
-
-
 
         ## TEXT
         text = "Typography"
@@ -152,7 +160,7 @@ class test_0001_htmlDocument():
             content=fillerText,
             lead=True,
             textAlign="left",  # [ left | center | right ]
-            color="info",  #  [ muted | warning | info | error | success ]
+            color="info",  # [ muted | warning | info | error | success ]
             navBar=False,
             onPhone=True,
             onTablet=True,
@@ -160,27 +168,30 @@ class test_0001_htmlDocument():
         )
         content += text
 
-        textSnip = "<small>this is small, muted, left aligned %s text wrapped in %s tags</small><br>" % (ct("&ltp&gt"),ct("&ltsmall&gt"),)
+        textSnip = "<small>this is small, muted, left aligned %s text wrapped in %s tags</small><br>" % (
+            ct("&ltp&gt"), ct("&ltsmall&gt"),)
         text = dhf.p(
             content=textSnip,
             textAlign="left",  # [ left | center | right ]
-            color="muted"  #  [ muted | warning | info | error | success ]
+            color="muted"  # [ muted | warning | info | error | success ]
         )
         content += text
 
-        textSnip = "<strong>this is bold, warning, centred %s text wrapped in %s tags</strong><br>" % (ct("&ltp&gt"),ct("&ltstrong&gt"),)
+        textSnip = "<strong>this is bold, warning, centred %s text wrapped in %s tags</strong><br>" % (
+            ct("&ltp&gt"), ct("&ltstrong&gt"),)
         text = dhf.p(
             content=textSnip,
             textAlign="center",  # [ left | center | right ]
-            color="warning"  #  [ muted | warning | info | error | success ]
+            color="warning"  # [ muted | warning | info | error | success ]
         )
         content += text
 
-        textSnip = "<em>this is italic, error, right aligned %s text wrapped in %s tags</em><br>" % (ct("&ltp&gt"),ct("&ltem&gt"),)
+        textSnip = "<em>this is italic, error, right aligned %s text wrapped in %s tags</em><br>" % (
+            ct("&ltp&gt"), ct("&ltem&gt"),)
         text = dhf.p(
             content=textSnip,
             textAlign="right",  # [ left | center | right ]
-            color="error"  #  [ muted | warning | info | error | success ]
+            color="error"  # [ muted | warning | info | error | success ]
         )
         content += text
 
@@ -188,7 +199,7 @@ class test_0001_htmlDocument():
         text = dhf.p(
             content=textSnip,
             textAlign="left",  # [ left | center | right ]
-            color="success"  #  [ muted | warning | info | error | success ]
+            color="success"  # [ muted | warning | info | error | success ]
         )
         content += text
 
@@ -196,7 +207,7 @@ class test_0001_htmlDocument():
         text = dhf.p(
             content=textSnip,
             textAlign="left",  # [ left | center | right ]
-            color="info"  #  [ muted | warning | info | error | success ]
+            color="info"  # [ muted | warning | info | error | success ]
         )
         content += text
 
@@ -204,83 +215,86 @@ class test_0001_htmlDocument():
         text = dhf.p(
             content=textSnip,
             textAlign="left",  # [ left | center | right ]
-            color="default"  #  [ muted | warning | info | error | success ]
+            color="default"  # [ muted | warning | info | error | success ]
         )
         content += text
 
         content += "use %s to create this abbreviation - hover<br><br>" % (ct("abbr"),)
         kwargs = {}
-        kwargs["abbreviation"]="abbr<br><br>"
-        kwargs["fullWord"]="use `abbr` to create this abbreviation"
+        kwargs["abbreviation"] = "abbr<br><br>"
+        kwargs["fullWord"] = "use `abbr` to create this abbreviation"
         content += dhf.abbr(**kwargs)
 
         content += "use %s for an address block:<br><br>" % (ct("address"),)
         kwargs = {}
-        kwargs["name"]="name"
-        kwargs["addressLine1"]="addressLine1"
-        kwargs["addressLine2"]="addressLine2"
-        kwargs["addressLine3"]="addressLine3"
-        kwargs["phone"]="phone"
-        kwargs["email"]="email"
-        kwargs["twitterHandle"]="@twitterHandle"
+        kwargs["name"] = "name"
+        kwargs["addressLine1"] = "addressLine1"
+        kwargs["addressLine2"] = "addressLine2"
+        kwargs["addressLine3"] = "addressLine3"
+        kwargs["phone"] = "phone"
+        kwargs["email"] = "email"
+        kwargs["twitterHandle"] = "@twitterHandle"
         content += dhf.address(**kwargs)
 
         kwargs = {}
-        kwargs["content"]="for a quote use %s" % (ct("blockquote"),)
-        kwargs["source"]="this is the source"
-        kwargs["pullRight"]=True
+        kwargs["content"] = "for a quote use %s" % (ct("blockquote"),)
+        kwargs["source"] = "this is the source"
+        kwargs["pullRight"] = True
         content += dhf.blockquote(**kwargs)
-
 
         ## LISTS
         text = "Lists"
         content += lt(text)
 
-        content += "for a unordered list use %s with %s:" % (ct("ul"),ct("li"))
+        content += "for a unordered list use %s with %s:" % (ct("ul"), ct("li"))
         kwargs = {}
-        kwargs["itemList"]=["list Item","list Item","list Item","list Item","list Item"]
-        kwargs["unstyled"]=False
-        kwargs["inline"]=False
-        kwargs["dropDownMenu"]=False
-        kwargs["navStyle"]=False
-        kwargs["navPull"]=False
-        kwargs["navDirection"]="horizontal"
-        kwargs["breadcrumb"]=False
-        kwargs["pager"]=False
-        kwargs["thumbnails"]=False
-        kwargs["mediaList"]=False
+        kwargs["itemList"] = ["list Item", "list Item",
+                              "list Item", "list Item", "list Item"]
+        kwargs["unstyled"] = False
+        kwargs["inline"] = False
+        kwargs["dropDownMenu"] = False
+        kwargs["navStyle"] = False
+        kwargs["navPull"] = False
+        kwargs["navDirection"] = "horizontal"
+        kwargs["breadcrumb"] = False
+        kwargs["pager"] = False
+        kwargs["thumbnails"] = False
+        kwargs["mediaList"] = False
         content += dhf.ul(**kwargs)
 
-        content += "for a ordered list use %s with %s:" % (ct("ol"),ct("li"))
+        content += "for a ordered list use %s with %s:" % (ct("ol"), ct("li"))
         kwargs = {}
-        kwargs["itemList"]=["list Item","list Item","list Item","list Item","list Item"]
+        kwargs["itemList"] = ["list Item", "list Item",
+                              "list Item", "list Item", "list Item"]
         content += dhf.ol(**kwargs)
 
-        content += "you can also have an unstyled list using %s with %s:" % (ct("ul"),ct("li"))
+        content += "you can also have an unstyled list using %s with %s:" % (ct("ul"),
+                                                                             ct("li"))
         kwargs = {}
-        kwargs["itemList"]=["list Item","list Item","list Item","list Item","list Item"]
-        kwargs["unstyled"]=True
-        kwargs["inline"]=False
-        kwargs["dropDownMenu"]=False
-        kwargs["navStyle"]=False
-        kwargs["navPull"]=False
-        kwargs["navDirection"]="horizontal"
-        kwargs["breadcrumb"]=False
-        kwargs["pager"]=False
-        kwargs["thumbnails"]=False
-        kwargs["mediaList"]=False
+        kwargs["itemList"] = ["list Item", "list Item",
+                              "list Item", "list Item", "list Item"]
+        kwargs["unstyled"] = True
+        kwargs["inline"] = False
+        kwargs["dropDownMenu"] = False
+        kwargs["navStyle"] = False
+        kwargs["navPull"] = False
+        kwargs["navDirection"] = "horizontal"
+        kwargs["breadcrumb"] = False
+        kwargs["pager"] = False
+        kwargs["thumbnails"] = False
+        kwargs["mediaList"] = False
         content += dhf.ul(**kwargs)
 
         content += "for a description list use %s" % (ct("descriptionLists"),)
         kwargs = {}
-        kwargs["orderedDictionary"]={"keyOne": "valueOne"}
-        kwargs["sideBySide"]=False
+        kwargs["orderedDictionary"] = {"keyOne": "valueOne"}
+        kwargs["sideBySide"] = False
         content += dhf.descriptionLists(**kwargs)
 
         content += "or line them up with `sideBySide = True`"
         kwargs = {}
-        kwargs["orderedDictionary"]={"keyOne": "valueOne"}
-        kwargs["sideBySide"]=True
+        kwargs["orderedDictionary"] = {"keyOne": "valueOne"}
+        kwargs["sideBySide"] = True
         content += dhf.descriptionLists(**kwargs)
 
         ## CODE
@@ -290,218 +304,211 @@ class test_0001_htmlDocument():
         content += "for inline code use %s<br><br>" % (ct("code"),)
 
         kwargs = {}
-        kwargs["content"]="for a code block use `%s` with `inline = False`" % (ct("code"),)
-        kwargs["inline"]=False
-        kwargs["scroll"]=False
+        kwargs["content"] = "for a code block use `%s` with `inline = False`" % (
+            ct("code"),)
+        kwargs["inline"] = False
+        kwargs["scroll"] = False
         content += dhf.code(**kwargs)
-
 
         ## TABLES
         text = "Tables"
         content += lt(text)
-        content += "for a table use %s, with %s, %s and %ss<br><br>" % (ct("table"),ct("thead"),ct("tbody"),ct("tr"))
+        content += "for a table use %s, with %s, %s and %ss<br><br>" % (ct("table"),
+                                                                        ct("thead"), ct("tbody"), ct("tr"))
 
         kwargs = {}
-        kwargs["content"]="th"
-        kwargs["color"]=False
+        kwargs["content"] = "th"
+        kwargs["color"] = False
         th = dhf.th(**kwargs)
 
         kwargs = {}
-        kwargs["content"]="td"
-        kwargs["color"]=False
+        kwargs["content"] = "td"
+        kwargs["color"] = False
         td = dhf.td(**kwargs)
 
         kwargs = {}
-        kwargs["cellContent"]=td+td+td+td
-        kwargs["color"]=False
+        kwargs["cellContent"] = td + td + td + td
+        kwargs["color"] = False
         tr = dhf.tr(**kwargs)
 
         kwargs = {}
-        kwargs["content"]="for a caption use %s" % (ct("tableCaption"),)
+        kwargs["content"] = "for a caption use %s" % (ct("tableCaption"),)
         tableCaption = dhf.tableCaption(**kwargs)
 
         kwargs = {}
-        kwargs["trContent"]=th+th+th+th
+        kwargs["trContent"] = th + th + th + th
         thead = dhf.thead(**kwargs)
 
         kwargs = {}
-        kwargs["trContent"]=tr+tr+tr
+        kwargs["trContent"] = tr + tr + tr
         tbody = dhf.tbody(**kwargs)
 
         kwargs = {}
-        kwargs["caption"]=tableCaption
-        kwargs["thead"]=thead
-        kwargs["tbody"]=tbody
-        kwargs["striped"]=False
-        kwargs["bordered"]=False
-        kwargs["hover"]=False
-        kwargs["condensed"]=False
+        kwargs["caption"] = tableCaption
+        kwargs["thead"] = thead
+        kwargs["tbody"] = tbody
+        kwargs["striped"] = False
+        kwargs["bordered"] = False
+        kwargs["hover"] = False
+        kwargs["condensed"] = False
         content += dhf.table(**kwargs)
-
 
         content += "for a striped table set `striped = True`<br><br>"
         kwargs = {}
-        kwargs["caption"]=False
-        kwargs["thead"]=thead
-        kwargs["tbody"]=tbody
-        kwargs["striped"]=True
-        kwargs["bordered"]=False
-        kwargs["hover"]=False
-        kwargs["condensed"]=False
+        kwargs["caption"] = False
+        kwargs["thead"] = thead
+        kwargs["tbody"] = tbody
+        kwargs["striped"] = True
+        kwargs["bordered"] = False
+        kwargs["hover"] = False
+        kwargs["condensed"] = False
         content += dhf.table(**kwargs)
 
         content += "for a bordered table set `bordered = True`<br><br>"
         kwargs = {}
-        kwargs["caption"]=False
-        kwargs["thead"]=thead
-        kwargs["tbody"]=tbody
-        kwargs["striped"]=False
-        kwargs["bordered"]=True
-        kwargs["hover"]=False
-        kwargs["condensed"]=False
+        kwargs["caption"] = False
+        kwargs["thead"] = thead
+        kwargs["tbody"] = tbody
+        kwargs["striped"] = False
+        kwargs["bordered"] = True
+        kwargs["hover"] = False
+        kwargs["condensed"] = False
         content += dhf.table(**kwargs)
 
         content += "for hover table set `hover = True`<br><br>"
         kwargs = {}
-        kwargs["caption"]=False
-        kwargs["thead"]=thead
-        kwargs["tbody"]=tbody
-        kwargs["striped"]=False
-        kwargs["bordered"]=False
-        kwargs["hover"]=True
-        kwargs["condensed"]=False
+        kwargs["caption"] = False
+        kwargs["thead"] = thead
+        kwargs["tbody"] = tbody
+        kwargs["striped"] = False
+        kwargs["bordered"] = False
+        kwargs["hover"] = True
+        kwargs["condensed"] = False
         content += dhf.table(**kwargs)
 
         kwargs = {}
-        kwargs["cellContent"]=td+td+td+td
-        kwargs["color"]="info"
+        kwargs["cellContent"] = td + td + td + td
+        kwargs["color"] = "info"
         tri = dhf.tr(**kwargs)
 
         kwargs = {}
-        kwargs["cellContent"]=td+td+td+td
-        kwargs["color"]="warning"
+        kwargs["cellContent"] = td + td + td + td
+        kwargs["color"] = "warning"
         trw = dhf.tr(**kwargs)
 
         kwargs = {}
-        kwargs["cellContent"]=td+td+td+td
-        kwargs["color"]="error"
+        kwargs["cellContent"] = td + td + td + td
+        kwargs["color"] = "error"
         tre = dhf.tr(**kwargs)
 
         kwargs = {}
-        kwargs["cellContent"]=td+td+td+td
-        kwargs["color"]="success"
+        kwargs["cellContent"] = td + td + td + td
+        kwargs["color"] = "success"
         trs = dhf.tr(**kwargs)
 
         kwargs = {}
-        kwargs["trContent"]=tri+tre+trs+trw
+        kwargs["trContent"] = tri + tre + trs + trw
         tbody = dhf.tbody(**kwargs)
 
         content += "for condensed table set `condensed = True` - you can also have colored rows<br><br>"
         kwargs = {}
-        kwargs["caption"]=False
-        kwargs["thead"]=thead
-        kwargs["tbody"]=tbody
-        kwargs["striped"]=False
-        kwargs["bordered"]=False
-        kwargs["hover"]=False
-        kwargs["condensed"]=True
+        kwargs["caption"] = False
+        kwargs["thead"] = thead
+        kwargs["tbody"] = tbody
+        kwargs["striped"] = False
+        kwargs["bordered"] = False
+        kwargs["hover"] = False
+        kwargs["condensed"] = True
         content += dhf.table(**kwargs)
-
 
         ## FORMS
         text = "Forms"
         content += lt(text)
 
         kwargs = {}
-        kwargs["ttype"]="email"
-        kwargs["placeholder"]="email"
-        kwargs["prepend"]="@"
-        kwargs["span"]=2
-        kwargs["htmlId"]="email"
-        kwargs["focusedInputText"]="email"
+        kwargs["ttype"] = "email"
+        kwargs["placeholder"] = "email"
+        kwargs["prepend"] = "@"
+        kwargs["span"] = 2
+        kwargs["htmlId"] = "email"
+        kwargs["focusedInputText"] = "email"
         emailInput = dhf.formInput(**kwargs)
 
         kwargs = {}
-        kwargs["ttype"]="password"
-        kwargs["append"]="?"
-        kwargs["placeholder"]="password"
-        kwargs["span"]=2
-        kwargs["htmlId"]="password"
+        kwargs["ttype"] = "password"
+        kwargs["append"] = "?"
+        kwargs["placeholder"] = "password"
+        kwargs["span"] = 2
+        kwargs["htmlId"] = "password"
         passwordInput = dhf.formInput(**kwargs)
 
         kwargs = {}
-        kwargs["ttype"]="date"
-        kwargs["placeholder"]="date"
-        kwargs["span"]=2
-        kwargs["htmlId"]="date"
+        kwargs["ttype"] = "date"
+        kwargs["placeholder"] = "date"
+        kwargs["span"] = 2
+        kwargs["htmlId"] = "date"
         dateInput = dhf.formInput(**kwargs)
-
 
         text = "<br><br>set `formType = 'horizontal'` for horizontal form. "
 
         content += text
 
-
         kwargs = {}
-        kwargs["labelText"]="email"
-        kwargs["forId"]="email"
+        kwargs["labelText"] = "email"
+        kwargs["forId"] = "email"
         emailLabel = dhf.horizontalFormControlLabel(**kwargs)
 
         kwargs = {}
-        kwargs["labelText"]="date"
-        kwargs["forId"]="date"
+        kwargs["labelText"] = "date"
+        kwargs["forId"] = "date"
         dateLabel = dhf.horizontalFormControlLabel(**kwargs)
 
         kwargs = {}
-        kwargs["labelText"]="password"
-        kwargs["forId"]="password"
+        kwargs["labelText"] = "password"
+        kwargs["forId"] = "password"
         passwordLabel = dhf.horizontalFormControlLabel(**kwargs)
 
         kwargs = {}
-        kwargs["inputList"]=[emailInput,]
+        kwargs["inputList"] = [emailInput, ]
         emailInputRow = dhf.controlRow(**kwargs)
 
         kwargs = {}
-        kwargs["inputList"]=[passwordInput,]
+        kwargs["inputList"] = [passwordInput, ]
         passwordInputRow = dhf.controlRow(**kwargs)
 
         kwargs = {}
-        kwargs["inputList"]=[dateInput,]
+        kwargs["inputList"] = [dateInput, ]
         dateInputRow = dhf.controlRow(**kwargs)
 
         kwargs = {}
-        kwargs["content"]=emailLabel+emailInputRow
-        kwargs["validationLevel"]=False
+        kwargs["content"] = emailLabel + emailInputRow
+        kwargs["validationLevel"] = False
         emailCG = dhf.horizontalFormControlGroup(**kwargs)
 
         kwargs = {}
-        kwargs["content"]=passwordLabel+passwordInputRow
-        kwargs["validationLevel"]=False
+        kwargs["content"] = passwordLabel + passwordInputRow
+        kwargs["validationLevel"] = False
         passwordCG = dhf.horizontalFormControlGroup(**kwargs)
 
         kwargs = {}
-        kwargs["content"]=dateLabel+dateInputRow
-        kwargs["validationLevel"]=False
+        kwargs["content"] = dateLabel + dateInputRow
+        kwargs["validationLevel"] = False
         dateCG = dhf.horizontalFormControlGroup(**kwargs)
 
-
-
         kwargs = {}
-        kwargs["inputList"]=[emailInput,]
+        kwargs["inputList"] = [emailInput, ]
         emailInputRow = dhf.controlRow(**kwargs)
         kwargs = {}
-        kwargs["labelText"]="email"
-        kwargs["forId"]="email"
+        kwargs["labelText"] = "email"
+        kwargs["forId"] = "email"
         emailLabel = dhf.horizontalFormControlLabel(**kwargs)
         kwargs = {}
-        kwargs["inputList"]=[emailInput,]
+        kwargs["inputList"] = [emailInput, ]
         emailInputRow = dhf.controlRow(**kwargs)
         kwargs = {}
-        kwargs["content"]=emailLabel+emailInputRow
-        kwargs["validationLevel"]=False
+        kwargs["content"] = emailLabel + emailInputRow
+        kwargs["validationLevel"] = False
         emailCG = dhf.horizontalFormControlGroup(**kwargs)
-
-
 
         label = dhf.horizontalFormControlLabel(
             labelText='radio button',
@@ -522,9 +529,9 @@ class test_0001_htmlDocument():
             disabled=False
         )
         formRow = dhf.controlRow(
-            inputList=[radioCheck,radioCheck2])
+            inputList=[radioCheck, radioCheck2])
         radioCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
@@ -542,15 +549,16 @@ class test_0001_htmlDocument():
             disabled=False
         )
         formRow = dhf.controlRow(
-            inputList=[checkbox,])
+            inputList=[checkbox, ])
         checkboxCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
         button = dhf.button(
             buttonText='default button',
-            buttonStyle='primary', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='primary',
             buttonSize='default',  # [ large | default | small | mini ]
             href="#",
             submit=True
@@ -558,7 +566,8 @@ class test_0001_htmlDocument():
 
         button5 = dhf.button(
             buttonText='button5',
-            buttonStyle='info', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='info',
             buttonSize='default',  # [ large | default | small | mini ]
             href="#",
             submit=True
@@ -566,7 +575,8 @@ class test_0001_htmlDocument():
 
         button2 = dhf.button(
             buttonText='button2',
-            buttonStyle='success', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='success',
             buttonSize='default',  # [ large | default | small | mini ]
             href="#",
             submit=True
@@ -574,7 +584,8 @@ class test_0001_htmlDocument():
 
         button3 = dhf.button(
             buttonText='button3',
-            buttonStyle='warning', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='warning',
             buttonSize='mini',  # [ large | default | small | mini ]
             href="#",
             submit=True
@@ -582,7 +593,8 @@ class test_0001_htmlDocument():
 
         button4 = dhf.button(
             buttonText='button4',
-            buttonStyle='danger', # [ efault | primary | info | success | warning | danger | inverse | link ]
+            # [ efault | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='danger',
             buttonSize='small',  # [ large | default | small | mini ]
             href="#",
             submit=True
@@ -590,7 +602,8 @@ class test_0001_htmlDocument():
 
         button6 = dhf.button(
             buttonText='button4',
-            buttonStyle='inverse', # [ efault | primary | info | success | warning | danger | inverse | link ]
+            # [ efault | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='inverse',
             buttonSize='large',  # [ large | default | small | mini ]
             href="#",
             submit=True
@@ -598,7 +611,8 @@ class test_0001_htmlDocument():
 
         button7 = dhf.button(
             buttonText='link button',
-            buttonStyle='link', # [ efault | primary | info | success | warning | danger | inverse | link ]
+            # [ efault | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='link',
             buttonSize='default',  # [ large | default | small | mini ]
             href="#",
             submit=True
@@ -606,7 +620,8 @@ class test_0001_htmlDocument():
 
         button8 = dhf.button(
             buttonText='large block-level and disabled',
-            buttonStyle='success', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='success',
             buttonSize='large',  # [ large | default | small | mini ]
             href="#",
             submit=False,
@@ -616,43 +631,41 @@ class test_0001_htmlDocument():
 
         text = "form Actions"
         kwargs = {}
-        kwargs["primaryButton"]=button
-        kwargs["button2"]=button2
-        kwargs["button3"]=button3
-        kwargs["button4"]=button4
-        kwargs["button5"]=button5
-        kwargs["inlineHelpText"]=False
-        kwargs["blockHelpText"]=False
+        kwargs["primaryButton"] = button
+        kwargs["button2"] = button2
+        kwargs["button3"] = button3
+        kwargs["button4"] = button4
+        kwargs["button5"] = button5
+        kwargs["inlineHelpText"] = False
+        kwargs["blockHelpText"] = False
         formActions = dhf.formActions(**kwargs)
 
         text = "more form Actions"
         kwargs = {}
-        kwargs["primaryButton"]=button6
-        kwargs["button2"]=button7
-        kwargs["button3"]=button8
-        kwargs["inlineHelpText"]=False
-        kwargs["blockHelpText"]=False
+        kwargs["primaryButton"] = button6
+        kwargs["button2"] = button7
+        kwargs["button3"] = button8
+        kwargs["inlineHelpText"] = False
+        kwargs["blockHelpText"] = False
         moreformActions = dhf.formActions(**kwargs)
 
-
-        htmlId="uneditable",
+        htmlId = "uneditable",
         label = dhf.horizontalFormControlLabel(
             labelText='uneditable input',
             forId=htmlId
         )
         kwargs = {}
-        kwargs["placeholder"]="uneditableInput"
-        kwargs["span"]=2
-        kwargs["inlineHelpText"]=False
-        kwargs["blockHelpText"]=False
+        kwargs["placeholder"] = "uneditableInput"
+        kwargs["span"] = 2
+        kwargs["inlineHelpText"] = False
+        kwargs["blockHelpText"] = False
         uneditableInput = dhf.uneditableInput(**kwargs)
         formRow = dhf.controlRow(
-            inputList=[uneditableInput,])
+            inputList=[uneditableInput, ])
         uneditableInputCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
-
 
         label = dhf.horizontalFormControlLabel(
             labelText='textarea',
@@ -669,10 +682,10 @@ class test_0001_htmlDocument():
             disabled=False
         )
         formRow = dhf.controlRow(
-            inputList=[textarea,]
+            inputList=[textarea, ]
         )
         textareaCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
@@ -681,28 +694,28 @@ class test_0001_htmlDocument():
             forId='selection'
         )
         kwargs = {}
-        kwargs["optionList"]=["select list","link","link","link","link",]
-        kwargs["multiple"]=False
-        kwargs["span"]=2
-        kwargs["inlineHelpText"]=False
-        kwargs["blockHelpText"]=False
-        kwargs["required"]=False
-        kwargs["disabled"]=False
+        kwargs["optionList"] = ["select list", "link", "link", "link", "link", ]
+        kwargs["multiple"] = False
+        kwargs["span"] = 2
+        kwargs["inlineHelpText"] = False
+        kwargs["blockHelpText"] = False
+        kwargs["required"] = False
+        kwargs["disabled"] = False
         select = dhf.select(**kwargs)
         formRow = dhf.controlRow(
-            inputList=[select,])
+            inputList=[select, ])
         selectionCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
-        htmlId="mulSelection",
+        htmlId = "mulSelection",
         label = dhf.horizontalFormControlLabel(
             labelText='multiple selection',
             forId=htmlId
         )
         multipleselection = dhf.select(
-            optionList=["select list","link","link","link","link",],
+            optionList=["select list", "link", "link", "link", "link", ],
             multiple=True,
             span=2,
             htmlId=htmlId,
@@ -712,18 +725,17 @@ class test_0001_htmlDocument():
             disabled=False
         )
         formRow = dhf.controlRow(
-            inputList=[multipleselection,])
+            inputList=[multipleselection, ])
         multipleselectionCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
-        htmlId="inlineChecks",
+        htmlId = "inlineChecks",
         label = dhf.horizontalFormControlLabel(
             labelText='inline checkboxes',
             forId=htmlId
         )
-
 
         check1 = dhf.checkbox(
             optionText='1',
@@ -755,18 +767,19 @@ class test_0001_htmlDocument():
             disabled=False
         )
 
-        inlinecheckboxes = check1+check2+check3
+        inlinecheckboxes = check1 + check2 + check3
 
         formRow = dhf.controlRow(
-            inputList=[inlinecheckboxes,])
+            inputList=[inlinecheckboxes, ])
         inlinecheckboxesCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
         goButton = dhf.button(
             buttonText='Go',
-            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='default',
             buttonSize='default',  # [ large | default | small | mini ]
             href=False,
             submit=False,
@@ -774,35 +787,33 @@ class test_0001_htmlDocument():
             disable=False
         )
 
-
-
-        htmlId="urlInput",
+        htmlId = "urlInput",
         label = dhf.horizontalFormControlLabel(
             labelText='url',
             forId=htmlId
         )
         url = dhf.formInput(
-                    ttype='url',
-                    placeholder='url',
-                    span=2,
-                    htmlId=False,
-                    searchBar=False,
-                    pull=False,
-                    prepend=False,
-                    append=False,
-                    button1=goButton,
-                    button2=False,
-                    appendDropdown=False,
-                    inlineHelpText=False,
-                    blockHelpText=False,
-                    focusedInputText=False,
-                    required=False,
-                    disabled=False
-                )
+            ttype='url',
+            placeholder='url',
+            span=2,
+            htmlId=False,
+            searchBar=False,
+            pull=False,
+            prepend=False,
+            append=False,
+            button1=goButton,
+            button2=False,
+            appendDropdown=False,
+            inlineHelpText=False,
+            blockHelpText=False,
+            focusedInputText=False,
+            required=False,
+            disabled=False
+        )
         formRow = dhf.controlRow(
-            inputList=[url,])
+            inputList=[url, ])
         urlCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
@@ -822,7 +833,7 @@ class test_0001_htmlDocument():
             buttonColor='default',
             menuTitle='Actions',
             splitButton=False,
-            linkList=[link,link,link,link,link,],
+            linkList=[link, link, link, link, link, ],
             separatedLinkList=False,
             pull=False,
             direction='down',
@@ -831,7 +842,7 @@ class test_0001_htmlDocument():
             onDesktop=True
         )
 
-        htmlId="numner",
+        htmlId = "numner",
         label = dhf.horizontalFormControlLabel(
             labelText='input with dropdown',
             forId=htmlId
@@ -849,32 +860,33 @@ class test_0001_htmlDocument():
             disabled=False
         )
         formRow = dhf.controlRow(
-            inputList=[inputwithdropdown,])
+            inputList=[inputwithdropdown, ])
         inputwithdropdownCG = dhf.horizontalFormControlGroup(
-            content=label+formRow,
+            content=label + formRow,
             validationLevel=False
         )
 
         content += "<br><br>For a form item use snippet %s" % (ct("horizontal-form-item"),)
-        content += "<small>- this places a %s and a %s within a %s</small>" % (ct("horizontalFormControlLabel"),ct("controlRow"),ct("horizontalFormControlGroup"))
+        content += "<small>- this places a %s and a %s within a %s</small>" % (
+            ct("horizontalFormControlLabel"), ct("controlRow"), ct("horizontalFormControlGroup"))
 
         kwargs = {}
-        kwargs["content"]=emailCG+passwordCG+dateCG+textareaCG+radioCG+checkboxCG+selectionCG+uneditableInputCG+multipleselectionCG+inlinecheckboxesCG+urlCG+inputwithdropdownCG+formActions+moreformActions
-        kwargs["formType"]="horizontal"
-        kwargs["navBarPull"]=False
+        kwargs["content"] = emailCG + passwordCG + dateCG + textareaCG + radioCG + checkboxCG + selectionCG + uneditableInputCG + \
+            multipleselectionCG + inlinecheckboxesCG + urlCG + inputwithdropdownCG + \
+            formActions + moreformActions
+        kwargs["formType"] = "horizontal"
+        kwargs["navBarPull"] = False
         content += dhf.form(**kwargs)
 
         kwargs = {}
-        kwargs["buttonText"]="search me"
-        kwargs["span"]=2
-        kwargs["inlineHelpText"]=False
-        kwargs["blockHelpText"]=False
-        kwargs["focusedInputText"]=False
-        kwargs["htmlId"]='searchForm'
+        kwargs["buttonText"] = "search me"
+        kwargs["span"] = 2
+        kwargs["inlineHelpText"] = False
+        kwargs["blockHelpText"] = False
+        kwargs["focusedInputText"] = False
+        kwargs["htmlId"] = 'searchForm'
         searchForm = dhf.searchForm(**kwargs)
         content += searchForm
-
-
 
         ## IMAGES
         text = "Images"
@@ -882,8 +894,8 @@ class test_0001_htmlDocument():
         thisImage = dhf.image(
             src='holder.js/200x200/industrial/text:rounded image',
             href=False,
-            display="rounded", # [ rounded | circle | polaroid ]
-            pull="left", # [ "left" | "right" | "center" ]
+            display="rounded",  # [ rounded | circle | polaroid ]
+            pull="left",  # [ "left" | "right" | "center" ]
             htmlClass=False,
             thumbnail=False,
             width=False,
@@ -896,8 +908,8 @@ class test_0001_htmlDocument():
         thisImage = dhf.image(
             src='holder.js/200x200/industrial/text:circle image',
             href=False,
-            display="circle", # [ rounded | circle | polaroid ]
-            pull="left", # [ "left" | "right" | "center" ]
+            display="circle",  # [ rounded | circle | polaroid ]
+            pull="left",  # [ "left" | "right" | "center" ]
             htmlClass=False,
             thumbnail=False,
             width=False,
@@ -910,8 +922,8 @@ class test_0001_htmlDocument():
         thisImage = dhf.image(
             src='holder.js/200x200/industrial/text:polaroid image',
             href=False,
-            display="polaroid", # [ rounded | circle | polaroid ]
-            pull="left", # [ "left" | "right" | "center" ]
+            display="polaroid",  # [ rounded | circle | polaroid ]
+            pull="left",  # [ "left" | "right" | "center" ]
             htmlClass=False,
             thumbnail=False,
             width=False,
@@ -976,13 +988,13 @@ class test_0001_htmlDocument():
             pager=False  # [ False | "previous" | "next" ]
         )
 
-
         rightAlighnDropdown = dhf.dropdown(
             buttonSize='default',
             buttonColor='default',
             menuTitle='right align',
             splitButton=False,
-            linkList=[disabledLink,liveLink,disabledLink,liveLink,liveLink,liveLink,],
+            linkList=[disabledLink, liveLink, disabledLink,
+                      liveLink, liveLink, liveLink, ],
             separatedLinkList=False,
             pull="right",
             direction='down',
@@ -993,7 +1005,7 @@ class test_0001_htmlDocument():
         content += rightAlighnDropdown
 
         subMenu = dhf.ul(
-            itemList=[liveLink,disabledLink,liveLink,liveLink,liveLink],
+            itemList=[liveLink, disabledLink, liveLink, liveLink, liveLink],
             unstyled=False,
             inline=False,
             dropDownMenu=True,
@@ -1020,7 +1032,7 @@ class test_0001_htmlDocument():
             buttonColor='default',
             menuTitle='dropdown with submenu',
             splitButton=False,
-            linkList=[liveLink,disabledLink,liveLink,liveLink,subMenu],
+            linkList=[liveLink, disabledLink, liveLink, liveLink, subMenu],
             separatedLinkList=False,
             pull=False,
             direction='down',
@@ -1031,14 +1043,14 @@ class test_0001_htmlDocument():
 
         content += thisDropdown
 
-
         ##Button Groups
         text = "Button Groups"
         content += lt(text)
 
         button1 = dhf.button(
             buttonText='button1',
-            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='default',
             buttonSize='default',  # [ large | default | small | mini ]
             href=False,
             submit=False,
@@ -1047,7 +1059,8 @@ class test_0001_htmlDocument():
         )
         button2 = dhf.button(
             buttonText='button2',
-            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='default',
             buttonSize='default',  # [ large | default | small | mini ]
             href=False,
             submit=False,
@@ -1056,7 +1069,8 @@ class test_0001_htmlDocument():
         )
         button3 = dhf.button(
             buttonText='button3',
-            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='default',
             buttonSize='default',  # [ large | default | small | mini ]
             href=False,
             submit=False,
@@ -1064,19 +1078,19 @@ class test_0001_htmlDocument():
             disable=False
         )
         buttonGroup = dhf.buttonGroup(
-            buttonList=[button1,button2,button3,],
+            buttonList=[button1, button2, button3, ],
             format='default'
         )
         content += buttonGroup
 
         buttonGroup = dhf.buttonGroup(
-            buttonList=[buttonGroup,buttonGroup,buttonGroup],
+            buttonList=[buttonGroup, buttonGroup, buttonGroup],
             format='toolbar'  # [ default | toolbar | vertical ]
         )
         content += buttonGroup
 
         buttonGroup = dhf.buttonGroup(
-            buttonList=[button1,button2,button3,],
+            buttonList=[button1, button2, button3, ],
             format='vertical'  # [ default | toolbar | vertical ]
         )
         content += buttonGroup
@@ -1090,7 +1104,7 @@ class test_0001_htmlDocument():
             buttonColor='info',
             menuTitle='button dropdown',
             splitButton=True,
-            linkList=[liveLink,liveLink,liveLink,liveLink,],
+            linkList=[liveLink, liveLink, liveLink, liveLink, ],
             separatedLinkList=False,
             pull=False,
             direction='up',
@@ -1103,7 +1117,6 @@ class test_0001_htmlDocument():
         ##Navs
         text = "Navs"
         content += lt(text)
-
 
         link = dhf.a(
             content='page',
@@ -1121,73 +1134,76 @@ class test_0001_htmlDocument():
             pager=False  # [ False | "previous" | "next" ]
         )
         tabs = dhf.ul(
-           itemList=[liveLink, disabledLink, liveLink, linkListItem,], # e.g a list links
-           unstyled=False,
-           inline=False,
-           dropDownMenu=False,  #  [ false | true ]
-           navStyle="tabs",  # [ nav | tabs | pills | list ]
-           navPull=False,  #  [ false | left | right ]
-           navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
-           breadcrumb=False,  #  [ False | True ]
-           pager=False,
-           thumbnails=False,
-           mediaList=False
+            # e.g a list links
+            itemList=[liveLink, disabledLink, liveLink, linkListItem, ],
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  # [ false | true ]
+            navStyle="tabs",  # [ nav | tabs | pills | list ]
+            navPull=False,  # [ false | left | right ]
+            navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  # [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
         )
-        content +=  tabs
-
+        content += tabs
 
         pills = dhf.ul(
-           itemList=[liveLink, disabledLink, liveLink, linkListItem,], # e.g a list links
-           unstyled=False,
-           inline=False,
-           dropDownMenu=False,  #  [ false | true ]
-           navStyle="pills",  # [ nav | tabs | pills | list ]
-           navPull="right",  #  [ false | left | right ]
-           navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
-           breadcrumb=False,  #  [ False | True ]
-           pager=False,
-           thumbnails=False,
-           mediaList=False
+            # e.g a list links
+            itemList=[liveLink, disabledLink, liveLink, linkListItem, ],
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  # [ false | true ]
+            navStyle="pills",  # [ nav | tabs | pills | list ]
+            navPull="right",  # [ false | left | right ]
+            navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  # [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
         )
-        content +=  pills
-
+        content += pills
 
         stackedTabs = dhf.ul(
-           itemList=[liveLink, disabledLink, liveLink, linkListItem,], # e.g a list links
-           unstyled=False,
-           inline=False,
-           dropDownMenu=False,  #  [ false | true ]
-           navStyle="tabs",  # [ nav | tabs | pills | list ]
-           navPull=False,  #  [ false | left | right ]
-           navDirection='stacked',  # [ 'default' | 'stacked' | 'horizontal' ]
-           breadcrumb=False,  #  [ False | True ]
-           pager=False,
-           thumbnails=False,
-           mediaList=False
+            # e.g a list links
+            itemList=[liveLink, disabledLink, liveLink, linkListItem, ],
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  # [ false | true ]
+            navStyle="tabs",  # [ nav | tabs | pills | list ]
+            navPull=False,  # [ false | left | right ]
+            navDirection='stacked',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  # [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
         )
-        content +=  stackedTabs
+        content += stackedTabs
 
         droplink = dhf.a(
             content='dropdown',
             href=False,
             tableIndex=False,
-            triggerStyle='dropdown' # [ False | "dropdown" | "tab" ]
+            triggerStyle='dropdown'  # [ False | "dropdown" | "tab" ]
         )
         ul = dhf.ul(
-            itemList=[link, link, link], # e.g a list links
+            itemList=[link, link, link],  # e.g a list links
             unstyled=False,
             inline=False,
-            dropDownMenu=True,  #  [ false | true ]
+            dropDownMenu=True,  # [ false | true ]
             navStyle=False,  # [ nav | tabs | pills | list ]
-            navPull=False,  #  [ false | left | right ]
-            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
-            breadcrumb=False,  #  [ False | True ]
+            navPull=False,  # [ false | left | right ]
+            # [ 'default' | 'stacked' | 'horizontal' ]
+            navDirection='horizontal',
+            breadcrumb=False,  # [ False | True ]
             pager=False,
             thumbnails=False,
             mediaList=False
         )
         dropdown = dhf.li(
-            content=droplink+ul,  # if a subMenu for dropdown this should be <ul>
+            # if a subMenu for dropdown this should be <ul>
+            content=droplink + ul,
             span=False,  # [ False | 1-12 ]
             disabled=False,
             submenuTitle=False,
@@ -1197,38 +1213,40 @@ class test_0001_htmlDocument():
             pager=False  # [ False | "previous" | "next" ]
         )
         stackedPills = dhf.ul(
-           itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem], # e.g a list links
-           unstyled=False,
-           inline=False,
-           dropDownMenu=False,  #  [ false | true ]
-           navStyle="pills",  # [ nav | tabs | pills | list ]
-           navPull=False,  #  [ false | left | right ]
-           navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
-           breadcrumb=False,  #  [ False | True ]
-           pager=False,
-           thumbnails=False,
-           mediaList=False
+            # e.g a list links
+            itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem],
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  # [ false | true ]
+            navStyle="pills",  # [ nav | tabs | pills | list ]
+            navPull=False,  # [ false | left | right ]
+            navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  # [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
         )
-        content +=  stackedPills
+        content += stackedPills
 
         tabPills = dhf.ul(
-           itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem], # e.g a list links
-           unstyled=False,
-           inline=False,
-           dropDownMenu=False,  #  [ false | true ]
-           navStyle="tabs",  # [ nav | tabs | pills | list ]
-           navPull=False,  #  [ false | left | right ]
-           navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
-           breadcrumb=False,  #  [ False | True ]
-           pager=False,
-           thumbnails=False,
-           mediaList=False
+            # e.g a list links
+            itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem],
+            unstyled=False,
+            inline=False,
+            dropDownMenu=False,  # [ false | true ]
+            navStyle="tabs",  # [ nav | tabs | pills | list ]
+            navPull=False,  # [ false | left | right ]
+            navDirection='default',  # [ 'default' | 'stacked' | 'horizontal' ]
+            breadcrumb=False,  # [ False | True ]
+            pager=False,
+            thumbnails=False,
+            mediaList=False
         )
-        content +=  tabPills
-
+        content += tabPills
 
         header = dhf.li(
-            content='header title',  # if a subMenu for dropdown this should be <ul>
+            # if a subMenu for dropdown this should be <ul>
+            content='header title',
             span=False,  # [ False | 1-12 ]
             disabled=False,
             submenuTitle=False,
@@ -1278,43 +1296,59 @@ class test_0001_htmlDocument():
             pager=False  # [ False | "previous" | "next" ]
         )
         navList = dhf.ul(
-            itemList=[header,active,link,link,divider,header,active,link,link,], # e.g a list links
+            # e.g a list links
+            itemList=[header, active, link, link,
+                      divider, header, active, link, link, ],
             unstyled=False,
             inline=False,
-            dropDownMenu=False,  #  [ false | true ]
+            dropDownMenu=False,  # [ false | true ]
             navStyle="list",  # [ nav | tabs | pills | list ]
-            navPull=False,  #  [ false | left | right ]
-            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
-            breadcrumb=False,  #  [ False | True ]
+            navPull=False,  # [ false | left | right ]
+            # [ 'default' | 'stacked' | 'horizontal' ]
+            navDirection='horizontal',
+            breadcrumb=False,  # [ False | True ]
             pager=False,
             thumbnails=False,
             mediaList=False
         )
         content += navList
 
+        text = "Tabbable Navigation"
+        content += lt(text)
+
+        text = dhf.p(
+            content="x-tabbableNavigation",
+            color="success",  # [ muted | warning | info | error | success ]
+        )
+        content += "<br><br><em>Snippet:</em> " + text
+
         tabbableNavigation = dhf.tabbableNavigation(
-            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            contentDictionary={"section 1": "this is section 1 content", "section 2":
+                               "this is section 2 content", "section 3": "this is section 3 content", },  # { name : content }
             fadeIn=True,
             direction='top'
         )
         content += tabbableNavigation
 
         tabbableNavigation = dhf.tabbableNavigation(
-            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            contentDictionary={"section 1": "this is section 1 content", "section 2":
+                               "this is section 2 content", "section 3": "this is section 3 content", },  # { name : content }
             fadeIn=True,
             direction='below'
         )
         content += tabbableNavigation
 
         tabbableNavigation = dhf.tabbableNavigation(
-            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            contentDictionary={"section 1": "this is section 1 content", "section 2":
+                               "this is section 2 content", "section 3": "this is section 3 content", },  # { name : content }
             fadeIn=True,
             direction='left'
         )
         content += tabbableNavigation
 
         tabbableNavigation = dhf.tabbableNavigation(
-            contentDictionary={ "section 1" : "this is section 1 content", "section 2" : "this is section 2 content", "section 3" : "this is section 3 content",},  # { name : content }
+            contentDictionary={"section 1": "this is section 1 content", "section 2":
+                               "this is section 2 content", "section 3": "this is section 3 content", },  # { name : content }
             fadeIn=True,
             direction='right'
         )
@@ -1324,13 +1358,12 @@ class test_0001_htmlDocument():
         text = "Navbar"
         content += lt(text)
 
-
         searchForm = dhf.form(
             content='',  # dictionary
-            formType='navbar-search', #  [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            # [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            formType='navbar-search',
             navBarPull="right"  # [ false | right | left ]
         )
-
 
         pageLink = dhf.a(
             content='Page',
@@ -1343,23 +1376,25 @@ class test_0001_htmlDocument():
             content='dropdown',
             href=False,
             tableIndex=False,
-            triggerStyle='dropdown' # [ False | "dropdown" | "tab" ]
+            triggerStyle='dropdown'  # [ False | "dropdown" | "tab" ]
         )
         ul = dhf.ul(
-            itemList=[link, link, link], # e.g a list links
+            itemList=[link, link, link],  # e.g a list links
             unstyled=False,
             inline=False,
-            dropDownMenu=True,  #  [ false | true ]
+            dropDownMenu=True,  # [ false | true ]
             navStyle=False,  # [ nav | tabs | pills | list ]
-            navPull=False,  #  [ false | left | right ]
-            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
-            breadcrumb=False,  #  [ False | True ]
+            navPull=False,  # [ false | left | right ]
+            # [ 'default' | 'stacked' | 'horizontal' ]
+            navDirection='horizontal',
+            breadcrumb=False,  # [ False | True ]
             pager=False,
             thumbnails=False,
             mediaList=False
         )
         dropdown = dhf.li(
-            content=droplink+ul,  # if a subMenu for dropdown this should be <ul>
+            # if a subMenu for dropdown this should be <ul>
+            content=droplink + ul,
             span=False,  # [ False | 1-12 ]
             disabled=False,
             submenuTitle=False,
@@ -1370,13 +1405,14 @@ class test_0001_htmlDocument():
         )
         navbarForm = dhf.form(
             content='',  # dictionary
-            formType='navbar-form', #  [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            # [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            formType='navbar-form',
             navBarPull="left"  # [ false | right | left ]
         )
 
         navBar = dhf.navBar(
             brand='DRYX',
-            contentList=[itemName,itemName,dropdown],  # list of li, dropdown
+            contentList=[itemName, itemName, dropdown],  # list of li, dropdown
             forms=[searchForm, navbarForm],
             dividers=True,
             fixedOrStatic=False,
@@ -1388,7 +1424,7 @@ class test_0001_htmlDocument():
 
         navBar = dhf.navBar(
             brand='bot fixed',
-            contentList=[itemName,itemName,dropdown],  # list of li, dropdown
+            contentList=[itemName, itemName, dropdown],  # list of li, dropdown
             forms=[searchForm, navbarForm],
             dividers=True,
             fixedOrStatic="fixed",
@@ -1400,7 +1436,7 @@ class test_0001_htmlDocument():
 
         navBar = dhf.navBar(
             brand='top fixed',
-            contentList=[itemName,itemName,dropdown],  # list of li, dropdown
+            contentList=[itemName, itemName, dropdown],  # list of li, dropdown
             forms=[searchForm, navbarForm],
             dividers=True,
             fixedOrStatic="fixed",
@@ -1410,14 +1446,14 @@ class test_0001_htmlDocument():
         )
         content += navBar
 
-
         text = dhf.p(
             content="responsive-navigation-bar-tmpx",
-            color="success",  #  [ muted | warning | info | error | success ]
+            color="success",  # [ muted | warning | info | error | success ]
         )
         content += "<br><br><em>Snippet:</em> " + text
         searchForm = dhf.form(
-            formType='navbar-search', #  [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            # [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+            formType='navbar-search',
             navBarPull="right"  # [ false | right | left ]
         )
         pageLink = dhf.a(
@@ -1428,10 +1464,10 @@ class test_0001_htmlDocument():
             content=pageLink,  # if a subMenu for dropdown this should be <ul>
         )
         outsideNavList = [searchForm]
-        insideNavList=[itemName,itemName,dropdown]
+        insideNavList = [itemName, itemName, dropdown]
         topNavBar = dhf.responsive_navigation_bar(
-            shade='dark', #  [ False | 'dark' ]
-            brand='resp', # [ image | text ]
+            shade='dark',  # [ False | 'dark' ]
+            brand='resp',  # [ image | text ]
             outsideNavList=outsideNavList,
             insideNavList=insideNavList,
             htmlId=False
@@ -1454,62 +1490,63 @@ class test_0001_htmlDocument():
         )
 
         Breadcrumbs = dhf.ul(
-            itemList=[itemName,itemName,activeItem], # e.g a list links
+            itemList=[itemName, itemName, activeItem],  # e.g a list links
             unstyled=False,
             inline=True,
-            dropDownMenu=False,  #  [ false | true ]
+            dropDownMenu=False,  # [ false | true ]
             navStyle=False,  # [ nav | tabs | pills | list ]
-            navPull=False,  #  [ false | left | right ]
-            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
-            breadcrumb=True,  #  [ False | True ]
+            navPull=False,  # [ false | left | right ]
+            # [ 'default' | 'stacked' | 'horizontal' ]
+            navDirection='horizontal',
+            breadcrumb=True,  # [ False | True ]
             pager=False,
             thumbnails=False,
             mediaList=False
         )
         content += Breadcrumbs
 
-
         ##Pagination
         text = "Pagination"
         content += lt(text)
 
         pagination = dhf.pagination(
-            listItems=itemName+itemName+activeItem,
+            listItems=itemName + itemName + activeItem,
             size='default',
             align='left'
         )
         content += pagination
 
         pagination = dhf.pagination(
-            listItems=itemName+itemName+activeItem,
+            listItems=itemName + itemName + activeItem,
             size='large',
             align='left'
         )
         content += pagination
 
         pagination = dhf.pagination(
-            listItems=itemName+itemName+activeItem,
+            listItems=itemName + itemName + activeItem,
             size='small',
             align='centered'
         )
         content += pagination
 
         pagination = dhf.pagination(
-            listItems=itemName+itemName+activeItem,
+            listItems=itemName + itemName + activeItem,
             size='mini',
             align='right'
         )
         content += pagination
 
         pager = dhf.ul(
-            itemList=[itemName,itemName], # e.g a list links
+            itemList=[itemName, itemName],  # e.g a list links
             unstyled=False,
             inline=False,
-            dropDownMenu=False,  #  [ false | true ]
+            dropDownMenu=False,  # [ false | true ]
             navStyle=False,  # [ nav | tabs | pills | list ]
-            navPull=False,  #  [ false | left | right ]
-            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
-            breadcrumb=False,  #  [ False | True ]
+            navPull=False,  # [ false | left | right ]
+            # [ 'default' | 'stacked' | 'horizontal' ]
+            navDirection='horizontal',
+            breadcrumb=False,  # [ False | True ]
             pager=True,
             thumbnails=False,
             mediaList=False
@@ -1521,7 +1558,7 @@ class test_0001_htmlDocument():
             content='next',
             href="#",
             tableIndex=False,
-            triggerStyle=False # [ False | "dropdown" | "tab" ]
+            triggerStyle=False  # [ False | "dropdown" | "tab" ]
         )
         next = dhf.li(
             content=next,  # if a subMenu for dropdown this should be <ul>
@@ -1534,12 +1571,11 @@ class test_0001_htmlDocument():
             pager="next"  # [ False | "previous" | "next" ]
         )
 
-
         previous = dhf.a(
             content='previous',
             href="#",
             tableIndex=False,
-            triggerStyle=False # [ False | "dropdown" | "tab" ]
+            triggerStyle=False  # [ False | "dropdown" | "tab" ]
         )
         previous = dhf.li(
             content=previous,  # if a subMenu for dropdown this should be <ul>
@@ -1553,14 +1589,15 @@ class test_0001_htmlDocument():
         )
 
         pager = dhf.ul(
-            itemList=[next,previous], # e.g a list links
+            itemList=[next, previous],  # e.g a list links
             unstyled=False,
             inline=False,
-            dropDownMenu=False,  #  [ false | true ]
+            dropDownMenu=False,  # [ false | true ]
             navStyle=False,  # [ nav | tabs | pills | list ]
-            navPull=False,  #  [ false | left | right ]
-            navDirection='horizontal',  # [ 'default' | 'stacked' | 'horizontal' ]
-            breadcrumb=False,  #  [ False | True ]
+            navPull=False,  # [ false | left | right ]
+            # [ 'default' | 'stacked' | 'horizontal' ]
+            navDirection='horizontal',
+            breadcrumb=False,  # [ False | True ]
             pager=True,
             thumbnails=False,
             mediaList=False
@@ -1666,13 +1703,11 @@ class test_0001_htmlDocument():
         text = "Thumbnails"
         content += lt(text)
 
-
-
         Image = dhf.image(
             src='holder.js/200x200/industrial/text:test mediaobject',
             href=False,
-            display=False, # [ rounded | circle | polaroid ]
-            pull="left", # [ "left" | "right" | "center" ]
+            display=False,  # [ rounded | circle | polaroid ]
+            pull="left",  # [ "left" | "right" | "center" ]
             htmlClass=False,
             thumbnail=False,
             width=False,
@@ -1685,7 +1720,7 @@ class test_0001_htmlDocument():
             href="#",
             tableIndex=False,
             thumbnail=True,
-            triggerStyle=False # [ False | "dropdown" | "tab" ]
+            triggerStyle=False  # [ False | "dropdown" | "tab" ]
         )
         itemName = dhf.li(
             content=link,  # if a subMenu for dropdown this should be <ul>
@@ -1703,10 +1738,11 @@ class test_0001_htmlDocument():
         content += thumbnails
 
         thumbnail_div = dhf.thumbnail_div(
-            div_content="<h3>header</h3>"+Image+"<small>some text</small>"
+            div_content="<h3>header</h3>" + Image + "<small>some text</small>"
         )
         itemName = dhf.li(
-            content=thumbnail_div,  # if a subMenu for dropdown this should be <ul>
+            # if a subMenu for dropdown this should be <ul>
+            content=thumbnail_div,
             span=4,  # [ False | 1-12 ]
             disabled=False,
             submenuTitle=False,
@@ -1781,8 +1817,8 @@ class test_0001_htmlDocument():
         Image = dhf.image(
             src='holder.js/64x64/industrial/text:test mediaobject',
             href=False,
-            display=False, # [ rounded | circle | polaroid ]
-            pull="left", # [ "left" | "right" | "center" ]
+            display=False,  # [ rounded | circle | polaroid ]
+            pull="left",  # [ "left" | "right" | "center" ]
             htmlClass=False,
             thumbnail=False,
             width=False,
@@ -1796,7 +1832,7 @@ class test_0001_htmlDocument():
             href='#',
             tableIndex=False,
             pull="left",
-            triggerStyle=False # [ False | "dropdown" | "tab" ]
+            triggerStyle=False  # [ False | "dropdown" | "tab" ]
         )
         ##Media Object
         text = "Media Object"
@@ -1842,10 +1878,10 @@ class test_0001_htmlDocument():
 
         content += dhf.closeIcon()
 
-
         button1 = dhf.button(
             buttonText='ok',
-            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='default',
             buttonSize='default',  # [ large | default | small | mini ]
             href="#",
             submit=False,
@@ -1855,7 +1891,8 @@ class test_0001_htmlDocument():
 
         button2 = dhf.button(
             buttonText='save',
-            buttonStyle='info', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='info',
             buttonSize='default',  # [ large | default | small | mini ]
             href="#",
             submit=False,
@@ -1865,7 +1902,7 @@ class test_0001_htmlDocument():
         )
 
         buttonGroup = dhf.buttonGroup(
-            buttonList=[button1,button2],
+            buttonList=[button1, button2],
             format='default'  # [ default | toolbar | vertical ]
         )
 
@@ -1879,7 +1916,8 @@ class test_0001_htmlDocument():
 
         modalButton = dhf.button(
             buttonText='Launch Modal',
-            buttonStyle='default', # [ default | primary | info | success | warning | danger | inverse | link ]
+            # [ default | primary | info | success | warning | danger | inverse | link ]
+            buttonStyle='default',
             buttonSize='default',  # [ large | default | small | mini ]
             href="#hookId",
             submit=False,
@@ -1892,19 +1930,20 @@ class test_0001_htmlDocument():
         text = "mediaObject"
         content += lt(text)
         kwargs = {}
-        kwargs["displayType"]='div'
-        kwargs["img"]=dhf.image(
-            src='holder.js/200x200/industrial/text:test mediaobject',  # [ industrial | gray | social ]
+        kwargs["displayType"] = 'div'
+        kwargs["img"] = dhf.image(
+            # [ industrial | gray | social ]
+            src='holder.js/200x200/industrial/text:test mediaobject',
         )
-        kwargs["headlineText"]='This is a mediaObject'
-        kwargs["nestedMediaObjects"]=False
+        kwargs["headlineText"] = 'This is a mediaObject'
+        kwargs["nestedMediaObjects"] = False
         content += dhf.mediaObject(**kwargs)
 
         text = "well"
         content += lt(text)
         kwargs = {}
-        kwargs["wellText"]=text
-        wellSize='default'
+        kwargs["wellText"] = text
+        wellSize = 'default'
         content += dhf.well(**kwargs)
 
         text = "closeIcon"
@@ -1915,21 +1954,21 @@ class test_0001_htmlDocument():
         text = "button"
         content += lt(text)
         kwargs = {}
-        kwargs["buttonText"]=text
-        kwargs["buttonStyle"]="default"
-        kwargs["buttonSize"]="default"
-        kwargs["href"]="#"
-        kwargs["submit"]=False
-        kwargs["block"]=False
-        kwargs["disable"]=False
+        kwargs["buttonText"] = text
+        kwargs["buttonStyle"] = "default"
+        kwargs["buttonSize"] = "default"
+        kwargs["href"] = "#"
+        kwargs["submit"] = False
+        kwargs["block"] = False
+        kwargs["disable"] = False
         oneButton = dhf.button(**kwargs)
         content += oneButton
 
         text = "button group"
         content += lt(text)
         kwargs = {}
-        kwargs["buttonList"]=[oneButton,oneButton,oneButton]
-        kwargs["format"]="default"
+        kwargs["buttonList"] = [oneButton, oneButton, oneButton]
+        kwargs["format"] = "default"
         content += dhf.buttonGroup(**kwargs)
 
         link = dhf.a(
@@ -1953,20 +1992,19 @@ class test_0001_htmlDocument():
         text = "dropdown menu"
         content += lt(text)
         kwargs = {}
-        kwargs["buttonColor"]="default"
-        kwargs["buttonSize"]="default"
-        kwargs["buttonColor"]="default"
-        kwargs["menuTitle"]=text
-        kwargs["splitButton"]=False
-        kwargs["linkList"]=[linkItem,linkItem,linkItem,linkItem,linkItem]
-        kwargs["separatedLinkList"]=False
-        kwargs["pull"]=False
-        kwargs["direction"]="down"
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
+        kwargs["buttonColor"] = "default"
+        kwargs["buttonSize"] = "default"
+        kwargs["buttonColor"] = "default"
+        kwargs["menuTitle"] = text
+        kwargs["splitButton"] = False
+        kwargs["linkList"] = [linkItem, linkItem, linkItem, linkItem, linkItem]
+        kwargs["separatedLinkList"] = False
+        kwargs["pull"] = False
+        kwargs["direction"] = "down"
+        kwargs["onPhone"] = True
+        kwargs["onTablet"] = True
+        kwargs["onDesktop"] = True
         content += dhf.dropdown(**kwargs)
-
 
         text = "unescape html"
         content += lt(text)
@@ -1977,235 +2015,220 @@ class test_0001_htmlDocument():
         text = "image"
         content += lt(text)
         kwargs = {}
-        kwargs["src"]="http://placehold.it/200x200"
-        kwargs["href"]="#"
-        kwargs["display"]="False", # [ rounded | circle | polaroid ]
-        kwargs["pull"]="left", # [ "left" | "right" | "center" ]
-        kwargs["htmlClass"]=False
-        kwargs["thumbnail"]=False
-        kwargs["width"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
+        kwargs["src"] = "http://placehold.it/200x200"
+        kwargs["href"] = "#"
+        kwargs["display"] = "False",  # [ rounded | circle | polaroid ]
+        kwargs["pull"] = "left",  # [ "left" | "right" | "center" ]
+        kwargs["htmlClass"] = False
+        kwargs["thumbnail"] = False
+        kwargs["width"] = False
+        kwargs["onPhone"] = True
+        kwargs["onTablet"] = True
+        kwargs["onDesktop"] = True
         content += dhf.image(**kwargs)
 
         text = "thumbnail"
         content += lt(text)
         kwargs = {}
-        kwargs["listItems"]=text
+        kwargs["listItems"] = text
         content += dhf.thumbnails(**kwargs)
 
         text = "label"
         content += lt(text)
         kwargs = {}
-        kwargs["text"]=text
-        level='default'  # [ "default" | "success" | "warning" | "important" | "info" | "inverse" ]
+        kwargs["text"] = text
+        # [ "default" | "success" | "warning" | "important" | "info" | "inverse" ]
+        level = 'default'
         content += dhf.label(**kwargs)
 
         text = "badge"
         content += lt(text)
         kwargs = {}
-        kwargs["text"]=text
-        level='default'
+        kwargs["text"] = text
+        level = 'default'
         content += dhf.badge(**kwargs)
 
         text = "alert!"
         content += lt(text)
         kwargs = {}
-        kwargs["alertText"]=text
-        kwargs["alertHeading"]="alertHeading"
-        kwargs["extraPadding"]=False
-        kwargs["alertLevel"]="warning"
+        kwargs["alertText"] = text
+        kwargs["alertHeading"] = "alertHeading"
+        kwargs["extraPadding"] = False
+        kwargs["alertLevel"] = "warning"
         content += dhf.alert(**kwargs)
 
         text = "progressBar"
         content += lt(text)
         kwargs = {}
-        kwargs["barStyle"]="plain"
-        kwargs["precentageWidth"]="10"
-        kwargs["barLevel"]="info"
+        kwargs["barStyle"] = "plain"
+        kwargs["precentageWidth"] = "10"
+        kwargs["barLevel"] = "info"
         content += dhf.progressBar(**kwargs)
 
         text = "stackedProgressBar"
         content += lt(text)
         kwargs = {}
-        kwargs["barStyle"]="plain"
-        kwargs["infoWidth"]="10"
-        kwargs["successWidth"]="10"
-        kwargs["warningWidth"]="10"
-        kwargs["errorWidth"]="10"
+        kwargs["barStyle"] = "plain"
+        kwargs["infoWidth"] = "10"
+        kwargs["successWidth"] = "10"
+        kwargs["warningWidth"] = "10"
+        kwargs["errorWidth"] = "10"
         content += dhf.stackedProgressBar(**kwargs)
 
         text = "responsive_navigation_bar"
         content += lt(text)
         kwargs = {}
-        kwargs["brand"]=False
-        kwargs["outsideNavList"]=False
-        kwargs["insideNavList"]=False
-        kwargs["htmlId"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
+        kwargs["brand"] = False
+        kwargs["outsideNavList"] = False
+        kwargs["insideNavList"] = False
+        kwargs["htmlId"] = False
+        kwargs["onPhone"] = True
+        kwargs["onTablet"] = True
+        kwargs["onDesktop"] = True
         content += dhf.responsive_navigation_bar(**kwargs)
 
         text = "nav_list"
         content += lt(text)
         kwargs = {}
-        kwargs["itemList"]=["list","list","list","list","list",]
-        kwargs["pull"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
+        kwargs["itemList"] = ["list", "list", "list", "list", "list", ]
+        kwargs["pull"] = False
+        kwargs["onPhone"] = True
+        kwargs["onTablet"] = True
+        kwargs["onDesktop"] = True
         content += dhf.nav_list(**kwargs)
 
         text = "searchbox"
         content += lt(text)
         kwargs = {}
-        kwargs["size"]='medium'
-        kwargs["placeHolder"]=False
-        kwargs["button"]=False
-        kwargs["buttonSize"]='small'
-        kwargs["buttonColor"]='grey'
-        kwargs["navBar"]=False
-        kwargs["pull"]=False
+        kwargs["size"] = 'medium'
+        kwargs["placeHolder"] = False
+        kwargs["button"] = False
+        kwargs["buttonSize"] = 'small'
+        kwargs["buttonColor"] = 'grey'
+        kwargs["navBar"] = False
+        kwargs["pull"] = False
         content += dhf.searchbox(**kwargs)
 
         text = "tabbableNavigation"
         content += lt(text)
         kwargs = {}
-        kwargs["contentDictionary"]={"link": "link"}
-        kwargs["fadeIn"]=True
-        kwargs["direction"]='top'
+        kwargs["contentDictionary"] = {"link": "link"}
+        kwargs["fadeIn"] = True
+        kwargs["direction"] = 'top'
         content += dhf.tabbableNavigation(**kwargs)
 
         text = "navBar"
         content += lt(text)
         kwargs = {}
-        kwargs["brand"]="brand"
-        kwargs["contentList"]=["link", "link"]
-        kwargs["dividers"]=False
-        kwargs["fixedOrStatic"]=False
-        kwargs["location"]='top'
-        kwargs["responsive"]=False
-        kwargs["dark"]=False
+        kwargs["brand"] = "brand"
+        kwargs["contentList"] = ["link", "link"]
+        kwargs["dividers"] = False
+        kwargs["fixedOrStatic"] = False
+        kwargs["location"] = 'top'
+        kwargs["responsive"] = False
+        kwargs["dark"] = False
         content += dhf.navBar(**kwargs)
 
         text = "pagination"
         content += lt(text)
         kwargs = {}
-        kwargs["listItems"]="listItems"
-        kwargs["size"]="default"
-        kwargs["align"]="left"
+        kwargs["listItems"] = "listItems"
+        kwargs["size"] = "default"
+        kwargs["align"] = "left"
         content += dhf.pagination(**kwargs)
 
         text = "grid_row"
         content += lt(text)
         kwargs = {}
-        kwargs["responsive"]=True
-        kwargs["columns"]=''
-        kwargs["htmlId"]=False
-        kwargs["htmlClass"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
+        kwargs["responsive"] = True
+        kwargs["columns"] = ''
+        kwargs["htmlId"] = False
+        kwargs["htmlClass"] = False
+        kwargs["onPhone"] = True
+        kwargs["onTablet"] = True
+        kwargs["onDesktop"] = True
         content += dhf.grid_row(**kwargs)
 
         text = "grid_column"
         content += lt(text)
         kwargs = {}
-        kwargs["span"]=1
-        kwargs["offset"]=0
-        kwargs["content"]=text
-        kwargs["htmlId"]=False
-        kwargs["htmlClass"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
+        kwargs["span"] = 1
+        kwargs["offset"] = 0
+        kwargs["content"] = text
+        kwargs["htmlId"] = False
+        kwargs["htmlClass"] = False
+        kwargs["onPhone"] = True
+        kwargs["onTablet"] = True
+        kwargs["onDesktop"] = True
         content += dhf.grid_column(**kwargs)
-
-
 
         text = "p"
         content += lt(text)
         kwargs = {}
-        kwargs["content"]=text
-        kwargs["lead"]=False
-        kwargs["textAlign"]=False
-        kwargs["color"]=False
-        kwargs["navBar"]=False
-        kwargs["onPhone"]=True
-        kwargs["onTablet"]=True
-        kwargs["onDesktop"]=True
+        kwargs["content"] = text
+        kwargs["lead"] = False
+        kwargs["textAlign"] = False
+        kwargs["color"] = False
+        kwargs["navBar"] = False
+        kwargs["onPhone"] = True
+        kwargs["onTablet"] = True
+        kwargs["onDesktop"] = True
         content += dhf.p(**kwargs)
 
         text = "emphasizeText"
         content += lt(text)
         kwargs = {}
-        kwargs["style"]="em"
-        kwargs["text"]=text
+        kwargs["style"] = "em"
+        kwargs["text"] = text
         content += dhf.emphasizeText(**kwargs)
-
-
-
-
-
-
-
 
         text = "a"
         content += lt(text)
         kwargs = {}
-        kwargs["content"]=text
-        kwargs["href"]="#"
-        kwargs["tableIndex"]=False
-        kwargs["triggerStyle"]=False
+        kwargs["content"] = text
+        kwargs["href"] = "#"
+        kwargs["tableIndex"] = False
+        kwargs["triggerStyle"] = False
         content += dhf.a(**kwargs)
-
-
-
-
-
-
 
         text = "heroUnit"
         content += lt(text)
         kwargs = {}
-        kwargs["headline"]=text
-        kwargs["tagline"]=text
-        kwargs["buttonStyle"]="primary"
-        kwargs["buttonText"]=text
-        kwargs["buttonHref"]="#"
+        kwargs["headline"] = text
+        kwargs["tagline"] = text
+        kwargs["buttonStyle"] = "primary"
+        kwargs["buttonText"] = text
+        kwargs["buttonHref"] = "#"
         content += dhf.heroUnit(**kwargs)
 
         text = "pageHeader"
         content += lt(text)
         kwargs = {}
-        kwargs["headline"]="headline"
-        kwargs["tagline"]="tagline"
+        kwargs["headline"] = "headline"
+        kwargs["tagline"] = "tagline"
         content += dhf.pageHeader(**kwargs)
 
-
         kwargs = {}
-        kwargs["navBar"]=False
-        kwargs["content"]=content
-        kwargs["htmlId"]=""
-        kwargs["extraAttr"]=""
-        kwargs["relativeUrlBase"]=""
-        kwargs["responsive"]=True
-        kwargs["googleAnalyticsCode"]=False
-        kwargs["jsFileName"]="main-ck.js"
+        kwargs["navBar"] = False
+        kwargs["content"] = content
+        kwargs["htmlId"] = ""
+        kwargs["extraAttr"] = ""
+        kwargs["relativeUrlBase"] = ""
+        kwargs["responsive"] = True
+        kwargs["googleAnalyticsCode"] = False
+        kwargs["jsFileName"] = "main-ck.js"
         bodyContent = dhf.body(**kwargs)
 
         kwargs = {}
-        kwargs["relativeUrlBase"]=''
-        kwargs["mainCssFileName"]="main.css"
-        kwargs["pageTitle"]=""
-        kwargs["extras"]=""
+        kwargs["relativeUrlBase"] = ''
+        kwargs["mainCssFileName"] = "main.css"
+        kwargs["pageTitle"] = ""
+        kwargs["extras"] = ""
         headContent = dhf.head(**kwargs)
 
         kwargs = {}
-        kwargs["contentType"]=False
-        kwargs["content"]=headContent+bodyContent
+        kwargs["contentType"] = False
+        kwargs["content"] = headContent + bodyContent
         content = dhf.htmlDocument(**kwargs)
-        if content is not None: cheatsheet.write(content)
-
+        if content is not None:
+            cheatsheet.write(content)

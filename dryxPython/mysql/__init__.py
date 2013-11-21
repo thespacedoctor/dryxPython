@@ -120,7 +120,7 @@ def execute_mysql_write_query(
     # ##########################################################
     # CREATE DB CURSOR
 
-    log.info('starting execute_mysql_write_query')
+    log.debug('starting execute_mysql_write_query')
 
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
@@ -149,7 +149,7 @@ def execute_mysql_write_query(
     except Exception as e:
         log.warning('could not close the db cursor ' + str(e) + '\n')
 
-    log.info('finished execute_mysql_write_query')
+    log.debug('finished execute_mysql_write_query')
     return None
 
 
