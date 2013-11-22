@@ -37,7 +37,8 @@ setup(name='dryxPython',
               'dft_print_fits_header=dryxPython.command_line:dft_print_fits_header',
               'dpc-createpythonpackage=dryxPython.packagecreator.createpythonpackage:main',
               'dms_execute_mysql_script=dryxPython.mysql.execute_mysql_script:main',
-              'dcu_update_git_repos=dryxPython.commonutils.update_git_repos:main'
+              'dcu_update_git_repos=dryxPython.commonutils.update_git_repos:main',
+              'dat_check_for_sdss_coverage=dryxPython.astrotools.check_for_sdss_coverage:main'
           ],
       },
       zip_safe=False)

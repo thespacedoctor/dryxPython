@@ -68,7 +68,7 @@ def head(
     mainCssFileName="main.css",
     pageTitle="",
     extras="",
-    ):
+):
     """Generate an html head element for your webpage
 
     **Key Arguments:**
@@ -107,6 +107,8 @@ def head(
 ## LAST MODIFIED : May 31, 2013
 ## CREATED : May 31, 2013
 ## AUTHOR : DRYX
+
+
 def body(
         navBar=False,
         content="",
@@ -116,7 +118,7 @@ def body(
         responsive=True,
         googleAnalyticsCode=False,
         jsFileName="main.js"
-        ):
+):
     """Generate an HTML body
 
     **Key Arguments:**
@@ -156,7 +158,7 @@ def body(
         onPhone=True,
         onTablet=True,
         onDesktop=True,
-        )
+    )
 
     body = \
         """
@@ -179,7 +181,7 @@ def body(
         jsFileName,
         googleAnalyticsCode,
         htmlId,
-        )
+    )
 
     return body
 
@@ -187,6 +189,8 @@ def body(
 ## LAST MODIFIED : March 27, 2013
 ## CREATED : March 27, 2013
 ## AUTHOR : DRYX
+
+
 def grid_row(
     responsive=True,
     columns='',
@@ -195,7 +199,7 @@ def grid_row(
     onPhone=True,
     onTablet=True,
     onDesktop=True,
-    ):
+):
     """Create a row using the Twitter Bootstrap static layout grid.
     The static Bootstrap grid system utilizes 12 columns.
 
@@ -245,46 +249,21 @@ def grid_row(
         onDesktop,
         htmlId,
         columns,
-        )
+    )
     return row
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # xxxxxxxxxxx-still needs work and snippets-xxxxxxxxxxxxxx
-
-
-
-
-
-
 # # xxx-replace
 # ## LAST MODIFIED : December 17, 2012
 # ## CREATED : December 17, 2012
 # ## AUTHOR : DRYX
-
 # def get_simple_div(htmlId=None, blockContent=None):
 #     """ Generate a basic <div> with block-content
-
 #   ****Key Arguments:****
 #     - ``htmlId`` -- the html id attribute
 #     - ``blockContent`` -- content to be surrounded by html div tag
-
 #   **Return:**
 #     - ``div`` """
-
 #   # ############### > IMPORTS ################
 #   # ############### > VARIABLE SETTINGS ######
 #   # ############### >ACTION(S) ################
@@ -294,37 +273,27 @@ def grid_row(
 #         blockContent=blockContent,
 #         ))
 #     return div
-
-
 # xxx-replace
 ## LAST MODIFIED : December 12, 2012
 ## CREATED : December 12, 2012
 ## AUTHOR : DRYX
-
 # def get_javascript_block(jsPath):
 #     """ Create a javascript *<script>* html code block
-
 #   ****Key Arguments:****
 #     - ``jsPath`` -- path the js file
-
 #   **Return:**
 #     - ``block`` -- HTML code block """
-
 #   # ############### > IMPORTS ################
 #   # ############### > VARIABLE SETTINGS ######
 #   # ############### >ACTION(S) ################
 #     block = """<script src="%s" type="text/javascript" charset="utf-8"></script>""" % (jsPath, )
 #     return block
-
-
 # # xxx-replace
 # ## LAST MODIFIED : December 11, 2012
 # ## CREATED : December 11, 2012
 # ## AUTHOR : DRYX
-
 # def get_html_block(attributeDict):
 #     """Get an HTML code block (tag) which in turn can be meshed together to build webpages.
-
 #     **Variable Attributes:**
 #       - ``attributeDict`` -- dictionary with the following keywords:
 #       - ``tag`` -- the html tag (a, div, span ...)
@@ -339,10 +308,8 @@ def grid_row(
 #       - ``action`` -- action used in forms
 #       - ``method`` -- method used in forms
 #       - ``type`` -- type of object
-
 #     **Returns:**
 #       - ``block`` -- the html block
-
 #     attributeDict template -- dict(tag=___,
 #                                     htmlClass:divVerticalKids/divHorizontalKids,
 #                                     htmlId=___,
@@ -356,7 +323,6 @@ def grid_row(
 #                                     method=___,
 #                                     type=___
 #                                   ) """
-
   # ############### > IMPORTS ################
   # ############### > VARIABLE SETTINGS ######
     d = attributeDict
@@ -397,11 +363,9 @@ def grid_row(
     return block
 
 
-
 ## LAST MODIFIED : March 27, 2013
 ## CREATED : March 27, 2013
 ## AUTHOR : DRYX
-
 def grid_column(
     span=1,
     offset=0,
@@ -411,7 +375,7 @@ def grid_column(
     onPhone=True,
     onTablet=True,
     onDesktop=True,
-    ):
+):
     """ Get a column block for the Twiiter Bootstrap static layout grid.
 
     **Key Arguments:**
@@ -458,7 +422,7 @@ def grid_column(
         onDesktop,
         htmlId,
         content,
-        )
+    )
     return column
 
 
@@ -477,7 +441,7 @@ def _container(
     onPhone=True,
     onTablet=True,
     onDesktop=True,
-    ):
+):
     """ The over-all content container for the twitter bootstrap webpage
 
     **Key Arguments:**
@@ -526,7 +490,7 @@ def _container(
         onDesktop,
         htmlId,
         content,
-        )
+    )
     return container
 
 ###################################################################

@@ -658,7 +658,8 @@ def pageHeader(
 def coloredText(
         text="",
         color="red",
-        htmlClass=""
+        htmlClass="",
+        pull=False
 ):
     """Colour text a given colour
 
@@ -680,8 +681,13 @@ def coloredText(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    text = """<span class="colortext %s %s">%s</span>""" % (color,
-                                                            htmlClass, text,)
+    if pull:
+        pull = """pull-%s""" % (pull,)
+    else:
+        pull = ""
+
+    text = """<span class="colortext %s %s %s">%s</span>""" % (color,
+                                                               htmlClass, pull, text,)
 
     return text
 
