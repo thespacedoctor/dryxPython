@@ -119,7 +119,7 @@ def check_for_sdss_coverage(
         log,
         raDeg,
         decDeg,
-        url="http://skyserver.sdss3.org/public/en/tools/search/x_sql.asp"
+        url="http://skyserver.sdss3.org/public/en/tools/search/x_sql.aspx"
 ):
     """Check an ra and dec for SDSS DR9 image coverage
 
@@ -146,19 +146,22 @@ def check_for_sdss_coverage(
     ################ >ACTION(S) ################
     sqlQuery = "SELECT TOP 1 rerun, camcol, field FROM PhotoObj WHERE ra BETWEEN %s and %s AND dec BETWEEN %s and %s" % (
         raLower, raUpper, declLower, declUpper,)
+    log.debug('sqlQuery: %s' % (sqlQuery,))
     try:
         log.debug(
             "attempting to determine whether object is in SDSS DR9 footprint")
         result = _query(
             sql=sqlQuery,
             url=url,
-            fmt="csv")
-        result = result.read()
+            fmt="html",
+            log=log)
     except Exception, e:
         log.error(
             "could not determine whether object is in SDSS DR9 footprint - failed with this error %s: " %
             (str(e),))
         return -1
+
+    log.debug('result: %s' % (result,))
 
     if "No objects have been found" in result:
         match = False
@@ -185,12 +188,21 @@ def _filtercomment(sql):
     return fsql
 
 
-def _query(sql, url, fmt):
+def _query(sql, url, fmt, log):
     "Run query and return file object"
     import urllib
+    import urllib2
     fsql = _filtercomment(sql)
     params = urllib.urlencode({'cmd': fsql, 'format': fmt})
-    return urllib.urlopen(url + '?%s' % params)
+    log.debug('params %s' % (params,))
+    # url = url + '?%s' % params
+    req = urllib2.Request(url, params)
+    response = urllib2.urlopen(req)
+    result = response.read()
+
+    # result = urllib.urlopen(url + '?%s' % params)
+    # log.debug('url: %s' % (url,))
+    return result
 
 ############################################
 # CODE TO BE DEPECIATED                    #
