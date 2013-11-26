@@ -52,15 +52,15 @@ def main():
 ## CREATED : 20121025
 
 
-def _fetch(url):
+def _fetch(url,):
     import logging as log
     from eventlet.green import urllib2
 
     try:
-        log.debug('downloading ' + url)
+        log.debug('downloading ' + str(url))
         body = urllib2.urlopen(url).read()
     except Exception, e:
-        log.debug("could not download " + url + " : " + str(e) + "\n")
+        log.debug("could not download " + str(url) + " : " + str(e) + "\n")
         url = None
         body = None
 
@@ -118,7 +118,8 @@ def multiWebDocumentDownloader(
     timeStamp=1,
     timeout=180,
     concurrentDownloads=10,
-    resetFilename=False
+    resetFilename=False,
+    credentials=False
 ):
     """get multiple url documents and place in specified download directory
 
@@ -126,6 +127,7 @@ def multiWebDocumentDownloader(
           - ``urlList`` -- list of document urls
           - ``downloadDirectory`` -- directory(ies) to download the documents to - can be one url or a list of urls the same length as urlList
           - ``resetFilename`` -- a string to reset all filenames to
+          - ``credentials`` -- basic http credentials
 
         **Return:**
           - list of timestamped documents (same order as the input urlList)
@@ -138,6 +140,7 @@ def multiWebDocumentDownloader(
     import dryxPython.commonutils as dcu
     import socket
     import re
+    import base64
 
     ## >SETTINGS ##
     # timeout in seconds
@@ -151,6 +154,7 @@ def multiWebDocumentDownloader(
     bodies = []
     localUrls = []
     theseUrls = []
+    requestList = []
 
     ## if only one download direcory
     if isinstance(downloadDirectory, str):
@@ -167,6 +171,17 @@ def multiWebDocumentDownloader(
             # GENERATE THE LOCAL FILE URL
             localFilepath = downloadDirectory + "/" + filename
             thisArray.extend([[url, localFilepath]])
+
+            # GENERATE THE REQUESTS
+            request = urllib2.Request(url)
+            if credientials:
+                username = credientials["username"]
+                password = credientials["password"]
+                base64string = base64.encodestring(
+                    '%s:%s' % (username, password)).replace('\n', '')
+                request.add_header("Authorization", "Basic %s" % base64string)
+            requestList.append(request)
+
     elif isinstance(downloadDirectory, list):
         for u, d in zip(urlList, downloadDirectory):
             # EXTRACT THE FILENAME FROM THE URL
@@ -181,6 +196,18 @@ def multiWebDocumentDownloader(
             # GENERATE THE LOCAL FILE URL
             localFilepath = d + "/" + filename
             thisArray.extend([[u, localFilepath]])
+            log.debug(" about to download %s" % (u,))
+
+            # GENERATE THE REQUESTS
+            request = urllib2.Request(u)
+            if credentials:
+                log.debug('adding the credientials')
+                username = credentials["username"]
+                password = credentials["password"]
+                base64string = base64.encodestring(
+                    '%s:%s' % (username, password)).replace('\n', '')
+                request.add_header("Authorization", "Basic %s" % base64string)
+            requestList.append(request)
 
     pool = eventlet.GreenPool(concurrentDownloads)
     i = 0
@@ -188,7 +215,8 @@ def multiWebDocumentDownloader(
         log.debug(
             "starting mutli-threaded download batch - %s concurrent downloads" %
             (concurrentDownloads,))
-        for url, body in pool.imap(_fetch, urlList):
+        log.debug('len(requestList): %s' % (len(requestList),))
+        for url, body in pool.imap(_fetch, requestList):
             if(body):
                 bodies.extend([body])
                 theseUrls.extend([thisArray[i][1]])
