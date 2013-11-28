@@ -483,6 +483,43 @@ def pagination(
 
     return pagination
 
+
+## LAST MODIFIED : July 22, 2013
+## CREATED : July 22, 2013
+## AUTHOR : DRYX
+def is_navStyle_active(
+        log,
+        bodyId,
+        thisPageId):
+    """is navStyle active
+
+    **Key Arguments:**
+        - ``log`` -- logger
+        - ``bodyId`` -- the bodyId of the page
+        - ``thisPageId`` -- the Id of this page
+
+    **Return:**
+        - ``navStyle`` -- boolean, true if the navStyle should be active, i.e. the link is to the currently viewed page
+
+    **Todo**
+    - [ ] when complete, clean is_navStyle_active function & add logging
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+
+    log.info('starting the ``is_navStyle_active`` function')
+    ## VARIABLES ##
+
+    if bodyId == thisPageId:
+        navStyle = "active"
+    else:
+        navStyle = False
+
+    log.info('completed the ``is_navStyle_active`` function')
+    return navStyle
+
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
 ###################################################################

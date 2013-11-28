@@ -138,10 +138,10 @@ def check_for_sdss_coverage(
     raDeg = float(raDeg)
     decDeg = float(decDeg)
 
-    raUpper = raDeg + 0.0001
-    raLower = raDeg - 0.0001
-    declUpper = decDeg + 0.001
-    declLower = decDeg - 0.001
+    raUpper = raDeg + 0.001
+    raLower = raDeg - 0.001
+    declUpper = decDeg + 0.01
+    declLower = decDeg - 0.01
 
     ################ >ACTION(S) ################
     sqlQuery = "SELECT TOP 1 rerun, camcol, field FROM PhotoObj WHERE ra BETWEEN %s and %s AND dec BETWEEN %s and %s" % (
