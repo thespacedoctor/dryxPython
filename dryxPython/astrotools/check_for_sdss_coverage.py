@@ -166,9 +166,12 @@ def check_for_sdss_coverage(
     if "No objects have been found" in result:
         match = False
         print "This location is NOT in the SDSS footprint"
-    else:
+    elif "cornsilk" in result:
         match = True
         print "This location IS in the SDSS footprint"
+    else:
+        match = 999
+        print "Not sure if image in SDSS"
 
     log.debug('sdss match: %s' % (match,))
 

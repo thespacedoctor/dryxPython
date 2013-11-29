@@ -372,6 +372,7 @@ def grid_column(
     content='',
     htmlId=False,
     htmlClass=False,
+    pull=False,
     onPhone=True,
     onTablet=True,
     onDesktop=True,
@@ -384,6 +385,7 @@ def grid_column(
         - ``offset`` -- increase the left margin of the column by this amount
         - ``htmlId`` -- the id of the column
         - ``htmlClass`` -- the class of the column
+        - ``pull`` -- left, right, or center
         - ``onPhone`` -- does this column get displayed on a phone sized screen
         - ``onTablet`` -- does this column get displayed on a tablet sized screen
         - ``onDesktop`` -- does this column get displayed on a desktop sized screen
@@ -409,8 +411,14 @@ def grid_column(
         onDesktop = ''
     else:
         onDesktop = 'hidden-desktop'
+
+    if pull:
+        pull = "pull-%s" % (pull,)
+    else:
+        pull = ""
+
     column = """
-        <div class="span%s offset%s %s %s %s %s" %s>
+        <div class="span%s offset%s %s %s %s %s %s" %s>
             %s
         </div>
     """ % (
@@ -420,6 +428,7 @@ def grid_column(
         onPhone,
         onTablet,
         onDesktop,
+        pull,
         htmlId,
         content,
     )

@@ -154,6 +154,7 @@ def button(
         buttonStyle="default",
         buttonSize="default",
         href=False,
+        pull=False,
         submit=False,
         block=False,
         disable=False,
@@ -165,6 +166,7 @@ def button(
         - ``buttonStyle`` -- the style of the button required [ default | primary | info | success | warning | danger | inverse | link ]
         - ``buttonSize`` -- the size of the button required [ large | small | mini ]
         - ``href`` -- link the button to another location?
+        - ``pull`` -- left, right or center
         - ``submit`` -- set to true if a form button [ true | false ]
         - ``block`` -- create block level buttons—those that span the full width of a parent [ True | False ]
         - ``disable`` -- this class is only for aesthetic; you must use custom JavaScript to disable links here
@@ -210,7 +212,13 @@ def button(
         elementOpen = """button type="button" """
         elementClose = """button"""
 
-    button = """<%s class="btn %s %s %s %s" id="  " %s %s>%s</%s>""" % (elementOpen, buttonStyle, buttonSize, block, disable, submit, dataToggle, buttonText, elementClose)
+    if pull == False:
+        pull = ""
+    else:
+        pull = "pull-%s" % (pull,)
+
+    button = """<%s class="btn %s %s %s %s %s" id="  " %s %s>%s</%s>""" % (
+        elementOpen, buttonStyle, buttonSize, block, disable, pull, submit, dataToggle, buttonText, elementClose)
 
     return button
 

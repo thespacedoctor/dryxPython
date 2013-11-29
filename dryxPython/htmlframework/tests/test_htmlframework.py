@@ -988,7 +988,7 @@ class test_0001_htmlDocument():
             pager=False  # [ False | "previous" | "next" ]
         )
 
-        rightAlighnDropdown = dhf.dropdown(
+        rightAlignDropdown = dhf.dropdown(
             buttonSize='default',
             buttonColor='default',
             menuTitle='right align',
@@ -1002,7 +1002,7 @@ class test_0001_htmlDocument():
             onTablet=True,
             onDesktop=True
         )
-        content += rightAlighnDropdown
+        content += rightAlignDropdown
 
         subMenu = dhf.ul(
             itemList=[liveLink, disabledLink, liveLink, liveLink, liveLink],
