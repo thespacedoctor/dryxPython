@@ -27,7 +27,6 @@ setup(name='dryxPython',
           'pyyaml',
           'docopt',
           'numpy',
-          'matplotlib'
       ],
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],
