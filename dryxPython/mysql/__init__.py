@@ -121,7 +121,7 @@ def execute_mysql_write_query(
     # CREATE DB CURSOR
 
     log.debug('starting execute_mysql_write_query')
-
+    message = ""
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
     except Exception as e:
@@ -135,6 +135,7 @@ def execute_mysql_write_query(
         elif e[0] == 1062:
                            # Duplicate Key error
             log.debug('Duplicate Key error: %s' % (str(e), ))
+            message = "duplicate key error"
         else:
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
@@ -152,7 +153,7 @@ def execute_mysql_write_query(
         log.warning('could not close the db cursor ' + str(e) + '\n')
 
     log.debug('finished execute_mysql_write_query')
-    return None
+    return message
 
 
 ##########################################################################
@@ -233,6 +234,7 @@ def convert_dictionary_to_mysql_table(
     import re
     import yaml
     import time
+    import datetime
     from dryxPython import commonutils as dcu
     # import ordereddict as c  # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
     import collections as c
@@ -269,13 +271,13 @@ def convert_dictionary_to_mysql_table(
                          (message, k, v, type(v)))
             raise ValueError(message)
         if isinstance(v, list):
-            if not (isinstance(v[0], str) or isinstance(v[0], int) or isinstance(v[0], bool) or isinstance(v[0], float) or isinstance(v[0], long) or v[0] == None):
+            if not (isinstance(v[0], str) or isinstance(v[0], int) or isinstance(v[0], bool) or isinstance(v[0], float) or isinstance(v[0], long) or isinstance(v[0], datetime.date) or v[0] == None):
                 message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
                 log.critical("%s: in %s we have a %s (%s)" %
                              (message, k, v, type(v)))
                 raise ValueError(message)
         else:
-            if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float) or isinstance(v, long) or v == None):
+            if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float) or isinstance(v, long) or isinstance(v, datetime.date) or v == None):
                 message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
                 log.critical("%s: in %s we have a %s (%s)" %
                              (message, k, v, type(v)))
@@ -314,7 +316,7 @@ def convert_dictionary_to_mysql_table(
     try:
         # log.debug("creating the "+dbTableName+" table if it does not exist")
         for command in qCreateTableCommandList:
-            execute_mysql_write_query(
+            message = execute_mysql_write_query(
                 command,
                 dbConn,
                 log,
@@ -434,7 +436,7 @@ def convert_dictionary_to_mysql_table(
                     try:
                         log.info('creating the ' +
                                  formattedKey + ' column in the ' + dbTableName + ' table')
-                        execute_mysql_write_query(
+                        message = execute_mysql_write_query(
                             qCreateColumn,
                             dbConn,
                             log,
@@ -476,7 +478,7 @@ def convert_dictionary_to_mysql_table(
             addUniqueKey = 'ALTER TABLE ' + dbTableName + \
                 ' ADD unique ' + indexName + """ (""" + uniqueKeyList + ')'
             # log.debug('HERE IS THE COMMAND:'+addUniqueKey)
-            execute_mysql_write_query(
+            message = execute_mysql_write_query(
                 addUniqueKey,
                 dbConn,
                 log,
@@ -499,9 +501,10 @@ def convert_dictionary_to_mysql_table(
     addValue = """INSERT INTO """ + dbTableName + \
         """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     # log.debug(addValue)
+    message = ""
     try:
         # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
-        execute_mysql_write_query(
+        message = execute_mysql_write_query(
             addValue,
             dbConn,
             log,
@@ -512,7 +515,7 @@ def convert_dictionary_to_mysql_table(
 
     log.info('finished convert_dictionary_to_mysql_table')
 
-    return None
+    return message
 
 
 ########################################################################
