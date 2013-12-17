@@ -174,9 +174,9 @@ def multiWebDocumentDownloader(
 
             # GENERATE THE REQUESTS
             request = urllib2.Request(url)
-            if credientials:
-                username = credientials["username"]
-                password = credientials["password"]
+            if credentials != False:
+                username = credentials["username"]
+                password = credentials["password"]
                 base64string = base64.encodestring(
                     '%s:%s' % (username, password)).replace('\n', '')
                 request.add_header("Authorization", "Basic %s" % base64string)
@@ -200,8 +200,8 @@ def multiWebDocumentDownloader(
 
             # GENERATE THE REQUESTS
             request = urllib2.Request(u)
-            if credentials:
-                log.debug('adding the credientials')
+            if credentials != False:
+                log.debug('adding the credentials')
                 username = credentials["username"]
                 password = credentials["password"]
                 base64string = base64.encodestring(
@@ -260,6 +260,7 @@ def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp):
           - path to the local document
     """
     ## > IMPORTS ##
+    import sys
     import logging as log
 
     try:
@@ -272,6 +273,7 @@ def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp):
         myError = "could not convert single url to list and downloading : " + \
             str(e) + "\n"
         log.error(myError)
+        sys.exit(0)
 
     #log.debug('>>>>>>>>>>>>>>> the local url is '+ filepath)
     return filepath

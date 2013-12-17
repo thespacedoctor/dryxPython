@@ -268,7 +268,9 @@ def getSQLDateFromMJD(mjd):
 
 def getMJDFromSqlDate(sqlDate):
     """convert a sql date to mjd"""
+    import time
     mjd = None
+    sqlDate = str(sqlDate)
 
     try:
         year, month, day = sqlDate[0:10].split('-')

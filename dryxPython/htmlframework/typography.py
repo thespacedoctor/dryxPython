@@ -659,7 +659,8 @@ def coloredText(
         text="",
         color="red",
         htmlClass="",
-        pull=False
+        pull=False,
+        size=False
 ):
     """Colour text a given colour
 
@@ -667,6 +668,7 @@ def coloredText(
         - ``text`` -- the text to color
         - ``color`` -- the color
         - ``htmlClass`` -- the class for the text
+        - ``size`` -- the relative size of the text
 
     **Return:**
         - None
@@ -686,8 +688,13 @@ def coloredText(
     else:
         pull = ""
 
-    text = """<span class="colortext %s %s %s">%s</span>""" % (color,
-                                                               htmlClass, pull, text,)
+    if size:
+        size = """size-%s""" % (size,)
+    else:
+        size = ""
+
+    text = """<span class="colortext %s %s %s %s">%s</span>""" % (color,
+                                                                  htmlClass, pull, size, text,)
 
     return text
 

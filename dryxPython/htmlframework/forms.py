@@ -27,7 +27,10 @@ _dryxTBS_forms
 ## LAST MODIFIED : December 12, 2012
 ## CREATED : December 12, 2012
 ## AUTHOR : DRYX
+
+
 class HTMLDivForm():
+
     """
     Create the building blocks of an HTML form -- a bunch of ``<div>``.
 
@@ -50,117 +53,117 @@ class HTMLDivForm():
     numberOfRows = 1
     ############### PRIVATE VARIABLE ATTRIBUTES ###############
     ################ INSTANSIATION METHOD ######################
+
     def __init__(self):
         pass
 
     ############### METHODS ####################################
     def get_objects(self):
-      """
-      Returns the components to make an HTML form:
-       - ``labelDict`` -- a dictionary of dictionaries .. **key**:*label name*, **value**:*dictionary of HTML attributes*.
-       - ``textDict`` -- a dictionary of dictionaries .. **key**:*textbox name*, **value**:*dictionary of HTML attributes*.
-       - ``selectDict`` -- a dictionary of dictionaries .. **key**:*dropdown menu name*, **value**:*dictionary of HTML attributes*.
-       - ``checkboxDict`` -- a dictionary of dictionaries .. **key**:*checkbox name*, **value**:*dictionary of HTML attributes*.
-       - ``buttonDict`` -- a dictionary of dictionaries .. **key**:*button name*, **value**:*dictionary of HTML attributes*.
-       - ``rowList`` -- a list of dictionaries containing HTML attributes for the row.
-       - ``formContent`` -- a dictionary containing of HTML attributes for the form content.
-       - ``form`` -- a dictionary containing of HTML attributes for the form.
-      """
+        """
+        Returns the components to make an HTML form:
+         - ``labelDict`` -- a dictionary of dictionaries .. **key**:*label name*, **value**:*dictionary of HTML attributes*.
+         - ``textDict`` -- a dictionary of dictionaries .. **key**:*textbox name*, **value**:*dictionary of HTML attributes*.
+         - ``selectDict`` -- a dictionary of dictionaries .. **key**:*dropdown menu name*, **value**:*dictionary of HTML attributes*.
+         - ``checkboxDict`` -- a dictionary of dictionaries .. **key**:*checkbox name*, **value**:*dictionary of HTML attributes*.
+         - ``buttonDict`` -- a dictionary of dictionaries .. **key**:*button name*, **value**:*dictionary of HTML attributes*.
+         - ``rowList`` -- a list of dictionaries containing HTML attributes for the row.
+         - ``formContent`` -- a dictionary containing of HTML attributes for the form content.
+         - ``form`` -- a dictionary containing of HTML attributes for the form.
+        """
 
-      #### GENERATE FORM LABELS (DIVS) ####
-      #--------------------------------------------------------------------------------#
-      labelDict = {}
-      for label in self.labelList:
-        htmlId = label.replace(' ','').replace(':','')
-        labelDict[label] = dict(
-                                  tag="div",
-                                  htmlId=htmlId,
-                                  htmlClass="labels",
-                                  blockContent=label
-                                )
+        #### GENERATE FORM LABELS (DIVS) ####
+        #--------------------------------------------------------------------------------#
+        labelDict = {}
+        for label in self.labelList:
+            htmlId = label.replace(' ', '').replace(':', '')
+            labelDict[label] = dict(
+                tag="div",
+                htmlId=htmlId,
+                htmlClass="labels",
+                blockContent=label
+            )
 
-      #### GENERATE TEXTBOXES (INPUTS) ####
-      #--------------------------------------------------------------------------------#
-      textDict = {}
-      for text in self.textboxList:
-        name = text.replace(' ','')
-        textDict[text] = dict(
-                                htmlClass="input-medium",
-                                tag="input",
-                                type="text",
-                                placeholder=text,
-                                name=name
-                              )
+        #### GENERATE TEXTBOXES (INPUTS) ####
+        #--------------------------------------------------------------------------------#
+        textDict = {}
+        for text in self.textboxList:
+            name = text.replace(' ', '')
+            textDict[text] = dict(
+                htmlClass="input-medium",
+                tag="input",
+                type="text",
+                placeholder=text,
+                name=name
+            )
 
+        #### GERERATE SELECTS ####
+        #--------------------------------------------------------------------------------#
+        selectDict = {}
+        for select in self.selectList:
+            htmlId = select.replace(' ', '')
+            htmlClass = select + "Select"
+            selectDict[select] = dict(
+                tag="select",
+                htmlId=htmlId,
+                htmlClass=htmlClass
+            )
 
-      #### GERERATE SELECTS ####
-      #--------------------------------------------------------------------------------#
-      selectDict = {}
-      for select in self.selectList:
-        htmlId = select.replace(' ','')
-        htmlClass = select+"Select"
-        selectDict[select] = dict(
-                                    tag="select",
-                                    htmlId=htmlId,
-                                    htmlClass=htmlClass
-                                  )
+        #### GERERATE CHECKBOXES ####
+        #--------------------------------------------------------------------------------#
+        checkboxDict = {}
+        for checkbox in self.checkboxList:
+            htmlId = checkbox.replace(' ', '')
+            checkboxDict[checkbox] = dict(
+                tag="input",
+                type="checkbox",
+                name=checkbox,
+                value=checkbox,
+                htmlId=htmlId
+            )
 
+        #### GENERATE BUTTONS ####
+        #--------------------------------------------------------------------------------#
+        buttonDict = {}
+        for button in self.buttonList:
+            htmlId = button.replace(' ', '').replace('(', '').replace(')', '')
+            buttonDict[button] = dict(
+                tag="button",
+                htmlClass="greyButton",
+                blockContent=button,
+                htmlId=htmlId
+            )
 
-      #### GERERATE CHECKBOXES ####
-      #--------------------------------------------------------------------------------#
-      checkboxDict = {}
-      for checkbox in self.checkboxList:
-        htmlId = checkbox.replace(' ','')
-        checkboxDict[checkbox] = dict(
-                                        tag="input",
-                                        type="checkbox",
-                                        name=checkbox,
-                                        value=checkbox,
-                                        htmlId=htmlId
-                                      )
+        #### GENERATE THE ROWS ####
+        #--------------------------------------------------------------------------------#
+        i = 1
+        rowList = []
+        rowList.append("NULL")
+        while(i <= self.numberOfRows):
+            rowName = "row" + "{0:02.0f}".format(i)
+            rowList.append(
+                dict(
+                    tag="div",
+                    htmlClass="divHorizontalKids",
+                    htmlId=rowName
+                )
+            )
+            i += 1
 
-      #### GENERATE BUTTONS ####
-      #--------------------------------------------------------------------------------#
-      buttonDict = {}
-      for button in self.buttonList:
-        htmlId = button.replace(' ','').replace('(','').replace(')','')
-        buttonDict[button] = dict(
-                                    tag="button",
-                                    htmlClass="greyButton",
-                                    blockContent=button,
-                                    htmlId=htmlId
-                                  )
+        form = dict(
+            tag="form",
+            htmlClass="form",
+            method="post",
+        )
+        formContent = dict(
+            tag="div",
+            htmlClass="formContent"
+        )
 
-      #### GENERATE THE ROWS ####
-      #--------------------------------------------------------------------------------#
-      i = 1
-      rowList = []
-      rowList.append("NULL")
-      while(i <= self.numberOfRows):
-        rowName = "row"+"{0:02.0f}".format(i)
-        rowList.append(
-                        dict(
-                              tag="div",
-                              htmlClass="divHorizontalKids",
-                              htmlId = rowName
-                            )
-                      )
-        i += 1
-
-      form = dict(
-                    tag="form",
-                    htmlClass="form",
-                    method="post",
-                  )
-      formContent = dict(
-                          tag="div",
-                          htmlClass="formContent"
-                        )
-
-      return labelDict,textDict,selectDict,checkboxDict,buttonDict,rowList,formContent,form
+        return labelDict, textDict, selectDict, checkboxDict, buttonDict, rowList, formContent, form
 
 
 class dummy():
+
     """
     Create the building blocks of an HTML form -- a bunch of ``<div>``.
 
@@ -386,7 +389,6 @@ def searchForm(
     else:
         focusId = "focusedInput"
 
-
     if inlineHelpText:
         inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
     else:
@@ -398,7 +400,7 @@ def searchForm(
         blockHelpText = ""
 
     if not htmlId:
-      htmlId = ""
+        htmlId = ""
 
     searchForm = """
     <form class="form-search">
@@ -418,24 +420,28 @@ def searchForm(
 def form(
         content="",
         formType="inline",
+        postToScript="",
+        htmlId=False,
         navBarPull=False):
     """Generate a form - TBS style
 
     **Key Arguments:**
         - ``content`` -- the content
         - ``formType`` -- the type if the form required [ "inline" | "horizontal" | "search" | "navbar-form" | "navbar-search" ]
+        - ``postToScript`` -- the script to post the form values to
+        - ``htmlId`` -- the id for the form
         - ``navBarPull`` -- align the form is in a navBar [ false | right | left ]
 
     **Return:**
         - ``inlineForm`` -- the inline form
     """
-    falseList = [navBarPull,]
+    falseList = [navBarPull, ]
 
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
 
-    [navBarPull,] = falseList
+    [navBarPull, ] = falseList
 
     if navBarPull:
         navBarPull = "pull-%s" % (navBarPull,)
@@ -446,18 +452,21 @@ def form(
 
     htmlInput = ""
     if formType == "navbar-search":
-      htmlInput += """<input type="text" class="search-query" placeholder="search">"""
+        htmlInput += """<input type="text" class="search-query" placeholder="search">"""
 
     if formType == "navbar-form":
-      htmlInput += """<input type="text" class="span2">
+        htmlInput += """<input type="text" class="span2">
         <button type="submit" class="btn">Submit</button>"""
 
+    if htmlId:
+        htmlId = """id="%s" """ % (htmlId,)
+    else:
+        htmlId = ""
 
-
-    form = """<form class="%s %s">%s%s</form>""" % (formType, navBarPull, content,htmlInput)
+    form = """<form class="%s %s" %s action="%s" method="post" target="_blank">%s%s</form>""" % (
+        formType, navBarPull, htmlId, postToScript, content, htmlInput)
 
     return form
-
 
 
 ## LAST MODIFIED : April 16, 2013
@@ -475,13 +484,13 @@ def horizontalFormControlGroup(
     **Return:**
         - ``horizontalFormControlGroup`` -- the horizontal form control group
     """
-    falseList = [validationLevel,]
+    falseList = [validationLevel, ]
 
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
 
-    [validationLevel,] = falseList
+    [validationLevel, ] = falseList
 
     horizontalFormControlGroup = """
         <div class="control-group %s">
@@ -506,16 +515,11 @@ def horizontalFormControlLabel(
     **Return:**
         - ``horizontalFormRowLabel`` -- the horizontalFormRowLabel
     """
-    falseList = [ forId, ]
+    if forId is False:
+        forId = ""
 
-    for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
-
-    [ forId, ] = falseList
-
-
-    horizontalFormRowLabel = """<label class="control-label" for="%s">%s</label>""" % (forId, labelText, )
+    horizontalFormRowLabel = """<label class="control-label" for="%s">%s</label>""" % (
+        forId, labelText, )
 
     return horizontalFormRowLabel
 
@@ -541,11 +545,10 @@ def formInput(
         focusedInputText=False,
         required=False,
         disabled=False):
-
     """Generate a form input - TBS style
 
     **Key Arguments:**
-        - ``ttype`` -- [ text | password | datetime | datetime-local | date | month | time | week | number | email | url | search | tel | color ]
+        - ``ttype`` -- [ text | password | datetime | datetime-local | date | month | time | week | number | float | email | url | search | tel | color ]
         - ``placeholder`` -- the placeholder text
         - ``span`` -- column span
         - ``htmlId`` -- html id
@@ -566,20 +569,22 @@ def formInput(
     **Return:**
         - ``input`` -- the input
     """
-    prependContent=False
-    appendContent=False
-    inputId=False
-    searchClass=False
-    prependClass=False
-    appendClass=False
+    prependContent = False
+    appendContent = False
+    inputId = False
+    searchClass = False
+    prependClass = False
+    appendClass = False
 
-    falseList = [searchBar,span,prepend,prependContent,append,appendContent,inputId,pull,htmlId,appendClass,prependClass]
+    falseList = [searchBar, span, prepend, prependContent, append,
+                 appendContent, inputId, pull, htmlId, appendClass, prependClass]
 
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
 
-    [searchBar,span,prepend,prependContent,append,appendContent,inputId,pull,htmlId,appendClass,prependClass]  = falseList
+    [searchBar, span, prepend, prependContent, append, appendContent,
+        inputId, pull, htmlId, appendClass, prependClass] = falseList
 
     if pull:
         pull = "pull-%s" % (pull,)
@@ -600,27 +605,27 @@ def formInput(
         appendClass = "input-append"
         appendContent = """<span class="add-on">%s</span>""" % (append,)
 
-    if prepend :
+    if prepend:
         if append:
-            inputId = "appendedPrependedInput"
+            inputId = "appendedPrependedInput "
         else:
-            inputId = "prependedInput"
+            inputId = "prependedInput "
     elif append:
-        inputId = "appendedInput"
+        inputId = "appendedInput "
 
     if button1:
         appendClass = "input-append"
         appendContent = button1
-        inputId = "appendedInputButton"
+        inputId = "appendedInputButton "
 
     if button2:
         appendClass = "input-append"
         appendContent = appendContent + button2
-        inputId = "appendedInputButtons"
+        inputId = "appendedInputButtons "
 
     if appendDropdown:
         appendClass = "input-append"
-        inputId = "appendedDropdownButton"
+        inputId = "appendedDropdownButton "
         appendContent = """
         <div class="btn-group">
             %s
@@ -628,14 +633,19 @@ def formInput(
 
     if prependDropdown:
         prependClass = "input-prepend"
-        inputId = "prependedDropdownButton"
+        inputId = "prependedDropdownButton "
         prependContent = """
         <div class="btn-group">
             %s
         </div>""" % (prependDropdown,)
 
+    step = ""
+    if ttype == "float":
+        step = """ step="any" """
+        ttype = "number"
+
     if prependDropdown and appendDropdown:
-        inputId = "appendedPrependedDropdownButton"
+        inputId = "appendedPrependedDropdownButton "
 
     if inlineHelpText:
         inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
@@ -651,7 +661,8 @@ def formInput(
         focusedInputText = ""
         focusId = ""
     else:
-        focusId = "focusedInput"
+        focusedInputText = """value="%s" """ % (focusedInputText,)
+        focusId = "focusedInput "
 
     if required:
         required = """required"""
@@ -660,7 +671,7 @@ def formInput(
 
     if disabled:
         disabled = """disabled"""
-        disabledId = "disabledId"
+        disabledId = "disabledId "
     else:
         disabled = ""
         disabledId = ""
@@ -668,10 +679,10 @@ def formInput(
     formInput = """
         <div class="%s %s %s">
             %s
-            <input class="%s %s" id="%s %s %s %s" value="%s" type="%s" placeholder="%s" %s %s>
+            <input class="%s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s">
             %s
         </div>%s%s
-        """ % (prependClass, appendClass, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, placeholder, required, disabled, appendContent, inlineHelpText, blockHelpText)
+        """ % (prependClass, appendClass, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, step, placeholder, required, disabled, htmlId, appendContent, inlineHelpText, blockHelpText)
 
     # formInput = """<input class="%s %s" id="%s%s%s%s" value="%s" type="%s" placeholder="%s" %s %s>""" % (span, searchClass, htmlId, inputId, focusId, disabledId, focusedInput, ttype, placeholder, required, disabled)
 
@@ -739,9 +750,10 @@ def textarea(
         disabledId = ""
 
     if not htmlId:
-      htmlId = ""
+        htmlId = ""
 
-    textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s></textarea>%s%s""" % (rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, inlineHelpText, blockHelpText)
+    textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s></textarea>%s%s""" % (
+        rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, inlineHelpText, blockHelpText)
 
     return textarea
 
@@ -796,7 +808,7 @@ def checkbox(
         disabledId = ""
 
     if not htmlId:
-      htmlId = ""
+        htmlId = ""
 
     checkbox = """
         <label class="checkbox %s">
@@ -835,7 +847,7 @@ def select(
         - ``select`` -- the select
     """
     if not htmlId:
-          htmlId = ""
+        htmlId = ""
 
     if multiple is True:
         multiple = """multiple="multiple" """
@@ -922,7 +934,7 @@ def radio(
         disabledId = ""
 
     if not htmlId:
-      htmlId = ""
+        htmlId = ""
 
     radio = """
         <label class="radio">
@@ -1029,21 +1041,23 @@ def formActions(
     **Return:**
         - ``formActions`` -- the formActions
     """
-    falseList = [ primaryButton, button2, button3, button4, button5, inlineHelpText ]
+    falseList = [primaryButton, button2, button3,
+                 button4, button5, inlineHelpText]
 
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
 
-    [ primaryButton, button2, button3, button4, button5, inlineHelpText ]  = falseList
+    [primaryButton, button2, button3, button4,
+        button5, inlineHelpText] = falseList
 
     if inlineHelpText:
-            inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-            blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
     else:
         blockHelpText = ""
 
@@ -1067,7 +1081,7 @@ def modal(
         modalBodyContent="",
         modalFooterContent="",
         htmlId=False
-      ):
+):
     """generate a modal to by generated with a js event
 
     **Key Arguments:**

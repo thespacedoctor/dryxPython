@@ -30,12 +30,15 @@ _dryxTBS_images
 ## LAST MODIFIED : March 15, 2013
 ## CREATED : March 15, 2013
 ## AUTHOR : DRYX
+
+
 def image(
         src="http://placehold.it/200x200",
         href=False,
-        display=False, # [ rounded | circle | polaroid ]
-        pull="left", # [ "left" | "right" | "center" ]
+        display=False,  # [ rounded | circle | polaroid ]
+        pull="left",  # [ "left" | "right" | "center" ]
         htmlClass=False,
+        htmlId=False,
         thumbnail=False,
         width=False,
         onPhone=True,
@@ -49,7 +52,8 @@ def image(
         - ``href`` -- image link url
         - ``display`` -- how the image is to be displayed [ rounded | circle | polaroid ]
         - ``pull`` -- how to align the image if within a <div> [ "left" | "right" | "center" ]
-        - ``htmlClass`` -- the class of the row
+        - ``htmlId`` -- the id of the image
+        - ``htmlClass`` -- the class of the image
         - ``width`` -- the width of the image
         - ``onPhone`` -- does this container get displayed on a phone sized screen
         - ``onTablet`` -- does this container get displayed on a tablet sized screen
@@ -63,7 +67,7 @@ def image(
             if not falseList[i]:
                 falseList[i] = ""
 
-    [thumbnail, pull]  = falseList
+    [thumbnail, pull] = falseList
 
     if thumbnail is True:
         thumbnail = "thumbnail"
@@ -95,19 +99,28 @@ def image(
     else:
         onDesktop = "hidden-desktop"
 
-    image = """<img src="%s" class="%s %s %s %s %s %s" %s>""" % (src, display, htmlClass, onPhone, onTablet, onDesktop, pull, width)
+    if htmlId:
+        htmlId = """id="%s" """ % (htmlId,)
+    else:
+        htmlId = ""
+
+    image = """<img src="%s" class="%s %s %s %s %s %s" %s %s>""" % (
+        src, display, htmlClass, onPhone, onTablet, onDesktop, pull, htmlId, width)
 
     if href:
-        image = """<a href="%s" class="%s %s %s %s %s">%s</a>""" % (href, thumbnail, onPhone, onTablet, onDesktop, pull, image)
+        image = """<a href="%s" class="%s %s %s %s %s" %s>%s</a>""" % (href,
+                                                                       thumbnail, onPhone, onTablet, onDesktop, pull, htmlId, image)
 
     return image
 
 ## LAST MODIFIED : 20130508
 ## CREATED : 20130508
 ## AUTHOR : DRYX
+
+
 def thumbnails(
         listItems=[]
-    ):
+):
     """Generate a thumbnail - TBS style
 
     **Key Arguments:**
@@ -127,9 +140,11 @@ def thumbnails(
 ## LAST MODIFIED : 20130508
 ## CREATED : 20130508
 ## AUTHOR : DRYX
+
+
 def thumbnail_div(
         div_content=""
-    ):
+):
     """Generate a thumbnail - TBS style
 
     **Key Arguments:**

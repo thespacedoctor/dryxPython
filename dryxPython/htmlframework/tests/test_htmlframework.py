@@ -662,7 +662,7 @@ class test_0001_htmlDocument():
         uneditableInput = dhf.uneditableInput(**kwargs)
         formRow = dhf.controlRow(
             inputList=[uneditableInput, ])
-        uneditableInputCG = dhf.horizontalFormControlGroup(
+        uneditableInputCG = dhf. (
             content=label + formRow,
             validationLevel=False
         )

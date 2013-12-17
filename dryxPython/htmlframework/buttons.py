@@ -153,6 +153,7 @@ def button(
         buttonText="",
         buttonStyle="default",
         buttonSize="default",
+        htmlId=False,
         href=False,
         pull=False,
         submit=False,
@@ -165,6 +166,7 @@ def button(
         - ``buttonText`` -- the text to display on the button
         - ``buttonStyle`` -- the style of the button required [ default | primary | info | success | warning | danger | inverse | link ]
         - ``buttonSize`` -- the size of the button required [ large | small | mini ]
+        - ``htmlId`` -- the htmlId for the button
         - ``href`` -- link the button to another location?
         - ``pull`` -- left, right or center
         - ``submit`` -- set to true if a form button [ true | false ]
@@ -196,9 +198,9 @@ def button(
         disable = ""
 
     if submit is True:
-        submit = """type="submit" """
+        ttype = "submit"
     else:
-        submit = ""
+        ttype = "button"
 
     if not dataToggle:
         dataToggle = ""
@@ -209,16 +211,19 @@ def button(
         elementOpen = """a href="%s" """ % (href,)
         elementClose = """a"""
     else:
-        elementOpen = """button type="button" """
+        elementOpen = """button type="%s" """ % (ttype,)
         elementClose = """button"""
+
+    if htmlId == False:
+        htmlId = ""
 
     if pull == False:
         pull = ""
     else:
         pull = "pull-%s" % (pull,)
 
-    button = """<%s class="btn %s %s %s %s %s" id="  " %s %s>%s</%s>""" % (
-        elementOpen, buttonStyle, buttonSize, block, disable, pull, submit, dataToggle, buttonText, elementClose)
+    button = """<%s class="btn %s %s %s %s %s" id="%s" %s>%s</%s>""" % (
+        elementOpen, buttonStyle, buttonSize, block, disable, pull, htmlId, dataToggle, buttonText, elementClose)
 
     return button
 

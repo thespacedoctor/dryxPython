@@ -139,10 +139,12 @@ def execute_mysql_write_query(
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
                                                                                                    str(e)))
+            sys.exit(0)
     except Exception as e:
         log.error(
             'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
             (sqlQuery, str(e)))
+        sys.exit(0)
     # CLOSE THE CURSOR
     try:
         cursor.close()
@@ -260,16 +262,24 @@ def convert_dictionary_to_mysql_table(
             raise ValueError(message)
 
     for k, v in dictionary.iteritems():
+        log.debug('k: %s, v: %s' % (k, v,))
         if isinstance(v, list) and len(v) != 2:
             message = 'Please make sure the list values in "dictionary" 2 items in length'
             log.critical("%s: in %s we have a %s (%s)" %
                          (message, k, v, type(v)))
             raise ValueError(message)
-        if not (isinstance(v[0], str) or isinstance(v[0], int) or isinstance(v[0], bool) or isinstance(v[0], float) or v[0] == None):
-            message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
-            log.critical("%s: in %s we have a %s (%s)" %
-                         (message, k, v, type(v)))
-            raise ValueError(message)
+        if isinstance(v, list):
+            if not (isinstance(v[0], str) or isinstance(v[0], int) or isinstance(v[0], bool) or isinstance(v[0], float) or isinstance(v[0], long) or v[0] == None):
+                message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
+                log.critical("%s: in %s we have a %s (%s)" %
+                             (message, k, v, type(v)))
+                raise ValueError(message)
+        else:
+            if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float) or isinstance(v, long) or v == None):
+                message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
+                log.critical("%s: in %s we have a %s (%s)" %
+                             (message, k, v, type(v)))
+                raise ValueError(message)
 
     if not isinstance(createHelperTables, bool):
         message = 'Please make sure "createHelperTables" is a True or False'
@@ -333,7 +343,7 @@ def convert_dictionary_to_mysql_table(
     count = len(dictionary)
     i = 1
     for (key, value) in dictionary.items():
-        if value[0] is None:
+        if (isinstance(value, list) and value[0] is None) or value is None:
             del dictionary[key]
     # SORT THE DICTIONARY BY KEY
     odictionary = c.OrderedDict(sorted(dictionary.items()))
@@ -350,7 +360,7 @@ def convert_dictionary_to_mysql_table(
         if len(key) > 0:
             # CONVERT LIST AND FEEDPARSER VALUES TO YAML (SO I CAN PASS IT AS A
             # STRING TO MYSQL)
-            if isinstance(value[0], list) or reFeedParserClass.search(str(type(value[0]))):
+            if isinstance(value, list) and (isinstance(value[0], list) or reFeedParserClass.search(str(type(value[0])))):
                 value[0] = yaml.dump(value[0])
                 value[0] = str(value[0])
             # REMOVE CHARACTERS THAT COLLIDE WITH MYSQL
@@ -358,10 +368,12 @@ def convert_dictionary_to_mysql_table(
             #     value[0] = value[0].replace('"', """'""")
             # JOIN THE VALUES TOGETHER IN A LIST - EASIER TO GENERATE THE MYSQL
             # COMMAND LATER
-            if isinstance(value[0], unicode):
+            if isinstance(value, list) and isinstance(value[0], unicode):
                 myValues.extend(['%s' % value[0].strip()])
-            else:
+            elif isinstance(value, list):
                 myValues.extend(['%s' % (value[0], )])
+            else:
+                myValues.extend(['%s' % (value, )])
             # CHECK IF COLUMN EXISTS YET
             colExists = \
                 "SELECT *\

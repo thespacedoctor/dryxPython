@@ -23,17 +23,14 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/styles\/sass\/main.scss" : {
+    "\/styles\/css\/print.css" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/sass\/main.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/styles\/css\/main.css",
-      "fileType" : 4,
-      "debugStyle" : 2
+      "inputAbbreviatedPath" : "\/styles\/css\/print.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/styles\/sass\/screen.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -68,24 +65,6 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 32768
     },
-    "\/styles\/css\/print.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/css\/print.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
-    "\/styles\/css\/main.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/css\/main.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
-    },
     "\/icons\/glyphicons-halflings.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -96,6 +75,27 @@
       "outputAbbreviatedPath" : "\/icons\/glyphicons-halflings.png",
       "initialSize" : 12799,
       "fileType" : 8192
+    },
+    "\/styles\/css\/main.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/styles\/css\/main.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/styles\/sass\/main.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/styles\/sass\/main.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/styles\/css\/main.css",
+      "fileType" : 4,
+      "debugStyle" : 2
     },
     "\/icons\/dryx_data_icons.html" : {
       "ignoreWasSetByUser" : 0,
