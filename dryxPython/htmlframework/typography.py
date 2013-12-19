@@ -444,7 +444,9 @@ def a(
         tableIndex=False,
         thumbnail=False,
         pull=False,
-        triggerStyle=False):
+        triggerStyle=False,
+        htmlClass=False,
+        postInBackground=False):
     """Generate an anchor - TBS style
 
     **Key Arguments:**
@@ -453,7 +455,8 @@ def a(
         - ``tableIndex`` -- table index for the dropdown menus [ False | -1 ]
         - ``pull`` -- direction to float the link (esp if image)
         - ``triggerStyle`` -- link to be used as a dropDown or tab trigger? [ False | "dropdown" | "tab" | "thumbnail" ]
-
+        - ``htmlClass`` -- the class of the link
+        - ``postInBackground`` -- post to the href in the background, to fire data off to a cgi script to action without leaving page
 
     **Return:**
         - ``a`` -- the a
@@ -477,8 +480,16 @@ def a(
     else:
         thumbnail = ""
 
+    if htmlClass is False:
+        htmlClass = ""
+
     if pull:
         pull = "pull-%s" % (pull,)
+
+    if postInBackground is True:
+        postInBackground = "postInBackground"
+    else:
+        postInBackground = ""
 
     if triggerStyle == "dropdown":
         triggerClass = "dropdown-toggle"
@@ -489,8 +500,8 @@ def a(
     else:
         triggerToggle = ""
 
-    a = """<a %s href="%s" class="%s %s %s" id="  " %s>%s%s</a>""" % (
-        tableIndex, href, triggerClass, thumbnail, pull, triggerToggle, content, dropdownCaret)
+    a = """<a %s href="%s" class="%s %s %s %s %s" id="  " %s>%s%s</a>""" % (
+        tableIndex, href, triggerClass, thumbnail, pull, htmlClass, postInBackground, triggerToggle, content, dropdownCaret)
 
     return a
 

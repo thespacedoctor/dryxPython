@@ -238,40 +238,40 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000347}}
 a {
   color: #268bd2;
   text-decoration: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000347}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000352}}
 a:hover,
 a:focus {
   color: #1a6091;
   text-decoration: underline; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000323}}
 #wrapper a {
   outline: 0;
   text-decoration: none;
   padding: 0;
   border-bottom: 1px dashed;
   color: #268bd2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000330}}
   #wrapper a:hover, #wrapper a:active {
     color: #268bd2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000338}}
 a[href$=jpg], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=gif], a[href$=tiff] {
   border: 0 none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000323}}
 #wrapper a {
   outline: 0;
   text-decoration: none;
   padding: 0;
   border-bottom: 1px dashed;
   color: #268bd2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000330}}
   #wrapper a:hover, #wrapper a:active {
     color: #268bd2; }
 
@@ -1420,40 +1420,40 @@ span.colortext.grey {
 .alert-block p + p {
   margin-top: 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000342}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000347}}
 a {
   color: #268bd2;
   text-decoration: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000347}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000352}}
 a:hover,
 a:focus {
   color: #1a6091;
   text-decoration: underline; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000323}}
 #wrapper a {
   outline: 0;
   text-decoration: none;
   padding: 0;
   border-bottom: 1px dashed;
   color: #268bd2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000330}}
   #wrapper a:hover, #wrapper a:active {
     color: #268bd2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000338}}
 a[href$=jpg], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=gif], a[href$=tiff] {
   border: 0 none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000323}}
 #wrapper a {
   outline: 0;
   text-decoration: none;
   padding: 0;
   border-bottom: 1px dashed;
   color: #268bd2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000325}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_anchors\.scss}line{font-family:\0000330}}
   #wrapper a:hover, #wrapper a:active {
     color: #268bd2; }
 

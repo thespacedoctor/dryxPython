@@ -289,6 +289,8 @@ def tabbableNavigation(
         contentDictionary={},  # { name : content }
         fadeIn=True,
         direction='top',
+        htmlClass=False,
+        htmlId=False,
 ):
     """ Generate a tabbable Navigation
 
@@ -307,6 +309,14 @@ def tabbableNavigation(
     titleList = ''
     contentList = ''
     count = 0
+
+    if htmlClass is False:
+        htmlClass = ""
+
+    if htmlId is False:
+        htmlId = ""
+    else:
+        htmlId = """id="%(htmlId)s" """ % locals()
 
     for k, v in contentDictionary.iteritems():
         if count == 0:
@@ -330,7 +340,7 @@ def tabbableNavigation(
         count += 1
     tabbableNavigation = \
         """
-        <div class="tabbable" id="  ">
+        <div class="tabbable %s" id="  ">
             <ul class="nav nav-tabs">
                 %s
             </ul>
@@ -338,11 +348,11 @@ def tabbableNavigation(
                 %s
             </div>
         </div>""" \
-        % (titleList, contentList)
+        % (htmlClass, titleList, contentList)
     if direction != 'top':
         tabbableNavigation = \
             """
-            <div class="tabbable tabs-%s" id="  ">
+            <div class="tabbable tabs-%s %s" %s>
                 <div class="tab-content">
                     %s
                 </div>
@@ -350,7 +360,7 @@ def tabbableNavigation(
                     %s
                 </ul>
             </div>""" \
-            % (direction, contentList, titleList)
+            % (direction, htmlClass, htmlId, contentList, titleList)
     return tabbableNavigation
 
 
@@ -489,13 +499,13 @@ def pagination(
 ## AUTHOR : DRYX
 def is_navStyle_active(
         log,
-        bodyId,
+        thisPageName,
         thisPageId):
     """is navStyle active
 
     **Key Arguments:**
         - ``log`` -- logger
-        - ``bodyId`` -- the bodyId of the page
+        - ``thisPageName`` -- the thisPageName of the page
         - ``thisPageId`` -- the Id of this page
 
     **Return:**
@@ -512,7 +522,7 @@ def is_navStyle_active(
     log.info('starting the ``is_navStyle_active`` function')
     ## VARIABLES ##
 
-    if bodyId == thisPageId:
+    if thisPageName == thisPageId:
         navStyle = "active"
     else:
         navStyle = False

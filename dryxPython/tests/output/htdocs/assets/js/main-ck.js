@@ -10147,6 +10147,21 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }(window.jQuery);
 
 
+// _dryx_animations.js
+// ===================
+// Author: Dave Young
+// Date created: December 18, 2013
+// Summary: Some animations for my pages
+var fade_and_hide = function (element) {
+    console.log('fade and hide animation triggered');
+
+    element.animate({
+        opacity: 0.25
+    }, 150);
+    element.delay(600).slideUp(300);
+}
+
+
 
 
 /* **********************************************
@@ -10258,6 +10273,9 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   })
 
 }(window.jQuery);
+
+
+
 
 
 /* **********************************************

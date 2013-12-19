@@ -422,7 +422,8 @@ def form(
         formType="inline",
         postToScript="",
         htmlId=False,
-        navBarPull=False):
+        navBarPull=False,
+        postInBackground=False):
     """Generate a form - TBS style
 
     **Key Arguments:**
@@ -431,6 +432,7 @@ def form(
         - ``postToScript`` -- the script to post the form values to
         - ``htmlId`` -- the id for the form
         - ``navBarPull`` -- align the form is in a navBar [ false | right | left ]
+        - ``postInBackground`` -- submit form in background without refreshing page
 
     **Return:**
         - ``inlineForm`` -- the inline form
@@ -442,6 +444,11 @@ def form(
             falseList[i] = ""
 
     [navBarPull, ] = falseList
+
+    if postInBackground is True:
+        postInBackground = "postInBackground"
+    else:
+        postInBackground = ""
 
     if navBarPull:
         navBarPull = "pull-%s" % (navBarPull,)
@@ -463,8 +470,8 @@ def form(
     else:
         htmlId = ""
 
-    form = """<form class="%s %s" %s action="%s" method="post" target="_blank">%s%s</form>""" % (
-        formType, navBarPull, htmlId, postToScript, content, htmlInput)
+    form = """<form class="%s %s %s" %s action="%s" method="post" target="_blank">%s%s</form>""" % (
+        formType, navBarPull, postInBackground, htmlId, postToScript, content, htmlInput)
 
     return form
 
@@ -871,7 +878,7 @@ def select(
 
     options = ""
     for option in optionList:
-        options += """<option>%s</option>""" % (option,)
+        options += """<option value="%(option)s">%(option)s</option>""" % locals()
 
     if required:
         required = """required"""
@@ -886,9 +893,9 @@ def select(
         disabledId = ""
 
     select = """
-        <select %s class"%s" id="%s%s" %s %s>
+        <select %s name="%s" class="%s" id="%s%s" %s %s>
             %s
-        </select>%s%s""" % (multiple, span, disabledId, htmlId, required, disabled, options, inlineHelpText, blockHelpText)
+        </select>%s%s""" % (multiple, htmlId, span, disabledId, htmlId, required, disabled, options, inlineHelpText, blockHelpText)
 
     return select
 
@@ -902,7 +909,8 @@ def radio(
         htmlId=False,
         inlineHelpText=False,
         blockHelpText=False,
-        disabled=False):
+        disabled=False,
+        checked=False):
     """Generate a radio - TBS style
 
     **Key Arguments:**
@@ -912,6 +920,7 @@ def radio(
         - ``inlineHelpText`` -- inline and block level support for help text that appears around form controls
         - ``blockHelpText`` -- a longer block of help text that breaks onto a new line and may extend beyond one line
         - ``disabled`` -- add the disabled attribute on an input to prevent user input
+        - ``checked`` -- is the radio button checked by default
 
     **Return:**
         - ``radio`` -- the radio
@@ -933,14 +942,19 @@ def radio(
         disabled = ""
         disabledId = ""
 
+    if checked is False:
+        checked = ""
+    else:
+        checked = "checked"
+
     if not htmlId:
         htmlId = ""
 
     radio = """
         <label class="radio">
-          <input type="radio" name="optionsRadios" id="optionsRadios%s %s %s" value="option%s" checked %s>
-            %s
-        </label>%s%s""" % (optionNumber, disabledId, htmlId, optionNumber, disabled, optionText, inlineHelpText, blockHelpText)
+          <input type="radio" name="%(htmlId)s" id="%(htmlId)s %(disabledId)s %(htmlId)s" value="%(optionText)s" %(checked)s %(disabled)s>
+            %(optionText)s
+        </label>%(inlineHelpText)s%(inlineHelpText)s""" % locals()
 
     return radio
 

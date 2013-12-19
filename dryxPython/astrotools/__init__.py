@@ -244,6 +244,7 @@ def ra_in_decimal_hours(ra):
 
 def getCurrentMJD():
     """Get the current MJD"""
+    import time
     jd = time.time() / 86400.0 + 2440587.5
     mjd = jd - 2400000.5
     return mjd
