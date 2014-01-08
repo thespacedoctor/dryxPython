@@ -302,9 +302,9 @@ def convert_dictionary_to_mysql_table(
     )
 
     ## CREATE THE TABLE IF IT DOES NOT EXIST
-    if tableExists[0]["count(*)"] != 1:
+    if tableExists[0]["count(*)"] == 0:
         sqlQuery = """
-            CREATE TABLE `%(dbTableName)s `
+            CREATE TABLE `%(dbTableName)s`
             (`primaryId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'An internal counter',
             PRIMARY KEY (`primaryId`))
             ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
