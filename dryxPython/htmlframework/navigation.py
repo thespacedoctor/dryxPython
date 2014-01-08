@@ -291,6 +291,7 @@ def tabbableNavigation(
         direction='top',
         htmlClass=False,
         htmlId=False,
+        uniqueNavigationId=False
 ):
     """ Generate a tabbable Navigation
 
@@ -298,6 +299,7 @@ def tabbableNavigation(
         - ``contentDictionary`` -- the content dictionary { name : content }
         - ``fadeIn`` -- make tabs fade in
         - ``direction`` -- the position of the tabs [ above | below | left | right ]
+        - ``uniqueNavigationId`` -- a unique id for this navigation block if more than one on page
 
     **Return:**
         - ``tabbableNavigation`` -- the tabbableNavigation """
@@ -318,25 +320,28 @@ def tabbableNavigation(
     else:
         htmlId = """id="%(htmlId)s" """ % locals()
 
+    if uniqueNavigationId is False:
+        uniqueNavigationId = ""
+
     for k, v in contentDictionary.iteritems():
         if count == 0:
-            titleList += """<li class="active"><a href="#tab%s" data-toggle="tab">%s</a></li>""" % (
-                count, k)
+            titleList += """<li class="active"><a href="#tab%s%s" data-toggle="tab">%s</a></li>""" % (
+                uniqueNavigationId, count, k)
             contentList += \
                 """
-                <div class="tab-pane active %s" id="tab%s">
+                <div class="tab-pane active %s" id="tab%s%s">
                     <p>%s</p>
                 </div>""" \
-                % (fadeIn, count, v)
+                % (fadeIn, uniqueNavigationId, count, v)
         else:
-            titleList += """<li><a href="#tab%s" data-toggle="tab">%s</a></li>""" % (
-                count, k)
+            titleList += """<li><a href="#tab%s%s" data-toggle="tab">%s</a></li>""" % (
+                uniqueNavigationId, count, k)
             contentList += \
                 """
-                <div class="tab-pane %s" id="tab%s">
+                <div class="tab-pane %s" id="tab%s%s">
                     <p>%s</p>
                 </div>""" \
-                % (fadeIn, count, v)
+                % (fadeIn, uniqueNavigationId, count, v)
         count += 1
     tabbableNavigation = \
         """

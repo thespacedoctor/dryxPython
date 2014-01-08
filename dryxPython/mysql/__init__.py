@@ -238,6 +238,7 @@ def convert_dictionary_to_mysql_table(
     from dryxPython import commonutils as dcu
     # import ordereddict as c  # REMOVE WHEN PYTHON 2.7 INSTALLED ON PSDB
     import collections as c
+    import dryxPython.mysql as dms
 
     log.info('starting convert_dictionary_to_mysql_table')
 
@@ -288,22 +289,32 @@ def convert_dictionary_to_mysql_table(
         log.critical(message)
         raise TypeError(message)
 
-    qCreateColumnPreamble = \
-        "IF NOT EXISTS( (SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND COLUMN_NAME='my_additional_column' AND TABLE_NAME='my_table_name') ) THEN"
-    qCreateColumnPostamble = \
-        'PRIMARY KEY (`primaryId`)) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;'
-    # MySQL DOES NOT LIKE COMPOUNDED QUERIES FROM MYSQLDB - CREATE LIST OF
-    # QUERIES INSTEAD
-    qCreateTableCommandList = []
-    qCreateTableCommandList.extend(["""
-                                    SET sql_notes = 0;
-                                    CREATE TABLE IF NOT EXISTS `""" + dbTableName
-                                   + """`
-                                            (`primaryId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'An internal counter',
-                                            PRIMARY KEY (`primaryId`))
-                                            ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
-                                    SET sql_notes = 1;"""
-                                    ])
+    ## TEST IF TABLE EXISTS
+    sqlQuery = """
+        SELECT count(*)
+        FROM information_schema.tables
+        WHERE table_name = '%(dbTableName)s'
+    """ % locals()
+    tableExists = dms.execute_mysql_read_query(
+        sqlQuery=sqlQuery,
+        dbConn=dbConn,
+        log=log
+    )
+
+    ## CREATE THE TABLE IF IT DOES NOT EXIST
+    if tableExists[0]["count(*)"] != 1:
+        sqlQuery = """
+            CREATE TABLE `%(dbTableName)s `
+            (`primaryId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'An internal counter',
+            PRIMARY KEY (`primaryId`))
+            ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=latin1;
+        """ % locals()
+        dms.execute_mysql_write_query(
+            sqlQuery=sqlQuery,
+            dbConn=dbConn,
+            log=log
+        )
+
     reFeedParserClass = re.compile('FeedParserDict')
     reDatetime = re.compile('^[0-9]{4}-[0-9]{2}-[0-9]{2}T')
     reTypeTime = re.compile('struct_time')
@@ -312,27 +323,6 @@ def convert_dictionary_to_mysql_table(
     formattedKeyList = []
     myValues = []
 
-    # CREATE THE TABLE IF IT DOES NOT EXIST YET
-    try:
-        # log.debug("creating the "+dbTableName+" table if it does not exist")
-        for command in qCreateTableCommandList:
-            message = execute_mysql_write_query(
-                command,
-                dbConn,
-                log,
-            )
-    except MySQLdb.Error as e:
-        if e[0] == 1050 and 'already exists' in e[1]:
-            # MYSQL WARNING
-            pass
-        else:
-            log.critial(
-                'could not create the table ' + dbTableName + ' ' + str(e) + '\n')
-            sys.exit(e)
-    except Exception as e:
-        log.critical(
-            'could not create the table ' + dbTableName + ' ' + str(e) + '\n')
-        sys.exit(e)
     # ADD EXTRA COLUMNS TO THE DICTIONARY
     dictionary['dateCreated'] = [
         str(dcu.get_now_sql_datetime()), "date row was created"]

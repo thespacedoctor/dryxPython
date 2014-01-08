@@ -23,18 +23,6 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/styles\/sass\/main.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/sass\/main.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/styles\/css\/main.css",
-      "fileType" : 4,
-      "debugStyle" : 2
-    },
     "\/styles\/css\/print.css" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -43,6 +31,18 @@
       "inputAbbreviatedPath" : "\/styles\/css\/print.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
+    },
+    "\/styles\/sass\/screen.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/styles\/sass\/screen.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/styles\/css\/screen.css",
+      "fileType" : 4,
+      "debugStyle" : 2
     },
     "\/styles\/sass\/ie.scss" : {
       "ignoreWasSetByUser" : 0,
@@ -56,14 +56,17 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/config.rb" : {
+    "\/styles\/sass\/main.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/config.rb",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 32768
+      "inputAbbreviatedPath" : "\/styles\/sass\/main.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/styles\/css\/main.css",
+      "fileType" : 4,
+      "debugStyle" : 2
     },
     "\/icons\/glyphicons-halflings.png" : {
       "ignoreWasSetByUser" : 0,
@@ -85,26 +88,14 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/styles\/sass\/screen.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/sass\/screen.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/styles\/css\/screen.css",
-      "fileType" : 4,
-      "debugStyle" : 2
-    },
-    "\/icons\/dryx_data_icons.css" : {
+    "\/config.rb" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/icons\/dryx_data_icons.css",
+      "inputAbbreviatedPath" : "\/config.rb",
       "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "fileType" : 32768
     },
     "\/icons\/dryx_data_icons.html" : {
       "ignoreWasSetByUser" : 0,
@@ -114,6 +105,15 @@
       "inputAbbreviatedPath" : "\/icons\/dryx_data_icons.html",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
+    },
+    "\/icons\/dryx_data_icons.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/icons\/dryx_data_icons.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
     },
     "\/icons\/glyphicons-halflings-white.png" : {
       "ignoreWasSetByUser" : 0,

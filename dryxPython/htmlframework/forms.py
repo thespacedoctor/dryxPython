@@ -481,12 +481,14 @@ def form(
 ## AUTHOR : DRYX
 def horizontalFormControlGroup(
         content="",
-        validationLevel=False):
+        validationLevel=False,
+        hidden=False):
     """Generate a horizontal form control group (row) - TBS style
 
     **Key Arguments:**
         - ``content`` -- the content
         - ``validationLevel`` -- validation level [ warning | error | info | success ]
+        - ``hidden`` -- hide the CG from the user?
 
     **Return:**
         - ``horizontalFormControlGroup`` -- the horizontal form control group
@@ -499,10 +501,15 @@ def horizontalFormControlGroup(
 
     [validationLevel, ] = falseList
 
+    if hidden:
+      hidden = """hidden"""
+    else:
+      hidden = ""
+
     horizontalFormControlGroup = """
-        <div class="control-group %s">
-            %s
-        </div>""" % (validationLevel, content,)
+        <div class="control-group %(validationLevel)s %(hidden)s">
+            %(content)s
+        </div>""" % locals()
 
     return horizontalFormControlGroup
 
@@ -551,7 +558,8 @@ def formInput(
         blockHelpText=False,
         focusedInputText=False,
         required=False,
-        disabled=False):
+        disabled=False,
+        defaultValue=False):
     """Generate a form input - TBS style
 
     **Key Arguments:**
@@ -572,6 +580,7 @@ def formInput(
         - ``focusedInputText`` -- make the input focused by providing some initial editable input text
         - ``required`` -- required attribute if the field is not optional
         - ``disabled`` -- add the disabled attribute on an input to prevent user input
+        - ``defaultValue`` -- a default value to be passed to action script
 
     **Return:**
         - ``input`` -- the input
@@ -683,13 +692,18 @@ def formInput(
         disabled = ""
         disabledId = ""
 
+    if defaultValue:
+        defaultValue = """value=%(defaultValue)s """ % locals()
+    else:
+        defaultValue = ""
+
     formInput = """
         <div class="%s %s %s">
             %s
-            <input class="%s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s">
+            <input class="%s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s" %s>
             %s
         </div>%s%s
-        """ % (prependClass, appendClass, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, step, placeholder, required, disabled, htmlId, appendContent, inlineHelpText, blockHelpText)
+        """ % (prependClass, appendClass, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, step, placeholder, required, disabled, htmlId, defaultValue, appendContent, inlineHelpText, blockHelpText)
 
     # formInput = """<input class="%s %s" id="%s%s%s%s" value="%s" type="%s" placeholder="%s" %s %s>""" % (span, searchClass, htmlId, inputId, focusId, disabledId, focusedInput, ttype, placeholder, required, disabled)
 
@@ -702,6 +716,7 @@ def formInput(
 def textarea(
         rows="",
         span=2,
+        placeholder="",
         htmlId=False,
         inlineHelpText=False,
         blockHelpText=False,
@@ -713,6 +728,7 @@ def textarea(
     **Key Arguments:**
         - ``rows`` -- the number of rows the text area should span
         - ``span`` -- column span
+        - ``placeholder`` -- the placeholder text
         - ``htmlId`` -- html id for item
         - ``inlineHelpText`` -- inline and block level support for help text that appears around form controls
         - ``blockHelpText`` -- a longer block of help text that breaks onto a new line and may extend beyond one line
@@ -759,8 +775,8 @@ def textarea(
     if not htmlId:
         htmlId = ""
 
-    textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s></textarea>%s%s""" % (
-        rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, inlineHelpText, blockHelpText)
+    textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s placeholder="%s"></textarea>%s%s""" % (
+        rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, placeholder, inlineHelpText, blockHelpText)
 
     return textarea
 
