@@ -322,6 +322,8 @@ def tabbableNavigation(
 
     if uniqueNavigationId is False:
         uniqueNavigationId = ""
+    elif isinstance(uniqueNavigationId, int):
+        uniqueNavigationId = """id%(uniqueNavigationId)s""" % locals()
 
     for k, v in contentDictionary.iteritems():
         if count == 0:

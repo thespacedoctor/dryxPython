@@ -423,7 +423,8 @@ def form(
         postToScript="",
         htmlId=False,
         navBarPull=False,
-        postInBackground=False):
+        postInBackground=False,
+        redirectUrl=False):
     """Generate a form - TBS style
 
     **Key Arguments:**
@@ -433,6 +434,7 @@ def form(
         - ``htmlId`` -- the id for the form
         - ``navBarPull`` -- align the form is in a navBar [ false | right | left ]
         - ``postInBackground`` -- submit form in background without refreshing page
+        - ``redirectUrl`` -- url to redirect to after form is submitted
 
     **Return:**
         - ``inlineForm`` -- the inline form
@@ -449,6 +451,14 @@ def form(
         postInBackground = "postInBackground"
     else:
         postInBackground = ""
+
+    if redirectUrl is not False:
+        redirectUrl = formInput(
+          ttype='text',  # [ text | password | datetime | datetime-local | date | month | time | week | number | email | url | search | tel | color ]
+          htmlId="redirectURL",
+          defaultValue=redirectUrl,
+          hidden=True
+        )
 
     if navBarPull:
         navBarPull = "pull-%s" % (navBarPull,)
@@ -470,8 +480,8 @@ def form(
     else:
         htmlId = ""
 
-    form = """<form class="%s %s %s" %s action="%s" method="post" target="_blank">%s%s</form>""" % (
-        formType, navBarPull, postInBackground, htmlId, postToScript, content, htmlInput)
+    form = """<form class="%s %s %s" %s action="%s" method="post" target="_blank">%s%s%s</form>""" % (
+        formType, navBarPull, postInBackground, htmlId, postToScript, content, htmlInput, redirectUrl)
 
     return form
 
@@ -559,7 +569,8 @@ def formInput(
         focusedInputText=False,
         required=False,
         disabled=False,
-        defaultValue=False):
+        defaultValue=False,
+        hidden=False):
     """Generate a form input - TBS style
 
     **Key Arguments:**
@@ -581,6 +592,7 @@ def formInput(
         - ``required`` -- required attribute if the field is not optional
         - ``disabled`` -- add the disabled attribute on an input to prevent user input
         - ``defaultValue`` -- a default value to be passed to action script
+        - ``hidden`` -- hide the CG from the user?
 
     **Return:**
         - ``input`` -- the input
@@ -591,6 +603,11 @@ def formInput(
     searchClass = False
     prependClass = False
     appendClass = False
+
+    if hidden:
+      hidden = """hidden"""
+    else:
+      hidden = ""
 
     falseList = [searchBar, span, prepend, prependContent, append,
                  appendContent, inputId, pull, htmlId, appendClass, prependClass]
@@ -700,10 +717,10 @@ def formInput(
     formInput = """
         <div class="%s %s %s">
             %s
-            <input class="%s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s" %s>
+            <input class="%s %s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s" %s>
             %s
         </div>%s%s
-        """ % (prependClass, appendClass, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, step, placeholder, required, disabled, htmlId, defaultValue, appendContent, inlineHelpText, blockHelpText)
+        """ % (prependClass, appendClass, hidden, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, step, placeholder, required, disabled, htmlId, defaultValue, appendContent, inlineHelpText, blockHelpText)
 
     # formInput = """<input class="%s %s" id="%s%s%s%s" value="%s" type="%s" placeholder="%s" %s %s>""" % (span, searchClass, htmlId, inputId, focusId, disabledId, focusedInput, ttype, placeholder, required, disabled)
 
@@ -774,9 +791,14 @@ def textarea(
 
     if not htmlId:
         htmlId = ""
+        name="textarea"
+    else:
+        name = htmlId
 
-    textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s placeholder="%s"></textarea>%s%s""" % (
-        rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, placeholder, inlineHelpText, blockHelpText)
+
+
+    textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s placeholder="%s" name="%s"></textarea>%s%s""" % (
+        rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, placeholder, name, inlineHelpText, blockHelpText)
 
     return textarea
 
