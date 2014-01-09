@@ -228,21 +228,25 @@ def nav_list(
 ## AUTHOR : DRYX
 def searchbox(
     size='medium',
+    htmlId="",
     placeHolder=False,
     button=False,
     buttonSize='small',
     buttonColor='grey',
     navBar=False,
     pull=False,
+    actionScript="#"
 ):
     """Create a Search box
 
     **Key Arguments:**
         - ``size`` -- size = mini | small | medium | large | xlarge | xxlarge
+        - ``htmlId`` -- the html id of the search bar
         - ``placeholder`` -- placeholder text
         - ``button`` -- do you want a search button?
         - ``buttonSize``
         - ``buttonColor``
+        - ``actionScript`` -- the script used to action the search text
 
     **Return:**
         - ``markup`` -- markup for the searchbar """
@@ -264,20 +268,14 @@ def searchbox(
         pull = """pull-%s""" % (pull, )
     else:
         pull = ''
+
     markup = \
         """
-    <form class="form-search pull-right">
-      <input type="text" class="input-%s search-query %s %s" %s>
-      %s
+    <form class="form-search pull-right" action="%(actionScript)s">
+      <input id="%(htmlId)s" name="%(htmlId)s" type="text" class="input-%(size)s search-query %(navBar)s %(pull)s" %(placeHolder)s >
+      %(button)s
     </form>
-    """ \
-        % (
-        size,
-        navBar,
-        pull,
-        placeHolder,
-        button,
-    )
+    """ % locals()
     return markup
 
 

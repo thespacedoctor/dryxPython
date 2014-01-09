@@ -290,19 +290,10 @@ def convert_dictionary_to_mysql_table(
         raise TypeError(message)
 
     ## TEST IF TABLE EXISTS
-    sqlQuery = """
-        SELECT count(*)
-        FROM information_schema.tables
-        WHERE table_name = '%(dbTableName)s'
-    """ % locals()
-    tableExists = dms.execute_mysql_read_query(
-        sqlQuery=sqlQuery,
-        dbConn=dbConn,
-        log=log
-    )
+    tableExists = does_mysql_table_exist(dbConn, log, dbTableName)
 
     ## CREATE THE TABLE IF IT DOES NOT EXIST
-    if tableExists[0]["count(*)"] == 0:
+    if tableExists is False:
         sqlQuery = """
             CREATE TABLE `%(dbTableName)s`
             (`primaryId` bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'An internal counter',
@@ -755,6 +746,54 @@ def add_HTMIds_to_mysql_tables(
                 return -1
     return None
 
+## LAST MODIFIED : January 9, 2014
+## CREATED : January 9, 2014
+## AUTHOR : DRYX
+def does_mysql_table_exist(
+        dbConn,
+        log,
+        dbTableName):
+    """does mysql table exist
+
+    **Key Arguments:**
+        - ``dbConn`` -- mysql database connection
+        - ``log`` -- logger
+        - ``dbTableName`` -- the database tablename
+
+    **Return:**
+        - ``tableExists`` -- True or False
+
+    **Todo**
+        - @review: when complete, clean does_mysql_table_exist function
+        - @review: when complete add logging
+        - @review: when complete, decide whether to abstract function to another module
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+    log.info('starting the ``does_mysql_table_exist`` function')
+    ## TEST THE ARGUMENTS
+
+    ## VARIABLES ##
+    sqlQuery = """
+        SELECT count(*)
+        FROM information_schema.tables
+        WHERE table_name = '%(dbTableName)s'
+    """ % locals()
+    tableExists = execute_mysql_read_query(
+        sqlQuery=sqlQuery,
+        dbConn=dbConn,
+        log=log
+    )
+
+    if tableExists[0]["count(*)"] == 0:
+        tableExists = False
+    else:
+        tableExists = True
+
+    log.info('completed the ``does_mysql_table_exist`` function')
+    return tableExists
 
 ## LAST MODIFIED : December 11, 2012
 ## CREATED : December 11, 2012
