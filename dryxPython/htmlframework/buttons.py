@@ -159,7 +159,8 @@ def button(
         submit=False,
         block=False,
         disable=False,
-        dataToggle=False):
+        dataToggle=False,
+        close=False):
     """Generate a button - TBS style
 
     **Key Arguments:**
@@ -202,6 +203,13 @@ def button(
     else:
         ttype = "button"
 
+    if close is False:
+        close = ""
+        dismiss = ""
+    else:
+        close = "close"
+        dismiss = 'data-dismiss="modal"'
+
     if not dataToggle:
         dataToggle = ""
     else:
@@ -222,8 +230,8 @@ def button(
     else:
         pull = "pull-%s" % (pull,)
 
-    button = """<%s class="btn %s %s %s %s %s" id="%s" %s>%s</%s>""" % (
-        elementOpen, buttonStyle, buttonSize, block, disable, pull, htmlId, dataToggle, buttonText, elementClose)
+    button = """<%s class="btn %s %s %s %s %s %s" id="%s" %s %s>%s</%s>""" % (
+        elementOpen, close, buttonStyle, buttonSize, block, disable, pull, htmlId, dataToggle, dismiss, buttonText, elementClose)
 
     return button
 
@@ -249,13 +257,13 @@ def buttonGroup(
         thisButtonList += "%s" % (button)
         count += 1
 
-    if format is "vertical":
+    if format == "vertical":
         vertical = "btn-group-vertical"
     else:
         vertical = ""
 
     buttonGroup = """
-        <div class="btn-group %s" id="  ">
+        <div class="btn-group %s pull-right" id="  ">
             %s
         </div>""" % (vertical, thisButtonList,)
 

@@ -424,7 +424,9 @@ def form(
         htmlId=False,
         navBarPull=False,
         postInBackground=False,
-        redirectUrl=False):
+        redirectUrl=False,
+        span=False,
+        offset=False):
     """Generate a form - TBS style
 
     **Key Arguments:**
@@ -447,6 +449,16 @@ def form(
 
     [navBarPull, ] = falseList
 
+    if span is False:
+        span = ""
+    else:
+        span = "span%s" % (span,)
+
+    if offset is False:
+        offset = ""
+    else:
+        offset = "offset%s" % (offset,)
+
     if postInBackground is True:
         postInBackground = "postInBackground"
     else:
@@ -454,11 +466,14 @@ def form(
 
     if redirectUrl is not False:
         redirectUrl = formInput(
-          ttype='text',  # [ text | password | datetime | datetime-local | date | month | time | week | number | email | url | search | tel | color ]
-          htmlId="redirectURL",
-          defaultValue=redirectUrl,
-          hidden=True
+            # [ text | password | datetime | datetime-local | date | month | time | week | number | email | url | search | tel | color ]
+            ttype='text',
+            htmlId="redirectURL",
+            defaultValue=redirectUrl,
+            hidden=True
         )
+    else:
+        redirectUrl = ""
 
     if navBarPull:
         navBarPull = "pull-%s" % (navBarPull,)
@@ -480,8 +495,8 @@ def form(
     else:
         htmlId = ""
 
-    form = """<form class="%s %s %s" %s action="%s" method="post" target="_blank">%s%s%s</form>""" % (
-        formType, navBarPull, postInBackground, htmlId, postToScript, content, htmlInput, redirectUrl)
+    form = """<form class="%s %s %s %s %s" %s action="%s" method="post" target="_blank">%s%s%s</form>""" % (
+        formType, navBarPull, postInBackground, span, offset, htmlId, postToScript, content, htmlInput, redirectUrl)
 
     return form
 
@@ -512,9 +527,9 @@ def horizontalFormControlGroup(
     [validationLevel, ] = falseList
 
     if hidden:
-      hidden = """hidden"""
+        hidden = """hidden"""
     else:
-      hidden = ""
+        hidden = ""
 
     horizontalFormControlGroup = """
         <div class="control-group %(validationLevel)s %(hidden)s">
@@ -605,9 +620,9 @@ def formInput(
     appendClass = False
 
     if hidden:
-      hidden = """hidden"""
+        hidden = """hidden"""
     else:
-      hidden = ""
+        hidden = ""
 
     falseList = [searchBar, span, prepend, prependContent, append,
                  appendContent, inputId, pull, htmlId, appendClass, prependClass]
@@ -791,11 +806,9 @@ def textarea(
 
     if not htmlId:
         htmlId = ""
-        name="textarea"
+        name = "textarea"
     else:
         name = htmlId
-
-
 
     textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s placeholder="%s" name="%s"></textarea>%s%s""" % (
         rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, placeholder, name, inlineHelpText, blockHelpText)
@@ -1132,7 +1145,8 @@ def modal(
         modalHeaderContent="",
         modalBodyContent="",
         modalFooterContent="",
-        htmlId=False
+        htmlId=False,
+        centerContent=False
 ):
     """generate a modal to by generated with a js event
 
@@ -1160,19 +1174,24 @@ def modal(
     else:
         htmlId = """id="%s" """ % (htmlId,)
 
+    if centerContent is False:
+        centerContent = ""
+    else:
+        centerContent = "center-content"
+
     ## VARIABLES ##
     modal = """<div class="modal hide fade" %s>
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3>%s</h3>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body %s">
                     %s
                   </div>
                   <div class="modal-footer">
                     %s
                   </div>
-                </div>""" % (htmlId, modalHeaderContent, modalBodyContent, modalFooterContent)
+                </div>""" % (htmlId, modalHeaderContent, centerContent, modalBodyContent, modalFooterContent)
 
     return modal
 

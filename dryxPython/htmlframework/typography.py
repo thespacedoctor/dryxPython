@@ -694,12 +694,12 @@ def coloredText(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    if pull:
+    if pull is not False:
         pull = """pull-%s""" % (pull,)
     else:
         pull = ""
 
-    if size:
+    if size is not False:
         size = """size-%s""" % (size,)
     else:
         size = ""
