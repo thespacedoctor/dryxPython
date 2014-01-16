@@ -32,15 +32,15 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/styles\/sass\/screen.scss" : {
+    "\/styles\/sass\/main.scss" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/sass\/screen.scss",
+      "inputAbbreviatedPath" : "\/styles\/sass\/main.scss",
       "outputStyle" : 0,
       "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/styles\/css\/screen.css",
+      "outputAbbreviatedPath" : "\/styles\/css\/main.css",
       "fileType" : 4,
       "debugStyle" : 2
     },
@@ -56,17 +56,14 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/styles\/sass\/main.scss" : {
+    "\/config.rb" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/sass\/main.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/styles\/css\/main.css",
-      "fileType" : 4,
-      "debugStyle" : 2
+      "inputAbbreviatedPath" : "\/config.rb",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 32768
     },
     "\/icons\/glyphicons-halflings.png" : {
       "ignoreWasSetByUser" : 0,
@@ -88,23 +85,17 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/config.rb" : {
+    "\/styles\/sass\/screen.scss" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
+      "ignore" : 1,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/config.rb",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 32768
-    },
-    "\/icons\/dryx_data_icons.html" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/icons\/dryx_data_icons.html",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 2048
+      "inputAbbreviatedPath" : "\/styles\/sass\/screen.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/styles\/css\/screen.css",
+      "fileType" : 4,
+      "debugStyle" : 2
     },
     "\/icons\/dryx_data_icons.css" : {
       "ignoreWasSetByUser" : 0,
@@ -115,16 +106,14 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
-    "\/icons\/glyphicons-halflings-white.png" : {
+    "\/icons\/dryx_data_icons.html" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
-      "initialSize" : 8777,
-      "fileType" : 8192
+      "inputAbbreviatedPath" : "\/icons\/dryx_data_icons.html",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 2048
     },
     "\/js\/holder.js" : {
       "ignoreWasSetByUser" : 0,
@@ -137,6 +126,26 @@
       "outputAbbreviatedPath" : "\/js\/holder-ck.js",
       "fileType" : 64
     },
+    "\/icons\/glyphicons-halflings-white.png" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
+      "initialSize" : 8777,
+      "fileType" : 8192
+    },
+    "\/styles\/css\/ie.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/styles\/css\/ie.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/js\/main-ck.js" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 1,
@@ -147,15 +156,6 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/main-ck-ck.js",
       "fileType" : 64
-    },
-    "\/styles\/css\/ie.css" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/css\/ie.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
     },
     "\/js\/main.js" : {
       "ignoreWasSetByUser" : 0,
