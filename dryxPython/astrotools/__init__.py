@@ -17,6 +17,8 @@ notes:
 ################# GLOBAL IMPORTS ####################
 import math
 import check_for_sdss_coverage
+import declination_sexegesimal_to_decimal
+import ra_sexegesimal_to_decimal
 # SOME USEFUL CONSTANTS
 PARSEC_2_METRES = 3.08567758e16
 PARSEC_2_CMS = PARSEC_2_METRES * 100
@@ -545,6 +547,5 @@ def convert_mpc_to_redshift(
 ##########################################################################
 # PRIVATE (HELPER) FUNCTIONS                                                                #
 ##########################################################################
-
 if __name__ == '__main__':
     main()

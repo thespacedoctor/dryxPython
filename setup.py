@@ -37,7 +37,9 @@ setup(name='dryxPython',
               'dpc-createpythonpackage=dryxPython.packagecreator.createpythonpackage:main',
               'dms_execute_mysql_script=dryxPython.mysql.execute_mysql_script:main',
               'dcu_update_git_repos=dryxPython.commonutils.update_git_repos:main',
-              'dat_check_for_sdss_coverage=dryxPython.astrotools.check_for_sdss_coverage:main'
+              'dat_check_for_sdss_coverage=dryxPython.astrotools.check_for_sdss_coverage:main',
+              'dat_ra_sexegesimal_to_decimal=dryxPython.astrotools.ra_sexegesimal_to_decimal:main',
+              'dat_declination_sexegesimal_to_decimal=dryxPython.astrotools.declination_sexegesimal_to_decimal:main'
           ],
       },
       zip_safe=False)
