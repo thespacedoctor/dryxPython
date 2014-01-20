@@ -68,6 +68,7 @@ def head(
     mainCssFileName="main.css",
     pageTitle="",
     extras="",
+    faviconLocation=False
 ):
     """Generate an html head element for your webpage
 
@@ -76,6 +77,7 @@ def head(
         ``pageTitle`` -- well, the page title!
         ``mainCssFileName`` -- css file name
         ``extras`` -- any extra info to be included in the ``head`` element
+        ``faviconLocation`` -- path to faviconLocation if not in document root
 
     **Return:**
         - ``head`` -- the head """
@@ -84,6 +86,13 @@ def head(
     cssLink = """
         <link rel="stylesheet" href="%s" type="text/css" />
     """ % (cssUrl, )
+
+    if faviconLocation is not False:
+        faviconLocation = """
+            <link rel="shortcut icon" href="%(faviconLocation)s" />
+        """ % locals()
+    else:
+        faviconLocation = ""
 
     head = """
     <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -98,8 +107,9 @@ def head(
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         %s
         %s
+        %s
     </head>
-    """ % (pageTitle, cssLink, extras)
+    """ % (pageTitle, cssLink, extras, faviconLocation)
 
     return head
 
