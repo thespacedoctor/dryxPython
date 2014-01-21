@@ -234,8 +234,12 @@ def dec_to_sex(dec, delimiter=':'):
 
 def coords_dec_to_sex(ra, dec, delimiter=':'):
     """Convert ra and dec in decimal degrees to sexigesimal"""
+    import dryxPython.astrotools as dat
+    ra = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(ra=ra)
+    dec = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+        dec=dec)
 
-    return(ra_to_sex(ra, delimiter), dec_to_sex(dec, delimiter))
+    return ra, dec
 
 
 def ra_in_decimal_hours(ra):
@@ -301,50 +305,17 @@ def getDateFractionMJD(mjd):
     return dateFraction
 
 
-def sexToDec(sexv, ra=False, delimiter=':'):
-    """convert sexigesimal to decimal degrees"""
-    # Note that the approach below only works because there are only two colons
-    # in a sexagesimal representation.
-    degrees = 0
-    minutes = 0
-    seconds = 0
-    decimalDegrees = None
-    sgn = 1
-
-    try:
-        # Look for a minus sign.  Note that -00 is the same as 00.
-
-        (degreesString, minutesString, secondsString) = sexv.split(delimiter)
-
-        if degreesString[0] == '-':
-            sgn = -1
-        else:
-            sgn = 1
-
-        degrees = abs(float(degreesString))
-        minutes = float(minutesString)
-        seconds = float(secondsString)
-        if ra:
-            degrees *= 15.0
-            minutes *= 15.0
-            seconds *= 15.0
-
-        decimalDegrees = (degrees + (minutes / 60.0) + (seconds / 3600.0)) * sgn
-        if not ra and (decimalDegrees < -90.0 or decimalDegrees > 90.0):
-            decimalDegrees = None
-        elif ra and (decimalDegrees < 0.0 or decimalDegrees > 360.0):
-            decimalDegrees = None
-    except ValueError:
-        # Just in case we're passed a dodgy string
-        decimalDegrees = None
-
-    return decimalDegrees
-
-
-def coords_sex_to_dec(ra, dec, delimiter=':'):
+def coords_sex_to_dec(ra, dec):
     """Convert sexagesimal ra and dec to decimal degrees"""
+    import dryxPython.astrotools.declination_sexegesimal_to_decimal
+    import dryxPython.astrotools.ra_sexegesimal_to_decimal
 
-    return(sexToDec(ra, ra=True, delimiter=delimiter), sexToDec(dec, ra=False, delimiter=delimiter))
+    dec = declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+        dec)
+
+    ra = ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(ra)
+
+    return ra, dec
 
 
 def calculate_cartesians(ra, dec):
@@ -367,15 +338,18 @@ def getAngularSeparation(ra1, dec1, ra2, dec2):
     coordinates contains a colon, assume it's in sexagesimal and automatically
     convert into decimal before doing the calculation.
     """
+    import dryxPython.astrotools as dat
 
     if ':' in str(ra1):
-        ra1 = sexToDec(ra1, ra=True)
+        ra1 = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(ra1)
     if ':' in str(dec1):
-        dec1 = sexToDec(dec1, ra=False)
+        dec1 = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+            dec1)
     if ':' in str(ra2):
-        ra2 = sexToDec(ra2, ra=True)
+        ra2 = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(ra2)
     if ':' in str(dec2):
-        dec2 = sexToDec(dec2, ra=False)
+        dec2 = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+            dec2)
 
     angularSeparation = None
 

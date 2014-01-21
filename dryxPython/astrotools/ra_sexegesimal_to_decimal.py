@@ -69,7 +69,6 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ra = ra_sexegesimal_to_decimal(
-        log=log,
         ra=ra,
     )
 
@@ -90,13 +89,11 @@ def main(arguments=None):
 
 
 def ra_sexegesimal_to_decimal(
-    log,
     ra
 ):
     """ra_sexegesimal_to_decimal
 
     **Key Arguments:**
-        - ``log`` -- the logger
         - ``ra`` -- ra in sexegesimal
 
     **Return:**

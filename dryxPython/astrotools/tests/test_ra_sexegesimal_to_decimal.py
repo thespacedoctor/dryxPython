@@ -71,7 +71,6 @@ class test_command_line():
 
     def test_command_line_method_02(self):
         kwargs = {}
-        kwargs["log"] = log
         kwargs["ra"] = "25:12:34.3344"
         nose.tools.assert_raises(
             IOError, ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal, **kwargs)
@@ -79,7 +78,6 @@ class test_command_line():
 
     def test_command_line_method_03(self):
         kwargs = {}
-        kwargs["log"] = log
         kwargs["ra"] = "-5:12:34.3344"
         nose.tools.assert_raises(
             IOError, ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal, **kwargs)

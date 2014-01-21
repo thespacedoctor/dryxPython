@@ -101,7 +101,6 @@ class test_command_line():
 
     def test_command_line_method_08(self):
         kwargs = {}
-        kwargs["log"] = log
         kwargs["dec"] = "-92:12:34.3344"
         nose.tools.assert_raises(
             IOError, declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal, **kwargs)
@@ -109,7 +108,6 @@ class test_command_line():
 
     def test_command_line_method_09(self):
         kwargs = {}
-        kwargs["log"] = log
         kwargs["dec"] = "02:67:34.3344"
         nose.tools.assert_raises(
             IOError, declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal, **kwargs)

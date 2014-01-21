@@ -83,7 +83,7 @@ def dec_to_sex (dec, delimiter = ':'):
       hemisphere = '+'
    else:
       # Unicode minus sign - should be treated as non-breaking by browsers
-      hemisphere = '-' 
+      hemisphere = '-'
       dec *= -1
 
    dec_deg = int(dec)
@@ -202,51 +202,6 @@ def getDateFractionMJD(mjd):
    dateFraction = "%s %s %05.2f" % (year, month, dayFraction)
    return dateFraction
 
-
-def sexToDec (sexv, ra = False, delimiter = ':'):
-   # Note that the approach below only works because there are only two colons
-   # in a sexagesimal representation.
-   degrees = 0
-   minutes = 0
-   seconds = 0
-   decimalDegrees = None
-   sgn = 1
-
-   try:
-      # Look for a minus sign.  Note that -00 is the same as 00.
-
-      (degreesString, minutesString, secondsString) = sexv.split(delimiter)
-
-      if degreesString[0] == '-':
-         sgn = -1
-      else:
-         sgn = 1
-
-      degrees = abs(float(degreesString))
-      minutes = float(minutesString)
-      seconds = float(secondsString)
-      if ra:
-         degrees *= 15.0
-         minutes *= 15.0
-         seconds *= 15.0
-
-      decimalDegrees = (degrees + (minutes / 60.0) + (seconds / 3600.0)) * sgn
-      if not ra and (decimalDegrees < -90.0 or decimalDegrees > 90.0):
-         decimalDegrees = None
-      elif ra and (decimalDegrees < 0.0 or decimalDegrees > 360.0):
-         decimalDegrees = None
-   except ValueError:
-      # Just in case we're passed a dodgy string
-      decimalDegrees = None
-
-   return decimalDegrees
-
-
-def coords_sex_to_dec (ra, dec, delimiter = ':'):
-
-   return(sexToDec(ra, ra=True ,delimiter=delimiter), sexToDec(dec, ra=False, delimiter=delimiter))
-
-
 # A wrapper for the C++ ConeSearch utility.  In lieu of creating a pure Python facility.
 # Note that this is desiged to lookup IDs that are INTEGERS.
 def wrapConeSearch(dbuser, dbpass, dbname, dbhost, tablename, ra, dec, radius):
@@ -307,47 +262,6 @@ pi = (4*math.atan(1.0))
 DEG_TO_RAD_FACTOR = pi/180.0
 RAD_TO_DEG_FACTOR = 180.0/pi
 
-def getAngularSeparation(ra1, dec1, ra2, dec2):
-   """
-   Calculate the angular separation between two objects.  If either set of
-   coordinates contains a colon, assume it's in sexagesimal and automatically
-   convert into decimal before doing the calculation.
-   """
-
-   if ':' in str(ra1):
-      ra1 = sexToDec(ra1, ra=True)
-   if ':' in str(dec1):
-      dec1 = sexToDec(dec1, ra=False)
-   if ':' in str(ra2):
-      ra2 = sexToDec(ra2, ra=True)
-   if ':' in str(dec2):
-      dec2 = sexToDec(dec2, ra=False)
-
-   angularSeparation = None
-
-   if ra1 and ra2 and dec1 and dec2:
-
-      aa  = (90.0-dec1)*DEG_TO_RAD_FACTOR
-      bb  = (90.0-dec2)*DEG_TO_RAD_FACTOR
-      cc  = (ra1-ra2)*DEG_TO_RAD_FACTOR
-      one = math.cos(aa)*math.cos(bb)
-      two = math.sin(aa)*math.sin(bb)*math.cos(cc)
-
-      # Because acos() returns NaN outside the ranges of -1 to +1
-      # we need to check this.  Double precision decimal places
-      # can give values like 1.0000000000002 which will throw an
-      # exception.
-
-      three = one+two
-      if (three > 1.0):
-         three = 1.0
-      if (three < -1.0):
-         three = -1.0
-
-      angularSeparation = math.acos(three)*RAD_TO_DEG_FACTOR*3600.0
-
-   return angularSeparation
-
 
 # 2012-02-29 KWS Python Cone Search code - depends on new htmCircle Python/C++ module.
 QUICK = 1
@@ -402,12 +316,12 @@ CAT_ID_RA_DEC_COLS = {
    'tcs_cat_sdss_lrg': [['Objid', 'ra', 'dec_'],33],
    'tcs_cat_slacs': [['Objid', 'ra', 'dec_'],34],
    'tcs_cat_milliquas': [['id', 'ra_deg', 'dec_deg', 'z'],35],
-   'tcs_cat_sdss_dr9_photo_stars_galaxies': [['objID', 'ra', 'dec_', 'z_'],36], 
-   'tcs_cat_v_sdss_dr9_galaxies_notspec': [['objID', 'ra', 'dec_', 'z_'],36], 
-   'tcs_cat_v_sdss_dr9_stars': [['objID', 'ra', 'dec_'],36], 
-   'tcs_cat_sdss_dr9_spect_galaxies_qsos': [['objID', 'ra', 'dec_', 'z_'],37], 
-   'tcs_cat_v_sdss_dr9_spect_galaxies': [['objID', 'ra', 'dec_', 'z_'],37], 
-   'tcs_cat_v_sdss_dr9_spect_qsos': [['objID', 'ra', 'dec_', 'z_'],37], 
+   'tcs_cat_sdss_dr9_photo_stars_galaxies': [['objID', 'ra', 'dec_', 'z_'],36],
+   'tcs_cat_v_sdss_dr9_galaxies_notspec': [['objID', 'ra', 'dec_', 'z_'],36],
+   'tcs_cat_v_sdss_dr9_stars': [['objID', 'ra', 'dec_'],36],
+   'tcs_cat_sdss_dr9_spect_galaxies_qsos': [['objID', 'ra', 'dec_', 'z_'],37],
+   'tcs_cat_v_sdss_dr9_spect_galaxies': [['objID', 'ra', 'dec_', 'z_'],37],
+   'tcs_cat_v_sdss_dr9_spect_qsos': [['objID', 'ra', 'dec_', 'z_'],37],
    'tcs_cat_rosat_faint_1x29': [['id', 'ra_deg', 'dec_deg'],38],
    'tcs_cat_rosat_bright_1x10': [['id', 'ra_deg', 'dec_deg'],39],
    'tcs_cfa_detections': [['cfa_designation', 'raDeg', 'decDeg'],40],
@@ -427,6 +341,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel = 16, queryType = QUICK, con
 
    # 2012-02-02 KWS Introduced a new SWIG htmCircle library for cone searching
    import htmCircle
+   import dryxPython.astrotools as dat
 
    # Attempt a cone search of the given tableName.  Use internal models if conn
    # is None, otherwise use a given database connection (allows it to be called
@@ -444,12 +359,10 @@ def coneSearch(ra, dec, radius, tableName, htmLevel = 16, queryType = QUICK, con
    # Check that RA and DEC are in decimal degrees.  If not, assume sexagesimal and attempt to convert
 
    if ':' in str(ra):
-      ra = sexToDec(ra, ra=True)
-
+      ra = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(ra)
 
    if ':' in str(dec):
-      dec = sexToDec(dec, ra=False)
-
+      dec = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(dec)
 
    try:
       quickColumns = CAT_ID_RA_DEC_COLS[tableName][0]
@@ -468,7 +381,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel = 16, queryType = QUICK, con
    elif queryType == COUNT:
       columns = ['count(*) number']
 
-   query = 'select ' + ','.join(columns) + ' from %s' % tableName + htmWhereClause + cartesianClause 
+   query = 'select ' + ','.join(columns) + ' from %s' % tableName + htmWhereClause + cartesianClause
    #print query
 
    results = []
@@ -625,14 +538,14 @@ J2000toGalactic = [
 def transform ( coords, matrix ):
    pi = math.pi
 
-   r0 = calculate_cartesians(coords[0], coords[1]) 
+   r0 = calculate_cartesians(coords[0], coords[1])
 
    s0 = [
-         r0[0]*matrix[0] + r0[1]*matrix[1] + r0[2]*matrix[2], 
-         r0[0]*matrix[3] + r0[1]*matrix[4] + r0[2]*matrix[5], 
+         r0[0]*matrix[0] + r0[1]*matrix[1] + r0[2]*matrix[2],
+         r0[0]*matrix[3] + r0[1]*matrix[4] + r0[2]*matrix[5],
          r0[0]*matrix[6] + r0[1]*matrix[7] + r0[2]*matrix[8]
-        ] 
- 
+        ]
+
    r = math.sqrt ( s0[0]*s0[0] + s0[1]*s0[1] + s0[2]*s0[2] )
 
    result = [ 0.0, 0.0 ]

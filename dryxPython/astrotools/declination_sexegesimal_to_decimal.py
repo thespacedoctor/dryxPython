@@ -79,7 +79,6 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     dec = declination_sexegesimal_to_decimal(
-        log=log,
         dec=dec,
     )
 
@@ -100,14 +99,11 @@ def main(arguments=None):
 
 
 def declination_sexegesimal_to_decimal(
-    log,
     dec
 ):
     """declination_sexegesimal_to_decimal
 
     **Key Arguments:**
-        # copy usage method(s) here and select the following snippet from the command palette:
-        - ``log`` -- the logger
         - ``dec`` -- declination in sexegesimal
 
     **Return:**

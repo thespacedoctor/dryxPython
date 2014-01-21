@@ -338,6 +338,8 @@ def parse_atels(dbConn, log, mdFolder):
     import utils as u
     import dryxPython.commonutils as cu
     import dryxPython.astrotools as at
+    import dryxPython.astrotools.declination_sexegesimal_to_decimal
+    import dryxPython.astrotools.ra_sexegesimal_to_decimal
 
     ################ > VARIABLE SETTINGS ######
     ## METRICS TO FILTER ATELS
@@ -592,8 +594,10 @@ def parse_atels(dbConn, log, mdFolder):
                 item.group('raHrs'), item.group('raMin'), raSec)
             _decSex = """%s:%s:%s""" % (
                 item.group('decDeg'), item.group('decMin'), decSec)
-            raDegrees = u.sexToDec(_raSex, ra=True)
-            decDegrees = u.sexToDec(_decSex)
+            raDegrees = ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
+                ra=_raSex)
+            decDegrees = declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+                dec=_decSex)
             sList.extend([[str(raDegrees), str(decDegrees)]])
             userText = userText.replace(
                 item.group('raSex'), " **<font color=blue>" + item.group('raSex') + " </font>** ")
@@ -632,8 +636,10 @@ def parse_atels(dbConn, log, mdFolder):
                 item.group('raHrs'), item.group('raMin'), raSec)
             _decSex = """%s:%s:%s""" % (
                 item.group('decDeg'), item.group('decMin'), decSec)
-            raDegrees = u.sexToDec(_raSex, ra=True)
-            decDegrees = u.sexToDec(_decSex)
+            raDegrees = ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
+                ra=_raSex)
+            decDegrees = declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+                dec=_decSex)
             sList.extend([[str(raDegrees), str(decDegrees)]])
             userText = userText.replace(
                 item.group('raSex'), " **<font color=#dc322f>" + item.group('raSex') + " </font>** ")
