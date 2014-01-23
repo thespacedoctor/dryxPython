@@ -413,10 +413,11 @@ def searchForm(
 
     return searchForm
 
-
 ## LAST MODIFIED : April 16, 2013
 ## CREATED : April 16, 2013
 ## AUTHOR : DRYX
+
+
 def form(
         content="",
         formType="inline",
@@ -426,7 +427,8 @@ def form(
         postInBackground=False,
         redirectUrl=False,
         span=False,
-        offset=False):
+        offset=False,
+        openInNewTab=False):
     """Generate a form - TBS style
 
     **Key Arguments:**
@@ -486,17 +488,16 @@ def form(
     if formType == "navbar-search":
         htmlInput += """<input type="text" class="search-query" placeholder="search">"""
 
-    if formType == "navbar-form":
-        htmlInput += """<input type="text" class="span2">
-        <button type="submit" class="btn">Submit</button>"""
-
     if htmlId:
         htmlId = """id="%s" """ % (htmlId,)
     else:
         htmlId = ""
 
-    form = """<form class="%s %s %s %s %s" %s action="%s" method="post" target="_blank">%s%s%s</form>""" % (
-        formType, navBarPull, postInBackground, span, offset, htmlId, postToScript, content, htmlInput, redirectUrl)
+    if openInNewTab is not False:
+        openInNewTab = """ target="_blank" """
+
+    form = """<form class="%s %s %s %s %s" %s action="%s" method="post" %s>%s%s%s</form>""" % (
+        formType, navBarPull, postInBackground, span, offset, htmlId, postToScript, openInNewTab, content, htmlInput, redirectUrl)
 
     return form
 
@@ -730,9 +731,9 @@ def formInput(
         defaultValue = ""
 
     formInput = """
-        <div class="%s %s %s">
+        <div class="%s %s %s %s">
             %s
-            <input class="%s %s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s" %s>
+            <input class="%s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s" %s>
             %s
         </div>%s%s
         """ % (prependClass, appendClass, hidden, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, step, placeholder, required, disabled, htmlId, defaultValue, appendContent, inlineHelpText, blockHelpText)
@@ -946,7 +947,8 @@ def select(
     select = """
         <select %s name="%s" class="%s" id="%s%s" %s %s>
             %s
-        </select>%s%s""" % (multiple, htmlId, span, disabledId, htmlId, required, disabled, options, inlineHelpText, blockHelpText)
+        </select>%s%s
+        """ % (multiple, htmlId, span, disabledId, htmlId, required, disabled, options, inlineHelpText, blockHelpText)
 
     return select
 

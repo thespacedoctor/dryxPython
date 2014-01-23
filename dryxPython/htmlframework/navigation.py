@@ -376,21 +376,25 @@ def tabbableNavigation(
 def navBar(
     brand='',
     contentList=[],
+    contentListPull=False,
     dividers=False,
     forms=False,
     fixedOrStatic=False,
     location='top',
     responsive=False,
-    dark=False
+    dark=False,
+    transparent=False
 ):
     """ Generate a navBar - TBS style
 
     **Key Arguments:**
         - ``brand`` -- the website brand [ image | text ]
         - ``contentList`` -- the content list of li and dropdowns
+        - ``contentListPull`` -- False, right, left
         - ``fixedOrStatic`` -- Fix the navbar to the top or bottom of the viewport, or create a static full-width navbar that scrolls away with the page [ False | fixed | static ]
         - ``location`` -- location of the navigation bar if fixed or static
         - ``dark`` -- Modify the look of the navbar by making it dark
+        - ``transparent`` -- make the bar see-through
 
     **Return:**
         - ``navBar`` -- the navBar """
@@ -408,6 +412,9 @@ def navBar(
     # contentList = ''
     count = 0
 
+    if contentListPull is not False:
+        contentListPull = "pull-%(contentListPull)s" % locals()
+
     for item in contentList:
         titleList += item + dividers
 
@@ -418,10 +425,10 @@ def navBar(
     #     else:
     #         titleList += """<li><a href="%s">%s</a></li>%s""" % (v, k, dividers)
     titleList = """
-    <ul class="nav" id="  ">
+    <ul class="nav %s" id="  ">
         %s
     </ul>
-    """ % (titleList, )
+    """ % (contentListPull, titleList, )
 
     formList = ""
     if forms:
@@ -448,9 +455,15 @@ def navBar(
         dark = "navbar-inverse"
     else:
         dark = ""
+
+    if transparent is True:
+        transparent = "navbar-transparent"
+    else:
+        transparent = ""
+
     navBar = \
         """
-        <div class="navbar %s %s">
+        <div class="navbar %s %s %s">
           <div class="navbar-inner">
             %s
             %s
@@ -458,7 +471,7 @@ def navBar(
           </div>
         </div>
         """ \
-        % (fixedOrStatic, dark, brand, titleList, formList)
+        % (fixedOrStatic, dark, transparent, brand, titleList, formList)
     return navBar
 
 

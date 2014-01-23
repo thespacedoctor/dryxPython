@@ -262,16 +262,14 @@ def buttonGroup(
     else:
         vertical = ""
 
-    buttonGroup = """
-        <div class="btn-group %s pull-right" id="  ">
-            %s
-        </div>""" % (vertical, thisButtonList,)
-
+    toolbar = ""
     if format == "toolbar":
-        buttonGroup = """
-        <div class="btn-toolbar">
+        toolbar = "btn-toolbar"
+
+    buttonGroup = """
+        <div class="btn-group %s %s" id="  ">
             %s
-        </div>""" % (buttonGroup,)
+        </div>""" % (vertical, toolbar, thisButtonList,)
 
     return buttonGroup
 
