@@ -351,12 +351,19 @@ def convert_dictionary_to_mysql_table(
             #     value[0] = value[0].replace('"', """'""")
             # JOIN THE VALUES TOGETHER IN A LIST - EASIER TO GENERATE THE MYSQL
             # COMMAND LATER
+            if isinstance(value, str):
+                value = value.replace('"', '\\"')
+                udata = value.decode("utf-8")
+                value = udata.encode("ascii", "ignore")
+                log.debug('udata: %(udata)s' % locals())
+
             if isinstance(value, list) and isinstance(value[0], unicode):
                 myValues.extend(['%s' % value[0].strip()])
             elif isinstance(value, list):
                 myValues.extend(['%s' % (value[0], )])
             else:
                 myValues.extend(['%s' % (value, )])
+
             # CHECK IF COLUMN EXISTS YET
             colExists = \
                 "SELECT *\
@@ -749,6 +756,8 @@ def add_HTMIds_to_mysql_tables(
 ## LAST MODIFIED : January 9, 2014
 ## CREATED : January 9, 2014
 ## AUTHOR : DRYX
+
+
 def does_mysql_table_exist(
         dbConn,
         log,
@@ -798,6 +807,7 @@ def does_mysql_table_exist(
 ## LAST MODIFIED : December 11, 2012
 ## CREATED : December 11, 2012
 ## AUTHOR : DRYX
+
 
 def get_db_table_column_names(
     dbConn,

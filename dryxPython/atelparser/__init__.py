@@ -92,7 +92,7 @@ def download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirector
                 - None
     """
     ## > IMPORTS ##
-    import dryxPython.webcrawlers as wc
+    import dryxPython.webcrawlers as dwc
 
     ###########################################################
     # >ACTION(S)                                              #
@@ -106,10 +106,19 @@ def download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirector
     try:
         log.info("downloading all ATels from %s to %s" %
                  (lowerAtelIndex, upperAtelIndex))
-        localUrls = wc.multiWebDocumentDownloader(
-            urlList, downloadDirectory, log, dbConn, 0)
+        localUrls = dwc.multiWebDocumentDownloader(
+            urlList,
+            downloadDirectory,
+            log,
+            timeStamp=1,
+            timeout=180,
+            concurrentDownloads=10,
+            resetFilename=False,
+            credentials=False
+        )
     except Exception, e:
         log.error("could not download atels : " + str(e) + "\n")
+        sys.exit(0)
 
     return localUrls
 
@@ -179,11 +188,10 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
             log.error(
                 "could not download the html files of the next %s atels - failed with this error: %s " %
                 (checkRange, str(e),))
-            return -1
+            sys.exit(0)
 
         # LOOP THROUGH THE FILES AND ADD THE VARIOUS HTML ELEMENTS AND TAGS TO
         # MARSHALL DB
-
         for url in localUrls:
             rf = open(url, 'r')
             html = rf.read()
@@ -301,6 +309,8 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
             elementDict['backRefList'] = backRefList
 
             ## ADD THE ATEL TO THE DATABASE
+            m.convert_dictionary_to_mysql_table(
+                dbConn, log, elementDict, dbTableName, uniqueKeyList)
             try:
                 log.debug("attempting to convert ATELs to MySQL table")
                 m.convert_dictionary_to_mysql_table(
@@ -308,7 +318,7 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
             except Exception, e:
                 log.critical(
                     "could not convert ATELs to MySQL table - failed with this error: %s " % (str(e),))
-                return -1
+                sys.exit(0)
 
             rf.close()
 
@@ -335,11 +345,8 @@ def parse_atels(dbConn, log, mdFolder):
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
     import dryxPython.mysql as m
-    import utils as u
     import dryxPython.commonutils as cu
-    import dryxPython.astrotools as at
-    import dryxPython.astrotools.declination_sexegesimal_to_decimal
-    import dryxPython.astrotools.ra_sexegesimal_to_decimal
+    import dryxPython.astrotools as dat
 
     ################ > VARIABLE SETTINGS ######
     ## METRICS TO FILTER ATELS
@@ -594,9 +601,9 @@ def parse_atels(dbConn, log, mdFolder):
                 item.group('raHrs'), item.group('raMin'), raSec)
             _decSex = """%s:%s:%s""" % (
                 item.group('decDeg'), item.group('decMin'), decSec)
-            raDegrees = ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
+            raDegrees = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
                 ra=_raSex)
-            decDegrees = declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+            decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
                 dec=_decSex)
             sList.extend([[str(raDegrees), str(decDegrees)]])
             userText = userText.replace(
@@ -636,9 +643,9 @@ def parse_atels(dbConn, log, mdFolder):
                 item.group('raHrs'), item.group('raMin'), raSec)
             _decSex = """%s:%s:%s""" % (
                 item.group('decDeg'), item.group('decMin'), decSec)
-            raDegrees = ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
+            raDegrees = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
                 ra=_raSex)
-            decDegrees = declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+            decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
                 dec=_decSex)
             sList.extend([[str(raDegrees), str(decDegrees)]])
             userText = userText.replace(
@@ -673,7 +680,7 @@ def parse_atels(dbConn, log, mdFolder):
 
         # CLEAN UP THE NAMES BEFORE INGEST
         for i in range(len(nList)):
-            nList[i] = at.clean_supernova_name(dbConn, log, nList[i])
+            nList[i] = dat.clean_supernova_name(dbConn, log, nList[i])
         nList = list(set(nList))
 
         try:
