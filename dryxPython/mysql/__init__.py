@@ -385,6 +385,8 @@ def convert_dictionary_to_mysql_table(
             if len(rows) == 0:
                 qCreateColumn = """ALTER TABLE %s ADD %s""" % (
                     dbTableName, formattedKey)
+                if not isinstance(value, list):
+                    value = [value]
                 if reDatetime.search(str(value[0])):
                     # log.debug('Ok - a datetime string was found')
                     qCreateColumn += ' datetime DEFAULT NULL'
@@ -497,6 +499,7 @@ def convert_dictionary_to_mysql_table(
             dbConn,
             log,
         )
+
     except Exception as e:
         log.error("could not add new data added to the table '" +
                   dbTableName + "' : " + str(e) + '\n')

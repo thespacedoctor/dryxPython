@@ -127,7 +127,7 @@ def multiWebDocumentDownloader(
           - ``urlList`` -- list of document urls
           - ``downloadDirectory`` -- directory(ies) to download the documents to - can be one url or a list of urls the same length as urlList
           - ``resetFilename`` -- a string to reset all filenames to
-          - ``credentials`` -- basic http credentials
+          - ``credentials`` -- basic http credentials { 'username' : "...", "password", "..." }
 
         **Return:**
           - list of timestamped documents (same order as the input urlList)
@@ -144,6 +144,7 @@ def multiWebDocumentDownloader(
 
     ## >SETTINGS ##
     # timeout in seconds
+    timeout = float(timeout)
     socket.setdefaulttimeout(timeout)
 
     ###########################################################
@@ -248,7 +249,7 @@ def multiWebDocumentDownloader(
 ########################################################################
 ## LAST MODIFIED : 20121025
 ## CREATED : 20121025
-def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp):
+def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credentials):
     """get a url document and place in a specified directory
 
         ****Key Arguments:****
@@ -263,17 +264,15 @@ def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp):
     import sys
     import logging as log
 
-    try:
-        log.debug("converting single url to list and downloading")
-        urlList = [url]
-        localUrlList = multiWebDocumentDownloader(
-            urlList, downloadDirectory, log, timeStamp)
-        filepath = localUrlList[0]
-    except Exception, e:
-        myError = "could not convert single url to list and downloading : " + \
-            str(e) + "\n"
-        log.error(myError)
-        sys.exit(0)
+    log.debug("converting single url to list and downloading")
+    urlList = [url]
+    localUrlList = multiWebDocumentDownloader(
+        urlList=urlList,
+        downloadDirectory=downloadDirectory,
+        log=log,
+        timeStamp=timeStamp,
+        credentials=credentials)
+    filepath = localUrlList[0]
 
     #log.debug('>>>>>>>>>>>>>>> the local url is '+ filepath)
     return filepath
