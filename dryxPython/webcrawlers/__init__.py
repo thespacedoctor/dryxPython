@@ -249,7 +249,7 @@ def multiWebDocumentDownloader(
 ########################################################################
 ## LAST MODIFIED : 20121025
 ## CREATED : 20121025
-def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credentials):
+def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credentials=False):
     """get a url document and place in a specified directory
 
         ****Key Arguments:****
