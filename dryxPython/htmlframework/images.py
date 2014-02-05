@@ -111,7 +111,12 @@ def image(
     else:
         clickToModal = "clickToModal"
 
-    image = """<img src="%(src)s" class="%(display)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s %(clickToModal)s" %(htmlId)s %(width)s>""" % locals(
+    if "holder.js" in src:
+        src = """data-src="%(src)s" """ % locals()
+    else:
+        src = """src="%(src)s" """ % locals()
+
+    image = """<img %(src)s class="%(display)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s %(clickToModal)s" %(htmlId)s %(width)s>""" % locals(
     )
 
     if href:
