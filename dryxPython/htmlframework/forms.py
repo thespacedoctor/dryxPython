@@ -1,10 +1,10 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-_dryxTBS_forms
+forms.py
 =============================
 :Summary:
-    Forms partial for the dryxTwitterBootstrap module
+    Forms for TBS htmlframework
 
 :Author:
     David Young
@@ -20,344 +20,11 @@ _dryxTBS_forms
     - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
 """
 
-###################################################################
-# CLASSES                                                         #
-###################################################################
-# xxx-replace
-## LAST MODIFIED : December 12, 2012
-## CREATED : December 12, 2012
-## AUTHOR : DRYX
-
-
-class HTMLDivForm():
-
-    """
-    Create the building blocks of an HTML form -- a bunch of ``<div>``.
-
-    **Variable Attributes:**
-      - ``labelList`` -- list of labels to appear on the form
-      - ``textboxList`` -- list of input textboxs to appear on the form
-      - ``selectList`` -- list of dropdown select lists to appear on the form
-      - ``checkboxList`` -- list of the radio buttons needed
-      - ``buttonList`` -- list of the buttons needed (strings)
-      - ``numberOfRows`` -- number of rows for the form
-
-    """
-    ###################### GLOBAL IMPORTS ######################
-    ################ PUBLIC VARIABLE ATTRIBUTES ################
-    labelList = []
-    textboxList = []
-    selectList = []
-    checkboxList = []
-    buttonList = []
-    numberOfRows = 1
-    ############### PRIVATE VARIABLE ATTRIBUTES ###############
-    ################ INSTANSIATION METHOD ######################
-
-    def __init__(self):
-        pass
-
-    ############### METHODS ####################################
-    def get_objects(self):
-        """
-        Returns the components to make an HTML form:
-         - ``labelDict`` -- a dictionary of dictionaries .. **key**:*label name*, **value**:*dictionary of HTML attributes*.
-         - ``textDict`` -- a dictionary of dictionaries .. **key**:*textbox name*, **value**:*dictionary of HTML attributes*.
-         - ``selectDict`` -- a dictionary of dictionaries .. **key**:*dropdown menu name*, **value**:*dictionary of HTML attributes*.
-         - ``checkboxDict`` -- a dictionary of dictionaries .. **key**:*checkbox name*, **value**:*dictionary of HTML attributes*.
-         - ``buttonDict`` -- a dictionary of dictionaries .. **key**:*button name*, **value**:*dictionary of HTML attributes*.
-         - ``rowList`` -- a list of dictionaries containing HTML attributes for the row.
-         - ``formContent`` -- a dictionary containing of HTML attributes for the form content.
-         - ``form`` -- a dictionary containing of HTML attributes for the form.
-        """
-
-        #### GENERATE FORM LABELS (DIVS) ####
-        #--------------------------------------------------------------------------------#
-        labelDict = {}
-        for label in self.labelList:
-            htmlId = label.replace(' ', '').replace(':', '')
-            labelDict[label] = dict(
-                tag="div",
-                htmlId=htmlId,
-                htmlClass="labels",
-                blockContent=label
-            )
-
-        #### GENERATE TEXTBOXES (INPUTS) ####
-        #--------------------------------------------------------------------------------#
-        textDict = {}
-        for text in self.textboxList:
-            name = text.replace(' ', '')
-            textDict[text] = dict(
-                htmlClass="input-medium",
-                tag="input",
-                type="text",
-                placeholder=text,
-                name=name
-            )
-
-        #### GERERATE SELECTS ####
-        #--------------------------------------------------------------------------------#
-        selectDict = {}
-        for select in self.selectList:
-            htmlId = select.replace(' ', '')
-            htmlClass = select + "Select"
-            selectDict[select] = dict(
-                tag="select",
-                htmlId=htmlId,
-                htmlClass=htmlClass
-            )
-
-        #### GERERATE CHECKBOXES ####
-        #--------------------------------------------------------------------------------#
-        checkboxDict = {}
-        for checkbox in self.checkboxList:
-            htmlId = checkbox.replace(' ', '')
-            checkboxDict[checkbox] = dict(
-                tag="input",
-                type="checkbox",
-                name=checkbox,
-                value=checkbox,
-                htmlId=htmlId
-            )
-
-        #### GENERATE BUTTONS ####
-        #--------------------------------------------------------------------------------#
-        buttonDict = {}
-        for button in self.buttonList:
-            htmlId = button.replace(' ', '').replace('(', '').replace(')', '')
-            buttonDict[button] = dict(
-                tag="button",
-                htmlClass="greyButton",
-                blockContent=button,
-                htmlId=htmlId
-            )
-
-        #### GENERATE THE ROWS ####
-        #--------------------------------------------------------------------------------#
-        i = 1
-        rowList = []
-        rowList.append("NULL")
-        while(i <= self.numberOfRows):
-            rowName = "row" + "{0:02.0f}".format(i)
-            rowList.append(
-                dict(
-                    tag="div",
-                    htmlClass="divHorizontalKids",
-                    htmlId=rowName
-                )
-            )
-            i += 1
-
-        form = dict(
-            tag="form",
-            htmlClass="form",
-            method="post",
-        )
-        formContent = dict(
-            tag="div",
-            htmlClass="formContent"
-        )
-
-        return labelDict, textDict, selectDict, checkboxDict, buttonDict, rowList, formContent, form
-
-
-class dummy():
-
-    """
-    Create the building blocks of an HTML form -- a bunch of ``<div>``.
-
-    **Variable Attributes:**
-      - ``labelList`` -- list of labels to appear on the form
-      - ``textboxList`` -- list of input textboxs to appear on the form
-      - ``selectList`` -- list of dropdown select lists to appear on the form
-      - ``checkboxList`` -- list of the radio buttons needed
-      - ``buttonList`` -- list of the buttons needed (strings)
-      - ``numberOfRows`` -- number of rows for the form
-
-    """
-
-    ## LAST MODIFIED : YYMD
-    ## CREATED : YYMD
-    ## AUTHOR : DRYX
-    def functionName(
-            self):
-        """one-line summary
-
-        **Key Arguments:**
-            - ``dbConn`` -- mysql database connection
-            - ``log`` -- logger
-
-        **Return:**
-            - ```` --
-
-        **Todo**
-        - [ ] when complete, clean functionName function & add logging
-        """
-        ################ > IMPORTS ################
-        ## STANDARD LIB ##
-        ## THIRD PARTY ##
-        ## LOCAL APPLICATION ##
-        pass
-
-
-###################################################################
-# PUBLIC FUNCTIONS                                                #
-###################################################################
-# # xxx-replace
-# ## LAST MODIFIED : December 12, 2012
-# ## CREATED : December 12, 2012
-# ## AUTHOR : DRYX
-# def get_fieldset(attributeDict):
-#   """Create a ``fieldset`` HTML code block with legend
-
-#   **Key Arguments:**
-#     - ``attributeDict`` -- dictionary of the following keywords:
-#       - ``htmlClass`` -- the html element class
-#       - ``htmlId`` -- the html element id
-#       - ``blockContent`` -- actual content to be placed in html code block
-#       - ``jsEvents`` -- inline javascript event
-#       - ``extraAttr`` -- extra incline css attributes and/or handles
-#       - ``legend`` -- fieldset legend
-
-#   **Return:**
-#     - ``block``
-
-#   attributeDict template -- dict(htmlClass=___,
-#                                   htmlId=___,
-#                                   jsEvents=___,
-#                                   extraAttr=___,
-#                                   blockContent=___,
-#                                   legend=___
-#                                 )
-#   """
-#   ################ > IMPORTS ################
-
-#   ################ > VARIABLE SETTINGS ######
-#   block = "<fieldset "  # THE HTML BLOCK
-#   d = attributeDict
-
-#   ################ >ACTION(S) ################
-#   ## SET THE ATTRIBUTES
-#   if d.has_key("htmlClass"):
-#     block += """class="%s" """ % (d["htmlClass"],)
-#   if d.has_key("htmlId"):
-#     block += """id="%s" """ % (d["htmlId"],)
-#   if d.has_key("jsEvents"):
-#     block += """%s """ % (d["jsEvents"],)
-#   if d.has_key("extraAttr"):
-#     block += """%s """ % (d["extraAttr"],)
-#   block += ">"
-
-#   if d["legend"]:
-#     block += "<legend>%s</legend>" % (d["legend"],)
-
-#   ## SET THE CONTENT
-#   if d.has_key("blockContent"):
-#     block += str(d["blockContent"])
-
-#   ## CLOSE THE BLOCK
-#   if d.has_key("htmlId"):
-#     block += "</fieldset><!--- /#%s --->" % (d["htmlId"],)
-#   else:
-#     block += "</fieldset>"
-
-#   return block
-
-# # xxx-replace
-# ## LAST MODIFIED : December 12, 2012
-# ## CREATED : December 12, 2012
-# ## AUTHOR : DRYX
-# def get_input_block(attributeDict):
-#   """The HTML5 input tag used mainly in forms
-
-#   **Key Arguments:**
-#     - ``attributeDict`` -- dictionary of the following keywords:
-#     - ``tag`` -- input, textarea
-#     - ``htmlClass`` -- the html element class
-#     - ``htmlId`` -- the html element id
-#     - ``blockContent`` -- actual content to be placed in html code block
-#     - ``jsEvents`` -- inline javascript event
-#     - ``extraAttr`` -- extra incline css attributes and/or handles
-#     - ``name`` -- an extra hook (much like "id")
-#     - ``type`` -- HTML input types = color, date, datetime, datetime-local, email, month, number, range, search, tel, time, url, week
-#     - ``placeholder`` -- text to be displayed by default in the input box
-#     - ``required`` -- make input required (boolean)
-#     - ``autofocus`` -- make this the auofocus element of the form (i.e. place cursor here)
-#     - ``maxlength`` -- maximum character length for the form
-#     - ``row`` -- number of rows for a *textarea* (i.e. height of the textbox)
-
-#   **Returns**
-#     - ``block`` -- the input HTML code block
-
-#   attributeDict template --
-#       dict(
-#             tag=___,
-#             htmlClass=___,
-#             htmlId=___,
-#             jsEvents=___,
-#             extraAttr=___,
-#             blockContent=___,
-#             name=___,
-#             type=___,
-#             placeholder=___,
-#             required=___,
-#             autofocus=___,
-#             maxlength=___,
-#             row=___,
-#             value=___
-#           )
-#   """
-  ################ > IMPORTS ################
-
-  ################ > VARIABLE SETTINGS ######
-  # d = attributeDict
-
-  # ################ >ACTION(S) ################
-  # if d.has_key("label"):
-  #   block = """<label>%s<label>\n<%s """ % (d["label"],d["tag"],)
-  # else:
-  #   block = """<%s """ % (d["tag"],)
-
-  # if d.has_key("htmlClass"):
-  #   block += """class="%s" """ % (d["htmlClass"],)
-  # if d.has_key("htmlId"):
-  #   block += """id="%s" """ % (d["htmlId"],)
-  # if d.has_key("jsEvents"):
-  #   block += """%s """ % (d["jsEvents"],)
-  # if d.has_key("extraAttr"):
-  #   block += """%s """ % (d["extraAttr"],)
-  # if d.has_key("name"):
-  #   block += """name="%s" """ % (d["name"],)
-  # if d.has_key("type"):
-  #   block += """type="%s" """ % (d["type"],)
-  # if d.has_key("placeholder"):
-  #   block += """placeholder="%s" """ % (d["placeholder"],)
-  # if d.has_key("maxlength"):
-  #   block += """maxlength="%s" """ % (d["maxlength"],)
-  # if d.has_key("required") and d["required"]:
-  #   block += """required """
-  # if d.has_key("autofocus"):
-  #   block += """autofocus """
-  # if d.has_key("value"):
-  #   block += """value """
-  # block += ">"
-
-  # ## SET THE CONTENT
-  # if d.has_key("blockContent"):
-  #   block += str(d["blockContent"])
-  # ## CLOSE THE BLOCK
-  # if d.has_key("htmlId"):
-  #   block += "</%s><!--- /#%s --->" % (d["tag"],d["htmlId"],)
-  # else:
-  #   block += "</%s>" % (d["tag"],)
-
-  # return block
-
-
 ## LAST MODIFIED : April 16, 2013
 ## CREATED : April 16, 2013
 ## AUTHOR : DRYX
+
+
 def searchForm(
         buttonText="",
         span=2,
@@ -379,7 +46,7 @@ def searchForm(
         - ``searchForm`` -- the search-form
     """
     if span:
-        span = "span%s" % (span,)
+        span = "span%(span)s" % locals()
     else:
         span = ""
 
@@ -390,12 +57,12 @@ def searchForm(
         focusId = "focusedInput"
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
@@ -405,11 +72,11 @@ def searchForm(
     searchForm = """
     <form class="form-search">
     <div class="input-append">
-      <input type="text" class="search-query %s" id="%s"  id="%s" value="%s">
-      <button type="submit" class="btn">%s</button>
-            %s%s
+      <input type="text" class="search-query %(span)s" id="%(htmlId)s"  id="%(focusId)s" value="%(focusedInputText)s">
+      <button type="submit" class="btn">%(buttonText)s</button>
+            %(inlineHelpText)s%(blockHelpText)s
     </div>
-    </form>""" % (span, htmlId, focusId, focusedInputText, buttonText, inlineHelpText, blockHelpText)
+    </form>""" % locals()
 
     return searchForm
 
@@ -454,12 +121,12 @@ def form(
     if span is False:
         span = ""
     else:
-        span = "span%s" % (span,)
+        span = "span%(span)s" % locals()
 
     if offset is False:
         offset = ""
     else:
-        offset = "offset%s" % (offset,)
+        offset = "offset%(offset)s" % locals()
 
     if postInBackground is True:
         postInBackground = "postInBackground"
@@ -478,26 +145,25 @@ def form(
         redirectUrl = ""
 
     if navBarPull:
-        navBarPull = "pull-%s" % (navBarPull,)
+        navBarPull = "pull-%(navBarPull)s" % locals()
 
     thisList = ["inline", "horizontal", "search"]
     if formType in thisList:
-        formType = """form-%s""" % (formType,)
+        formType = """form-%(formType)s""" % locals()
 
     htmlInput = ""
     if formType == "navbar-search":
-        htmlInput += """<input type="text" class="search-query" placeholder="search">"""
+        htmlInput = """%(htmlInput)s<input type="text" class="search-query" placeholder="search">""" % locals()
 
     if htmlId:
-        htmlId = """id="%s" """ % (htmlId,)
+        htmlId = """id="%(htmlId)s" """ % locals()
     else:
         htmlId = ""
 
     if openInNewTab is not False:
         openInNewTab = """ target="_blank" """
 
-    form = """<form class="%s %s %s %s %s" %s action="%s" method="post" %s>%s%s%s</form>""" % (
-        formType, navBarPull, postInBackground, span, offset, htmlId, postToScript, openInNewTab, content, htmlInput, redirectUrl)
+    form = """<form class="%(formType)s %(navBarPull)s %(postInBackground)s %(span)s %(offset)s" %(htmlId)s action="%(postToScript)s" method="post" %(openInNewTab)s>%(content)s%(htmlInput)s%(redirectUrl)s</form>""" % locals()
 
     return form
 
@@ -558,8 +224,7 @@ def horizontalFormControlLabel(
     if forId is False:
         forId = ""
 
-    horizontalFormRowLabel = """<label class="control-label" for="%s">%s</label>""" % (
-        forId, labelText, )
+    horizontalFormRowLabel = """<label class="control-label" for="%(forId)s">%(labelText)s</label>""" % locals()
 
     return horizontalFormRowLabel
 
@@ -636,10 +301,10 @@ def formInput(
         inputId, pull, htmlId, appendClass, prependClass] = falseList
 
     if pull:
-        pull = "pull-%s" % (pull,)
+        pull = "pull-%(pull)s" % locals()
 
     if span:
-        span = "span%s" % (span,)
+        span = "span%(span)s" % locals()
 
     if searchBar:
         searchClass = "search-query"
@@ -648,11 +313,11 @@ def formInput(
 
     if prepend:
         prependClass = "input-prepend"
-        prependContent = """<span class="add-on">%s</span>""" % (prepend,)
+        prependContent = """<span class="add-on">%(prepend)s</span>""" % locals()
 
     if append:
         appendClass = "input-append"
-        appendContent = """<span class="add-on">%s</span>""" % (append,)
+        appendContent = """<span class="add-on">%(append)s</span>""" % locals()
 
     if prepend:
         if append:
@@ -669,7 +334,7 @@ def formInput(
 
     if button2:
         appendClass = "input-append"
-        appendContent = appendContent + button2
+        appendContent = """%(appendContent)s %(button2)s""" % locals()
         inputId = "appendedInputButtons "
 
     if appendDropdown:
@@ -677,16 +342,16 @@ def formInput(
         inputId = "appendedDropdownButton "
         appendContent = """
         <div class="btn-group">
-            %s
-        </div>""" % (appendDropdown,)
+            %(appendDropdown)s
+        </div>""" % locals()
 
     if prependDropdown:
         prependClass = "input-prepend"
         inputId = "prependedDropdownButton "
         prependContent = """
         <div class="btn-group">
-            %s
-        </div>""" % (prependDropdown,)
+            %(prependDropdown)s
+        </div>""" % locals()
 
     step = ""
     if ttype == "float":
@@ -697,12 +362,12 @@ def formInput(
         inputId = "appendedPrependedDropdownButton "
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
@@ -710,7 +375,7 @@ def formInput(
         focusedInputText = ""
         focusId = ""
     else:
-        focusedInputText = """value="%s" """ % (focusedInputText,)
+        focusedInputText = """value="%(focusedInputText)s" """ % locals()
         focusId = "focusedInput "
 
     if required:
@@ -731,12 +396,12 @@ def formInput(
         defaultValue = ""
 
     formInput = """
-        <div class="%s %s %s %s">
-            %s
-            <input class="%s %s" id="%s%s%s%s" %s type="%s" %s placeholder="%s" %s %s name="%s" %s>
-            %s
-        </div>%s%s
-        """ % (prependClass, appendClass, hidden, pull, prependContent, searchClass, span, htmlId, inputId, focusId, disabledId, focusedInputText, ttype, step, placeholder, required, disabled, htmlId, defaultValue, appendContent, inlineHelpText, blockHelpText)
+        <div class="%(prependClass)s %(appendClass)s %(hidden)s %(pull)s">
+            %(prependContent)s
+            <input class="%(searchClass)s %(span)s" id="%(htmlId)s%(inputId)s%(focusId)s%(disabledId)s" %(focusedInputText)s type="%(ttype)s" %(step)s placeholder="%(placeholder)s" %(required)s %(disabled)s name="%(htmlId)s" %(defaultValue)s>
+            %(appendContent)s
+        </div>%(inlineHelpText)s%(blockHelpText)s
+        """ % locals()
 
     # formInput = """<input class="%s %s" id="%s%s%s%s" value="%s" type="%s" placeholder="%s" %s %s>""" % (span, searchClass, htmlId, inputId, focusId, disabledId, focusedInput, ttype, placeholder, required, disabled)
 
@@ -773,17 +438,17 @@ def textarea(
         - ``textarea`` -- the textarea
     """
     if span:
-        span = "span%s" % (span,)
+        span = "span%(span)s" % locals()
     else:
         span = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
@@ -811,8 +476,7 @@ def textarea(
     else:
         name = htmlId
 
-    textarea = """<textarea rows="%s" class="%s" id="%s%s%s" value="%s" %s %s placeholder="%s" name="%s"></textarea>%s%s""" % (
-        rows, span, htmlId, focusId, disabledId, focusedInputText, required, disabled, placeholder, name, inlineHelpText, blockHelpText)
+    textarea = """<textarea rows="%(rows)s" class="%(span)s" id="%(htmlId)s%(focusId)s%(disabledId)s" value="%(focusedInputText)s" %(required)s %(disabled)s placeholder="%(placeholder)s" name="%(name)s"></textarea>%(inlineHelpText)s%(blockHelpText)s""" % locals()
 
     return textarea
 
@@ -844,18 +508,18 @@ def checkbox(
     """
     if inline is True:
         inline = "inline"
-        optionNumber = "option%s" % (optionNumber,)
+        optionNumber = "option%(optionNumber)s" % locals()
     else:
         inline = ""
         optionNumber = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
@@ -870,10 +534,10 @@ def checkbox(
         htmlId = ""
 
     checkbox = """
-        <label class="checkbox %s">
-          <input type="checkbox" value="%s" id="%s %s" %s>
-          %s
-        </label>%s%s""" % (inline, optionNumber, htmlId, disabledId, disabled, optionText, inlineHelpText, blockHelpText)
+        <label class="checkbox %(inline)s">
+          <input type="checkbox" value="%(optionNumber)s" id="%(htmlId)s %(disabledId)s" %(disabled)s>
+          %(optionText)s
+        </label>%(inlineHelpText)s%(blockHelpText)s""" % locals()
 
     return checkbox
 
@@ -914,23 +578,23 @@ def select(
         multiple = ""
 
     if span:
-        span = "span%s" % (span,)
+        span = "span%(span)s" % locals()
     else:
         span = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
     options = ""
     for option in optionList:
-        options += """<option value="%(option)s">%(option)s</option>""" % locals()
+        options = """%(options)s <option value="%(option)s">%(option)s</option>""" % locals()
 
     if required:
         required = """required"""
@@ -945,10 +609,10 @@ def select(
         disabledId = ""
 
     select = """
-        <select %s name="%s" class="%s" id="%s%s" %s %s>
-            %s
-        </select>%s%s
-        """ % (multiple, htmlId, span, disabledId, htmlId, required, disabled, options, inlineHelpText, blockHelpText)
+        <select %(multiple)s name="%(htmlId)s" class="%(span)s" id="%(disabledId)s%(htmlId)s" %(required)s %(disabled)s>
+            %(options)s
+        </select>%(inlineHelpText)s%(blockHelpText)s
+        """ % locals()
 
     return select
 
@@ -979,12 +643,12 @@ def radio(
         - ``radio`` -- the radio
     """
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
@@ -1031,12 +695,12 @@ def controlRow(inputList=[]):
 
     content = ""
     for iinput in inputList:
-        content += iinput
+        content = """%(content)s %(iinput)s""" % locals()
 
     controlRow = """
-        <div class="controls %s">
-            %s
-        </div>""" % (row, content,)
+        <div class="controls %(row)s">
+            %(content)s
+        </div>""" % locals()
 
     return controlRow
 
@@ -1061,24 +725,24 @@ def uneditableInput(
         - ``uneditableInput`` -- an uneditable input - the user can see but not interact
     """
     if span:
-        span = "span%s" % (span,)
+        span = "span%(span)s" % locals()
     else:
         span = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
     uneditableInput = """
-        <span class="%s uneditable-input">
-            %s
-        </span>%s%s""" % (span, placeholder, inlineHelpText, blockHelpText)
+        <span class="%(span)s uneditable-input">
+            %(placeholder)s
+        </span>%(inlineHelpText)s%(blockHelpText)s""" % locals()
 
     return uneditableInput
 
@@ -1119,23 +783,23 @@ def formActions(
         button5, inlineHelpText] = falseList
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%s</span>""" % (inlineHelpText,)
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%s</span>""" % (blockHelpText,)
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
     else:
         blockHelpText = ""
 
     formActions = """
         <div class="form-actions">
-          %s
-          %s
-          %s
-          %s
-          %s
-        </div>%s%s""" % (primaryButton, button2, button3, button4, button5, inlineHelpText, blockHelpText)
+          %(primaryButton)s
+          %(button2)s
+          %(button3)s
+          %(button4)s
+          %(button5)s
+        </div>%(inlineHelpText)s%(blockHelpText)s""" % locals()
 
     return formActions
 
@@ -1174,26 +838,25 @@ def modal(
     if htmlId is False:
         htmlId = ""
     else:
-        htmlId = """id="%s" """ % (htmlId,)
-
+        htmlId = """id="%(htmlId)s" """ % locals()
     if centerContent is False:
         centerContent = ""
     else:
         centerContent = "center-content"
 
     ## VARIABLES ##
-    modal = """<div class="modal hide fade" %s>
+    modal = """<div class="modal hide fade" %(htmlId)s>
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3>%s</h3>
+                    <h3>%(modalHeaderContent)s</h3>
                   </div>
-                  <div class="modal-body %s">
-                    %s
+                  <div class="modal-body %(centerContent)s">
+                    %(modalBodyContent)s
                   </div>
                   <div class="modal-footer">
-                    %s
+                    %(modalFooterContent)s
                   </div>
-                </div>""" % (htmlId, modalHeaderContent, centerContent, modalBodyContent, modalFooterContent)
+                </div>""" % locals()
 
     return modal
 

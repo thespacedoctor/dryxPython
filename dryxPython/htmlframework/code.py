@@ -1,10 +1,10 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-_dryxTBS_code
+code.py
 =============================
 :Summary:
-    Code partial for dryxTwitterBootstrap
+    Code elements for TBS htmlframework
 
 :Author:
     David Young
@@ -30,6 +30,8 @@ _dryxTBS_code
 ## LAST MODIFIED : April 16, 2013
 ## CREATED : April 16, 2013
 ## AUTHOR : DRYX
+
+
 def code(
         content="",
         inline=True,
@@ -56,12 +58,12 @@ def code(
         scroll = ""
 
     if inline:
-        code = """<code>%s</code>""" % (content,)
+        code = """<code>%(content)s</code>""" % locals()
     else:
         code = """
-            <pre class="%s">
-                %s
-            </pre>""" % (scroll, content,)
+            <pre class="%(scroll)s">
+                %(content)s
+            </pre>""" % locals()
 
     return code
 ###################################################################

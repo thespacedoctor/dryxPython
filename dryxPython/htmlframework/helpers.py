@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # encoding: utf-8
 """
-helpers
+helpers.py
 ======================================
 :Summary:
-    Partial for the htmlframework modules - contains helper functions for building webpages
+    helpers for TBS htmlframework
 
 :Author:
     David Young
@@ -20,11 +20,12 @@ helpers
     - If you have any questions requiring this code please email me: d.r.young@qub.ac.uk
 """
 
+
 def main():
     pass
 
 if __name__ == '__main__':
-  main()
+    main()
 ###################################################################
 # CLASSES                                                         #
 ###################################################################
@@ -36,6 +37,8 @@ if __name__ == '__main__':
 ## LAST MODIFIED : May 28, 2013
 ## CREATED : May 28, 2013
 ## AUTHOR : DRYX
+
+
 def unescape_html(html):
     """Unescape a string previously escaped with cgi.escape()
 

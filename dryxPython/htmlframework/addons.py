@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-""" _dryxTBS_addons
+""" addons.py
 ===============================
 :Summary:
-    addon partial for the dryxTwitterBootstrap module
 
 :Author:
     David Young
@@ -30,13 +29,15 @@
 ## LAST MODIFIED : 20130508
 ## CREATED : 20130508
 ## AUTHOR : DRYX
+
+
 def mediaObject(
     displayType='div',
     img='',
     headlineText='',
     otherContent=False,
     nestedMediaObjects=False,
-    ):
+):
     """ Generate an abstract object style for building various types of components (like blog comments, Tweets, etc) that feature a left- or right-aligned image alongside textual content.
 
     **Key Arguments:**
@@ -62,23 +63,16 @@ def mediaObject(
 
     mediaObject = \
         """
-        <%s class="media" id="  ">
-            %s
+        <%(displayType)s class="media" id="  ">
+            %(img)s
             <div class="media-body">
-                <h4 class="media-heading">%s</h4>
-                %s
+                <h4 class="media-heading">%(headlineText)s</h4>
+                %(otherContent)s
                 <!-- Nested media object -->
-                %s
+                %(nestedMediaObjects)s
             </div>
-        </%s>""" \
-        % (
-        displayType,
-        img,
-        headlineText,
-        otherContent,
-        nestedMediaObjects,
-        displayType,
-        )
+        </%(displayType)s>""" \
+        % locals()
     return mediaObject
 
 
@@ -101,11 +95,11 @@ def well(
     if wellSize == 'default':
         wellSize = ''
     else:
-        wellSize = 'well-%s' % (wellSize, )
+        wellSize = 'well-%(wellSize)s' % locals()
     well = """
-        <div class="well %s" id="  ">
-            %s
-        </div>""" % (wellSize, wellText, )
+        <div class="well %(wellSize)s" id="  ">
+            %(wellText)s
+        </div>""" % locals()
     return well
 
 

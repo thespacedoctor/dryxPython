@@ -1,10 +1,10 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-_dryxTBS_images
+images.py 
 =============================
 :Summary:
-    Partial for the dryxTwitterBootstrap module
+    images for TBS htmlframework
 
 :Author:
     David Young
@@ -75,16 +75,16 @@ def image(
         thumbnail = "thumbnail"
 
     if pull:
-        pull = "pull-%s" % (pull,)
+        pull = "pull-%(pull)s" % locals()
 
     if not display:
         display = ""
     else:
-        display = """img-%s""" % (display,)
+        display = """img-%(display)s""" % locals()
     if not htmlClass:
         htmlClass = ""
     if width:
-        width = """width=%s""" % (width,)
+        width = """width=%(width)s""" % locals()
     else:
         width = ""
 
@@ -102,7 +102,7 @@ def image(
         onDesktop = "hidden-desktop"
 
     if htmlId:
-        htmlId = """id="%s" """ % (htmlId,)
+        htmlId = """id="%(htmlId)s" """ % locals()
     else:
         htmlId = ""
 
@@ -142,9 +142,9 @@ def thumbnails(
     """
     theseItems = ""
     for item in listItems:
-        theseItems += item
+        theseItems = "%(theseItems)s %(item)s" % locals()
 
-    thumbnails = """<ul class="thumbnails" id="  ">%s</ul>""" % (theseItems,)
+    thumbnails = """<ul class="thumbnails" id="  ">%(theseItems)s</ul>""" % locals()
 
     return thumbnails
 
@@ -164,7 +164,7 @@ def thumbnail_div(
     **Return:**
         - ``thumbnail`` -- the thumbnail with HTML content
     """
-    thumbnail_div = """<div class="thumbnail" id="  ">%s</div>""" % (div_content,)
+    thumbnail_div = """<div class="thumbnail" id="  ">%(div_content)s</div>""" % locals()
 
     return thumbnail_div
 

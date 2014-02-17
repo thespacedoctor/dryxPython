@@ -27,128 +27,11 @@ _dryxTBS_buttons
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-# xxx-replace
-## LAST MODIFIED : March 12, 2013
-## CREATED : March 12, 2013
-## AUTHOR : DRYX
-# def get_button(size="large",
-#                 block=False,
-#                 color="blue",
-#                 text="button",
-#                 htmlId=False,
-#                 htmlClass=False,
-#                 extraAttr=False,
-#                 disabled=False):
-#     """The button method (bases on the twitter bootstrap buttons)
-
-#     **Key Arguments:**
-#         - ``size`` - button size - mini, small, default, large
-#         - ``block`` - block button?
-#         - ``color`` - color
-#         - ``text`` - button text
-#         - ``htmlId`` -- the name of the button
-#         - ``htmlClass`` -- the class of the button
-#         - ``disabled`` -- disable the button if true (flatten & unclickable)
-
-#     **Return:**
-#         - ``button``
-#     """
-#     ################ > IMPORTS ################
-#     ## STANDARD LIB ##
-#     ## THIRD PARTY ##
-#     ## LOCAL APPLICATION ##
-
-#     ################ > VARIABLE SETTINGS ######
-#     size = "btn-%s" % (size,)
-#     if block:
-#         block = "btn-block"
-#     else:
-#         block = ""
-#     if htmlId:
-#         htmlId = """id="%s" """ % (htmlId,)
-#     else:
-#         htmlId = ""
-#     if not htmlClass: htmlClass = ""
-#     if not extraAttr:
-#         extraAttr = ""
-#     if disabled:
-#         disabled = "disabled"
-#     else:
-#         disabled = ""
-
-#     color = "btn-%s" % (color,)
-
-#     ################ >ACTION(S) ################
-#     button = """
-#         <button class="btn %s %s %s %s %s" %s %s type="button">
-#         %s
-#         </button>""" % (size, block, color, htmlClass, disabled, htmlId, extraAttr, text)
-
-#     return button
-
-# xxx-replace
-## LAST MODIFIED : March 12, 2013
-## CREATED : March 12, 2013
-## AUTHOR : DRYX
-# def get_linked_button(size="large",
-#                 block=False,
-#                 color="blue",
-#                 text="button",
-#                 href="#",
-#                 htmlId=False,
-#                 htmlClass=False,
-#                 extraAttr=False,
-#                 disabled=False):
-#     """The button method (bases on the twitter bootstrap buttons)
-
-#     **Key Arguments:**
-#         - ``size`` - button size - mini, small, default, large
-#         - ``block`` - block button?
-#         - ``color`` - color
-#         - ``text`` - button text
-#         - ``href`` - the link
-#         - ``htmlId`` -- the name of the button
-#         - ``htmlClass`` -- the class of the button
-
-#     **Return:**
-#         - ``link_button``
-#     """
-#     ################ > IMPORTS ################
-#     ## STANDARD LIB ##
-#     ## THIRD PARTY ##
-#     ## LOCAL APPLICATION ##
-
-#     ################ > VARIABLE SETTINGS ######
-#     size = "btn-%s" % (size,)
-#     if block:
-#         block = "btn-block"
-#     else:
-#         block = ""
-#     if htmlId:
-#         htmlId = """id="%s" """ % (htmlId,)
-#     else:
-#         htmlId = ""
-#     if not htmlClass: htmlClass = ""
-#     if not extraAttr:
-#         extraAttr = ""
-#     if disabled:
-#         disabled = "disabled"
-#     else:
-#         disabled = ""
-
-#     color = "btn-%s" % (color,)
-
-
-#     ################ >ACTION(S) ################
-#     link_button = """
-#         <a href="%s" class="btn %s %s %s %s %s" %s %s>%s</a>""" % (href, size, block, color, htmlClass, disabled, htmlId, extraAttr, text)
-
-#     return link_button
-
-
 ## LAST MODIFIED : April 25, 2013
 ## CREATED : April 25, 2013
 ## AUTHOR : DRYX
+
+
 def button(
         buttonText="",
         buttonStyle="default",
@@ -181,12 +64,12 @@ def button(
     if buttonStyle == "default":
         buttonStyle = ""
     else:
-        buttonStyle = "btn-%s" % (buttonStyle,)
+        buttonStyle = "btn-%(buttonStyle)s" % locals()
 
     if buttonSize == "default":
         buttonSize = ""
     else:
-        buttonSize = "btn-%s" % (buttonSize,)
+        buttonSize = "btn-%(buttonSize)s" % locals()
 
     if block is True:
         block = "btn-block"
@@ -213,13 +96,13 @@ def button(
     if not dataToggle:
         dataToggle = ""
     else:
-        dataToggle = """data-toggle="%s" """ % (dataToggle,)
+        dataToggle = """data-toggle="%(dataToggle)s" """ % locals()
 
     if href:
-        elementOpen = """a href="%s" """ % (href,)
+        elementOpen = """a href="%(href)s" """ % locals()
         elementClose = """a"""
     else:
-        elementOpen = """button type="%s" """ % (ttype,)
+        elementOpen = """button type="%(ttype)s" """ % locals()
         elementClose = """button"""
 
     if htmlId == False:
@@ -228,10 +111,9 @@ def button(
     if pull == False:
         pull = ""
     else:
-        pull = "pull-%s" % (pull,)
+        pull = "pull-%(pull)s" % locals()
 
-    button = """<%s class="btn %s %s %s %s %s %s" id="%s" %s %s>%s</%s>""" % (
-        elementOpen, close, buttonStyle, buttonSize, block, disable, pull, htmlId, dataToggle, dismiss, buttonText, elementClose)
+    button = """<%(elementOpen)s class="btn %(close)s %(buttonStyle)s %(buttonSize)s %(block)s %(disable)s %(pull)s" id="%(htmlId)s" %(dataToggle)s %(dismiss)s>%(buttonText)s</%(elementClose)s>""" % locals()
 
     return button
 
@@ -254,7 +136,7 @@ def buttonGroup(
     thisButtonList = ""
     count = 1
     for button in buttonList:
-        thisButtonList += "%s" % (button)
+        thisButtonList = "%(thisButtonList)s %(button)s" % locals()
         count += 1
 
     if format == "vertical":
@@ -267,9 +149,9 @@ def buttonGroup(
         toolbar = "btn-toolbar"
 
     buttonGroup = """
-        <div class="btn-group %s %s" id="  ">
-            %s
-        </div>""" % (vertical, toolbar, thisButtonList,)
+        <div class="btn-group %(vertical)s %(toolbar)s" id="  ">
+            %(thisButtonList)s
+        </div>""" % locals()
 
     return buttonGroup
 

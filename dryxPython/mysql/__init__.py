@@ -18,6 +18,7 @@ import execute_mysql_script
 
 import sys
 import os
+import MySQLdb
 
 
 ############################################
@@ -177,7 +178,7 @@ def execute_mysql_read_query(
              - ``rows`` -- the rows returned by the sql query """
 
     # # > IMPORTS ##
-    import MySQLdb
+
     # ##########################################################
     # >ACTION(S)                                              #
     # ##########################################################

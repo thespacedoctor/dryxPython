@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-""" _dryxTBS_scaffolding.py
+""" scaffolding.py
 =============================
 :Summary:
-    Layout / scaffolding partial for the dryxTwitterBootstrap module
+    Layout / scaffolding module for TBS htmlframework
 
 :Author:
     David Young
@@ -46,16 +46,16 @@ def htmlDocument(
     if not contentType:
         contentType = ""
     else:
-        contentType = "Content-type: %s" % (contentType,)
+        contentType = "Content-type: %(contentType)s" % locals()
 
     htmlDocument = \
-        """%s\n
+        """%(contentType)s\n
         <!DOCTYPE html>
         <html lang="en">
-            %s
+            %(content)s
         </html>
     """ \
-        % (contentType, content, )
+        % locals()
     return htmlDocument
 
 
@@ -82,10 +82,10 @@ def head(
     **Return:**
         - ``head`` -- the head """
 
-    cssUrl = relativeUrlBase + '/assets/styles/css/' + mainCssFileName
+    cssUrl = """%(relativeUrlBase)s/assets/styles/css/%(mainCssFileName)s""" % locals()
     cssLink = """
-        <link rel="stylesheet" href="%s" type="text/css" />
-    """ % (cssUrl, )
+        <link rel="stylesheet" href="%(cssUrl)s" type="text/css" />
+    """ % locals()
 
     if faviconLocation is not False:
         faviconLocation = """
@@ -102,14 +102,14 @@ def head(
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>%s</title>
+        <title>%(pageTitle)s</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        %s
-        %s
-        %s
+        %(cssLink)s
+        %(extras)s
+        %(faviconLocation)s
     </head>
-    """ % (pageTitle, cssLink, extras, faviconLocation)
+    """ % locals()
 
     return head
 
@@ -151,12 +151,12 @@ def body(
         googleAnalyticsCode = """
         <!-- Google Analytics -->
         <script>
-            var _gaq=[['_setAccount','%s'],['_trackPageview']];
+            var _gaq=[['_setAccount','%(googleAnalyticsCode)s'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
-        """ % (googleAnalyticsCode,)
+        """ % locals()
     else:
         googleAnalyticsCode = ""
 
@@ -172,26 +172,17 @@ def body(
 
     body = \
         """
-      <body id="%s" %s>
+      <body id="%(htmlId)s" %(extraAttr)s>
       <!--[if lt IE 7]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
       <![endif]-->
-        %s
-        %s
-      <script src="%s/assets/js/%s"></script>
-      %s
-      </body><!-- /#%s-->
+        %(navBar)s
+        %(container)s
+      <script src="%(relativeUrlBase)s/assets/js/%(jsFileName)s"></script>
+      %(googleAnalyticsCode)s
+      </body><!-- /#%(htmlId)s-->
       """ \
-        % (
-        htmlId,
-        extraAttr,
-        navBar,
-        container,
-        relativeUrlBase,
-        jsFileName,
-        googleAnalyticsCode,
-        htmlId,
-    )
+        % locals()
 
     return body
 
@@ -230,7 +221,7 @@ def grid_row(
     else:
         responsive = ''
     if htmlId:
-        htmlId = """id="%s" """ % (htmlId, )
+        htmlId = """id="%(htmlId)s" """ % locals()
     else:
         htmlId = ''
     if not htmlClass:
@@ -248,129 +239,11 @@ def grid_row(
     else:
         onDesktop = 'hidden-desktop'
     row = """
-        <div class="row%s %s %s %s %s" %s>
-            %s
+        <div class="row%(responsive)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s" %(htmlId)s>
+            %(columns)s
         </div>
-    """ % (
-        responsive,
-        htmlClass,
-        onPhone,
-        onTablet,
-        onDesktop,
-        htmlId,
-        columns,
-    )
+    """ % locals()
     return row
-
-# xxxxxxxxxxx-still needs work and snippets-xxxxxxxxxxxxxx
-# # xxx-replace
-# ## LAST MODIFIED : December 17, 2012
-# ## CREATED : December 17, 2012
-# ## AUTHOR : DRYX
-# def get_simple_div(htmlId=None, blockContent=None):
-#     """ Generate a basic <div> with block-content
-#   ****Key Arguments:****
-#     - ``htmlId`` -- the html id attribute
-#     - ``blockContent`` -- content to be surrounded by html div tag
-#   **Return:**
-#     - ``div`` """
-#   # ############### > IMPORTS ################
-#   # ############### > VARIABLE SETTINGS ######
-#   # ############### >ACTION(S) ################
-#     div = get_html_block(dict(
-#         tag='div',
-#         htmlId=htmlId,
-#         blockContent=blockContent,
-#         ))
-#     return div
-# xxx-replace
-## LAST MODIFIED : December 12, 2012
-## CREATED : December 12, 2012
-## AUTHOR : DRYX
-# def get_javascript_block(jsPath):
-#     """ Create a javascript *<script>* html code block
-#   ****Key Arguments:****
-#     - ``jsPath`` -- path the js file
-#   **Return:**
-#     - ``block`` -- HTML code block """
-#   # ############### > IMPORTS ################
-#   # ############### > VARIABLE SETTINGS ######
-#   # ############### >ACTION(S) ################
-#     block = """<script src="%s" type="text/javascript" charset="utf-8"></script>""" % (jsPath, )
-#     return block
-# # xxx-replace
-# ## LAST MODIFIED : December 11, 2012
-# ## CREATED : December 11, 2012
-# ## AUTHOR : DRYX
-# def get_html_block(attributeDict):
-#     """Get an HTML code block (tag) which in turn can be meshed together to build webpages.
-#     **Variable Attributes:**
-#       - ``attributeDict`` -- dictionary with the following keywords:
-#       - ``tag`` -- the html tag (a, div, span ...)
-#       - ``htmlClass`` -- the html element class
-#       - ``htmlId`` -- the html element id
-#       - ``href`` -- linked url
-#       - ``blockContent`` -- actual content to be placed in html code block
-#       - ``jsEvents`` -- inline javascript event
-#       - ``extraAttr`` -- extra incline css attributes and/or handles
-#       - ``src`` -- source for images
-#       - ``alt`` -- alternative text for images
-#       - ``action`` -- action used in forms
-#       - ``method`` -- method used in forms
-#       - ``type`` -- type of object
-#     **Returns:**
-#       - ``block`` -- the html block
-#     attributeDict template -- dict(tag=___,
-#                                     htmlClass:divVerticalKids/divHorizontalKids,
-#                                     htmlId=___,
-#                                     jsEvents=___,
-#                                     extraAttr=___,
-#                                     blockContent=___,
-#                                     href=___,
-#                                     src=___,
-#                                     alt=___,
-#                                     action=___,
-#                                     method=___,
-#                                     type=___
-#                                   ) """
-  # ############### > IMPORTS ################
-  # ############### > VARIABLE SETTINGS ######
-    d = attributeDict
-    block = '<%s ' % (d['tag'], )  # THE HTML BLOCK
-  # ############### >ACTION(S) ################
-  # # SET THE ATTRIBUTES
-    if d.has_key('htmlClass'):
-        block += """class="%s" """ % (d['htmlClass'], )
-    if d.has_key('htmlId'):
-        block += """id="%s" """ % (d['htmlId'], )
-    if d.has_key('jsEvents'):
-        block += """%s """ % (d['jsEvents'], )
-    if d.has_key('extraAttr'):
-        block += """%s """ % (d['extraAttr'], )
-    if d.has_key('href'):
-        block += """href="%s" """ % (d['href'], )
-        if d['href'][0] not in ['.', '/'] and 'index.py' not in d['href']:
-            block += """target="_blank" """  # OPEN EXTERNAL LINKS IN NEW TAB
-    if d.has_key('src'):
-        block += """src="%s" """ % (d['src'], )
-    if d.has_key('alt'):
-        block += """alt="%s" """ % (d['alt'], )
-    if d.has_key('action'):
-        block += """action="%s" """ % (d['action'], )
-    if d.has_key('method'):
-        block += """method="%s" """ % (d['method'], )
-    if d.has_key('type'):
-        block += """type="%s" """ % (d['type'], )
-    block += '>'
-  # # SET THE CONTENT
-    if d.has_key('blockContent'):
-        block += str(d['blockContent'])
-  # # CLOSE THE BLOCK
-    if d.has_key('htmlId'):
-        block += '</%s><!--- /#%s --->' % (d['tag'], d['htmlId'])
-    else:
-        block += '</%s>' % (d['tag'], )
-    return block
 
 
 ## LAST MODIFIED : March 27, 2013
@@ -404,7 +277,7 @@ def grid_column(
         - ``column`` -- the column """
 
     if htmlId:
-        htmlId = """id="%s" """ % (htmlId, )
+        htmlId = """id="%(htmlId)s" """ % locals()
     else:
         htmlId = ''
     if not htmlClass:
@@ -423,25 +296,15 @@ def grid_column(
         onDesktop = 'hidden-desktop'
 
     if pull:
-        pull = "pull-%s" % (pull,)
+        pull = "pull-%(pull)s" % locals()
     else:
         pull = ""
 
     column = """
-        <div class="span%s offset%s %s %s %s %s %s" %s>
-            %s
+        <div class="span%(span)s offset%(offset)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s>
+            %(content)s
         </div>
-    """ % (
-        span,
-        offset,
-        htmlClass,
-        onPhone,
-        onTablet,
-        onDesktop,
-        pull,
-        htmlId,
-        content,
-    )
+    """ % locals()
     return column
 
 
@@ -480,7 +343,7 @@ def _container(
     else:
         responsive = ''
     if htmlId:
-        htmlId = """id="%s" """ % (htmlId, )
+        htmlId = """id="%(htmlId)s" """ % locals()
     else:
         htmlId = ''
     if not htmlClass:
@@ -498,18 +361,10 @@ def _container(
     else:
         onDesktop = 'hidden-desktop'
     container = """
-        <div class="container%s %s %s %s %s" %s>
-            %s
+        <div class="container%(responsive)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s" %(htmlId)s>
+            %(content)s
         </div>
-    """ % (
-        responsive,
-        htmlClass,
-        onPhone,
-        onTablet,
-        onDesktop,
-        htmlId,
-        content,
-    )
+    """ % locals()
     return container
 
 ###################################################################

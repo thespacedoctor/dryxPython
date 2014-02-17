@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-""" _dryxLabelsAndBadges
+""" labelsAndBadges.py
 ===============================
 :Summary:
-    Partial for dryxTwitterBootstrap
+    labelsAndBadges for TBS htmlframework
 
 :Author:
     David Young
@@ -28,6 +28,7 @@
 ## CREATED : 20130508
 ## AUTHOR : DRYX
 
+
 def label(text='', level='default'):
     """ Generate a label - TBS style
 
@@ -41,11 +42,11 @@ def label(text='', level='default'):
     if level == 'default':
         level = ''
     else:
-        level = 'label-%s' % (level, )
+        level = 'label-%(level)s' % locals()
     label = """
-        <span class="label %s" id="  ">
-            %s
-        </span>""" % (level, text)
+        <span class="label %(level)s" id="  ">
+            %(text)s
+        </span>""" % locals()
     return label
 
 
@@ -62,11 +63,11 @@ def badge(text='', level='default'):
     if level == 'default':
         level = ''
     else:
-        level = 'badge-%s' % (level, )
+        level = 'badge-%(level)s' % locals()
     badge = """
-        <span class="badge %s" id="  ">
-            %s
-        </span>""" % (level, text)
+        <span class="badge %(level)s" id="  ">
+            %(text)s
+        </span>""" % locals()
     return badge
 
 
@@ -75,9 +76,9 @@ def badge(text='', level='default'):
 ## AUTHOR : DRYX
 
 def alert(alertText='',
-    alertHeading="",
-    extraPadding=False,
-    alertLevel="warning"):
+          alertHeading="",
+          extraPadding=False,
+          alertLevel="warning"):
     """ Generate a alert - TBS style
 
     **Key Arguments:**
@@ -88,31 +89,30 @@ def alert(alertText='',
     **Return:**
         - ``alert`` -- the alert """
 
-    falseList = [extraPadding,]
+    falseList = [extraPadding, ]
     for i in range(len(falseList)):
             if not falseList[i]:
                 falseList[i] = ""
-    [extraPadding,]  = falseList
+    [extraPadding, ] = falseList
 
     if alertLevel == "default":
         alertLevel = ""
     else:
-        alertLevel = "alert-%s" % (alertLevel,)
+        alertLevel = "alert-%(alertLevel)s" % locals()
 
     if extraPadding:
         extraPadding = "alert-block"
-        alertHeading = "<h4>%s</h4>" % (alertHeading,)
+        alertHeading = "<h4>%(alertHeading)s</h4>" % locals()
     else:
-        alertHeading = "<strong>%s</strong>" % (alertHeading,)
-
+        alertHeading = "<strong>%(alertHeading)s</strong>" % locals()
 
     alert = \
         """
-        <div class="alert %s %s">
+        <div class="alert %(extraPadding)s %(alertLevel)s">
           <button type="button" class="close" data-dismiss="alert">&times;</button>
-          %s %s
+          %(alertHeading)s %(alertText)s
         </div>""" \
-        % (extraPadding, alertLevel, alertHeading, alertText, )
+        % locals()
     return alert
 
 
@@ -133,7 +133,7 @@ def progressBar(
     **Return:**
         - ``progressBar`` -- the progressBar
     """
-    barLevel = "progress-%s" % (barLevel,)
+    barLevel = "progress-%(barLevel)s" % locals()
 
     if barStyle == "striped":
         barStyle = "progress-striped"
@@ -143,9 +143,9 @@ def progressBar(
         barStyle = ""
 
     progressBar = """
-        <div class="progress %s %s">
-          <div class="bar" style="width: %s%%;"></div>
-        </div>""" % (barLevel, barStyle, precentageWidth,)
+        <div class="progress %(barLevel)s %(barStyle)s">
+          <div class="bar" style="width: %(precentageWidth)s%%;"></div>
+        </div>""" % locals()
 
     return progressBar
 
@@ -159,7 +159,7 @@ def stackedProgressBar(
         successWidth="10",
         warningWidth="10",
         errorWidth="10"
-        ):
+):
     """Generate a progress bar - TBS style
 
     **Key Arguments:**
@@ -181,13 +181,12 @@ def stackedProgressBar(
         barStyle = ""
 
     stackedProgressBar = """
-        <div class="progress %s">
-          <div class="bar bar-info" style="width: %s%%;"></div>
-          <div class="bar bar-success" style="width: %s%%;"></div>
-          <div class="bar bar-warning" style="width: %s%%;"></div>
-          <div class="bar bar-danger" style="width: %s%%;"></div>
-        </div>""" % (barStyle, infoWidth, successWidth, warningWidth, errorWidth)
-
+        <div class="progress %(barStyle)s">
+          <div class="bar bar-info" style="width: %(infoWidth)s%%;"></div>
+          <div class="bar bar-success" style="width: %(successWidth)s%%;"></div>
+          <div class="bar bar-warning" style="width: %(warningWidth)s%%;"></div>
+          <div class="bar bar-danger" style="width: %(errorWidth)s%%;"></div>
+        </div>""" % locals()
     return stackedProgressBar
 
 

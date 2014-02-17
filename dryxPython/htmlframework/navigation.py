@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-""" _dryxTBS_navigation
+""" navigation.py
 ==================================
 :Summary:
-    Navigation component partial for dryxTwitterBootstrap module
+    Navigation for TBS htmlframework
 
 :Author:
     David Young
@@ -61,27 +61,19 @@ def responsive_navigation_bar(
     if not brand:
         brand = ''
     else:
-        brand = """<a class="brand" href="#">%s</a>""" % (brand, )
+        brand = """<a class="brand" href="#">%(brand)s</a>""" % locals()
 
-    thisList = ""
-    if outsideNavList:
-        for item in outsideNavList:
-            thisList += item
-        outsideNavList = thisList
-    else:
+    if not outsideNavList:
         outsideNavList = ''
 
     thisList = ""
     if insideNavList:
-        for item in insideNavList:
-            thisList += item
-        insideNavList = """<div class="nav-collapse collapse"><ul class="nav pull-right">%s</ul></div>""" % (
-            thisList, )
+        insideNavList = """<div class="nav-collapse collapse"><ul class="nav pull-right">%(insideNavList)s</ul></div>""" % locals()
     else:
         insideNavList = ''
 
     if htmlId:
-        htmlId = """id="%s" """ % (htmlId, )
+        htmlId = """id="%(htmlId)s" """ % locals()
     else:
         htmlId = ''
     if onPhone:
@@ -96,7 +88,7 @@ def responsive_navigation_bar(
         onDesktop = ''
     else:
         onDesktop = 'hidden-desktop'
-    navBar = """<div class="navbar %s %s %s %s" %s>
+    navBar = """<div class="navbar %(shade)s %(onPhone)s %(onTablet)s %(onDesktop)s" %(htmlId)s>
     <div class="navbar-inner">
         <div class="container">
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -104,19 +96,10 @@ def responsive_navigation_bar(
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            %s%s%s
+            %(brand)s%(outsideNavList)s%(insideNavList)s
         </div>
     </div>
- </div>""" % (
-        shade,
-        onPhone,
-        onTablet,
-        onDesktop,
-        htmlId,
-        brand,
-        outsideNavList,
-        insideNavList,
-    )
+ </div>""" % locals()
     return navBar
 
 
@@ -144,7 +127,7 @@ def nav_list(
         - navList """
 
     if pull:
-        pull = """pull-%s""" % (pull, )
+        pull = """pull-%(pull)s""" % locals()
     else:
         pull = ''
     if onPhone:
@@ -159,70 +142,19 @@ def nav_list(
         onDesktop = ''
     else:
         onDesktop = 'hidden-desktop'
-    navList = """<ul class="nav %s %s %s %s">""" % (
-        pull,
-        onPhone,
-        onTablet,
-        onDesktop,
+
+    navList = """<ul class="nav %(pull)s %(onPhone)s %(onTablet)s %(onDesktop)s">""" % locals(
     )
+
     for item in itemList:
-        navList += """
+        navList = """%(navList)s
             <li>
-                %s
-            </li>""" % (item, )
-    navList += """</ul>"""
+                %(item)s
+            </li>""" % locals()
+    navList = """%(navList)s</ul>""" % locals()
     return navList
 
 
-# xxxxxxxxxxxxxx do more work on below and create snippets xxxxxxxxxxxxxxx
-# # xxx-replace
-# ## LAST MODIFIED : December 11, 2012
-# ## CREATED : December 11, 2012
-# ## AUTHOR : DRYX
-# def get_nav_block(attributeDict):
-#   """Create a basic ``<nav>`` code block
-#   **Variable Attributes:**
-#     - ``attributeDict`` -- dictionary of the following keywords:
-#     - ``htmlClass`` -- the html element class
-#     - ``htmlId`` -- the html element id
-#     - ``blockContent`` -- actual content to be placed in html code block
-#     - ``jsEvents`` -- inline javascript event
-#     - ``extraAttr`` -- extra inline css attributes and/or handles
-#   **Returns:**
-#     - ``block`` -- the html block
-#   attributeDict template:
-#     attributeDict = dict(
-#                           htmlClass=___,
-#                           htmlId=___,
-#                           jsEvents=___,
-#                           extraAttr=___,
-#                           blockContent=___
-#                         )
-#   """
-#   ################ > IMPORTS ################
-#   ################ > VARIABLE SETTINGS ######
-#   block = "<div "   # THE HTML BLOCK
-#   d = attributeDict
-#   ################ >ACTION(S) ################
-#   ## SET THE ATTRIBUTES
-#   if d.has_key("htmlClass"):
-#     block += """class="%s" """ % (d["htmlClass"],)
-#   if d.has_key("htmlId"):
-#     block += """id="%s" """ % (d["htmlId"],)
-#   if d.has_key("jsEvents"):
-#     block += """%s """ % (d["jsEvents"],)
-#   if d.has_key("extraAttr"):
-#     block += """%s """ % (d["extraAttr"],)
-#   block += "><nav><ul>"
-#   ## SET THE CONTENT
-#   if d.has_key("blockContent"):
-#     block += str(d["blockContent"])
-#   ## CLOSE THE BLOCK
-#   if d.has_key("htmlId"):
-#     block += "</ul></nav></div><!--- /#%s --->" % (d["htmlId"],)
-#   else:
-#     block += "</ul></nav></div>"
-#   return block
 ## LAST MODIFIED : March 15, 2013
 ## CREATED : March 15, 2013
 ## AUTHOR : DRYX
@@ -252,12 +184,11 @@ def searchbox(
         - ``markup`` -- markup for the searchbar """
 
     if button:
-        button = """<button type="submit" class="btn-%s btn-%s">Search</button>""" % (
-            buttonSize, buttonColor)
+        button = """<button type="submit" class="btn-%(buttonSize)s btn-%(buttonColor)s">Search</button>""" % locals()
     else:
         button = ''
     if placeHolder:
-        placeHolder = """placeholder="%s" """ % (placeHolder, )
+        placeHolder = """placeholder="%(placeHolder)s" """ % locals()
     else:
         placeHolder = ''
     if navBar:
@@ -265,7 +196,7 @@ def searchbox(
     else:
         navBar = ''
     if pull:
-        pull = """pull-%s""" % (pull, )
+        pull = """pull-%(pull)s""" % locals()
     else:
         pull = ''
 
@@ -325,47 +256,45 @@ def tabbableNavigation(
 
     for k, v in contentDictionary.iteritems():
         if count == 0:
-            titleList += """<li class="active"><a href="#tab%s%s" data-toggle="tab">%s</a></li>""" % (
-                uniqueNavigationId, count, k)
-            contentList += \
-                """
-                <div class="tab-pane active %s" id="tab%s%s">
-                    <p>%s</p>
+            titleList = """%(titleList)s<li class="active"><a href="#tab%(uniqueNavigationId)s%(count)s" data-toggle="tab">%(k)s</a></li>""" % locals()
+            contentList = \
+                """%(contentList)s
+                <div class="tab-pane active %(fadeIn)s" id="tab%(uniqueNavigationId)s%(count)s">
+                    <p>%(v)s</p>
                 </div>""" \
-                % (fadeIn, uniqueNavigationId, count, v)
+                % locals()
         else:
-            titleList += """<li><a href="#tab%s%s" data-toggle="tab">%s</a></li>""" % (
-                uniqueNavigationId, count, k)
-            contentList += \
-                """
-                <div class="tab-pane %s" id="tab%s%s">
-                    <p>%s</p>
+            titleList = """%(titleList)s<li><a href="#tab%(uniqueNavigationId)s%(count)s" data-toggle="tab">%(k)s</a></li>""" % locals()
+            contentList = \
+                """%(contentList)s
+                <div class="tab-pane %(fadeIn)s" id="tab%(uniqueNavigationId)s%(count)s">
+                    <p>%(v)s</p>
                 </div>""" \
-                % (fadeIn, uniqueNavigationId, count, v)
+                % locals()
         count += 1
     tabbableNavigation = \
         """
-        <div class="tabbable %s" id="  ">
+        <div class="tabbable %(htmlClass)s" id="  ">
             <ul class="nav nav-tabs">
-                %s
+                %(titleList)s
             </ul>
             <div class="tab-content">
-                %s
+                %(contentList)s
             </div>
         </div>""" \
-        % (htmlClass, titleList, contentList)
+        % locals()
     if direction != 'top':
         tabbableNavigation = \
             """
-            <div class="tabbable tabs-%s %s" %s>
+            <div class="tabbable tabs-%(direction)s %(htmlClass)s" %(htmlId)s>
                 <div class="tab-content">
-                    %s
+                    %(contentList)s
                 </div>
                 <ul class="nav nav-tabs">
-                    %s
+                    %(titleList)s
                 </ul>
             </div>""" \
-            % (direction, htmlClass, htmlId, contentList, titleList)
+            % locals()
     return tabbableNavigation
 
 
@@ -399,7 +328,7 @@ def navBar(
     **Return:**
         - ``navBar`` -- the navBar """
 
-    brand = """<a class="brand" href="#">%s</a>""" % (brand, )
+    brand = """<a class="brand" href="#">%(brand)s</a>""" % locals()
     toggleButton = ""
     falseList = [dividers, fixedOrStatic, toggleButton, dark]
     for i in range(len(falseList)):
@@ -416,27 +345,20 @@ def navBar(
         contentListPull = "pull-%(contentListPull)s" % locals()
 
     for item in contentList:
-        titleList += item + dividers
+        titleList = """%(titleList)s %(item)s %(dividers)s""" % locals()
 
-    # for k, v in contentDictionary.iteritems():
-    #     if count == 0:
-    #         titleList += """<li class="active"><a href="%s">%s</a></li>%s""" % (v, k, dividers)
-    #         count += 1
-    #     else:
-    #         titleList += """<li><a href="%s">%s</a></li>%s""" % (v, k, dividers)
     titleList = """
-    <ul class="nav %s" id="  ">
-        %s
+    <ul class="nav %(contentListPull)s" id="  ">
+        %(titleList)s
     </ul>
-    """ % (contentListPull, titleList, )
+    """ % locals()
 
     formList = ""
     if forms:
-        for form in forms:
-            formList += form
+        formList = forms
 
     if fixedOrStatic:
-        fixedOrStatic = 'navbar-%s-%s' % (fixedOrStatic, location)
+        fixedOrStatic = 'navbar-%(fixedOrStatic)s-%(location)s' % locals()
     if responsive:
         toggleButton = \
             """
@@ -448,9 +370,9 @@ def navBar(
         """
         titleList = """
             <div class="nav-collapse collapse">
-                %s
+                %(titleList)s
             </div>""" \
-            % (titleList, )
+            % locals()
     if dark is True:
         dark = "navbar-inverse"
     else:
@@ -463,15 +385,14 @@ def navBar(
 
     navBar = \
         """
-        <div class="navbar %s %s %s">
+        <div class="navbar %(fixedOrStatic)s %(dark)s %(transparent)s">
           <div class="navbar-inner">
-            %s
-            %s
-            %s
+            %(brand)s
+            %(titleList)s
+            %(formList)s
           </div>
         </div>
-        """ \
-        % (fixedOrStatic, dark, transparent, brand, titleList, formList)
+        """ % locals()
     return navBar
 
 
@@ -495,19 +416,18 @@ def pagination(
     if size == "default":
         size = ""
     else:
-        size = "pagination-%s" % (size,)
-
+        size = "pagination-%(size)s" % locals()
     if align == "left":
         align = ""
     else:
-        align = "pagination-%s" % (align,)
+        align = "pagination-%(align)s" % locals()
 
     pagination = """
-        <div class="pagination %s %s" id="  ">
+        <div class="pagination %(size)s %(align)s" id="  ">
             <ul>
-            %s
+            %(listItems)s
             </ul>
-        </div>""" % (size, align, listItems)
+        </div>""" % locals()
 
     return pagination
 

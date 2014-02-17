@@ -1,10 +1,10 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-_dryxTBS_tables
+tables.py
 =============================
 :Summary:
-    Tables partial for dryxTwitterBootstrap
+    Tables for TBS htmlframework
 
 :Author:
     David Young
@@ -30,6 +30,8 @@ _dryxTBS_tables
 ## LAST MODIFIED : April 16, 2013
 ## CREATED : April 16, 2013
 ## AUTHOR : DRYX
+
+
 def tr(
         cellContent="",
         color=False):
@@ -45,7 +47,7 @@ def tr(
     if color is False:
         color = ""
 
-    tr = """<tr class="%s">%s</tr>""" % (color, cellContent,)
+    tr = """<tr class="%(color)s">%(cellContent)s</tr>""" % locals()
 
     return tr
 
@@ -68,7 +70,7 @@ def th(
     if color is False:
         color = ""
 
-    th = """<th class="%s">%s</th>""" % (color, content,)
+    th = """<th class="%(color)s">%(content)s</th>""" % locals()
 
     return th
 
@@ -91,7 +93,7 @@ def td(
     if color is False:
         color = ""
 
-    td = """<td class="%s">%s</td>""" % (color, content,)
+    td = """<td class="%(color)s">%(content)s</td>""" % locals()
 
     return td
 
@@ -109,7 +111,7 @@ def tableCaption(
     **Return:**
         - ``tableCaption`` -- the table caption
     """
-    tableCaption = """<caption class="">%s</caption>""" % (content,)
+    tableCaption = """<caption class="">%(content)s</caption>""" % locals()
 
     return tableCaption
 
@@ -127,7 +129,7 @@ def thead(
     **Return:**
         - ``thead`` -- the table head
     """
-    thead = """<thead class="">%s</thead>""" % (trContent,)
+    thead = """<thead class="">%(trContent)s</thead>""" % locals()
 
     return thead
 
@@ -145,7 +147,7 @@ def tbody(
     **Return:**
         - ``tbody`` -- the table body
     """
-    tbody = """<tbody class="">%s</tbody>""" % (trContent,)
+    tbody = """<tbody class="">%(trContent)s</tbody>""" % locals()
 
     return tbody
 
@@ -198,8 +200,7 @@ def table(
     else:
         condensed = ""
 
-    table = """<table class="table %s %s %s %s">%s%s%s</table>""" % (striped, bordered, hover, condensed, caption, thead, tbody)
-
+    table = """<table class="table %(striped)s %(bordered)s %(hover)s %(condensed)s">%(caption)s%(thead)s%(tbody)s</table>""" % locals()
     return table
 
 ###################################################################

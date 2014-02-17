@@ -1,11 +1,10 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-_dryxTBS_elements
+typography.py
 =============================
 :Summary:
-    Basic HTML elements partial of the dryxTwitterBootstrap
-
+    Basic text elements for TBS htmlframework
 :Author:
     David Young
 
@@ -63,7 +62,7 @@ def p(
     [lead, textAlign, ] = falseList
 
     if textAlign:
-        textAlign = "text-%s" % (textAlign,)
+        textAlign = "text-%(textAlign)s" % locals()
     else:
         textAlign = ""
 
@@ -75,7 +74,7 @@ def p(
     elif color == "muted":
         color = "muted"
     else:
-        color = "text-" + color
+        color = """text-%(color)s""" % locals()
 
     if navBar is True:
         navBar = "navbar-text"
@@ -96,8 +95,8 @@ def p(
         onDesktop = "hidden-desktop"
 
     p = """
-        <p class="%s %s %s %s %s %s %s">%s</p>
-    """ % (lead, onPhone, onTablet, onDesktop, textAlign, color, navBar, content)
+        <p class="%(lead)s %(onPhone)s %(onTablet)s %(onDesktop)s %(textAlign)s %(color)s %(navBar)s">%(content)s</p>
+    """ % locals()
 
     return p
 
@@ -119,9 +118,9 @@ def emphasizeText(
         - ``emphasizeText`` -- the emphasized text
     """
     emphasizeText = """
-        <%s>
-            %s
-        </%s>""" % (style, text, style)
+        <%(style)s>
+            %(text)s
+        </%(style)s>""" % locals()
 
     return emphasizeText
 
@@ -142,8 +141,7 @@ def abbr(
         - abbr
     """
 
-    abbr = """<abbr title="%s" class="initialism">%s</abbr>""" % (
-        fullWord, abbreviation)
+    abbr = """<abbr title="%(fullWord)s" class="initialism">%(abbreviation)s</abbr>""" % locals()
 
     return abbr
 
@@ -181,48 +179,46 @@ def address(
             item = ""
 
     if name:
-        name = "<strong>%s</strong><br>" % (name,)
+        name = "<strong>%(name)s</strong><br>" % locals()
     else:
         name = ""
 
     if addressLine1:
-        addressLine1 = "%s<br>" % (addressLine1,)
+        addressLine1 = "%(addressLine1)s<br>" % locals()
     else:
         addressLine1 = ""
     if addressLine2:
-        addressLine2 = "%s<br>" % (addressLine2,)
+        addressLine2 = "%(addressLine2)s<br>" % locals()
     else:
         addressLine2 = ""
     if addressLine3:
-        addressLine3 = "%s<br>" % (addressLine3,)
+        addressLine3 = "%(addressLine3)s<br>" % locals()
     else:
         addressLine3 = ""
     if phone:
-        phone = """<abbr title="Phone">p:</abbr> %s<br>""" % (phone,)
+        phone = """<abbr title="Phone">p:</abbr> %(phone)s<br>""" % locals()
     else:
         phone = ""
     if email:
-        email = """<abbr title="email">e:</abbr> <a href="mailto:#">%s</a><br>""" % (
-            email,)
+        email = """<abbr title="email">e:</abbr> <a href="mailto:#">%(email)s</a><br>""" % locals()
     else:
         email = ""
     if twitterHandle:
-        twitterHandle = """<abbr title="twitter handle">t:</abbr> %s<br>""" % (
-            twitterHandle,)
+        twitterHandle = """<abbr title="twitter handle">t:</abbr> %(twitterHandle)s<br>""" % locals()
     else:
         twitterHandle = ""
 
     address = """
         <address>
-            %s
-            %s
-            %s
-            %s
-            %s
-            %s
-            %s
+            %(name)s
+            %(addressLine1)s
+            %(addressLine2)s
+            %(addressLine3)s
+            %(phone)s
+            %(email)s
+            %(twitterHandle)s
         </address>
-    """ % (name, addressLine1, addressLine2, addressLine3, phone, email, twitterHandle)
+    """ % locals()
 
     return address
 
@@ -244,8 +240,7 @@ def blockquote(
         - None
     """
     if source:
-        source = """<small><cite title="%s">%s</cite></small>""" % (
-            source, source)
+        source = """<small><cite title="%(source)s">%(source)s</cite></small>""" % locals()
     else:
         source = ""
 
@@ -255,10 +250,10 @@ def blockquote(
         pullRight = ""
 
     blockquote = """
-        <blockquote %s>
-            <p>%s</p>
-            %s
-        </blockquote>""" % (pullRight, content, source)
+        <blockquote %(pullRight)s>
+            <p>%(content)s</p>
+            %(source)s
+        </blockquote>""" % locals()
 
     return blockquote
 
@@ -313,9 +308,9 @@ def ul(
     thisList = ""
     for item in itemList:
         if "<li" in item:
-            thisList += """%s""" % (item,)
+            thisList = """%(thisList)s %(item)s""" % locals()
         else:
-            thisList += """<li>%s</li>""" % (item,)
+            thisList = """%(thisList)s <li>%(item)s</li>""" % locals()
 
     if breadcrumb:
         thisList = thisList.replace(
@@ -335,12 +330,12 @@ def ul(
     if navStyle:
         thisNavStyle = "nav"
     if navStyle in navStyleList:
-        thisNavStyle += " nav-%s" % (navStyle,)
+        thisNavStyle = "%(thisNavStyle)s nav-%(navStyle)s" % locals()
     else:
         thisNavStyle = ""
 
     if navPull:
-        navPull = "pull-%s" % (navPull,)
+        navPull = "pull-%(navPull)s" % locals()
 
     if navDirection == "stacked":
         navDirection = "nav-stacked"
@@ -364,10 +359,9 @@ def ul(
     if not htmlId:
         htmlId = ""
     else:
-        htmlId = 'id="%s"' % (htmlId,)
+        htmlId = 'id="%(htmlId)s"' % locals()
 
-    ul = """<ul class="%s %s %s %s %s %s %s %s %s %s %s" %s>%s</ul>""" % (
-        unstyled, inline, dropDownMenu, role, navPull, thisNavStyle, navDirection, breadcrumb, pager, thumbnails, mediaList, htmlId, thisList,)
+    ul = """<ul class="%(unstyled)s %(inline)s %(dropDownMenu)s %(role)s %(navPull)s %(thisNavStyle)s %(navDirection)s %(breadcrumb)s %(pager)s %(thumbnails)s %(mediaList)s" %(htmlId)s>%(thisList)s</ul>""" % locals()
 
     return ul
 
@@ -413,21 +407,20 @@ def li(
 
     if submenuTitle:
         submenuClass = "dropdown-submenu"
-        submenuTitle = """<a tabindex="-1" href="#">%s</a>""" % (submenuTitle,)
+        submenuTitle = """<a tabindex="-1" href="#">%(submenuTitle)s</a>""" % locals()
 
     if navStyle == "active":
         pass
     elif navStyle:
-        navStyle = "nav-%s" % (navStyle,)
+        navStyle = "nav-%(navStyle)s" % locals()
 
     if navDropDown:
         navDropDown = """dropdown"""
 
     if span:
-        span = "span%s" % (span,)
+        span = "span%(span)s" % locals()
 
-    li = """<li class="%s %s %s %s %s %s" id="  ">%s%s</li>""" % (
-        disabled, submenuClass, navStyle, pager, span, navDropDown, submenuTitle, content,)
+    li = """<li class="%(disabled)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals()
 
     if divider is True:
         li = """<li class="divider"></li>"""
@@ -473,7 +466,7 @@ def a(
         tableIndex, dropdownCaret, pull] = falseList
 
     if tableIndex is True:
-        tableIndex = """tableIndex = "%s" """ % (tableIndex,)
+        tableIndex = """tableIndex = "%(tableIndex)s" """ % locals()
 
     if thumbnail:
         thumbnail = "thumbnail"
@@ -484,7 +477,7 @@ def a(
         htmlClass = ""
 
     if pull:
-        pull = "pull-%s" % (pull,)
+        pull = "pull-%(pull)s" % locals()
 
     if postInBackground is True:
         postInBackground = "postInBackground"
@@ -500,8 +493,7 @@ def a(
     else:
         triggerToggle = ""
 
-    a = """<a %s href="%s" class="%s %s %s %s %s" id="  " %s>%s%s</a>""" % (
-        tableIndex, href, triggerClass, thumbnail, pull, htmlClass, postInBackground, triggerToggle, content, dropdownCaret)
+    a = """<a %(tableIndex)s href="%(href)s" class="%(triggerClass)s %(thumbnail)s %(pull)s %(htmlClass)s %(postInBackground)s" id="  " %(triggerToggle)s>%(content)s%(dropdownCaret)s</a>""" % locals()
 
     return a
 
@@ -520,13 +512,13 @@ def ol(itemList=[]):
     """
     thisList = ""
     for item in itemList:
-        thisList += """<li>%s</li>\n""" % (item,)
+        thisList = """%(thisList)s <li>%(item)s</li>\n""" % locals()
 
     ol = """
         <ol>
-            %s
+            %(thisList)s
         </ol>
-    """ % (thisList,)
+    """ % locals()
 
     return ol
 
@@ -549,10 +541,10 @@ def descriptionLists(
 
     termList = ""
     for k, v in orderedDictionary.iteritems():
-        termList += """
-            <dt>%s</dt>
-            <dd>%s</dd>
-        """ % (k, v)
+        termList = """%(termList)s
+            <dt>%(k)s</dt>
+            <dd>%(v)s</dd>
+        """ % locals()
 
     if sideBySide:
         sideBySide = "dl-horizontal"
@@ -560,10 +552,10 @@ def descriptionLists(
         sideBySide = ""
 
     descriptionLists = """
-        <dl class="%s">
-            %s
+        <dl class="%(sideBySide)s">
+            %(termList)s
         </dl>
-    """ % (sideBySide, termList,)
+    """ % locals()
 
     return descriptionLists
 
@@ -592,12 +584,12 @@ def code(
         scroll = ""
 
     if inline:
-        code = """<code>%s</code>""" % (content,)
+        code = """<code>%(content)s</code>""" % locals()
     else:
         code = """
-            <pre class="%s">
-                %s
-            </pre>""" % (scroll, content,)
+            <pre class="%(scroll)s">
+                %(content)s
+            </pre>""" % locals()
 
     return code
 
@@ -626,14 +618,14 @@ def heroUnit(
     """
     heroUnit = """
         <div class="hero-unit" id="  ">
-            <h1>%s</h1>
-            <p>%s</p>
+            <h1>%(headline)s</h1>
+            <p>%(tagline)s</p>
             <p>
-                <a href="%s" class="btn btn-%s btn-large">
-                  %s
+                <a href="%(buttonHref)s" class="btn btn-%(buttonStyle)s btn-large">
+                  %(buttonText)s
                 </a>
             </p>
-        </div>""" % (headline, tagline, buttonHref, buttonStyle, buttonText,)
+        </div>""" % locals()
 
     return heroUnit
 
@@ -655,8 +647,8 @@ def pageHeader(
     """
     pageHeader = """
         <div class="page-header" id="  ">
-            <h1>%s<br><small>%s</small></h1>
-        </div>""" % (headline, tagline)
+            <h1>%(headline)s<br><small>%(tagline)s</small></h1>
+        </div>""" % locals()
 
     return pageHeader
 
@@ -695,17 +687,16 @@ def coloredText(
     ## LOCAL APPLICATION ##
 
     if pull is not False:
-        pull = """pull-%s""" % (pull,)
+        pull = """pull-%(pull)s""" % locals()
     else:
         pull = ""
 
     if size is not False:
-        size = """size-%s""" % (size,)
+        size = """size-%(size)s""" % locals()
     else:
         size = ""
 
-    text = """<span class="colortext %s %s %s %s">%s</span>""" % (color,
-                                                                  htmlClass, pull, size, text,)
+    text = """<span class="colortext %(color)s %(htmlClass)s %(pull)s %(size)s">%(text)s</span>""" % locals()
 
     return text
 
