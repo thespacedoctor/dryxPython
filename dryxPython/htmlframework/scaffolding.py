@@ -259,6 +259,7 @@ def grid_column(
     onPhone=True,
     onTablet=True,
     onDesktop=True,
+    dataspy=False
 ):
     """ Get a column block for the Twiiter Bootstrap static layout grid.
 
@@ -300,8 +301,13 @@ def grid_column(
     else:
         pull = ""
 
+    if dataspy is not False:
+        dataspy = """data-spy="affix" data-offset-top="200" """
+    else:
+        dataspy = ""
+
     column = """
-        <div class="span%(span)s offset%(offset)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s>
+        <div %(dataspy)s class="span%(span)s offset%(offset)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s>
             %(content)s
         </div>
     """ % locals()
