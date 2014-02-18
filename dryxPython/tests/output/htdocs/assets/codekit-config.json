@@ -76,6 +76,15 @@
       "initialSize" : 12799,
       "fileType" : 8192
     },
+    "\/styles\/css\/main.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/styles\/css\/main.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
     "\/styles\/sass\/main.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -88,12 +97,12 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/styles\/css\/main.css" : {
+    "\/icons\/dryx_data_icons.css" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/css\/main.css",
+      "inputAbbreviatedPath" : "\/icons\/dryx_data_icons.css",
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 16
     },
@@ -106,14 +115,16 @@
       "outputAbbreviatedPath" : "No Output Path",
       "fileType" : 2048
     },
-    "\/icons\/dryx_data_icons.css" : {
+    "\/icons\/glyphicons-halflings-white.png" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/icons\/dryx_data_icons.css",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "inputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
+      "processed" : 0,
+      "outputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
+      "initialSize" : 8777,
+      "fileType" : 8192
     },
     "\/js\/holder.js" : {
       "ignoreWasSetByUser" : 0,
@@ -125,17 +136,6 @@
       "syntaxCheckerStyle" : 1,
       "outputAbbreviatedPath" : "\/js\/holder-ck.js",
       "fileType" : 64
-    },
-    "\/icons\/glyphicons-halflings-white.png" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
-      "processed" : 0,
-      "outputAbbreviatedPath" : "\/icons\/glyphicons-halflings-white.png",
-      "initialSize" : 8777,
-      "fileType" : 8192
     },
     "\/styles\/css\/ie.css" : {
       "ignoreWasSetByUser" : 0,
