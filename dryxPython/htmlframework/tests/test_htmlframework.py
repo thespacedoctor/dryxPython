@@ -892,7 +892,7 @@ class test_0001_htmlDocument():
         text = "Images"
         content += lt(text)
         thisImage = dhf.image(
-            src='holder.js/200x200/industrial/text:rounded image',
+            src='holder.js/200x200/auto/industrial/text:rounded image',
             href=False,
             display="rounded",  # [ rounded | circle | polaroid ]
             pull="left",  # [ "left" | "right" | "center" ]
@@ -906,7 +906,7 @@ class test_0001_htmlDocument():
         content += thisImage
 
         thisImage = dhf.image(
-            src='holder.js/200x200/industrial/text:circle image',
+            src='holder.js/200x200/auto/industrial/text:circle image',
             href=False,
             display="circle",  # [ rounded | circle | polaroid ]
             pull="left",  # [ "left" | "right" | "center" ]
@@ -920,7 +920,7 @@ class test_0001_htmlDocument():
         content += thisImage
 
         thisImage = dhf.image(
-            src='holder.js/200x200/industrial/text:polaroid image',
+            src='holder.js/200x200/auto/industrial/text:polaroid image',
             href=False,
             display="polaroid",  # [ rounded | circle | polaroid ]
             pull="left",  # [ "left" | "right" | "center" ]
@@ -1704,7 +1704,7 @@ class test_0001_htmlDocument():
         content += lt(text)
 
         Image = dhf.image(
-            src='holder.js/200x200/industrial/text:test mediaobject',
+            src='holder.js/200x200/auto/industrial/text:test mediaobject',
             href=False,
             display=False,  # [ rounded | circle | polaroid ]
             pull="left",  # [ "left" | "right" | "center" ]
@@ -1815,7 +1815,7 @@ class test_0001_htmlDocument():
         content += stackedProgressBar
 
         Image = dhf.image(
-            src='holder.js/64x64/industrial/text:test mediaobject',
+            src='holder.js/64x64/auto/industrial/text:test mediaobject',
             href=False,
             display=False,  # [ rounded | circle | polaroid ]
             pull="left",  # [ "left" | "right" | "center" ]
@@ -1933,7 +1933,7 @@ class test_0001_htmlDocument():
         kwargs["displayType"] = 'div'
         kwargs["img"] = dhf.image(
             # [ industrial | gray | social ]
-            src='holder.js/200x200/industrial/text:test mediaobject',
+            src='holder.js/200x200/auto/industrial/text:test mediaobject',
         )
         kwargs["headlineText"] = 'This is a mediaObject'
         kwargs["nestedMediaObjects"] = False
