@@ -439,6 +439,8 @@ def a(
         pull=False,
         triggerStyle=False,
         htmlClass=False,
+        htmlId=False,
+        notification=False,
         postInBackground=False):
     """Generate an anchor - TBS style
 
@@ -449,7 +451,9 @@ def a(
         - ``pull`` -- direction to float the link (esp if image)
         - ``triggerStyle`` -- link to be used as a dropDown or tab trigger? [ False | "dropdown" | "tab" | "thumbnail" ]
         - ``htmlClass`` -- the class of the link
+        - ``htmlId`` -- the html id of the anchor
         - ``postInBackground`` -- post to the href in the background, to fire data off to a cgi script to action without leaving page
+        - ``notification`` -- a notification to be displayed on webpage
 
     **Return:**
         - ``a`` -- the a
@@ -464,6 +468,16 @@ def a(
                 falseList[i] = ""
     [href, triggerClass, triggerStyle,
         tableIndex, dropdownCaret, pull] = falseList
+
+    if not htmlId:
+        htmlId = ""
+    else:
+        htmlId = 'id="%(htmlId)s"' % locals()
+
+    if notification is False:
+        notification = ""
+    else:
+        notification = """notification="%(notification)s" """ % locals()
 
     if tableIndex is True:
         tableIndex = """tableIndex = "%(tableIndex)s" """ % locals()
@@ -493,7 +507,7 @@ def a(
     else:
         triggerToggle = ""
 
-    a = """<a %(tableIndex)s href="%(href)s" class="%(triggerClass)s %(thumbnail)s %(pull)s %(htmlClass)s %(postInBackground)s" id="  " %(triggerToggle)s>%(content)s%(dropdownCaret)s</a>""" % locals()
+    a = """<a %(tableIndex)s href="%(href)s" class="%(triggerClass)s %(thumbnail)s %(pull)s %(htmlClass)s %(postInBackground)s" %(htmlId)s %(triggerToggle)s %(notification)s>%(content)s%(dropdownCaret)s</a>""" % locals()
 
     return a
 

@@ -1613,27 +1613,29 @@ span.colortext.grey {
 .alert-error h4 {
   color: #b94a48; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000359}}
-.alert-lightBlue {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000360}}
+.alert-lightBlue,
+.alert-info {
   background-color: #d9edf7;
   border-color: #bce8f1;
   color: #3a87ad; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000364}}
-.alert-lightBlue h4 {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000366}}
+.alert-lightBlue h4,
+.alert-info h4 {
   color: #3a87ad; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000371}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000373}}
 .alert-block {
   padding-top: 14px;
   padding-bottom: 14px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000376}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000378}}
 .alert-block > p,
 .alert-block > ul {
   margin-bottom: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000379}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_alerts\.scss}line{font-family:\0000381}}
 .alert-block p + p {
   margin-top: 5px; }
 

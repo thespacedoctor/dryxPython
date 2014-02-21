@@ -9935,31 +9935,28 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
  * limitations under the License.
  * ========================================================== */
 
-
-!function ($) {
+! function($) {
 
   // "use strict"; // jshint ;_;
-
 
   /* CSS TRANSITION SUPPORT (http://www.modernizr.com/)
    * ======================================================= */
 
-  $(function () {
+  $(function() {
 
-    $.support.transition = (function () {
+    $.support.transition = (function() {
 
-      var transitionEnd = (function () {
+      var transitionEnd = (function() {
 
-        var el = document.createElement('bootstrap')
-          , transEndEventNames = {
-               'WebkitTransition' : 'webkitTransitionEnd'
-            ,  'MozTransition'    : 'transitionend'
-            ,  'OTransition'      : 'oTransitionEnd otransitionend'
-            ,  'transition'       : 'transitionend'
-            }
-          , name
+        var el = document.createElement('bootstrap'),
+          transEndEventNames = {
+            'WebkitTransition': 'webkitTransitionEnd',
+            'MozTransition': 'transitionend',
+            'OTransition': 'oTransitionEnd otransitionend',
+            'transition': 'transitionend'
+          }, name
 
-        for (name in transEndEventNames){
+        for (name in transEndEventNames) {
           if (el.style[name] !== undefined) {
             return transEndEventNames[name]
           }
@@ -9976,7 +9973,6 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   })
 
 }(window.jQuery);
-
 
 /* =============================================================
  * bootstrap-collapse.js v2.3.1
@@ -9997,16 +9993,14 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
  * limitations under the License.
  * ============================================================ */
 
-
-!function ($) {
+! function($) {
 
   // "use strict"; // jshint ;_;
 
+  /* COLLAPSE PUBLIC CLASS DEFINITION
+   * ================================ */
 
- /* COLLAPSE PUBLIC CLASS DEFINITION
-  * ================================ */
-
-  var Collapse = function (element, options) {
+  var Collapse = function(element, options) {
     this.$element = $(element)
     this.options = $.extend({}, $.fn.collapse.defaults, options)
 
@@ -10021,16 +10015,15 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
     constructor: Collapse
 
-  , dimension: function () {
+    ,
+    dimension: function() {
       var hasWidth = this.$element.hasClass('width')
       return hasWidth ? 'width' : 'height'
     }
 
-  , show: function () {
-      var dimension
-        , scroll
-        , actives
-        , hasData
+    ,
+    show: function() {
+      var dimension, scroll, actives, hasData
 
       if (this.transitioning || this.$element.hasClass('in')) return
 
@@ -10050,7 +10043,8 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       $.support.transition && this.$element[dimension](this.$element[0][scroll])
     }
 
-  , hide: function () {
+    ,
+    hide: function() {
       var dimension
       if (this.transitioning || !this.$element.hasClass('in')) return
       dimension = this.dimension()
@@ -10059,26 +10053,26 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
       this.$element[dimension](0)
     }
 
-  , reset: function (size) {
+    ,
+    reset: function(size) {
       var dimension = this.dimension()
 
       this.$element
-        .removeClass('collapse')
-        [dimension](size || 'auto')
-        [0].offsetWidth
+        .removeClass('collapse')[dimension](size || 'auto')[0].offsetWidth
 
       this.$element[size !== null ? 'addClass' : 'removeClass']('collapse')
 
       return this
     }
 
-  , transition: function (method, startEvent, completeEvent) {
-      var that = this
-        , complete = function () {
-            if (startEvent.type == 'show') that.reset()
-            that.transitioning = 0
-            that.$element.trigger(completeEvent)
-          }
+    ,
+    transition: function(method, startEvent, completeEvent) {
+      var that = this,
+        complete = function() {
+          if (startEvent.type == 'show') that.reset()
+          that.transitioning = 0
+          that.$element.trigger(completeEvent)
+        }
 
       this.$element.trigger(startEvent)
 
@@ -10093,25 +10087,25 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
         complete()
     }
 
-  , toggle: function () {
+    ,
+    toggle: function() {
       this[this.$element.hasClass('in') ? 'hide' : 'show']()
     }
 
   }
 
-
- /* COLLAPSE PLUGIN DEFINITION
-  * ========================== */
+  /* COLLAPSE PLUGIN DEFINITION
+   * ========================== */
 
   var old = $.fn.collapse
 
-  $.fn.collapse = function (option) {
-    return this.each(function () {
-      var $this = $(this)
-        , data = $this.data('collapse')
-        , options = $.extend({}, $.fn.collapse.defaults, $this.data(), typeof option == 'object' && option)
-      if (!data) $this.data('collapse', (data = new Collapse(this, options)))
-      if (typeof option == 'string') data[option]()
+  $.fn.collapse = function(option) {
+    return this.each(function() {
+      var $this = $(this),
+        data = $this.data('collapse'),
+        options = $.extend({}, $.fn.collapse.defaults, $this.data(), typeof option == 'object' && option)
+        if (!data) $this.data('collapse', (data = new Collapse(this, options)))
+        if (typeof option == 'string') data[option]()
     })
   }
 
@@ -10121,47 +10115,50 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 
   $.fn.collapse.Constructor = Collapse
 
+  /* COLLAPSE NO CONFLICT
+   * ==================== */
 
- /* COLLAPSE NO CONFLICT
-  * ==================== */
-
-  $.fn.collapse.noConflict = function () {
+  $.fn.collapse.noConflict = function() {
     $.fn.collapse = old
     return this
   }
 
+  /* COLLAPSE DATA-API
+   * ================= */
 
- /* COLLAPSE DATA-API
-  * ================= */
-
-  $(document).on('click.collapse.data-api', '[data-toggle=collapse]', function (e) {
-    var $this = $(this), href
-      , target = $this.attr('data-target')
-        || e.preventDefault()
-        || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
-      , option = $(target).data('collapse') ? 'toggle' : $this.data()
-    $this[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
-    $(target).collapse(option)
+  $(document).on('click.collapse.data-api', '[data-toggle=collapse]', function(e) {
+    var $this = $(this),
+      href, target = $this.attr('data-target') || e.preventDefault() || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') //strip for ie7
+      ,
+      option = $(target).data('collapse') ? 'toggle' : $this.data()
+      $this[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
+      $(target).collapse(option)
   })
 
 }(window.jQuery);
-
 
 // _dryx_animations.js
 // ===================
 // Author: Dave Young
 // Date created: December 18, 2013
 // Summary: Some animations for my pages
-var fade_and_hide = function (element) {
-    console.log('fade and hide animation triggered');
+var fade_and_hide = function(element) {
+  console.log('fade and hide animation triggered');
 
-    element.animate({
-        opacity: 0.25
-    }, 150);
-    element.delay(600).slideUp(300);
+  element.animate({
+    opacity: 0.25
+  }, 150);
+  element.delay(600).slideUp(300);
 }
 
+var show_and_unfade = function(element) {
+  console.log('fade and hide animation triggered');
 
+  element.animate({
+    opacity: 1.0
+  }, 150);
+  element.delay(600).slideDown(300);
+}
 
 
 /* **********************************************

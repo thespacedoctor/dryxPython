@@ -274,7 +274,7 @@ def tabbableNavigation(
         count += 1
     tabbableNavigation = \
         """
-        <div class="tabbable %(htmlClass)s" id="  ">
+        <div class="tabbable %(htmlClass)s" %(htmlId)s>
             <ul class="nav nav-tabs">
                 %(titleList)s
             </ul>
@@ -345,6 +345,7 @@ def navBar(
         contentListPull = "pull-%(contentListPull)s" % locals()
 
     for item in contentList:
+        item = """<li>%(item)s</li>""" % locals()
         titleList = """%(titleList)s %(item)s %(dividers)s""" % locals()
 
     titleList = """

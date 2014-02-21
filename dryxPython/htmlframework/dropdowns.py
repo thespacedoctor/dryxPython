@@ -41,6 +41,7 @@ def dropdown(
         linkList=[],
         separatedLinkList=False,
         pull=False,
+        htmlId=False,
         direction="down",
         onPhone=True,
         onTablet=True,
@@ -89,6 +90,11 @@ def dropdown(
 
     buttonColor = "btn-%(buttonColor)s" % locals()
 
+    if htmlId is False:
+        htmlId = ""
+    else:
+        htmlId = """id="%(htmlId)s" """ % locals()
+
     if direction == "up":
         direction = "dropup"
     else:
@@ -126,7 +132,7 @@ def dropdown(
         onDesktop = "hidden-desktop"
 
     dropdown = """
-        <div class="btn-group %(pull)s %(onPhone)s %(onTablet)s %(onDesktop)s %(direction)s" id="">
+        <div class="btn-group %(pull)s %(onPhone)s %(onTablet)s %(onDesktop)s %(direction)s" %(htmlId)s>
             %(dropdownButton)s
             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
                 <!-- dropdown menu links -->
