@@ -39,7 +39,8 @@ def p(
         navBar=False,
         onPhone=True,
         onTablet=True,
-        onDesktop=True):
+        onDesktop=True,
+        htmlId=False):
     """Get a Paragraph element
 
     **Key Arguments:**
@@ -60,6 +61,11 @@ def p(
             if not falseList[i]:
                 falseList[i] = ""
     [lead, textAlign, ] = falseList
+
+    if htmlId is not False:
+        htmlId = """id="%(htmlId)s" """ % locals()
+    else:
+        htmlId = ""
 
     if textAlign:
         textAlign = "text-%(textAlign)s" % locals()
@@ -95,7 +101,7 @@ def p(
         onDesktop = "hidden-desktop"
 
     p = """
-        <p class="%(lead)s %(onPhone)s %(onTablet)s %(onDesktop)s %(textAlign)s %(color)s %(navBar)s">%(content)s</p>
+        <p class="%(lead)s %(onPhone)s %(onTablet)s %(onDesktop)s %(textAlign)s %(color)s %(navBar)s" %(htmlId)s>%(content)s</p>
     """ % locals()
 
     return p
@@ -441,7 +447,8 @@ def a(
         htmlClass=False,
         htmlId=False,
         notification=False,
-        postInBackground=False):
+        postInBackground=False,
+        openInNewTab=False):
     """Generate an anchor - TBS style
 
     **Key Arguments:**
@@ -454,6 +461,7 @@ def a(
         - ``htmlId`` -- the html id of the anchor
         - ``postInBackground`` -- post to the href in the background, to fire data off to a cgi script to action without leaving page
         - ``notification`` -- a notification to be displayed on webpage
+        - ``openInNewTab`` -- open the link in a new tab?
 
     **Return:**
         - ``a`` -- the a
@@ -468,6 +476,11 @@ def a(
                 falseList[i] = ""
     [href, triggerClass, triggerStyle,
         tableIndex, dropdownCaret, pull] = falseList
+
+    if openInNewTab is not False:
+        openInNewTab = """target="_blank" """
+    else:
+        openInNewTab = ""
 
     if not htmlId:
         htmlId = ""
@@ -507,7 +520,7 @@ def a(
     else:
         triggerToggle = ""
 
-    a = """<a %(tableIndex)s href="%(href)s" class="%(triggerClass)s %(thumbnail)s %(pull)s %(htmlClass)s %(postInBackground)s" %(htmlId)s %(triggerToggle)s %(notification)s>%(content)s%(dropdownCaret)s</a>""" % locals()
+    a = """<a %(tableIndex)s href="%(href)s" class="%(triggerClass)s %(thumbnail)s %(pull)s %(htmlClass)s %(postInBackground)s"  %(openInNewTab)s %(htmlId)s %(triggerToggle)s %(notification)s>%(content)s%(dropdownCaret)s</a>""" % locals()
 
     return a
 

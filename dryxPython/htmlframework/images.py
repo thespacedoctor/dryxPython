@@ -44,7 +44,8 @@ def image(
         onPhone=True,
         onTablet=True,
         onDesktop=True,
-        clickToModal=False):
+        clickToModal=False,
+        openInNewTab=False):
     """Create an HTML image (with ot without link).
     Based on the Twitter bootstrap setup.
 
@@ -60,6 +61,7 @@ def image(
         - ``onTablet`` -- does this container get displayed on a tablet sized screen
         - ``onDesktop`` -- does this container get displayed on a desktop sized screen
         - ``clickToModal`` -- if you want to display the image in a modal when clicked?
+        - ``openInNewTab`` -- open image link in new tab?
 
     **Return:**
         - ``image`` - the formatted image
@@ -119,8 +121,13 @@ def image(
     image = """<img %(src)s class="%(display)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s %(clickToModal)s" %(htmlId)s %(width)s>""" % locals(
     )
 
+    if openInNewTab is not False:
+        openInNewTab = """target="_blank" """
+    else:
+        openInNewTab = ""
+
     if href:
-        image = """<a href="%(href)s" class="%(thumbnail)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s>%(image)s</a>""" % locals()
+        image = """<a href="%(href)s" class="%(thumbnail)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s %(openInNewTab)s>%(image)s</a>""" % locals()
 
     return image
 

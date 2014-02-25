@@ -11005,7 +11005,7 @@ var show_and_unfade = function(element) {
     event.preventDefault();
     if ($(this).parent().is("a")) {
       var sourceUrl = $(this).parent().attr("href");
-      sourceUrl = '<a href="' + sourceUrl + '">image source</a>'
+      sourceUrl = '<a href="' + sourceUrl + '" target="_blank">image source</a>'
     } else {
       var sourceUrl = ""
     }
