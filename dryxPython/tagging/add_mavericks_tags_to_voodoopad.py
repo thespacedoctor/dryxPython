@@ -22,18 +22,19 @@ add_mavericks_tags_to_voodoopad.py
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
-    dt_add_mavericks_tags_to_voodoopad --pathToDoentry <pathToDoentry>
+    dt_add_mavericks_tags_to_voodoopad --pathToVpspotlight=<pathToVpspotlight>
 
     -h, --help              show this help message
     -v, --version           show version
-    -p, --pathToDoentry     the path to the .doentry file
 """
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
+import re
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
+from . import mavericks
 
 
 def main(arguments=None):
@@ -78,7 +79,7 @@ def main(arguments=None):
     # call the worker function
     add_mavericks_tags_to_voodoopad(
         log=log,
-        pathToDoentry=pathToDoentry,
+        pathToVpspotlight=pathToVpspotlight,
     )
 
     if "dbConn" in locals() and dbConn:
@@ -107,13 +108,13 @@ def main(arguments=None):
 
 def add_mavericks_tags_to_voodoopad(
     log,
-    pathToDoentry,
+    pathToVpspotlight,
 ):
     """add_mavericks_tags_to_voodoopad
 
     **Key Arguments:**
         - ``log`` -- the logger
-        - ``pathToDoentry`` -- path to the voodoopad .doentry file
+        - ``pathToVpspotlight`` -- path to the voodoopad .doentry file
 
     **Return:**
         - None
@@ -126,6 +127,43 @@ def add_mavericks_tags_to_voodoopad(
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
+    voodoopadTags = []
+
+    pathToReadFile = pathToVpspotlight
+    try:
+        log.debug("attempting to open the file %s" % (pathToReadFile,))
+        readFile = open(pathToReadFile, 'r')
+        thisData = readFile.read()
+        readFile.close()
+    except IOError, e:
+        message = 'could not open the file %s' % (pathToReadFile,)
+        log.critical(message)
+        raise IOError(message)
+
+    # log.debug('thisData: %(thisData)s' % locals())
+
+    matchObjects = re.finditer(
+        r'<key>pageText</key>\n\s+<string>(.*?) #', thisData, flags=re.S)
+
+    for match in matchObjects:
+        thisMatch = match.group(1).strip()
+
+        log.debug('match: %(thisMatch)s' % locals())
+        import string
+        tags = string.split(thisMatch, ' ')
+        for tag in tags:
+            tag = tag.replace('$', "")
+            voodoopadTags.append(tag)
+            log.info('tag: %(tag)s' % locals())
+
+    readFile.close()
+
+    tag_file = mavericks.tag_file.tag_file
+    tag_file(
+        log=log,
+        pathToFile=pathToVpspotlight,
+        mode="set",
+        tagList=voodoopadTags)
 
     return None
 

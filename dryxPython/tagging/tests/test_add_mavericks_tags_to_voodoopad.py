@@ -1,5 +1,6 @@
-x - test - module - templateimport os
+import os
 import nose
+import shutil
 from .. import add_mavericks_tags_to_voodoopad
 
 ## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
@@ -14,25 +15,17 @@ def setUpModule():
 
     # SETUP PATHS TO COMMONG DIRECTORIES FOR TEST DATA
     moduleDirectory = os.path.dirname(__file__)
-    global pathToOutputDir, pathToInputDir, dayoneIn, dayoneOut, voodoopadIn, voodoopadOut
+    global pathToOutputDir, pathToInputDir, voodoopadIn, voodoopadOut, voodoopadIn, voodoopadOut
     pathToInputDir = moduleDirectory + "/input/"
     pathToOutputDir = moduleDirectory + "/output/"
-    dayoneIn = "%(pathToInputDir)stest_dayone.doentry" % globals()
-    dayoneOut = "%(pathToOutputDir)stest_dayone.doentry" % globals()
     voodoopadIn = "%(pathToInputDir)stest_voodoopad.vpspotlight" % globals()
     voodoopadOut = "%(pathToOutputDir)stest_voodoopad.vpspotlight" % globals()
-
-    try:
-        os.remove(dayoneOut)
-    except:
-        pass
 
     try:
         os.remove(voodoopadOut)
     except:
         pass
 
-    shutil.copyfile(dayoneIn, dayoneOut)
     shutil.copyfile(voodoopadIn, voodoopadOut)
 
     # SETUP THE TEST LOG FILE
@@ -83,7 +76,7 @@ class test_command_line():
 
     def test_command_line_method_01(self):
         kwargs = {}
-        kwargs["-p"] = voodoopadOut
+        kwargs["--pathToVpspotlight"] = voodoopadOut
         add_mavericks_tags_to_voodoopad.main(kwargs)
 
     # x-class-method-to-test-a-command-line-usage

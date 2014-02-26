@@ -22,7 +22,7 @@ add_mavericks_tags_to_dayone.py
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
-    dt_add_mavericks_tags_to_dayone --pathToDoentry <pathToDoentry>
+    dt_add_mavericks_tags_to_dayone --pathToDoentry=<pathToDoentry>
 
     -h, --help              show this help message
     -v, --version           show version
@@ -34,6 +34,7 @@ import re
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
+from . import mavericks
 
 
 def main(arguments=None):
@@ -158,6 +159,13 @@ def add_mavericks_tags_to_dayone(
             log.info('thisTag: %(thisTag)s' % locals())
 
     readFile.close()
+
+    tag_file = mavericks.tag_file.tag_file
+    tag_file(
+        log=log,
+        pathToFile=pathToDoentry,
+        mode="set",
+        tagList=dayOneTags)
 
     return None
 

@@ -65,12 +65,13 @@ def tag_file(
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
-    theseTags = (",").join(tagList)
+    theseTags = ('","').join(tagList)
+    theseTags = """ "%(theseTags)s" """ % locals()
     print theseTags
     print pathToFile
 
     from subprocess import Popen, PIPE, STDOUT
-    cmd = """/usr/local/bin/tag --set %(theseTags)s %(pathToFile)s""" % locals()
+    cmd = """/usr/local/bin/tag --set %(theseTags)s "%(pathToFile)s" """ % locals()
     print cmd
     p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
     output = p.communicate()[0]
