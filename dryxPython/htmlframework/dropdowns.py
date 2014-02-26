@@ -44,6 +44,7 @@ def dropdown(
         htmlId=False,
         htmlClass=False,
         direction="down",
+        popover=False,
         onPhone=True,
         onTablet=True,
         onDesktop=True):
@@ -57,6 +58,7 @@ def dropdown(
     - ``separatedLinkList`` -- a list of (linked) items items that the menu should display below divider
     - ``pull`` -- [ false | right | left ] (e.g Add ``right`` to a ``.dropdown-menu`` to right align the dropdown menu.)
     - ``direction`` -- drop [ down | up ]
+    - ``popover`` -- add a popover for this dropdown
     - ``onPhone`` -- does this container get displayed on a phone sized screen
     - ``onTablet`` -- does this container get displayed on a tablet sized screen
     - ``onDesktop`` -- does this container get displayed on a desktop sized screen
@@ -104,15 +106,19 @@ def dropdown(
     else:
         direction = ""
 
+    if popover is False:
+        popover = ""
+
     if splitButton:
         dropdownButton = """
-            <button class="btn %(buttonSize)s %(buttonColor)s">%(menuTitle)s</button>
+            <button class="btn %(buttonSize)s %(buttonColor)s" %(popover)s>%(menuTitle)s</button>
             <button class="btn %(buttonSize)s %(buttonColor)s dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
             </button>""" % locals()
+        popover = ""
     else:
         dropdownButton = """
-            <button class="btn %(buttonSize)s %(buttonColor)s dropdown-toggle" data-toggle="dropdown" href="#">
+            <button class="btn %(buttonSize)s %(buttonColor)s dropdown-toggle" %(popover)s data-toggle="dropdown" href="#">
               %(menuTitle)s
               <span class="caret"></span>
             </button>""" % locals()

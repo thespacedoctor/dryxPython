@@ -43,6 +43,7 @@ def button(
         block=False,
         disable=False,
         dataToggle=False,
+        popover=False,
         close=False):
     """Generate a button - TBS style
 
@@ -57,6 +58,7 @@ def button(
         - ``block`` -- create block level buttons—those that span the full width of a parent [ True | False ]
         - ``disable`` -- this class is only for aesthetic; you must use custom JavaScript to disable links here
         - ``dataToggle`` -- for use with js to launch, for example, a modal
+        - ``popover`` -- add a popover element for this button
 
     **Return:**
         - ``button`` -- the button
@@ -113,7 +115,13 @@ def button(
     else:
         pull = "pull-%(pull)s" % locals()
 
-    button = """<%(elementOpen)s class="btn %(close)s %(buttonStyle)s %(buttonSize)s %(block)s %(disable)s %(pull)s" id="%(htmlId)s" %(dataToggle)s %(dismiss)s>%(buttonText)s</%(elementClose)s>""" % locals()
+    if popover is False:
+        popover = ""
+
+    if len(dataToggle):
+        popover = popover.replace("data-toggle", "rel")
+
+    button = """<%(elementOpen)s class="btn %(close)s %(buttonStyle)s %(buttonSize)s %(block)s %(disable)s %(pull)s" %(popover)s id="%(htmlId)s" %(dataToggle)s %(dismiss)s>%(buttonText)s</%(elementClose)s>""" % locals()
 
     return button
 

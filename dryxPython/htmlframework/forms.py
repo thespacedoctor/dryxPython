@@ -553,7 +553,8 @@ def select(
         inlineHelpText=False,
         blockHelpText=False,
         required=False,
-        disabled=False):
+        disabled=False,
+        popover=False):
     """Generate a select - TBS style
 
     **Key Arguments:**
@@ -565,6 +566,7 @@ def select(
         - ``blockHelpText`` -- a longer block of help text that breaks onto a new line and may extend beyond one line
         - ``required`` -- required attribute if the field is not optional
         - ``disabled`` -- add the disabled attribute on an input to prevent user input
+        - ``popover`` -- add helper text to the select
 
     **Return:**
         - ``select`` -- the select
@@ -581,6 +583,9 @@ def select(
         span = "span%(span)s" % locals()
     else:
         span = ""
+
+    if popover is False:
+        popover = ""
 
     if inlineHelpText:
         inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
@@ -609,7 +614,7 @@ def select(
         disabledId = ""
 
     select = """
-        <select %(multiple)s name="%(htmlId)s" class="%(span)s" id="%(disabledId)s%(htmlId)s" %(required)s %(disabled)s>
+        <select %(multiple)s name="%(htmlId)s" class="%(span)s" %(popover)s id="%(disabledId)s%(htmlId)s" %(required)s %(disabled)s>
             %(options)s
         </select>%(inlineHelpText)s%(blockHelpText)s
         """ % locals()
