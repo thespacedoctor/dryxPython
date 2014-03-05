@@ -101,7 +101,7 @@ def button(
         dataToggle = """data-toggle="%(dataToggle)s" """ % locals()
 
     if href:
-        elementOpen = """a href="%(href)s" """ % locals()
+        elementOpen = """a href="%(href)s" type="%(ttype)s" """ % locals()
         elementClose = """a"""
     else:
         elementOpen = """button type="%(ttype)s" """ % locals()

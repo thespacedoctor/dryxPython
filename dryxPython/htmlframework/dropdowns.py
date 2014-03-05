@@ -38,6 +38,7 @@ def dropdown(
         buttonColor="default",
         menuTitle="#",
         splitButton=False,
+        splitButtonHref=False,
         linkList=[],
         separatedLinkList=False,
         pull=False,
@@ -54,6 +55,7 @@ def dropdown(
     - ``buttonColor`` -- [ default | sucess | error | warning | info ]
     - ``menuTitle`` -- the title of the menu
     - ``splitButton`` -- split the button into a separate action button and a dropdown
+    - ``splitButtonHref`` -- link for the split button
     - ``linkList`` -- a list of (linked) items items that the menu should display
     - ``separatedLinkList`` -- a list of (linked) items items that the menu should display below divider
     - ``pull`` -- [ false | right | left ] (e.g Add ``right`` to a ``.dropdown-menu`` to right align the dropdown menu.)
@@ -110,8 +112,15 @@ def dropdown(
         popover = ""
 
     if splitButton:
+        content = """class="btn %(buttonSize)s %(buttonColor)s" %(popover)s>%(menuTitle)s""" % locals(
+        )
+        if splitButtonHref is not False:
+            topButton = """<a href="%(splitButtonHref)s" %(content)s</a>""" % locals()
+        else:
+            topButton = """<button %(content)s</button>""" % locals()
+
         dropdownButton = """
-            <button class="btn %(buttonSize)s %(buttonColor)s" %(popover)s>%(menuTitle)s</button>
+            %(topButton)s
             <button class="btn %(buttonSize)s %(buttonColor)s dropdown-toggle" data-toggle="dropdown">
                 <span class="caret"></span>
             </button>""" % locals()

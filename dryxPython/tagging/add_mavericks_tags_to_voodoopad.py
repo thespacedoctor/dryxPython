@@ -143,10 +143,11 @@ def add_mavericks_tags_to_voodoopad(
     # log.debug('thisData: %(thisData)s' % locals())
 
     matchObjects = re.finditer(
-        r'<key>pageText</key>\n\s+<string>(.*?) #', thisData, flags=re.S)
+        r'<key>pageText</key>\n\s+<string>(?!# )(.{1,300})(\s|\n)# ', thisData, flags=re.S)
 
     for match in matchObjects:
         thisMatch = match.group(1).strip()
+        thisMatch = thisMatch.replace('vpstatic.publish = 0', "")
 
         log.debug('match: %(thisMatch)s' % locals())
         import string

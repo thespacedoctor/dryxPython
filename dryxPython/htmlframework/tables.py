@@ -34,12 +34,15 @@ tables.py
 
 def tr(
         cellContent="",
-        color=False):
+        color=False,
+        href=False,
+        popover=False):
     """Generate a table row - TBS style
 
     **Key Arguments:**
         - ``cellContent`` -- the content - either <td>s or <th>s
         - ``color`` -- [ sucess | error | warning | info ]
+        - ``href`` -- add a link for the whole table row
 
     **Return:**
         - ``tr`` -- the table row
@@ -47,7 +50,17 @@ def tr(
     if color is False:
         color = ""
 
-    tr = """<tr class="%(color)s">%(cellContent)s</tr>""" % locals()
+    if href is False:
+        href = ""
+        link = ""
+    else:
+        href = """href="%(href)s" """ % locals()
+        link = "link"
+
+    if popover is False:
+        popover = ""
+
+    tr = """<tr %(href)s class="%(link)s %(color)s" %(popover)s>%(cellContent)s</tr>""" % locals()
 
     return tr
 
@@ -57,12 +70,16 @@ def tr(
 ## AUTHOR : DRYX
 def th(
         content="",
-        color=False):
+        color=False,
+        href=False,
+        popover=False):
     """Generate a table header cell - TBS style
 
     **Key Arguments:**
         - ``content`` -- the content
         - ``color`` -- [ sucess | error | warning | info ]
+        - ``href`` -- add a link for the header cell (to sort for example)
+        - ``popover`` -- add helper text
 
     **Return:**
         - ``th`` -- the table header cell
@@ -70,7 +87,17 @@ def th(
     if color is False:
         color = ""
 
-    th = """<th class="%(color)s">%(content)s</th>""" % locals()
+    if href is False:
+        href = ""
+        link = ""
+    else:
+        href = """href="%(href)s" """ % locals()
+        link = "link"
+
+    if popover is False:
+        popover = ""
+
+    th = """<th %(href)s class="%(color)s %(link)s" %(popover)s>%(content)s</th>""" % locals()
 
     return th
 
@@ -79,7 +106,7 @@ def th(
 ## CREATED : April 16, 2013
 ## AUTHOR : DRYX
 def td(
-        content="",
+        content=False,
         color=False):
     """Generate a table data cell - TBS style
 
@@ -92,6 +119,8 @@ def td(
     """
     if color is False:
         color = ""
+    if content is False:
+        content = ""
 
     td = """<td class="%(color)s">%(content)s</td>""" % locals()
 

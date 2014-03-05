@@ -32,30 +32,40 @@
 ## AUTHOR : DRYX
 def htmlDocument(
         contentType=False,
-        content=''):
+        content='',
+        attachmentSaveAsName=False):
     """The doctype and html tags
 
     **Key Arguments:**
         - ``content`` -- the head and body of the html page
+        - ``attachmentSaveAsName`` -- save file as this name instead of opening in browser
 
     **Return:**
         - ``contentType`` -- the content type [ "text/html" ]
         - ``doctype`` -- the HTML5 doctype
     """
 
-    if not contentType:
+    if attachmentSaveAsName is not False:
+        contentType = """Content-Disposition: attachment; filename=%(attachmentSaveAsName)s""" % locals()
+    elif not contentType:
         contentType = ""
     else:
         contentType = "Content-type: %(contentType)s" % locals()
 
-    htmlDocument = \
+    if "text/plain" in contentType or attachmentSaveAsName is not False:
+        htmlDocument = \
         """%(contentType)s\n
-        <!DOCTYPE html>
-        <html lang="en">
-            %(content)s
-        </html>
-    """ \
-        % locals()
+%(content)s
+""" % locals()
+    else:
+        htmlDocument = \
+            """%(contentType)s\n
+            <!DOCTYPE html>
+            <html lang="en">
+                %(content)s
+            </html>
+        """ \
+            % locals()
     return htmlDocument
 
 
