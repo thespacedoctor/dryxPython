@@ -448,7 +448,8 @@ def a(
         htmlId=False,
         notification=False,
         postInBackground=False,
-        openInNewTab=False):
+        openInNewTab=False,
+        popover=False):
     """Generate an anchor - TBS style
 
     **Key Arguments:**
@@ -476,6 +477,9 @@ def a(
                 falseList[i] = ""
     [href, triggerClass, triggerStyle,
         tableIndex, dropdownCaret, pull] = falseList
+
+    if popover is False:
+        popover = ""
 
     if openInNewTab is not False:
         openInNewTab = """target="_blank" """
@@ -520,7 +524,7 @@ def a(
     else:
         triggerToggle = ""
 
-    a = """<a %(tableIndex)s href="%(href)s" class="%(triggerClass)s %(thumbnail)s %(pull)s %(htmlClass)s %(postInBackground)s"  %(openInNewTab)s %(htmlId)s %(triggerToggle)s %(notification)s>%(content)s%(dropdownCaret)s</a>""" % locals()
+    a = """<a %(tableIndex)s href="%(href)s" %(popover)s class="%(triggerClass)s %(thumbnail)s %(pull)s %(htmlClass)s %(postInBackground)s"  %(openInNewTab)s %(htmlId)s %(triggerToggle)s %(notification)s>%(content)s%(dropdownCaret)s</a>""" % locals()
 
     return a
 
