@@ -248,6 +248,7 @@ def formInput(
         inlineHelpText=False,
         blockHelpText=False,
         focusedInputText=False,
+        rightText=False,
         required=False,
         disabled=False,
         defaultValue=False,
@@ -395,11 +396,20 @@ def formInput(
     else:
         defaultValue = ""
 
+    thisInput = """
+    %(prependContent)s
+    <input class="%(searchClass)s %(span)s" id="%(htmlId)s%(inputId)s%(focusId)s%(disabledId)s" %(focusedInputText)s type="%(ttype)s" %(step)s placeholder="%(placeholder)s" %(required)s %(disabled)s name="%(htmlId)s" %(defaultValue)s>
+    %(appendContent)s
+    """ % locals()
+
+    if rightText is not False:
+        thisInput = """<label class="inline">%(thisInput)s%(rightText)s </label>""" % locals()
+
     formInput = """
         <div class="%(prependClass)s %(appendClass)s %(hidden)s %(pull)s">
-            %(prependContent)s
-            <input class="%(searchClass)s %(span)s" id="%(htmlId)s%(inputId)s%(focusId)s%(disabledId)s" %(focusedInputText)s type="%(ttype)s" %(step)s placeholder="%(placeholder)s" %(required)s %(disabled)s name="%(htmlId)s" %(defaultValue)s>
-            %(appendContent)s
+            
+            %(thisInput)s 
+            
         </div>%(inlineHelpText)s%(blockHelpText)s
         """ % locals()
 
@@ -532,10 +542,13 @@ def checkbox(
 
     if not htmlId:
         htmlId = ""
+        name = ""
+    else:
+        name = """name="%(htmlId)s" """ % locals()
 
     checkbox = """
         <label class="checkbox %(inline)s">
-          <input type="checkbox" value="%(optionNumber)s" id="%(htmlId)s %(disabledId)s" %(disabled)s>
+          <input type="checkbox" %(name)s value="%(optionNumber)s" id="%(htmlId)s %(disabledId)s" %(disabled)s>
           %(optionText)s
         </label>%(inlineHelpText)s%(blockHelpText)s""" % locals()
 
@@ -817,7 +830,8 @@ def modal(
         modalBodyContent="",
         modalFooterContent="",
         htmlId=False,
-        centerContent=False
+        centerContent=False,
+        htmlClass=False
 ):
     """generate a modal to by generated with a js event
 
@@ -839,6 +853,8 @@ def modal(
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
+    if htmlClass is False:
+        htmlClass = ""
 
     if htmlId is False:
         htmlId = ""
@@ -850,7 +866,7 @@ def modal(
         centerContent = "center-content"
 
     ## VARIABLES ##
-    modal = """<div class="modal hide fade" %(htmlId)s>
+    modal = """<div class="modal hide fade %(htmlClass)s" %(htmlId)s>
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3>%(modalHeaderContent)s</h3>

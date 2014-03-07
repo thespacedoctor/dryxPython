@@ -37,6 +37,7 @@ def button(
         buttonStyle="default",
         buttonSize="default",
         htmlId=False,
+        htmlClass=False,
         href=False,
         pull=False,
         submit=False,
@@ -67,6 +68,9 @@ def button(
         buttonStyle = ""
     else:
         buttonStyle = "btn-%(buttonStyle)s" % locals()
+
+    if htmlClass is False:
+        htmlClass = ""
 
     if buttonSize == "default":
         buttonSize = ""
@@ -121,7 +125,7 @@ def button(
     if len(dataToggle):
         popover = popover.replace("data-toggle", "rel")
 
-    button = """<%(elementOpen)s class="btn %(close)s %(buttonStyle)s %(buttonSize)s %(block)s %(disable)s %(pull)s" %(popover)s id="%(htmlId)s" %(dataToggle)s %(dismiss)s>%(buttonText)s</%(elementClose)s>""" % locals()
+    button = """<%(elementOpen)s class="%(htmlClass)s btn %(close)s %(buttonStyle)s %(buttonSize)s %(block)s %(disable)s %(pull)s" %(popover)s id="%(htmlId)s" %(dataToggle)s %(dismiss)s>%(buttonText)s</%(elementClose)s>""" % locals()
 
     return button
 
@@ -131,7 +135,8 @@ def button(
 ## AUTHOR : DRYX
 def buttonGroup(
         buttonList=[],
-        format="default"):
+        format="default",
+        pull=False):
     """Generate a buttonGroup - TBS style
 
     **Key Arguments:**
@@ -147,6 +152,11 @@ def buttonGroup(
         thisButtonList = "%(thisButtonList)s %(button)s" % locals()
         count += 1
 
+    if pull is not False:
+        pull = "pull-%(pull)s" % locals()
+    else:
+        pull = ""
+
     if format == "vertical":
         vertical = "btn-group-vertical"
     else:
@@ -157,7 +167,7 @@ def buttonGroup(
         toolbar = "btn-toolbar"
 
     buttonGroup = """
-        <div class="btn-group %(vertical)s %(toolbar)s" id="  ">
+        <div class="btn-group %(vertical)s %(toolbar)s %(pull)s"  id="  ">
             %(thisButtonList)s
         </div>""" % locals()
 
