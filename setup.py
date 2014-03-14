@@ -42,6 +42,7 @@ setup(name='dryxPython',
               'dat_declination_sexegesimal_to_decimal=dryxPython.astrotools.declination_sexegesimal_to_decimal:main',
               'dt_add_mavericks_tags_to_dayone=dryxPython.tagging.add_mavericks_tags_to_dayone:main',
               'dt_add_mavericks_tags_to_voodoopad=dryxPython.tagging.add_mavericks_tags_to_voodoopad:main',
+              'dcu_get_outliers_from_list=dryxPython.commonutils.get_outliers_from_list:main',
           ],
       },
       zip_safe=False)
