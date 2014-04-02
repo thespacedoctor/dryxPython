@@ -70,6 +70,8 @@ def tag_file(
     print theseTags
     print pathToFile
 
+    pathToFile = pathToFile.replace("'", "\'")
+
     from subprocess import Popen, PIPE, STDOUT
     cmd = """/usr/local/bin/tag --set %(theseTags)s "%(pathToFile)s" """ % locals()
     print cmd
