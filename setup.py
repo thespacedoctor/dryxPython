@@ -44,7 +44,8 @@ setup(name='dryxPython',
               'dt_add_mavericks_tags_to_voodoopad=dryxPython.tagging.add_mavericks_tags_to_voodoopad:main',
               'dcu_get_outliers_from_list=dryxPython.commonutils.get_outliers_from_list:main',
               'dc_xy_scatter=dryxPython.plotting.xy_scatter:main',
-              'dms_convert_collate_and_charset_of_mysql_database=dryxPython.mysql.convert_collate_and_charset_of_mysql_database:main'
+              'dms_convert_collate_and_charset_of_mysql_database=dryxPython.mysql.convert_collate_and_charset_of_mysql_database:main',
+              'dms_convert_mysql_database_to_myisam=dryxPython.mysql.convert_mysql_database_to_myisam:main'
           ],
       },
       zip_safe=False)

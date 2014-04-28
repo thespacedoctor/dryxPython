@@ -19,9 +19,6 @@ import sys
 import os
 import MySQLdb
 
-import convert_collate_and_charset_of_mysql_database
-import convert_mysql_database_to_myisam
-import execute_mysql_script
 
 
 ############################################
@@ -853,6 +850,11 @@ def get_db_table_column_names(
         return -1
     columnNames = rows[0].keys()
     return columnNames
+
+
+import convert_collate_and_charset_of_mysql_database
+import convert_mysql_database_to_myisam
+import execute_mysql_script
 
 
 if __name__ == '__main__':

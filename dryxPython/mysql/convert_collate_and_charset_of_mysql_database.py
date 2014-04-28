@@ -40,8 +40,8 @@ from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 from dryxPython.projectsetup import setup_main_clutil
-from .__init__ import execute_mysql_read_query
-from .__init__ import execute_mysql_write_query
+from . import execute_mysql_write_query
+from . import execute_mysql_read_query
 
 
 def main(arguments=None):
@@ -79,6 +79,9 @@ def main(arguments=None):
     log.info(
         '--- STARTING TO RUN THE convert_collate_and_charset_of_mysql_database.py AT %s' %
         (startTime,))
+
+    if "tableSchema" not in locals():
+        tableSchema = False
 
     # call the worker function
     # x-if-settings-or-database-credientials
