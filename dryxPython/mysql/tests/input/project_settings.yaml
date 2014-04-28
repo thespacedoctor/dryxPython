@@ -1,0 +1,116 @@
+version: 1
+database settings:
+    db: pessto_marshall_sandbox
+    host: localhost
+    user: pessto
+    password: p355t0
+
+apache prefix: ""
+
+eso archive credentials:
+    username: nbd
+    password: 31bAR07
+
+nttarchiver:
+    path to dropbox folder: "/Users/Dave/Dropbox/github_projects/pessto_marshall_engine/pessto_marshall_engine/tests/input/data/marshall_dropbox"
+    path to archive root folder: "/tmp/marshall_archive"
+    ## past number of days to check for new data (keep at a few days in case new data was added or there is a delay getting data into the eso archive)
+    download window size: 4
+
+downloads:
+    transient cache directory: "/Users/Dave/Dropbox/github_projects/pessto_marshall_webapp/transients_cache/"
+
+stats cache directory: "/Users/Dave/Dropbox/github_projects/pessto_marshall_webapp/stats_cache/"
+
+credentials:
+    lsq:
+        username: lsq
+        password: schmidteso
+    ps1-3pi:
+        username: ps13pi
+        password: fgss
+    ps1-md:
+        username: ps1sc
+        password: skysurveys
+    ps1-fgss:
+        username: ps1sc
+        password: skysurveys
+    skymapper:
+        username: pessto
+        password: "!explosions"
+
+panstarrs urls:
+    summary csv: "http://star.pst.qub.ac.uk/sne/ps13pi/site_media/images/lightcurves/summary.csv"
+    recurrence csv: "http://star.pst.qub.ac.uk/sne/ps13pi/site_media/images/lightcurves/recurrences.csv"
+
+lsq urls:
+    summary csv: "http://portal.nersc.gov/project/lssn/test/ryan/adb/pessto/candidates.csv"
+    recurrence csv: "http://portal.nersc.gov/project/lssn/test/ryan/adb/pessto/candidates_obs.csv"
+
+exports:
+    path to pessto classifications csv export: "/Users/Dave/Dropbox/github_projects/pessto_marshall_engine/pessto_marshall_engine/database/export/tests/output/pessto_classifications_export_01.csv"
+    path to pessto object sumarraies for wiserep sql export: "/tmp/wiserep.sql"
+
+logging settings:
+    formatters:
+        file_style:
+            format: '* %(asctime)s - %(name)s - %(levelname)s (%(filename)s > %(funcName)s > %(lineno)d) - %(message)s  '
+            datefmt: '%Y/%m/%d %H:%M:%S'
+        console_style:
+            format: '* %(asctime)s - %(levelname)s: %(filename)s:%(funcName)s:%(lineno)d > %(message)s'
+            datefmt: '%H:%M:%S'
+        html_style:
+            format: '<div id="row" class="%(levelname)s"><span class="date">%(asctime)s</span>   <span class="label">file:</span><span class="filename">%(filename)s</span>   <span class="label">method:</span><span class="funcName">%(funcName)s</span>   <span class="label">line#:</span><span class="lineno">%(lineno)d</span> <span class="pathname">%(pathname)s</span>  <div class="right"><span class="message">%(message)s</span><span class="levelname">%(levelname)s</span></div></div>'
+            datefmt: '%Y-%m-%d <span class= "time">%H:%M <span class= "seconds">%Ss</span></span>'
+    handlers:
+        console:
+            class: logging.StreamHandler
+            level: WARNING
+            formatter: console_style
+            stream: ext://sys.stdout
+        file:
+            class: logging.handlers.GroupWriteRotatingFileHandler
+            level: DEBUG
+            formatter: file_style
+            filename: /Users/Dave/Desktop/marshall_logs/marshall.log
+            mode: w+
+            maxBytes: 102400
+            backupCount: 1
+            # class: logging.FileHandler
+            # level: DEBUG
+            # formatter: file_style
+            # filename: /Users/Dave/Desktop/marshall_logs/marshall.log
+            # mode: w
+        debug_file:
+            class: logging.handlers.GroupWriteRotatingFileHandler
+            level: DEBUG
+            formatter: file_style
+            filename: /Users/Dave/Desktop/marshall_logs/marshall_debug.log
+            mode: w+
+            maxBytes: 1024000
+            backupCount: 3
+        html_log_file:
+            # class: logging.handlers.GroupWriteRotatingFileHandler
+            # level: DEBUG
+            # formatter: html_style
+            # filename: /Users/Dave/Dropbox/bitbucket_projects/pessto_marshall/webpages/document_root/pessto/private/marshall/logs/log.html
+            # mode: w+
+            # maxBytes: 102400
+            # backupCount: 3
+            class: logging.FileHandler
+            level: INFO
+            formatter: html_style
+            filename: /Users/Dave/Desktop/marshall_logs/marshall_log.html
+            mode: w
+        # html_debug_file:
+        #     class: logging.handlers.GroupWriteRotatingFileHandler
+        #     formatter: html_style
+        #     level: WARNING
+        #     filename: /Users/Dave/Dropbox/bitbucket_projects/pessto_marshall/webpages/document_root/pessto/private/marshall/logs/log_debug.html
+        #     mode: w+
+            # maxBytes: 1024000
+            # backupCount: 3
+    root:
+        level: WARNING
+        # handlers: [debug_file,file,html_log_file]
+        handlers: [file,console,html_log_file]

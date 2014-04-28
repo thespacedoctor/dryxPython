@@ -1,4 +1,3 @@
-import execute_mysql_script
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """ **mysql**
@@ -19,6 +18,10 @@ import execute_mysql_script
 import sys
 import os
 import MySQLdb
+
+import convert_collate_and_charset_of_mysql_database
+import convert_mysql_database_to_myisam
+import execute_mysql_script
 
 
 ############################################

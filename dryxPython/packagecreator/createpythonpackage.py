@@ -32,6 +32,7 @@ Usage:
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
+import shutil
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
@@ -213,6 +214,12 @@ def createpythonpackage(
         writeFile.write(thisData)
         writeFile.close()
 
+    ## CREATE A GIT REPO
+    create_git_repo(
+        log,
+        pathToProjectRoot=location
+    )
+
     return None
 
 ## LAST MODIFIED : October 25, 2013
@@ -363,9 +370,59 @@ def createpythonmodule(
     log.info('completed the ``createpythonmodule`` function')
     return None
 
+## LAST MODIFIED : April 17, 2014
+## CREATED : April 17, 2014
+## AUTHOR : DRYX
+
+
+def create_git_repo(
+        log,
+        pathToProjectRoot):
+    """create a first instance of a git repo with all the neccessary files
+
+    **Key Arguments:**
+        - ``log`` -- logger
+        - ``pathToProjectRoot`` -- path to the root of the project
+
+    **Return:**
+        - None
+
+    **Todo**
+        - @review: when complete, clean create_git_repo function
+        - @review: when complete add logging
+        - @review: when complete, decide whether to abstract function to another module
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+
+    log.info('starting the ``create_git_repo`` function')
+    ## TEST THE ARGUMENTS
+    os.chdir(pathToProjectRoot)
+
+    moduleDirectory = os.path.dirname(__file__)
+    gitignore = moduleDirectory + "/helper_files/git_files/gitignore"
+    readme = moduleDirectory + "/helper_files/git_files/README.md"
+    shutil.copy(gitignore, pathToProjectRoot + "/.gitignore")
+    shutil.copy(readme, pathToProjectRoot)
+
+    from subprocess import Popen, PIPE, STDOUT
+    cmd = """git init && git add --all . && git commit -m "first commit" """ % locals()
+    p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
+    output = p.communicate()[0]
+    log.debug('output: %(output)s' % locals())
+
+
+
+    ## VARIABLES ##
+
+    log.info('completed the ``create_git_repo`` function')
+    return None
+
 # use the tab-trigger below for new function
 # x-def-with-logger
-###################################################################
+##################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
 ###################################################################
 

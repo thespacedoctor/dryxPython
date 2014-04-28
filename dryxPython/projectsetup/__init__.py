@@ -1,3 +1,5 @@
+from setup_main_clutil import setup_main_clutil
+
 #!/usr/local/bin/python
 # encoding: utf-8
 """
@@ -19,14 +21,14 @@ import sys
 import os
 
 
-
-#############################################################################################
+##########################################################################
 # CLASSES                                                                                   #
-#############################################################################################
+##########################################################################
 ## LAST MODIFIED : June 18, 2013
 ## CREATED : June 18, 2013
 ## AUTHOR : DRYX
 class projectSetup():
+
     """
     Load the settings in the general and specific settings files and give them a global scope.
 
@@ -39,7 +41,7 @@ class projectSetup():
             self,
             dbConn,
             relativePathToProjectRoot
-        ):
+    ):
         """
         Load the global settings in the __init__ method, ``projectSettings`` is a dictionary of the project settings.
 
@@ -54,7 +56,8 @@ class projectSetup():
 
         ## SETUP CLASS VARIABLES
         self.relativePathToProjectRoot = relativePathToProjectRoot
-        self.generalSettingsFilepath = relativePathToProjectRoot + "/settings/general_settings.yaml"
+        self.generalSettingsFilepath = relativePathToProjectRoot + \
+            "/settings/general_settings.yaml"
         self.set_python_path()
         self.dbConn = dbConn
         self.log = self.get_logger()
@@ -114,7 +117,8 @@ class projectSetup():
         ## LOCAL APPLICATION ##
 
         ## VARIABLES ##
-        pathToYamlFile = self.relativePathToProjectRoot + 'settings/python_path.yaml'
+        pathToYamlFile = self.relativePathToProjectRoot + \
+            'settings/python_path.yaml'
 
         ## READ THE ABSOLUTE PATH TO THE ROOT DIRECTORY OF THIS PROJECT
         try:
@@ -167,15 +171,17 @@ class projectSetup():
 
         basename = os.path.basename(self.generalSettingsFilepath)
         folderPath = str(os.path.abspath(self.generalSettingsFilepath))
-        folderPath =  folderPath.replace(basename, "")
+        folderPath = folderPath.replace(basename, "")
 
         try:
-            stream = file(folderPath+snippetMetadataDictionary['specific_settings'], 'r')
+            stream = file(folderPath +
+                          snippetMetadataDictionary['specific_settings'], 'r')
         except Exception, e:
-            print "could not open the %s file - failed with this error: %s " % (folderPath+snippetMetadataDictionary['specific_settings'], str(e),)
+            print "could not open the %s file - failed with this error: %s " % (folderPath + snippetMetadataDictionary['specific_settings'], str(e),)
             return -1
 
-        settings = dict(snippetMetadataDictionary.items() + yaml.load(stream).items())
+        settings = dict(snippetMetadataDictionary.items()
+                        + yaml.load(stream).items())
         contentPaths = settings["contentPaths"]
 
         for k, v in contentPaths.iteritems():
@@ -239,6 +245,8 @@ class projectSetup():
 ## LAST MODIFIED : May 22, 2013
 ## CREATED : May 22, 2013
 ## AUTHOR : DRYX
+
+
 def _add_directories_to_path(
         directoryPath):
     """Given a directory path, add its contained directories to the system path
@@ -267,6 +275,8 @@ def _add_directories_to_path(
 ## LAST MODIFIED : May 22, 2013
 ## CREATED : May 22, 2013
 ## AUTHOR : DRYX
+
+
 def _recusively_add_directories_to_path(
         directoryPath):
     """Given a directory path, add its contained directories **recusively** to the system path
@@ -286,10 +296,11 @@ def _recusively_add_directories_to_path(
     ################ >ACTION(S) ################
     # ADD TOP LEVEL DIRS TO PATH
     _add_directories_to_path(directoryPath)
-    parentDirectoryList = [directoryPath,]
+    parentDirectoryList = [directoryPath, ]
 
     while len(parentDirectoryList) != 0:
-        # print "\n\n len(parentDirectoryList): %s" % (len(parentDirectoryList),)
+        # print "\n\n len(parentDirectoryList): %s" %
+        # (len(parentDirectoryList),)
         childDirList = []
         for parentDir in parentDirectoryList:
             thisDirList = os.listdir(parentDir)
@@ -357,9 +368,9 @@ def set_python_path(relativePathToProjectRoot):
 ## CREATED : December 5, 2012
 ## AUTHOR : DRYX
 def settings(relativePathToProjectRoot,
-                dbConn=True,
-                log=True,
-                ):
+             dbConn=True,
+             log=True,
+             ):
     """
     Create a connector to the database if required & setup logging
 
@@ -393,6 +404,8 @@ def settings(relativePathToProjectRoot,
 ## LAST MODIFIED : May 27, 2013
 ## CREATED : May 27, 2013
 ## AUTHOR : DRYX
+
+
 def setup_helper_variables(relativePathToProjectRoot):
     """Setup various helper variables - mainly paths to thespacedoctor boilerplate directories
 
@@ -461,5 +474,3 @@ def setup_helper_variables(relativePathToProjectRoot):
 
 if __name__ == '__main__':
     main()
-
-
