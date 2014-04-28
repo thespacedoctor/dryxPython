@@ -144,7 +144,7 @@ def convert_collate_and_charset_of_mysql_database(
         tableSchema = ""
 
     sqlQuery = """
-        SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' CONVERT TO CHARACTER SET latin1 COLLATE latin1_swedish_ci;')     FROM information_schema.tables     WHERE 1=1         AND table_schema NOT IN ('information_schema', 'mysql', 'performance_schema') %(tableSchema)s and table_name not like "%%view%%"
+        SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' CONVERT TO CHARACTER SET latin1 COLLATE latin1_swedish_ci;')     FROM information_schema.tables     WHERE 1=1         AND table_schema NOT IN ('information_schema', 'mysql', 'performance_schema') %(tableSchema)s and table_name not like "%%view%%" and TABLE_COLLATION != "latin1_swedish_ci";        
     """ % locals()
     rows = execute_mysql_read_query(
         sqlQuery=sqlQuery,
