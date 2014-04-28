@@ -66,7 +66,7 @@ class setup_main_clutil():
             arguments = docopt(docString)
         self.arguments = arguments
 
-        print arguments
+        # print arguments
 
         ## UNPACK SETTINGS
         if "<settingsFile>" in arguments and arguments["<settingsFile>"]:
