@@ -17,9 +17,6 @@ imageWell.py
 
 :Notes:
     - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
-    @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -36,8 +33,6 @@ from imagingModal import imagingModal
 ###################################################################
 # CLASSES                                                         #
 ###################################################################
-
-
 class imageWell():
 
     """
@@ -48,11 +43,6 @@ class imageWell():
         - ``title`` -- Title of Image Well
         - ``description`` -- Description of the content of the image well
         - ``imageDisplay`` -- [ rounded | circle | polaroid | False ]
-
-    **Todo**
-        - @review: when complete, clean imageWell class
-        - @review: when complete add logging
-        - @review: when complete, decide whether to abstract class to another module
     """
     ## Variable Data Atrributes
     imageSpan = 2
@@ -80,30 +70,25 @@ class imageWell():
     ## Method Attributes
     def get(self):
         """get the image well
-    
-        **Key Arguments:**
-            # -
-    
+        
         **Return:**
-            - None
-    
-        **Todo**
-            - @review: when complete, clean get method
-            - @review: when complete add logging
+            - ``imageWellRow`` -- the html text
         """
         self.log.info('starting the ``get`` method')
-        ## TEST THE ARGUMENTS
 
         ## VARIABLES ##
+        numImages = len(self.imageColumns)
+        colPerRow = int(math.floor(12 / self.imageSpan))
+        numRows = int(math.ceil(float(numImages) / float(colPerRow)))
+
+        ## header text for the image well
         self.title = pageHeader(
             headline=self.title,
             tagline=self.description
         )
 
-        numImages = len(self.imageColumns)
-        colPerRow = int(math.floor(12 / self.imageSpan))
-        numRows = int(math.ceil(float(numImages) / float(colPerRow)))
-
+        ## determine the number of rows from the number and span of the images
+        ## populate each of the rows and then append to ``theseRows``
         theseRows = ""
         for r in range(int(numRows)):
             startC = r * colPerRow
@@ -120,6 +105,7 @@ class imageWell():
             )
             theseRows = """%(theseRows)s %(thisRow)s""" % locals()
 
+        ## bunch all the image rows into one parent row
         content = grid_row(
             responsive=True,
             columns=theseRows,
@@ -130,6 +116,7 @@ class imageWell():
             onDesktop=True
         )
 
+        ## add header text and image rows to a well
         imageWell = well(
             wellText=self.title + content,
             wellSize='large',  # [ "default" | "large" | "small" ]
@@ -137,6 +124,7 @@ class imageWell():
             htmlClass="imagewell"
         )
 
+        ## wrapper the well in a parent row
         imageWellRow = grid_row(
             responsive=True,
             columns=imageWell,
@@ -150,14 +138,13 @@ class imageWell():
         self.log.info('completed the ``get`` method')
         return  """%(imageWellRow)s""" % locals()
 
-    # use the tab-trigger below for new method
     def appendImage(
             self,
             imagePath,
             imageTitle,
             modalHeaderContent="",
             modalFooterContent=""):
-        """appendImage
+        """append an image to the image well
     
         **Key Arguments:**
             - ``imagePath`` -- path to the image to add to the well
@@ -167,16 +154,11 @@ class imageWell():
     
         **Return:**
             - None
-    
-        **Todo**
-            - @review: when complete, clean appendImage method
-            - @review: when complete add logging
         """
         self.log.info('starting the ``appendImage`` method')
-        ## TEST THE ARGUMENTS
 
-        ## VARIABLES ##
-
+        # package the image up with a modal to view a larger version with
+        # download option
         thisImage = imagingModal(
             log=self.log,
             imagePath=imagePath,
@@ -185,16 +167,16 @@ class imageWell():
             modalFooterContent=modalFooterContent,)
         thisImage = thisImage.get()
 
-        ## add text color
+        ## color the title text and make it the correct size
         imageTitle = coloredText(
             text=imageTitle,
             color="lightgrey",
             size=3,  # 1-10
-            pull="left",  # "left" | "right"
         )
 
+        ## position the title text correctly under each image
         imageTitle = row_adjustable(
-            span=12,
+            span=12 - (self.imageSpan - 1),
             offset=self.imageSpan - 1,
             content=imageTitle,
             htmlId=False,
@@ -204,14 +186,14 @@ class imageWell():
             onDesktop=True
         )
 
-        content = "%(thisImage)s<br>%(imageTitle)s" % locals()
-
+        # package the image and title, add to parent column and append to master
+        # image list
+        content = "%(thisImage)s%(imageTitle)s" % locals()
         column = grid_column(
             span=self.imageSpan,  # 1-12
             offset=0,  # 1-12
             content=content,
         )
-
         self.imageColumns.append(column)
 
         self.log.info('completed the ``appendImage`` method')

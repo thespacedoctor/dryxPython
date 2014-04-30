@@ -17,9 +17,6 @@ imagingModal.py
 
 :Notes:
     - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
-    @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -48,17 +45,9 @@ class imagingModal():
         - ``imagePath`` -- path to the image to be displayed
         - ``modalHeaderContent`` -- the heading for the modal
         - ``modalFooterContent`` -- the footer (usually buttons)
-
-    **Todo**
-        - @review: when complete, clean imagingModal class
-        - @review: when complete add logging
-        - @review: when complete, decide whether to abstract class to another module
     """
-    ## Variable Data Atrributes
-
-    ## Override Variable Data Atrributes
-
     ## Initialisation
+
     def __init__(
             self,
             log,
@@ -67,6 +56,8 @@ class imagingModal():
             display=False,
             modalHeaderContent="",
             modalFooterContent="",
+            stampWidth=180,
+            modalImageWidth=400,
     ):
         self.log = log
         self.dbConn = dbConn
@@ -75,8 +66,14 @@ class imagingModal():
         self.modalHeaderContent = modalHeaderContent
         self.modalFooterContent = modalFooterContent
         self.randomNum = np.random.randint(300000000)
+        self.stampWidth = stampWidth
+        self.modalImageWidth = modalImageWidth
         # x-self-arg-tmpx
         return None
+
+    ## Variable Data Atrributes
+
+    ## Override Variable Data Atrributes
 
     ## Method Attributes
     def get(self):
@@ -84,50 +81,45 @@ class imagingModal():
     
         **Return:**
             - ``imageModal``
-    
-        **Todo**
-            - @review: when complete, clean this method
-            - @review: when complete add logging
         """
         self.log.info('starting the ``get`` method')
-        ## TEST THE ARGUMENTS
 
-        thisImage = self._create_image()
+        ## create imaging modal and associated image and return them
+        thisImage = self._create_image(width=self.stampWidth)
         thisModal = self._create_modal()
-
-        ## VARIABLES ##
 
         self.log.info('completed the ``get`` method')
         return thisImage + thisModal
 
     def _create_image(
-            self):
+            self,
+            width=False):
         """create the html for the image
+
+         - ``width`` -- image width
     
         **Return:**
-            - None
-    
-        **Todo**
-            - @review: when complete, clean create_image method
-            - @review: when complete add logging
+            - ``thisImage`` -- the image created
         """
         self.log.info('starting the ``create_image`` method')
 
+        ## add placeholder as default image
         if not self.imagePath:
             self.imagePath = 'holder.js/200x200/auto/industrial/text:placeholder'
 
+        ## create html code for the image
         thisImage = image(
             src=self.imagePath,  # [ industrial | gray | social ]
             href=False,
             display=self.display,  # [ rounded | circle | polaroid | False ]
             pull=False,  # [ "left" | "right" | "center" | False ]
             htmlClass=False,
-            width=False,
+            width=width,
             thumbnail=True
         )
 
+        ## link the image to the associated modal with a random number tag
         randNum = self.randomNum
-
         thisImage = a(
             content=thisImage,
             href="#modal%(randNum)s" % locals(),
@@ -149,14 +141,11 @@ class imagingModal():
     
         **Return:**
             - ``imageModal`` -- the image modal
-    
-        **Todo**
-            - @review: when complete, clean create_modal method
-            - @review: when complete add logging
         """
         self.log.info('starting the ``create_modal`` method')
 
-        thisImage = self._create_image()
+        ## grab the associated image and place in a wrapper row
+        thisImage = self._create_image(width=self.modalImageWidth)
         thisImage = row_adjustable(
             span=10,
             offset=1,
@@ -168,8 +157,18 @@ class imagingModal():
             onDesktop=True
         )
 
+        ## generate the download button for the modal footer
         fileUrl = self.imagePath
-        basename = os.path.basename(self.imagePath)
+
+        thisPopover = popover(
+            tooltip=True,
+            placement="bottom",  # [ top | bottom | left | right ]
+            trigger="hover",  # [ False | click | hover | focus | manual ]
+            title="download image",
+            content=False,
+            delay=200
+        )
+
         downloadFileButton = button(
             buttonText="""<i class="icon-file-pdf"></i>""",
             # [ default | primary | info | success | warning | danger | inverse | link ]
@@ -182,14 +181,16 @@ class imagingModal():
             block=False,
             disable=False,
             dataToggle=False,  # [ modal ]
-            popover=False
+            popover=thisPopover
         )
 
+        ## create the modal with the correct trigger tag
         randNum = self.randomNum
         imageModal = modal(
             modalHeaderContent=self.modalHeaderContent,
             modalBodyContent=thisImage,
-            modalFooterContent=self.modalFooterContent + downloadFileButton,
+            modalFooterContent=self.modalFooterContent +
+            "&nbsp" * 3 + downloadFileButton,
             htmlId="modal%(randNum)s" % locals(),
             centerContent=True,
             htmlClass=False
