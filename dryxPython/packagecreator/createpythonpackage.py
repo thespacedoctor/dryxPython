@@ -413,10 +413,7 @@ def create_git_repo(
     output = p.communicate()[0]
     log.debug('output: %(output)s' % locals())
 
-
-
     ## VARIABLES ##
-
     log.info('completed the ``create_git_repo`` function')
     return None
 

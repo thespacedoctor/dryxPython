@@ -519,8 +519,8 @@ def a(
         triggerClass = "dropdown-toggle"
         triggerToggle = """data-toggle="dropdown" """
         dropdownCaret = """<b class="caret"></b> """
-    elif triggerStyle == "tab":
-        triggerToggle = """data-toggle="tab" """
+    elif triggerStyle in ["tab", "modal"]:
+        triggerToggle = """data-toggle="%(triggerStyle)s" """ % locals()
     else:
         triggerToggle = ""
 
