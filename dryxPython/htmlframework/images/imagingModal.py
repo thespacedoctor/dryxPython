@@ -58,6 +58,7 @@ class imagingModal():
             modalFooterContent="",
             stampWidth=180,
             modalImageWidth=400,
+            downloadFilename=False
     ):
         self.log = log
         self.dbConn = dbConn
@@ -68,6 +69,7 @@ class imagingModal():
         self.randomNum = np.random.randint(300000000)
         self.stampWidth = stampWidth
         self.modalImageWidth = modalImageWidth
+        self.downloadFilename = downloadFilename
         # x-self-arg-tmpx
         return None
 
@@ -169,13 +171,18 @@ class imagingModal():
             delay=200
         )
 
+        if self.downloadFilename:
+            downloadFilename = self.downloadFilename
+            downloadFilename = "&fileName=%(downloadFilename)s" % locals()
+        else:
+            downloadFilename = ""
         downloadFileButton = button(
             buttonText="""<i class="icon-file-pdf"></i>""",
             # [ default | primary | info | success | warning | danger | inverse | link ]
             buttonStyle='primary',
             buttonSize='small',  # [ large | default | small | mini ]
             htmlId=False,
-            href="/marshall/scripts/python/download_file.py?url=%(fileUrl)s" % locals(),
+            href="/marshall/scripts/python/download_file.py?url=%(fileUrl)s%(downloadFilename)s" % locals(),
             pull=False,  # right, left, center
             submit=False,
             block=False,
