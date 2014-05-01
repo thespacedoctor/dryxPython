@@ -159,7 +159,8 @@ def xy_scatter(
     ## LOCAL APPLICATION ##
 
     if not colors:
-        colors = ["#6c71c4", "#859900", "#dc322f"]
+        colors = ["#6c71c4", "#859900", "#dc322f", "#268bd2", "#b58900"]
+    markers = ["o", "s", "^", "D", "h", "8"]
     if isinstance(colors, str):
         colors = [colors]
 
@@ -175,6 +176,8 @@ def xy_scatter(
 
     if not dataLabels:
         dataLabels[:] = [False for i in x]
+
+    log.debug('dataLabels: %(dataLabels)s' % locals())
 
     if isinstance(dataLabels, str):
         dataLabels = [dataLabels]
@@ -199,7 +202,19 @@ def xy_scatter(
             )
         newY.append(i)
 
-    for x, y, dataLabel, c in zip(newX, newY, dataLabels, colors):
+    colLength = len(colors)
+    colCount = 0
+    markLength = len(markers)
+    markCount = 0
+    for x, y, dataLabel in zip(newX, newY, dataLabels):
+        c = colors[colCount]
+        m = markers[markCount]
+        colCount += 1
+        if colCount == colLength:
+            colCount = 0
+            markCount += 1
+            if markCount == markLength:
+                markCount = 0
         if len(x) != len(y):
             log.error('x and y lists must be the same length')
             sys.exit(0)
@@ -210,6 +225,7 @@ def xy_scatter(
                 y=y,  # numpy array of y-points
                 label=dataLabel,
                 c=c,
+                marker=m,
                 alpha=0.7
             )
             legend = plt.legend(loc="lower right", framealpha=1.0)
@@ -221,6 +237,7 @@ def xy_scatter(
                 x=x,  # numpy array of x-points
                 y=y,  # numpy array of y-points
                 c=c,
+                marker=m,
                 alpha=0.5
             )
 

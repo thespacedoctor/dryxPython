@@ -45,6 +45,9 @@ class imagingModal():
         - ``imagePath`` -- path to the image to be displayed
         - ``modalHeaderContent`` -- the heading for the modal
         - ``modalFooterContent`` -- the footer (usually buttons)
+        - ``stampWidth`` -- 180
+        - ``modalImageWidth`` -- 400
+        - ``downloadFilename`` -- False
     """
     ## Initialisation
 
@@ -73,6 +76,10 @@ class imagingModal():
         # x-self-arg-tmpx
         return None
 
+    def close(self):
+        del self
+        return None
+
     ## Variable Data Atrributes
 
     ## Override Variable Data Atrributes
@@ -90,7 +97,7 @@ class imagingModal():
         thisImage = self._create_image(width=self.stampWidth)
         thisModal = self._create_modal()
 
-        self.log.info('completed the ``get`` method')
+        self.log.info('completed the ``get arse`` method')
         return thisImage + thisModal
 
     def _create_image(

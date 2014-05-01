@@ -44,14 +44,8 @@ class imageWell():
         - ``description`` -- Description of the content of the image well
         - ``imageDisplay`` -- [ rounded | circle | polaroid | False ]
     """
-    ## Variable Data Atrributes
-    imageSpan = 2
-    rowLength = 0
-    imageColumns = []
-
-    ## Override Variable Data Atrributes
-
     ## Initialisation
+
     def __init__(
             self,
             log,
@@ -64,7 +58,17 @@ class imageWell():
         self.title = title
         self.description = description
         self.imageDisplay = imageDisplay
+        self.imageColumns = []
+        self.imageSpan = 2
+        self.rowLength = 0
 
+        return None
+
+    ## Variable Data Atrributes
+
+    ## Override Variable Data Atrributes
+    def close(self):
+        del self
         return None
 
     ## Method Attributes
@@ -164,7 +168,9 @@ class imageWell():
             imagePath=imagePath,
             display=self.imageDisplay,
             modalHeaderContent=modalHeaderContent,
-            modalFooterContent=modalFooterContent,)
+            modalFooterContent=modalFooterContent,
+            stampWidth=180,
+            modalImageWidth=800,)
         thisImage = thisImage.get()
 
         ## color the title text and make it the correct size

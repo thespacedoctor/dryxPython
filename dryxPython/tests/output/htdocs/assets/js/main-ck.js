@@ -10992,40 +10992,6 @@ var show_and_unfade = function(element) {
     e.preventDefault()
   })
 
-  // dryx - clickToModal
-  $(".clickToModal").bind("click", function(event) {
-    event.preventDefault();
-    if ($(this).parent().is("a")) {
-      var sourceUrl = $(this).parent().attr("href");
-      sourceUrl = '<a href="' + sourceUrl + '" target="_blank">image source</a>'
-    } else {
-      var sourceUrl = ""
-    }
-
-    var thisHtml = $(this).prop('outerHTML');
-    var random = Math.round(Math.random() * 10);
-    var modalTrigger = '<a href="#modal' + random + '" class="btn btn-danger  btn-block hidden" data-toggle="modal" id="modaltrigger' + random + '">create<br>new modal</a>'
-
-    var modal = ' \
-        <div class="modal hide fade" id="modal' + random + '"> \
-            <div class="modal-header"> \
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> \
-                <h3><br></h3> \
-            </div> \
-            <div class="modal-body center-content"> \
-            ' + thisHtml + ' \
-            </div> \
-            <div class="modal-footer"> \
-            ' + sourceUrl + ' \
-            </div> \
-        </div>';
-
-    $(this).parent().parent().append(modalTrigger + modal);
-    var modelSelector = '#modaltrigger' + random;
-    $('#modaltrigger' + random).trigger("click");
-
-  });
-
 }(window.jQuery);
 
 
