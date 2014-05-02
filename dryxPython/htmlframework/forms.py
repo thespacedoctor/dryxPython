@@ -90,6 +90,7 @@ def form(
         formType="inline",
         postToScript="",
         htmlId=False,
+        htmlClass=False,
         navBarPull=False,
         postInBackground=False,
         redirectUrl=False,
@@ -128,6 +129,9 @@ def form(
     else:
         offset = "offset%(offset)s" % locals()
 
+    if not htmlClass:
+        htmlClass = ""
+
     if postInBackground is True:
         postInBackground = "postInBackground"
     else:
@@ -163,7 +167,7 @@ def form(
     if openInNewTab is not False:
         openInNewTab = """ target="_blank" """
 
-    form = """<form class="%(formType)s %(navBarPull)s %(postInBackground)s %(span)s %(offset)s" %(htmlId)s action="%(postToScript)s" method="post" %(openInNewTab)s>%(content)s%(htmlInput)s%(redirectUrl)s</form>""" % locals()
+    form = """<form class="%(formType)s %(navBarPull)s %(postInBackground)s %(span)s %(offset)s %(htmlClass)s" %(htmlId)s action="%(postToScript)s" method="post" %(openInNewTab)s>%(content)s%(htmlInput)s%(redirectUrl)s</form>""" % locals()
 
     return form
 
@@ -211,7 +215,8 @@ def horizontalFormControlGroup(
 ## AUTHOR : DRYX
 def horizontalFormControlLabel(
         labelText="",
-        forId=False):
+        forId=False,
+        sideLabel=False):
     """set a horizontal form label
 
     **Key Arguments:**
@@ -224,7 +229,12 @@ def horizontalFormControlLabel(
     if forId is False:
         forId = ""
 
-    horizontalFormRowLabel = """<label class="control-label" for="%(forId)s">%(labelText)s</label>""" % locals()
+    if sideLabel:
+        sideLabel = "sideLabel"
+    else:
+        sideLabel = ""
+
+    horizontalFormRowLabel = """<label class="control-label %(sideLabel)s" for="%(forId)s">%(labelText)s</label>""" % locals()
 
     return horizontalFormRowLabel
 
@@ -320,27 +330,27 @@ def formInput(
         appendClass = "input-append"
         appendContent = """<span class="add-on">%(append)s</span>""" % locals()
 
-    if prepend:
-        if append:
-            inputId = "appendedPrependedInput "
-        else:
-            inputId = "prependedInput "
-    elif append:
-        inputId = "appendedInput "
+    # if prepend:
+    #     if append:
+    #         inputId = "appendedPrependedInput "
+    #     else:
+    #         inputId = "prependedInput "
+    # elif append:
+    #     inputId = "appendedInput "
 
     if button1:
         appendClass = "input-append"
         appendContent = button1
-        inputId = "appendedInputButton "
+        # inputId = "appendedInputButton "
 
     if button2:
         appendClass = "input-append"
         appendContent = """%(appendContent)s %(button2)s""" % locals()
-        inputId = "appendedInputButtons "
+        # inputId = "appendedInputButtons "
 
     if appendDropdown:
         appendClass = "input-append"
-        inputId = "appendedDropdownButton "
+        # inputId = "appendedDropdownButton "
         appendContent = """
         <div class="btn-group">
             %(appendDropdown)s
@@ -348,7 +358,7 @@ def formInput(
 
     if prependDropdown:
         prependClass = "input-prepend"
-        inputId = "prependedDropdownButton "
+        # inputId = "prependedDropdownButton "
         prependContent = """
         <div class="btn-group">
             %(prependDropdown)s
@@ -360,7 +370,8 @@ def formInput(
         ttype = "number"
 
     if prependDropdown and appendDropdown:
-        inputId = "appendedPrependedDropdownButton "
+        pass
+        # inputId = "appendedPrependedDropdownButton "
 
     if inlineHelpText:
         inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
@@ -386,7 +397,7 @@ def formInput(
 
     if disabled:
         disabled = """disabled"""
-        disabledId = "disabledId "
+        disabledId = ""
     else:
         disabled = ""
         disabledId = ""
@@ -398,7 +409,7 @@ def formInput(
 
     thisInput = """
     %(prependContent)s
-    <input class="%(searchClass)s %(span)s" id="%(htmlId)s%(inputId)s%(focusId)s%(disabledId)s" %(focusedInputText)s type="%(ttype)s" %(step)s placeholder="%(placeholder)s" %(required)s %(disabled)s name="%(htmlId)s" %(defaultValue)s>
+    <input class="%(searchClass)s %(span)s" id="%(htmlId)s%(focusId)s%(disabledId)s" %(focusedInputText)s type="%(ttype)s" %(step)s placeholder="%(placeholder)s" %(required)s %(disabled)s name="%(htmlId)s" %(defaultValue)s>
     %(appendContent)s
     """ % locals()
 
