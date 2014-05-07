@@ -30,6 +30,8 @@ import os
 ######################################################
 # MAIN LOOP - USED FOR DEBUGGING OR WHEN SCRIPTING   #
 ######################################################
+
+
 def main():
     """
     The main function used when ``csvtools.py`` run as a single script from the cl
@@ -64,7 +66,9 @@ def main():
     ## FINISH LOGGING ##
     endTime = cu.get_now_sql_datetime()
     runningTime = cu.calculate_time_difference(startTime, endTime)
-    log.info('-- FINISHED ATTEMPT TO RUN THE csvtools.py AT %s (RUNTIME: %s) --' % (endTime, runningTime, ))
+    log.info(
+        '-- FINISHED ATTEMPT TO RUN THE csvtools.py AT %s (RUNTIME: %s) --' %
+        (endTime, runningTime, ))
 
     return
 
@@ -78,6 +82,8 @@ def main():
 ## LAST MODIFIED : June 14, 2013
 ## CREATED : June 14, 2013
 ## AUTHOR : DRYX
+
+
 def convert_csv_file_to_python_list_of_dictionaries(
         log,
         csvFilePath,
@@ -116,7 +122,9 @@ def convert_csv_file_to_python_list_of_dictionaries(
 
         csvFile.closed
     except Exception, e:
-        log.error("could not open and read the csv file into a python list - failed with this error: %s " % (str(e),))
+        log.error(
+            "could not open and read the csv file into a python list - failed with this error: %s " %
+            (str(e),))
         return -1
 
     return dictionaryList
@@ -124,6 +132,8 @@ def convert_csv_file_to_python_list_of_dictionaries(
 ## LAST MODIFIED : June 21, 2013
 ## CREATED : June 21, 2013
 ## AUTHOR : DRYX
+
+
 def convert_python_list_of_dictionaries_to_csv(
         listOfDictionaries,
         csvFilePath,
@@ -147,13 +157,14 @@ def convert_python_list_of_dictionaries_to_csv(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``convert_python_module_content_to_autoSnippet_csv`` function')
+    log.info(
+        'starting the ``convert_python_module_content_to_autoSnippet_csv`` function')
     ## VARIABLES ##
 
     with open(csvFilePath, 'wb') as csvfile:
         writer = csv.writer(
             csvfile,
-            dialect= 'excel'
+            dialect='excel'
         )
         if len(listOfDictionaries) > 0:
             writer.writerow(listOfDictionaries[0].keys())
@@ -161,7 +172,8 @@ def convert_python_list_of_dictionaries_to_csv(
                 writer.writerow(dictionary.values())
     csvfile.close()
 
-    log.info('completed the ``convert_python_module_content_to_autoSnippet_csv`` function')
+    log.info(
+        'completed the ``convert_python_module_content_to_autoSnippet_csv`` function')
     return
 
 ###################################################################
@@ -179,3 +191,5 @@ if __name__ == '__main__':
 ###################################################################
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
+
+from sqlquery_to_csv_file import sqlquery_to_csv_file
