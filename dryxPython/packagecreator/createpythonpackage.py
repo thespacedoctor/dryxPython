@@ -355,7 +355,7 @@ def createpythonmodule(
         log.critical(message)
         raise IOError(message)
 
-    thisData = "%(thisData)s\nfrom %(moduleName)s import %(moduleName)s" % locals()
+    thisData = "%(thisData)s\nimport %(moduleName)s" % locals()
     pathToWriteFile = pathToReadFile
     try:
         log.debug("attempting to open the file %s" % (pathToWriteFile,))

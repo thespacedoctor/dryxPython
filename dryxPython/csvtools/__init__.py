@@ -192,4 +192,4 @@ if __name__ == '__main__':
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
 
-from sqlquery_to_csv_file import sqlquery_to_csv_file
+import sqlquery_to_csv_file

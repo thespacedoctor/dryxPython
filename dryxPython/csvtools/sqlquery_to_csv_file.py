@@ -27,6 +27,7 @@ import os
 import io
 import csv
 import re
+from decimal import Decimal
 from datetime import datetime
 from docopt import docopt
 from dryxPython import logs as dl
@@ -89,6 +90,9 @@ def sqlquery_to_csv_file(
     )
 
     tableColumnNames = rows[0].keys()
+    columnWidths = []
+    columnWidths[:] = [len(tableColumnNames[i])
+                       for i in range(len(tableColumnNames))]
 
     output = io.BytesIO()
     ## setup csv styles
@@ -105,17 +109,51 @@ def sqlquery_to_csv_file(
     header = []
     divider = []
     allRows = []
-    ## table border for human readable
+
+    ## clean up data
+    for row in rows:
+        for c in tableColumnNames:
+            if isinstance(row[c], float) or isinstance(row[c], long) or isinstance(row[c], Decimal):
+                row[c] = "%6.2f" % row[c]
+            elif isinstance(row[c], datetime):
+                thisDate = str(row[c])[:10]
+                row[c] = "%(thisDate)s" % locals()
+
+    ## set the column widths
+    for row in rows:
+        for i, c in enumerate(tableColumnNames):
+            if len(row[c]) > columnWidths[i]:
+                columnWidths[i] = len(row[c])
+
+    ## fill in the data
+    for row in rows:
+        thisRow = []
+        ## table border for human readable
+        if csvType == "human":
+            thisRow.append("")
+
+        for i, c in enumerate(tableColumnNames):
+            if csvType == "human":
+                row[c] = str(row[c].ljust(columnWidths[i] + 2)
+                             .rjust(columnWidths[i] + 3))
+            thisRow.append(row[c])
+        ## table border for human readable
+        if csvType == "human":
+            thisRow.append("")
+        allRows.append(thisRow)
+
+    ## table borders for human readable
     if csvType == "human":
         header.append("")
         divider.append("")
 
-    for name in tableColumnNames:
+    for i, c in enumerate(tableColumnNames):
         if csvType == "machine":
-            header.append(name)
+            header.append(c)
         elif csvType == "human":
-                header.append(name.ljust(30).rjust(31))
-                divider.append('-' * 31)
+            header.append(
+                c.ljust(columnWidths[i] + 2).rjust(columnWidths[i] + 3))
+            divider.append('-' * (columnWidths[i] + 3))
 
     ## table border for human readable
     if csvType == "human":
@@ -128,30 +166,6 @@ def sqlquery_to_csv_file(
         dividerWriter.writerow(divider)
         writer.writerow(header)
         dividerWriter.writerow(divider)
-
-    ## clean up data
-    for row in rows:
-        thisRow = []
-        ## table border for human readable
-        if csvType == "human":
-            thisRow.append("")
-
-        for c in tableColumnNames:
-            if isinstance(row[c], float) or isinstance(row[c], long):
-                row[c] = "%6.2f" % row[c]
-            elif isinstance(row[c], datetime):
-                thisDate = str(row[c])[:10]
-                row[c] = "%(thisDate)s" % locals()
-
-            if csvType == "human":
-                    row[c] = str(row[c].ljust(30).rjust(31))
-
-            thisRow.append(row[c])
-        ## table border for human readable
-        if csvType == "human":
-            thisRow.append("")
-
-        allRows.append(thisRow)
 
     ## write out the data
     writer.writerows(allRows)

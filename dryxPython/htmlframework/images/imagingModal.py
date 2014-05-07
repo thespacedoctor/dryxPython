@@ -59,6 +59,7 @@ class imagingModal():
             display=False,
             modalHeaderContent="",
             modalFooterContent="",
+            modalFooterButtons=[],
             stampWidth=180,
             modalImageWidth=400,
             downloadFilename=False
@@ -73,6 +74,7 @@ class imagingModal():
         self.stampWidth = stampWidth
         self.modalImageWidth = modalImageWidth
         self.downloadFilename = downloadFilename
+        self.modalFooterButtons = modalFooterButtons
         # x-self-arg-tmpx
         return None
 
@@ -198,13 +200,20 @@ class imagingModal():
             popover=thisPopover
         )
 
+        buttonList = [downloadFileButton]
+        buttonList.extend(self.modalFooterButtons)
+
+        thisButtonGroup = buttonGroup(
+            buttonList=buttonList,
+            format='default'  # [ default | toolbar | vertical ]
+        )
+
         ## create the modal with the correct trigger tag
         randNum = self.randomNum
         imageModal = modal(
             modalHeaderContent=self.modalHeaderContent,
             modalBodyContent=thisImage,
-            modalFooterContent=self.modalFooterContent +
-            "&nbsp" * 3 + downloadFileButton,
+            modalFooterContent=self.modalFooterContent + thisButtonGroup,
             htmlId="modal%(randNum)s" % locals(),
             centerContent=True,
             htmlClass=False

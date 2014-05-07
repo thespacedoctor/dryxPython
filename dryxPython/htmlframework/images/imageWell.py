@@ -147,7 +147,8 @@ class imageWell():
             imagePath,
             imageTitle,
             modalHeaderContent="",
-            modalFooterContent=""):
+            modalFooterContent="",
+            modalFooterButtons=[]):
         """append an image to the image well
     
         **Key Arguments:**
@@ -169,6 +170,7 @@ class imageWell():
             display=self.imageDisplay,
             modalHeaderContent=modalHeaderContent,
             modalFooterContent=modalFooterContent,
+            modalFooterButtons=modalFooterButtons,
             stampWidth=180,
             modalImageWidth=800,)
         thisImage = thisImage.get()
