@@ -67,6 +67,7 @@ class setup_main_clutil():
         if arguments == None:
             arguments = docopt(docString)
         self.arguments = arguments
+        print self.arguments
 
         # print arguments
 
@@ -81,9 +82,9 @@ class setup_main_clutil():
             stream = file(arguments["--settingsFile"], 'r')
             settings = yaml.load(stream)
             stream.close()
-        elif "-s" in arguments and arguments["-s"]:
+        elif "<pathToSettingsFile>" in arguments and arguments["<pathToSettingsFile>"]:
             import yaml
-            stream = file(arguments["-s"], 'r')
+            stream = file(arguments["<pathToSettingsFile>"], 'r')
             settings = yaml.load(stream)
             stream.close()
 
