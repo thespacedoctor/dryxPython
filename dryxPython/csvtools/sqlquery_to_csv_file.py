@@ -123,7 +123,7 @@ def sqlquery_to_csv_file(
     for row in rows:
         for i, c in enumerate(tableColumnNames):
             if len(str(row[c])) > columnWidths[i]:
-                columnWidths[i] = len(row[c])
+                columnWidths[i] = len(str(row[c]))
 
     ## fill in the data
     for row in rows:
