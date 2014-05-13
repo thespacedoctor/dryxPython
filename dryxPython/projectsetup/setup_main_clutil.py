@@ -67,7 +67,6 @@ class setup_main_clutil():
         if arguments == None:
             arguments = docopt(docString)
         self.arguments = arguments
-        print self.arguments
 
         # print arguments
 
@@ -100,7 +99,7 @@ class setup_main_clutil():
                 )
             else:
                 log = dl.setup_dryx_logging(
-                    yaml_file=arguments["-s"]
+                    yaml_file=arguments["<pathToSettingsFile>"]
                 )
         elif "--logger" not in arguments or arguments["--logger"] is None:
             log = dl.console_logger(
