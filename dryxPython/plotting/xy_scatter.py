@@ -260,8 +260,11 @@ def xy_scatter(
         ax = plt.gca()
         ax.invert_yaxis()
 
-    fileName = title.lower().replace(" ", "_").replace(
-        "(", "").replace(")", "").replace(".", "")
+    if title:
+        fileName = title.lower().replace(" ", "_").replace(
+            "(", "").replace(")", "").replace(".", "")
+    else:
+        fileName = "tmp"
     print outputLocations
     for k, v in outputLocations.iteritems():
         if isinstance(v, str):
@@ -269,6 +272,9 @@ def xy_scatter(
         for i in v:
             filePath = "%(k)s/%(fileName)s.%(i)s" % locals()
             plt.savefig(filePath)
+    if not len(outputLocations):
+        filePath = "/tmp/%(fileName)s.png" % locals()
+        plt.savefig(filePath)
 
     plt.close()
     # plt.show()

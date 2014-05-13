@@ -269,6 +269,12 @@ def createpythonsubpackage(
 
     shutil.copytree(boilerplatePath, location)
 
+    append_import_to_init_file(
+        log=log,
+        pathToHostDirectory=pathToHostDirectory,
+        moduleName=subPackageName
+    )
+
     log.info('completed the ``createpythonsubpackage`` function')
     return None
 
@@ -336,36 +342,11 @@ def createpythonmodule(
     location = os.path.abspath(location)
     shutil.copy(boilerplatePath, location)
 
-    # Add the module to the __init__ file e.g. `import moduleNmae`
-    pathToReadFile = pathToHostDirectory + "/__init__.py"
-    try:
-        with open(pathToReadFile):
-            pass
-    except IOError:
-        pathToWriteFile = pathToReadFile
-        writeFile = open(pathToWriteFile, 'w')
-        writeFile.close()
-    try:
-        log.debug("attempting to open the file %s" % (pathToReadFile,))
-        readFile = open(pathToReadFile, 'r')
-        thisData = readFile.read()
-        readFile.close()
-    except IOError as e:
-        message = 'could not open the file %s' % (pathToReadFile,)
-        log.critical(message)
-        raise IOError(message)
-
-    thisData = "%(thisData)s\nimport %(moduleName)s" % locals()
-    pathToWriteFile = pathToReadFile
-    try:
-        log.debug("attempting to open the file %s" % (pathToWriteFile,))
-        writeFile = open(pathToWriteFile, 'w')
-        writeFile.write(thisData)
-    except IOError as e:
-        message = 'could not open the file %s' % (pathToWriteFile,)
-        log.critical(message)
-        raise IOError(message)
-    writeFile.close()
+    append_import_to_init_file(
+        log=log,
+        pathToHostDirectory=pathToHostDirectory,
+        moduleName=moduleName
+    )
 
     log.info('completed the ``createpythonmodule`` function')
     return None
@@ -415,6 +396,69 @@ def create_git_repo(
 
     ## VARIABLES ##
     log.info('completed the ``create_git_repo`` function')
+    return None
+
+# use the tab-trigger below for new function
+## LAST MODIFIED : May 9, 2014
+## CREATED : May 9, 2014
+## AUTHOR : DRYX
+# copy usage method(s) into function below and select the following snippet from the command palette:
+# x-setup-worker-function-parameters-from-usage-method
+
+
+def append_import_to_init_file(
+        log,
+        pathToHostDirectory,
+        moduleName
+):
+    """append import to init file
+
+    **Key Arguments:**
+        - ``log`` -- logger
+        - ``pathToHostDirectory`` -- path to the directory hosting the __init__ file
+        - ``moduleName`` -- name of the module to import
+
+    **Return:**
+        - None
+
+    **Todo**
+        - @review: when complete, clean append_import_to_init_file function
+        - @review: when complete add logging
+        - @review: when complete, decide whether to abstract function to another module
+    """
+    log.info('starting the ``append_import_to_init_file`` function')
+    # Add the module to the __init__ file e.g. `import moduleNmae`
+    pathToReadFile = pathToHostDirectory + "/__init__.py"
+    try:
+        with open(pathToReadFile):
+            pass
+    except IOError:
+        pathToWriteFile = pathToReadFile
+        writeFile = open(pathToWriteFile, 'w')
+        writeFile.close()
+    try:
+        log.debug("attempting to open the file %s" % (pathToReadFile,))
+        readFile = open(pathToReadFile, 'r')
+        thisData = readFile.read()
+        readFile.close()
+    except IOError as e:
+        message = 'could not open the file %s' % (pathToReadFile,)
+        log.critical(message)
+        raise IOError(message)
+
+    thisData = "%(thisData)s\nimport %(moduleName)s" % locals()
+    pathToWriteFile = pathToReadFile
+    try:
+        log.debug("attempting to open the file %s" % (pathToWriteFile,))
+        writeFile = open(pathToWriteFile, 'w')
+        writeFile.write(thisData)
+    except IOError as e:
+        message = 'could not open the file %s' % (pathToWriteFile,)
+        log.critical(message)
+        raise IOError(message)
+    writeFile.close()
+
+    log.info('completed the ``append_import_to_init_file`` function')
     return None
 
 # use the tab-trigger below for new function

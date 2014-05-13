@@ -10,3 +10,5 @@ from navigation import *
 from tables import *
 from typography import *
 from images import *
+import plots
+

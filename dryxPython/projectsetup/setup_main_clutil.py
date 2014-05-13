@@ -55,9 +55,11 @@ class setup_main_clutil():
             self,
             arguments,
             docString,
+            logLevel="DEBUG"
     ):
         self.arguments = arguments
         self.docString = docString
+        self.logLevel = logLevel
         # x-self-arg-tmpx
 
         ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
@@ -79,6 +81,11 @@ class setup_main_clutil():
             stream = file(arguments["--settingsFile"], 'r')
             settings = yaml.load(stream)
             stream.close()
+        elif "-s" in arguments and arguments["-s"]:
+            import yaml
+            stream = file(arguments["-s"], 'r')
+            settings = yaml.load(stream)
+            stream.close()
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
         if 'settings' in locals() and "logging settings" in settings:
@@ -86,13 +93,17 @@ class setup_main_clutil():
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["<settingsFile>"]
                 )
-            else:
+            elif "--settingsFile" in arguments:
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["--settingsFile"]
                 )
+            else:
+                log = dl.setup_dryx_logging(
+                    yaml_file=arguments["-s"]
+                )
         elif "--logger" not in arguments or arguments["--logger"] is None:
             log = dl.console_logger(
-                level="DEBUG"
+                level=self.logLevel
             )
             log.debug('logger setup')
 

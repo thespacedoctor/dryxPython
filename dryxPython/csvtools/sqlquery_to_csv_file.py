@@ -122,7 +122,7 @@ def sqlquery_to_csv_file(
     ## set the column widths
     for row in rows:
         for i, c in enumerate(tableColumnNames):
-            if len(row[c]) > columnWidths[i]:
+            if len(str(row[c])) > columnWidths[i]:
                 columnWidths[i] = len(row[c])
 
     ## fill in the data
@@ -134,7 +134,7 @@ def sqlquery_to_csv_file(
 
         for i, c in enumerate(tableColumnNames):
             if csvType == "human":
-                row[c] = str(row[c].ljust(columnWidths[i] + 2)
+                row[c] = str(str(row[c]).ljust(columnWidths[i] + 2)
                              .rjust(columnWidths[i] + 3))
             thisRow.append(row[c])
         ## table border for human readable

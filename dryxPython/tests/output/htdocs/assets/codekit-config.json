@@ -44,27 +44,6 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/styles\/sass\/ie.scss" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/sass\/ie.scss",
-      "outputStyle" : 0,
-      "shouldRunBless" : 0,
-      "outputAbbreviatedPath" : "\/styles\/css\/ie.css",
-      "fileType" : 4,
-      "debugStyle" : 2
-    },
-    "\/config.rb" : {
-      "ignoreWasSetByUser" : 0,
-      "ignore" : 0,
-      "hidden" : 0,
-      "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/config.rb",
-      "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 32768
-    },
     "\/styles\/sass\/main.scss" : {
       "ignoreWasSetByUser" : 0,
       "ignore" : 0,
@@ -77,14 +56,14 @@
       "fileType" : 4,
       "debugStyle" : 2
     },
-    "\/styles\/css\/main.css" : {
+    "\/config.rb" : {
       "ignoreWasSetByUser" : 0,
-      "ignore" : 1,
+      "ignore" : 0,
       "hidden" : 0,
       "outputPathIsSetByUser" : 0,
-      "inputAbbreviatedPath" : "\/styles\/css\/main.css",
+      "inputAbbreviatedPath" : "\/config.rb",
       "outputAbbreviatedPath" : "No Output Path",
-      "fileType" : 16
+      "fileType" : 32768
     },
     "\/icons\/glyphicons-halflings.png" : {
       "ignoreWasSetByUser" : 0,
@@ -96,6 +75,27 @@
       "outputAbbreviatedPath" : "\/icons\/glyphicons-halflings.png",
       "initialSize" : 12799,
       "fileType" : 8192
+    },
+    "\/styles\/css\/main.css" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 1,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/styles\/css\/main.css",
+      "outputAbbreviatedPath" : "No Output Path",
+      "fileType" : 16
+    },
+    "\/styles\/sass\/ie.scss" : {
+      "ignoreWasSetByUser" : 0,
+      "ignore" : 0,
+      "hidden" : 0,
+      "outputPathIsSetByUser" : 0,
+      "inputAbbreviatedPath" : "\/styles\/sass\/ie.scss",
+      "outputStyle" : 0,
+      "shouldRunBless" : 0,
+      "outputAbbreviatedPath" : "\/styles\/css\/ie.css",
+      "fileType" : 4,
+      "debugStyle" : 2
     },
     "\/icons\/dryx_data_icons.html" : {
       "ignoreWasSetByUser" : 0,
