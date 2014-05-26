@@ -237,7 +237,7 @@ def ads_query(
             theseAuthors = theseAuthors + authors[i].text + "; "
         theseAuthors = theseAuthors[0:-2] + append
         log.debug('authors: %(theseAuthors)s' % locals())
-        paperDictionary[bibcode]["athors"] = theseAuthors
+        paperDictionary[bibcode]["authors"] = theseAuthors
 
     log.info('completed the ``ads_query`` function')
     return paperDictionary
