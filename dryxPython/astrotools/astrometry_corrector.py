@@ -37,7 +37,7 @@ import string
 import numpy as np
 import pywcs
 import pyfits
-import scipy.optimize
+# import scipy.optimize
 import yaml
 
 # import sherpa.astro.ui as ui
