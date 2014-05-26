@@ -346,3 +346,5 @@ def password_protected_page_downloader(dbConn, log):
 
 if __name__ == '__main__':
     main()
+
+import papers

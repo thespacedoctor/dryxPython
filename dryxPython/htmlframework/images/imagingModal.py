@@ -183,22 +183,22 @@ class imagingModal():
         if self.downloadFilename:
             downloadFilename = self.downloadFilename
             downloadFilename = "&fileName=%(downloadFilename)s" % locals()
+            downloadFileButton = button(
+                buttonText="""<i class="icon-file-pdf"></i>""",
+                # [ default | primary | info | success | warning | danger | inverse | link ]
+                buttonStyle='primary',
+                buttonSize='small',  # [ large | default | small | mini ]
+                htmlId=False,
+                href="/marshall/scripts/python/download_file.py?url=%(fileUrl)s%(downloadFilename)s" % locals(),
+                pull=False,  # right, left, center
+                submit=False,
+                block=False,
+                disable=False,
+                dataToggle=False,  # [ modal ]
+                popover=thisPopover
+            )
         else:
-            downloadFilename = ""
-        downloadFileButton = button(
-            buttonText="""<i class="icon-file-pdf"></i>""",
-            # [ default | primary | info | success | warning | danger | inverse | link ]
-            buttonStyle='primary',
-            buttonSize='small',  # [ large | default | small | mini ]
-            htmlId=False,
-            href="/marshall/scripts/python/download_file.py?url=%(fileUrl)s%(downloadFilename)s" % locals(),
-            pull=False,  # right, left, center
-            submit=False,
-            block=False,
-            disable=False,
-            dataToggle=False,  # [ modal ]
-            popover=thisPopover
-        )
+            downloadFileButton = ""
 
         buttonList = [downloadFileButton]
         buttonList.extend(self.modalFooterButtons)

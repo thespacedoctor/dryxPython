@@ -30,10 +30,10 @@ Usage:
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
+import numpy as np
 from docopt import docopt
 from dryxPython import logs as dl
 import __init__ as dcu
-import numpy as np
 
 
 def main(arguments=None):

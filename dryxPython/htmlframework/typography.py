@@ -383,7 +383,8 @@ def li(
         divider=False,
         navStyle=False,
         navDropDown=False,
-        pager=False):
+        pager=False,
+        pull=False):
     """Generate a li - TBS style
 
     **Key Arguments:**
@@ -408,6 +409,11 @@ def li(
     [disabled, submenuClass, submenuTitle,
         navStyle, navDropDown, pager, span] = falseList
 
+    if pull:
+        pull = "pull-%(pull)s" % locals()
+    else:
+        pull = ""
+
     if disabled:
         disabled = """disabled"""
 
@@ -426,7 +432,7 @@ def li(
     if span:
         span = "span%(span)s" % locals()
 
-    li = """<li class="%(disabled)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals()
+    li = """<li class="%(disabled)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s %(pull)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals()
 
     if divider is True:
         li = """<li class="divider"></li>"""

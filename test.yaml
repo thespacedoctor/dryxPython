@@ -1,0 +1,18 @@
+version: 1
+## add in coordinates in decimal degrees for at least three sources
+star1: 
+    reference ra, dec:
+    image ra, dec:
+star2: 
+    reference ra, dec:
+    image ra, dec:
+star3: 
+    reference ra, dec:
+    image ra, dec:
+
+## continue to add more sources for a better solution
+# star4: 
+#    reference ra, dec:
+#    image ra, dec:
+# ...
+

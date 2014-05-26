@@ -27,7 +27,7 @@ class test_sqlquery_to_csv_file():
         kwargs["returnFormat"] = "plainText"
         output = sqlquery_to_csv_file(**kwargs)
 
-        print "\n\nOUTPUT:\n\n%(output)s" % locals()
+        print "\n\nOUTPUT:\n\n%(output)s" % locals()p
 
         # x-print-testpage-for-pessto-marshall-web-object
 

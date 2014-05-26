@@ -74,7 +74,7 @@ def htmlDocument(
 ## CREATED : May 28, 2013
 ## AUTHOR : DRYX
 def head(
-    relativeUrlBase='',
+    relativeUrlBase=False,
     mainCssFileName="main.css",
     pageTitle="",
     extras="",
@@ -91,6 +91,9 @@ def head(
 
     **Return:**
         - ``head`` -- the head """
+
+    if not relativeUrlBase:
+        relativeUrlBase = ""
 
     cssUrl = """%(relativeUrlBase)s/assets/styles/css/%(mainCssFileName)s""" % locals()
     cssLink = """
@@ -134,7 +137,7 @@ def body(
         content="",
         htmlId="",
         extraAttr="",
-        relativeUrlBase="",
+        relativeUrlBase=False,
         responsive=True,
         googleAnalyticsCode=False,
         jsFileName="main.js"
@@ -169,6 +172,9 @@ def body(
         """ % locals()
     else:
         googleAnalyticsCode = ""
+
+    if relativeUrlBase is False:
+        relativeUrlBase = ""
 
     container = _container(
         responsive=responsive,

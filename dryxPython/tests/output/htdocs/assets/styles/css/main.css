@@ -275,7 +275,7 @@ a[href$=jpg], a[href$=jpeg], a[href$=jpe], a[href$=png], a[href$=gif], a[href$=t
   #wrapper a:hover, #wrapper a:active {
     color: #268bd2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000322}}
 body {
   width: 100%;
   font-size: 62.5%;
@@ -286,38 +286,38 @@ body {
   color: #002b36;
   background-color: white; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000335}}
 h1 {
   font-size: 19px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h2 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h3 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h4 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h5 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h6 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000340}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000341}}
 h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.1;
   margin-bottom: .8em;
   text-align: left; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000351}}
 div.divVerticalKids {
   display: -webkit-box;
   display: -moz-box;
@@ -339,7 +339,7 @@ div.divVerticalKids {
   -moz-box-flex: 0;
   -ms-box-flex: 0;
   box-flex: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000354}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000355}}
 div.divHorizontalKids {
   display: -webkit-box;
   display: -moz-box;
@@ -362,11 +362,11 @@ div.divHorizontalKids {
   -ms-box-flex: 0;
   box-flex: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000365}}
 * p:last-child {
   margin-bottom: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000383}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000384}}
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -380,7 +380,7 @@ div.divHorizontalKids {
   .container:after {
     clear: both; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000388}}
 .container-fluid {
   padding-right: 20px;
   padding-left: 20px;
@@ -690,17 +690,17 @@ div.divHorizontalKids {
     margin-left: 8.51064%;
     *margin-left: 8.40426%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003104}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003105}}
 [class*="span"].hide,
 .row-fluid [class*="span"].hide {
   display: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003109}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003110}}
 [class*="span"].pull-right,
 .row-fluid [class*="span"].pull-right {
   float: right; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003117}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003118}}
 body {
   margin: 0;
   font-family: Quattrocento, Oxygen, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -709,44 +709,44 @@ body {
   color: #002b36;
   background-color: white; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003140}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003141}}
 .media,
 .media-body {
   overflow: hidden;
   *overflow: visible;
   zoom: 1; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003149}}
 .media,
 .media .media {
   margin-top: 15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003151}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003152}}
 .media:first-child {
   margin-top: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003156}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003157}}
 .media-object {
   display: block; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003162}}
 .media-heading {
   margin: 0 0 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003170}}
 .media > .pull-left {
   margin-right: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003172}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003173}}
 .media > .pull-right {
   margin-left: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003181}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003182}}
 .media-list {
   margin-left: 0;
   list-style: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003192}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003193}}
 .well {
   min-height: 20px;
   padding: 19px;
@@ -759,29 +759,33 @@ body {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003200}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003201}}
   .well blockquote {
     border-color: #ddd;
     border-color: rgba(0, 0, 0, 0.15); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003207}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003208}}
 .well-large {
   padding: 24px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003211}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003212}}
 .well-small {
   padding: 9px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003220}}
 h5#createdDates {
   text-align: right;
   font-size: 0.7em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003232}}
+div#wrapper {
+  margin: 20px; }
 
 @font-face {
   font-family: "acme";
@@ -1079,15 +1083,15 @@ strong, b {
 em, i {
   font-style: italic; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000341}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000342}}
 dl {
   margin: 0 0 1.5em 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000346}}
 dt {
   font-weight: bold; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000350}}
 dd {
   margin-left: 1.5em; }
 
@@ -1095,91 +1099,91 @@ dd {
 blockquote {
   font-style: None; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003133}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003134}}
 p {
   margin: 0 0 14.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003136}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003137}}
 .lead {
   margin-bottom: 29px;
   font-size: 27px;
   font-weight: 200;
   line-height: 43.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003149}}
 small {
   font-size: 85%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003151}}
 strong {
   font-weight: bold; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003151}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003152}}
 em {
   font-style: italic; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003152}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003153}}
 cite {
   font-style: normal; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003155}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003156}}
 .muted {
   color: #999999; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003157}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003158}}
 a.muted:hover,
 a.muted:focus {
   color: gray; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003159}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003160}}
 .text-warning {
   color: #c09853; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003162}}
 a.text-warning:hover,
 a.text-warning:focus {
   color: #a47e3c; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003163}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003164}}
 .text-error {
   color: #b94a48; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003165}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003166}}
 a.text-error:hover,
 a.text-error:focus {
   color: #953b39; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003167}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003168}}
 .text-info {
   color: #3a87ad; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003170}}
 a.text-info:hover,
 a.text-info:focus {
   color: #2d6987; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003171}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003172}}
 .text-success {
   color: #468847; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003173}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003174}}
 a.text-success:hover,
 a.text-success:focus {
   color: #356635; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003175}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003176}}
 .text-left {
   text-align: left; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003176}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003177}}
 .text-right {
   text-align: right; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003177}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003178}}
 .text-center {
   text-align: center; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003183}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003184}}
 h1, h2, h3, h4, h5, h6 {
   margin: 14.5px 0;
   font-family: inherit;
@@ -1187,128 +1191,128 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 29px;
   color: inherit;
   text-rendering: optimizelegibility; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003190}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003191}}
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     font-weight: normal;
     line-height: 1;
     color: #999999; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003199}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003200}}
 h1,
 h2,
 h3 {
   line-height: 58px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003200}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003201}}
 h1, h2, h3, h4, h5, h6 {
   font-family: Ubuntu; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003202}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003203}}
 h1 {
   font-size: 36px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003203}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003204}}
 h2 {
   font-size: 27px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003204}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003205}}
 h3 {
   font-size: 22.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003205}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003206}}
 h4 {
   font-size: 18px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003206}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003207}}
 h5 {
   font-size: 15.3px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003207}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003208}}
 h6 {
   font-size: 11.7px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003209}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003210}}
 h1 {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003210}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003211}}
 h2 {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003211}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003212}}
 h3 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003212}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003213}}
 h4 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003213}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003214}}
 h5 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003214}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003215}}
 h6 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003216}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003217}}
 h1 small {
   font-size: 31.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003217}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003218}}
 h2 small {
   font-size: 22.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003218}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003219}}
 h3 small {
   font-size: 18px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003220}}
 h4 small {
   font-size: 18px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003225}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003226}}
 .page-header {
   padding-bottom: 13.5px;
   margin: 29px 0 43.5px;
   border-bottom: 1px solid #eeeeee; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003237}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003238}}
 ul, ol {
   padding: 0;
   margin: 0 0 14.5px 25px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003244}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003245}}
 ul ul,
 ul ol,
 ol ol,
 ol ul {
   margin-bottom: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003247}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003248}}
 li {
   line-height: 29px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003251}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003252}}
 ul {
   list-style: disc; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003252}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003253}}
 ol {
   list-style: decimal; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003256}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003257}}
 ul.unstyled,
 ol.unstyled {
   margin-left: 0;
   list-style: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003263}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003264}}
 ul.inline,
 ol.inline {
   margin-left: 0;
   list-style: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003266}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003267}}
   ul.inline > li,
   ol.inline > li {
     display: inline-block;
@@ -1318,24 +1322,24 @@ ol.inline {
     padding-left: 5px;
     padding-right: 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003276}}
 dl {
   margin-bottom: 29px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003279}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003280}}
 dt,
 dd {
   line-height: 29px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003282}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003283}}
 dt {
   font-weight: bold; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003285}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003286}}
 dd {
   margin-left: 14.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003289}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003290}}
 .dl-horizontal {
   *zoom: 1; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_utils\.scss}line{font-family:\0000317}}
@@ -1346,7 +1350,7 @@ dd {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_utils\.scss}line{font-family:\0000324}}
   .dl-horizontal:after {
     clear: both; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003291}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003292}}
   .dl-horizontal dt {
     float: left;
     width: 160px;
@@ -1355,64 +1359,65 @@ dd {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003298}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003299}}
   .dl-horizontal dd {
     margin-left: 180px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003307}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003308}}
 hr {
   margin: 29px 0;
   border: 0;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid white; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003318}}
 abbr[title],
 abbr[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted #999999; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003322}}
 abbr.initialism {
   font-size: 90%;
   text-transform: uppercase; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003328}}
 blockquote {
   padding: 0 0 0 15px;
-  margin: 10px 10px 29px;
-  border-left: 5px solid #ebebeb; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003331}}
+  margin: 10px 40px 29px;
+  border-left: 5px solid #a2a2a2; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003332}}
   blockquote p {
     margin-bottom: 0;
-    color: #d7d6d6;
-    font-size: 19.8px;
-    font-family: Roboto;
+    color: #555555;
+    font-size: 18px;
+    font-family: Georgia, "Times New Roman", Times, serif;
     font-weight: 100;
-    line-height: 1.5; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003339}}
+    line-height: 1.5;
+    font-style: italic; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003341}}
   blockquote small {
     display: block;
     line-height: 31.9px;
     color: #999999; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003345}}
     blockquote small:before {
       content: '\2014 \00A0'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003351}}
   blockquote.pull-right {
     float: right;
     padding-right: 15px;
     padding-left: 0;
     border-right: 5px solid #eeeeee;
     border-left: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003358}}
     blockquote.pull-right p,
     blockquote.pull-right small {
       text-align: right; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003362}}
     blockquote.pull-right small:before {
       content: ''; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003365}}
     blockquote.pull-right small:after {
       content: '\00A0 \2014'; }
 
@@ -1435,7 +1440,7 @@ code,
 pre {
   padding: 0 3px 2px;
   font-family: inconsolata, Monaco, Menlo, Consolas, "Courier New", monospace;
-  font-size: 18px;
+  font-size: 0.9em;
   color: #333333;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -1444,123 +1449,122 @@ pre {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003404}}
 code {
   padding: 2px 4px;
-  color: #586e75;
+  color: #073642;
   background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
   white-space: nowrap; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003413}}
 pre {
+  overflow: auto;
   display: block;
-  padding: 14px;
+  padding: 7px;
   margin: 30px 0 30px 0;
-  font-size: 17px;
+  font-size: 16.2px;
   line-height: 29px;
-  word-break: break-all;
-  word-wrap: break-word;
   white-space: pre;
-  white-space: pre-wrap;
-  background-color: #f5f5f5;
+  background-color: #002b36;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  border-radius: 4px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003429}}
+  border-radius: 4px;
+  white-space: pre; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003433}}
   pre.prettyprint {
     margin-bottom: 29px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003434}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003438}}
   pre code {
     padding: 0;
     color: inherit;
     white-space: pre;
-    white-space: pre-wrap;
     background-color: transparent;
-    border: 0; }
+    border: 0;
+    overflow-wrap: normal; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003445}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003449}}
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solDarkGrey {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solLightGrey {
   color: #d2d1d1; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solCream {
   color: #eee8d5; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solYellow {
   color: #b58900; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solOrange {
   color: #cb4b16; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solRed {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solMagenta {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solViolet {
   color: #6c71c4; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solBlue {
   color: #268bd2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solCyan {
   color: #2aa198; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solGreen {
   color: #859900; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003453}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003457}}
 span.colortext.red {
   color: #dc322f; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003456}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003460}}
 span.colortext.green {
   color: #859900; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003459}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003463}}
 span.colortext.blue {
   color: #268bd2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003462}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003466}}
 span.colortext.orange {
   color: #cb4b16; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003465}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003469}}
 span.colortext.violet {
   color: #6c71c4; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003468}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003472}}
 span.colortext.yellow {
   color: #b58900; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003471}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003475}}
 span.colortext.cyan {
   color: #2aa198; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003474}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003478}}
 span.colortext.magenta {
   color: #d33682; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003477}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003481}}
 span.colortext.lightgrey {
   color: #d2d1d1; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003480}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003484}}
 span.colortext.darkgrey {
   color: #002b36; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003483}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003487}}
 span.colortext.cream {
   color: #eee8d5; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003486}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003490}}
 span.colortext.grey {
   color: #555555; }
 
@@ -2331,7 +2335,6 @@ button {
   vertical-align: middle;
   cursor: pointer;
   color: #333333;
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
   background-color: whitesmoke;
   background-image: -moz-linear-gradient(top, white, #e6e6e6);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#e6e6e6));
@@ -2526,7 +2529,6 @@ input[type="submit"].btn {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_buttons\.scss}line{font-family:\00003230}}
 .btn-primary {
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #2674d2;
   background-image: -moz-linear-gradient(top, #268bd2, #2652d2);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#268bd2), to(#2652d2));
@@ -2552,7 +2554,6 @@ input[type="submit"].btn {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_buttons\.scss}line{font-family:\00003234}}
 .btn-warning {
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #f9a732;
   background-image: -moz-linear-gradient(top, #fbb450, #f89406);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
@@ -2578,7 +2579,6 @@ input[type="submit"].btn {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_buttons\.scss}line{font-family:\00003238}}
 .btn-danger {
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #da4e49;
   background-image: -moz-linear-gradient(top, #ee5f5b, #bd362f);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f));
@@ -2604,7 +2604,6 @@ input[type="submit"].btn {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_buttons\.scss}line{font-family:\00003242}}
 .btn-success {
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #5bb65b;
   background-image: -moz-linear-gradient(top, #62c462, #51a351);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
@@ -2630,7 +2629,6 @@ input[type="submit"].btn {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_buttons\.scss}line{font-family:\00003246}}
 .btn-info {
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #49afcd;
   background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
@@ -2656,7 +2654,6 @@ input[type="submit"].btn {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_buttons\.scss}line{font-family:\00003250}}
 .btn-inverse {
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #363636;
   background-image: -moz-linear-gradient(top, #444444, #222222);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#444444), to(#222222));
@@ -11124,7 +11121,7 @@ div.dark_rounded #pp_full_res .pp_inline, div.dark_square #pp_full_res .pp_inlin
 .pp_fade, .pp_gallery li.default a img {
   display: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000322}}
 body {
   width: 100%;
   font-size: 62.5%;
@@ -11135,38 +11132,38 @@ body {
   color: #002b36;
   background-color: white; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000335}}
 h1 {
   font-size: 19px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h2 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h3 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h4 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h5 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000337}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000338}}
 h6 {
   font-size: 16.15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000340}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000341}}
 h2, h3, h4, h5, h6 {
   font-weight: 400;
   line-height: 1.1;
   margin-bottom: .8em;
   text-align: left; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000350}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000351}}
 div.divVerticalKids {
   display: -webkit-box;
   display: -moz-box;
@@ -11188,7 +11185,7 @@ div.divVerticalKids {
   -moz-box-flex: 0;
   -ms-box-flex: 0;
   box-flex: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000354}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000355}}
 div.divHorizontalKids {
   display: -webkit-box;
   display: -moz-box;
@@ -11211,11 +11208,11 @@ div.divHorizontalKids {
   -ms-box-flex: 0;
   box-flex: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000365}}
 * p:last-child {
   margin-bottom: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000383}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000384}}
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -11229,7 +11226,7 @@ div.divHorizontalKids {
   .container:after {
     clear: both; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\0000388}}
 .container-fluid {
   padding-right: 20px;
   padding-left: 20px;
@@ -11539,17 +11536,17 @@ div.divHorizontalKids {
     margin-left: 8.51064%;
     *margin-left: 8.40426%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003104}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003105}}
 [class*="span"].hide,
 .row-fluid [class*="span"].hide {
   display: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003109}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003110}}
 [class*="span"].pull-right,
 .row-fluid [class*="span"].pull-right {
   float: right; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003117}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003118}}
 body {
   margin: 0;
   font-family: Quattrocento, Oxygen, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -11558,44 +11555,44 @@ body {
   color: #002b36;
   background-color: white; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003140}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003141}}
 .media,
 .media-body {
   overflow: hidden;
   *overflow: visible;
   zoom: 1; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003149}}
 .media,
 .media .media {
   margin-top: 15px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003151}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003152}}
 .media:first-child {
   margin-top: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003156}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003157}}
 .media-object {
   display: block; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003162}}
 .media-heading {
   margin: 0 0 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003170}}
 .media > .pull-left {
   margin-right: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003172}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003173}}
 .media > .pull-right {
   margin-left: 10px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003181}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003182}}
 .media-list {
   margin-left: 0;
   list-style: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003192}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003193}}
 .well {
   min-height: 20px;
   padding: 19px;
@@ -11608,29 +11605,33 @@ body {
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05); }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003200}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003201}}
   .well blockquote {
     border-color: #ddd;
     border-color: rgba(0, 0, 0, 0.15); }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003207}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003208}}
 .well-large {
   padding: 24px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003211}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003212}}
 .well-small {
   padding: 9px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003220}}
 h5#createdDates {
   text-align: right;
   font-size: 0.7em; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_layout\.scss}line{font-family:\00003232}}
+div#wrapper {
+  margin: 20px; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_logs\.scss}line{font-family:\00003126}}
 body#log {
@@ -12659,7 +12660,6 @@ body#log {
   margin-left: 5px;
   margin-right: 5px;
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #ededed;
   background-image: -moz-linear-gradient(top, #f2f2f2, #e6e6e6);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#e6e6e6));
@@ -12893,7 +12893,6 @@ body#log {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_navigation\.scss}line{font-family:\00003899}}
 .navbar-inverse .btn-navbar {
   color: white;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
   background-color: #0c1517;
   background-image: -moz-linear-gradient(top, #151515, #00171c);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#151515), to(#00171c));
@@ -15310,15 +15309,15 @@ strong, b {
 em, i {
   font-style: italic; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000341}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000342}}
 dl {
   margin: 0 0 1.5em 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000345}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000346}}
 dt {
   font-weight: bold; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\0000350}}
 dd {
   margin-left: 1.5em; }
 
@@ -15326,91 +15325,91 @@ dd {
 blockquote {
   font-style: None; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003133}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003134}}
 p {
   margin: 0 0 14.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003136}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003137}}
 .lead {
   margin-bottom: 29px;
   font-size: 27px;
   font-weight: 200;
   line-height: 43.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003148}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003149}}
 small {
   font-size: 85%; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003150}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003151}}
 strong {
   font-weight: bold; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003151}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003152}}
 em {
   font-style: italic; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003152}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003153}}
 cite {
   font-style: normal; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003155}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003156}}
 .muted {
   color: #999999; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003157}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003158}}
 a.muted:hover,
 a.muted:focus {
   color: gray; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003159}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003160}}
 .text-warning {
   color: #c09853; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003161}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003162}}
 a.text-warning:hover,
 a.text-warning:focus {
   color: #a47e3c; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003163}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003164}}
 .text-error {
   color: #b94a48; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003165}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003166}}
 a.text-error:hover,
 a.text-error:focus {
   color: #953b39; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003167}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003168}}
 .text-info {
   color: #3a87ad; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003170}}
 a.text-info:hover,
 a.text-info:focus {
   color: #2d6987; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003171}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003172}}
 .text-success {
   color: #468847; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003173}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003174}}
 a.text-success:hover,
 a.text-success:focus {
   color: #356635; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003175}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003176}}
 .text-left {
   text-align: left; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003176}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003177}}
 .text-right {
   text-align: right; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003177}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003178}}
 .text-center {
   text-align: center; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003183}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003184}}
 h1, h2, h3, h4, h5, h6 {
   margin: 14.5px 0;
   font-family: inherit;
@@ -15418,128 +15417,128 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 29px;
   color: inherit;
   text-rendering: optimizelegibility; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003190}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003191}}
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     font-weight: normal;
     line-height: 1;
     color: #999999; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003199}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003200}}
 h1,
 h2,
 h3 {
   line-height: 58px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003200}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003201}}
 h1, h2, h3, h4, h5, h6 {
   font-family: Ubuntu; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003202}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003203}}
 h1 {
   font-size: 36px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003203}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003204}}
 h2 {
   font-size: 27px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003204}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003205}}
 h3 {
   font-size: 22.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003205}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003206}}
 h4 {
   font-size: 18px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003206}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003207}}
 h5 {
   font-size: 15.3px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003207}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003208}}
 h6 {
   font-size: 11.7px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003209}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003210}}
 h1 {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003210}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003211}}
 h2 {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003211}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003212}}
 h3 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003212}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003213}}
 h4 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003213}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003214}}
 h5 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003214}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003215}}
 h6 {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003216}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003217}}
 h1 small {
   font-size: 31.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003217}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003218}}
 h2 small {
   font-size: 22.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003218}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003219}}
 h3 small {
   font-size: 18px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003219}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003220}}
 h4 small {
   font-size: 18px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003225}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003226}}
 .page-header {
   padding-bottom: 13.5px;
   margin: 29px 0 43.5px;
   border-bottom: 1px solid #eeeeee; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003237}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003238}}
 ul, ol {
   padding: 0;
   margin: 0 0 14.5px 25px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003244}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003245}}
 ul ul,
 ul ol,
 ol ol,
 ol ul {
   margin-bottom: 0; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003247}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003248}}
 li {
   line-height: 29px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003251}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003252}}
 ul {
   list-style: disc; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003252}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003253}}
 ol {
   list-style: decimal; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003256}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003257}}
 ul.unstyled,
 ol.unstyled {
   margin-left: 0;
   list-style: none; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003263}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003264}}
 ul.inline,
 ol.inline {
   margin-left: 0;
   list-style: none; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003266}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003267}}
   ul.inline > li,
   ol.inline > li {
     display: inline-block;
@@ -15549,24 +15548,24 @@ ol.inline {
     padding-left: 5px;
     padding-right: 5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003275}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003276}}
 dl {
   margin-bottom: 29px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003279}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003280}}
 dt,
 dd {
   line-height: 29px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003282}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003283}}
 dt {
   font-weight: bold; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003285}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003286}}
 dd {
   margin-left: 14.5px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003289}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003290}}
 .dl-horizontal {
   *zoom: 1; }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_utils\.scss}line{font-family:\0000317}}
@@ -15577,7 +15576,7 @@ dd {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_utils\.scss}line{font-family:\0000324}}
   .dl-horizontal:after {
     clear: both; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003291}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003292}}
   .dl-horizontal dt {
     float: left;
     width: 160px;
@@ -15586,64 +15585,65 @@ dd {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003298}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003299}}
   .dl-horizontal dd {
     margin-left: 180px; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003307}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003308}}
 hr {
   margin: 29px 0;
   border: 0;
   border-top: 1px solid #eeeeee;
   border-bottom: 1px solid white; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003317}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003318}}
 abbr[title],
 abbr[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted #999999; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003322}}
 abbr.initialism {
   font-size: 90%;
   text-transform: uppercase; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003328}}
 blockquote {
   padding: 0 0 0 15px;
-  margin: 10px 10px 29px;
-  border-left: 5px solid #ebebeb; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003331}}
+  margin: 10px 40px 29px;
+  border-left: 5px solid #a2a2a2; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003332}}
   blockquote p {
     margin-bottom: 0;
-    color: #d7d6d6;
-    font-size: 19.8px;
-    font-family: Roboto;
+    color: #555555;
+    font-size: 18px;
+    font-family: Georgia, "Times New Roman", Times, serif;
     font-weight: 100;
-    line-height: 1.5; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003339}}
+    line-height: 1.5;
+    font-style: italic; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003341}}
   blockquote small {
     display: block;
     line-height: 31.9px;
     color: #999999; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003345}}
     blockquote small:before {
       content: '\2014 \00A0'; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003351}}
   blockquote.pull-right {
     float: right;
     padding-right: 15px;
     padding-left: 0;
     border-right: 5px solid #eeeeee;
     border-left: 0; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003358}}
     blockquote.pull-right p,
     blockquote.pull-right small {
       text-align: right; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003362}}
     blockquote.pull-right small:before {
       content: ''; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003365}}
     blockquote.pull-right small:after {
       content: '\00A0 \2014'; }
 
@@ -15666,7 +15666,7 @@ code,
 pre {
   padding: 0 3px 2px;
   font-family: inconsolata, Monaco, Menlo, Consolas, "Courier New", monospace;
-  font-size: 18px;
+  font-size: 0.9em;
   color: #333333;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -15675,123 +15675,122 @@ pre {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003404}}
 code {
   padding: 2px 4px;
-  color: #586e75;
+  color: #073642;
   background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
   white-space: nowrap; }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003413}}
 pre {
+  overflow: auto;
   display: block;
-  padding: 14px;
+  padding: 7px;
   margin: 30px 0 30px 0;
-  font-size: 17px;
+  font-size: 16.2px;
   line-height: 29px;
-  word-break: break-all;
-  word-wrap: break-word;
   white-space: pre;
-  white-space: pre-wrap;
-  background-color: #f5f5f5;
+  background-color: #002b36;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  border-radius: 4px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003429}}
+  border-radius: 4px;
+  white-space: pre; }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003433}}
   pre.prettyprint {
     margin-bottom: 29px; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003434}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003438}}
   pre code {
     padding: 0;
     color: inherit;
     white-space: pre;
-    white-space: pre-wrap;
     background-color: transparent;
-    border: 0; }
+    border: 0;
+    overflow-wrap: normal; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003445}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003449}}
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solDarkGrey {
   color: #002b36; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solLightGrey {
   color: #d2d1d1; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solCream {
   color: #eee8d5; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solYellow {
   color: #b58900; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solOrange {
   color: #cb4b16; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solRed {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solMagenta {
   color: #dc322f; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solViolet {
   color: #6c71c4; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solBlue {
   color: #268bd2; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solCyan {
   color: #2aa198; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003118}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003119}}
 span.solGreen {
   color: #859900; }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003453}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003457}}
 span.colortext.red {
   color: #dc322f; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003456}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003460}}
 span.colortext.green {
   color: #859900; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003459}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003463}}
 span.colortext.blue {
   color: #268bd2; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003462}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003466}}
 span.colortext.orange {
   color: #cb4b16; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003465}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003469}}
 span.colortext.violet {
   color: #6c71c4; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003468}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003472}}
 span.colortext.yellow {
   color: #b58900; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003471}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003475}}
 span.colortext.cyan {
   color: #2aa198; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003474}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003478}}
 span.colortext.magenta {
   color: #d33682; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003477}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003481}}
 span.colortext.lightgrey {
   color: #d2d1d1; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003480}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003484}}
 span.colortext.darkgrey {
   color: #002b36; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003483}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003487}}
 span.colortext.cream {
   color: #eee8d5; }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003486}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Dave\/Dropbox\/templates\/web\/dryx_assets\/styles\/sass\/_dryx_type\.scss}line{font-family:\00003490}}
 span.colortext.grey {
   color: #555555; }
 

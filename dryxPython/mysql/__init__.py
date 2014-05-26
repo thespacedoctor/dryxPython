@@ -20,7 +20,6 @@ import os
 import MySQLdb
 
 
-
 ############################################
 # MAIN LOOP - USED FOR DEBUGGING           #
 ############################################
@@ -51,7 +50,6 @@ import MySQLdb
 ##########################################################
 # DATABASE CONNECTION GIVEN YAML DICTIONARY OF PARAMETERS #
 ###########################################################
-
 def set_db_connection(pathToYamlFile):
     """Get a database connection using settings in yaml file. Given the location of a YAML dictionary containing database credientials,
     this function will setup and return the connection
@@ -279,7 +277,7 @@ def convert_dictionary_to_mysql_table(
                              (message, k, v, type(v)))
                 raise ValueError(message)
         else:
-            if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float) or isinstance(v, long) or isinstance(v, datetime.date) or v == None):
+            if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float) or isinstance(v, long) or isinstance(v, unicode) or isinstance(v, datetime.date) or v == None):
                 message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
                 log.critical("%s: in %s we have a %s (%s)" %
                              (message, k, v, type(v)))
@@ -357,6 +355,10 @@ def convert_dictionary_to_mysql_table(
                 udata = value.decode("utf-8")
                 value = udata.encode("ascii", "ignore")
                 log.debug('udata: %(udata)s' % locals())
+
+            if isinstance(value, unicode):
+                value = value.replace('"', '\\"')
+                value = value.encode("ascii", "ignore")
 
             if isinstance(value, list) and isinstance(value[0], unicode):
                 myValues.extend(['%s' % value[0].strip()])

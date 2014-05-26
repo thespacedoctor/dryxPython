@@ -1,0 +1,26 @@
+version: 1
+## add in coordinates in decimal degrees for at least three sources
+star1: 
+    reference ra, dec:
+    image ra, dec:
+star2: 
+    reference ra, dec:
+    image ra, dec:
+star3: 
+    reference ra, dec:
+    image ra, dec:
+    
+## continue to add more sources for a better solution
+# star4: 
+#    reference ra, dec:
+#    image ra, dec:
+# ...
+
+
+
+ID          RA-REF      DEC-REF         RA-IMAGE       DEC-IMAGE
+----------------------------------------------------------------
+0610-0936962   335.744175  -28.968303  355.74290    -28.96692
+0610-0936997   335.772717  -28.916425  335.77277    -28.91569
+0610-0937071   335.821662  -28.922406  335.82129    -28.92240
+0610-0937043   335.799923  -28.986095  335.79844    -28.98553
