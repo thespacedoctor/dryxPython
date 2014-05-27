@@ -241,5 +241,4 @@ def table(
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
 
-import sortable_mysql_table
-
+import sortable_table
