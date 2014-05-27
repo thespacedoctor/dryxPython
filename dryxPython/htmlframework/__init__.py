@@ -12,3 +12,5 @@ from typography import *
 from images import *
 import plots
 
+
+import tables
