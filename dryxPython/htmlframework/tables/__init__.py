@@ -36,7 +36,8 @@ def tr(
         cellContent="",
         color=False,
         href=False,
-        popover=False):
+        popover=False,
+        span=False):
     """Generate a table row - TBS style
 
     **Key Arguments:**
@@ -60,7 +61,12 @@ def tr(
     if popover is False:
         popover = ""
 
-    tr = """<tr %(href)s class="%(link)s %(color)s" %(popover)s>%(cellContent)s</tr>""" % locals()
+    if span is False:
+        span = ""
+    else:
+        span = "span%(span)s" % locals()
+
+    tr = """<tr %(href)s class="%(link)s %(color)s %(span)s" %(popover)s>%(cellContent)s</tr>""" % locals()
 
     return tr
 
@@ -72,7 +78,9 @@ def th(
         content="",
         color=False,
         href=False,
-        popover=False):
+        popover=False,
+        span=False,
+        columnWidth=False):
     """Generate a table header cell - TBS style
 
     **Key Arguments:**
@@ -94,10 +102,20 @@ def th(
         href = """href="%(href)s" """ % locals()
         link = "link"
 
+    if span is False:
+        span = ""
+    else:
+        span = "span%(span)s" % locals()
+
+    if columnWidth is False:
+        columnWidth = ""
+    else:
+        columnWidth = """style="width: %(columnWidth)s%%;" """ % locals()
+
     if popover is False:
         popover = ""
 
-    th = """<th %(href)s class="%(color)s %(link)s" %(popover)s>%(content)s</th>""" % locals()
+    th = """<th %(href)s class="%(color)s %(link)s %(span)s" %(columnWidth)s %(popover)s>%(content)s</th>""" % locals()
 
     return th
 
@@ -107,7 +125,8 @@ def th(
 ## AUTHOR : DRYX
 def td(
         content=False,
-        color=False):
+        color=False,
+        span=False):
     """Generate a table data cell - TBS style
 
     **Key Arguments:**
@@ -121,8 +140,12 @@ def td(
         color = ""
     if content is False:
         content = ""
+    if span is False:
+        span = ""
+    else:
+        span = "span%(span)s" % locals()
 
-    td = """<td class="%(color)s">%(content)s</td>""" % locals()
+    td = """<td class="%(color)s %(span)s">%(content)s</td>""" % locals()
 
     return td
 
@@ -191,7 +214,8 @@ def table(
         striped=True,
         bordered=False,
         hover=True,
-        condensed=False):
+        condensed=False,
+        span=False):
     """Generate a table - TBS style
 
     **Key Arguments:**
@@ -224,12 +248,17 @@ def table(
     else:
         hover = ""
 
+    if span is False:
+        span = ""
+    else:
+        span = "span%(span)s" % locals()
+
     if condensed is True:
         condensed = "table-condensed"
     else:
         condensed = ""
 
-    table = """<table class="table %(striped)s %(bordered)s %(hover)s %(condensed)s">%(caption)s%(thead)s%(tbody)s</table>""" % locals()
+    table = """<table class="table %(striped)s %(bordered)s %(hover)s %(condensed)s %(span)s">%(caption)s%(thead)s%(tbody)s</table>""" % locals()
     return table
 
 ###################################################################
