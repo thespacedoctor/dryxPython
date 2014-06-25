@@ -47,7 +47,8 @@ setup(name='dryxPython',
               'dms_convert_collate_and_charset_of_mysql_database=dryxPython.mysql.convert_collate_and_charset_of_mysql_database:main',
               'dms_convert_mysql_database_to_myisam=dryxPython.mysql.convert_mysql_database_to_myisam:main',
               'dp_xy_scatter=dryxPython.plotting.xy_scatter:main',
-              'astromCorrector=dryxPython.astrotools.astrometry_corrector:main'
+              'astromCorrector=dryxPython.astrotools.astrometry_corrector:main',
+              'git_update_request_watcher=dryxPython.git.update_request_watcher:main'
           ],
       },
       zip_safe=False)

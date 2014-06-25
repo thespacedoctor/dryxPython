@@ -30,6 +30,7 @@ Usage:
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
+from subprocess import Popen, PIPE, STDOUT
 from docopt import docopt
 from dryxPython import logs as dl
 
@@ -109,7 +110,8 @@ def main(arguments=None):
 def update_git_repos(
     log,
     gitProjectRoot="",
-    branchToUpdate="master"
+    branchToUpdate="master",
+    installClUtils=False
 ):
     """update_git_repos
 
@@ -138,6 +140,20 @@ def update_git_repos(
     #      "'auto commit from python git repo updater script before pull from origin'"])
     call(["git", "pull", "origin", branchToUpdate])
     # call(["git", "push", "origin", branchToUpdate])
+
+    if installClUtils:
+        ## if setup.py exists in repo, then install as development package -- with any cl-utils
+        exists = os.path.exists("%(gitProjectRoot)s/setup.py" % locals())
+        if exists:
+            log.debug('about to install cl-utils')
+            pwd = os.getcwd()
+            os.chdir(gitProjectRoot)
+            cmd = """python setup.py develop""" % locals()
+            p = Popen(cmd, stdout=PIPE, stdin=PIPE, shell=True)
+            output = p.communicate()[0]
+            log.debug('output: %(output)s' % locals())
+            print output
+            os.chdir(pwd)
 
     return None
 
