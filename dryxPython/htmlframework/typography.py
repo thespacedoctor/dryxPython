@@ -312,15 +312,14 @@ def ul(
         navDirection, breadcrumb, pager, thumbnails, mediaList] = falseList
 
     thisList = ""
-    for item in itemList:
+    for i, item in enumerate(itemList):
         if "<li" in item:
             thisList = """%(thisList)s %(item)s""" % locals()
         else:
             thisList = """%(thisList)s <li>%(item)s</li>""" % locals()
-
-    if breadcrumb:
-        thisList = thisList.replace(
-            "</li>", """ <span class="divider">/</span></li>""")
+        if i + 1 != len(itemList) and breadcrumb:
+            thisList = thisList[:-5] + \
+                """    <span class="divider">/</span></li>""" % locals()
 
     if unstyled:
         unstyled = "unstyled"
@@ -384,7 +383,10 @@ def li(
         navStyle=False,
         navDropDown=False,
         pager=False,
-        pull=False):
+        pull=False,
+        onPhone=True,
+        onTablet=True,
+        onDesktop=True):
     """Generate a li - TBS style
 
     **Key Arguments:**
@@ -422,7 +424,8 @@ def li(
         submenuTitle = """<a tabindex="-1" href="#">%(submenuTitle)s</a>""" % locals()
 
     if navStyle == "active":
-        pass
+        if "href" in content:
+            content = content.replace('class="', 'class="active ')
     elif navStyle:
         navStyle = "nav-%(navStyle)s" % locals()
 
@@ -432,7 +435,30 @@ def li(
     if span:
         span = "span%(span)s" % locals()
 
-    li = """<li class="%(disabled)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s %(pull)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals()
+
+    phoneClass = ""
+    tabletClass = ""
+    desktopClass = ""
+    if onPhone:
+        if onTablet:
+            if not onDesktop:
+                desktopClass = "hidden-desktop"
+        else:
+            if not onDesktop:
+                phoneClass = "visible-phone"
+            else:
+                tabletClass = "hidden-tablet"
+    else:
+        if onTablet:
+            if not onDesktop:
+                tabletClass = "visible-tablet"
+            else:
+                phoneClass = "hidden-phone"
+        else:
+            desktopClass = "visible-desktop"
+
+
+    li = """<li class="%(disabled)s %(phoneClass)s %(tabletClass)s %(desktopClass)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s %(pull)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals()
 
     if divider is True:
         li = """<li class="divider"></li>"""
@@ -549,7 +575,10 @@ def ol(itemList=[]):
     """
     thisList = ""
     for item in itemList:
-        thisList = """%(thisList)s <li>%(item)s</li>\n""" % locals()
+        if "<li" in item[:5]:
+            thisList = """%(thisList)s\n%(item)s""" % locals()
+        else:
+            thisList = """%(thisList)s <li>%(item)s</li>\n""" % locals()
 
     ol = """
         <ol>

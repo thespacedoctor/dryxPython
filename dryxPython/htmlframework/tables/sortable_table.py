@@ -308,6 +308,12 @@ class sortable_table():
                         color="grey",
                         size=2,
                     )
+                    thisDate = hide_from_device(
+                        content=thisDate,
+                        onPhone=False,
+                        onTablet=False,
+                        onDesktop=True
+                    )
                     obj[c] = "%(relativeDate)s %(thisDate)s" % locals()
 
                 obj[c] = coloredText(
