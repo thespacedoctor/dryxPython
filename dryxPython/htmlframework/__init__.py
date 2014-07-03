@@ -13,3 +13,4 @@ from images import *
 import plots
 import tables
 import urls
+import modals

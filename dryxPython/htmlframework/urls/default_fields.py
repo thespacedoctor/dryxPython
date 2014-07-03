@@ -54,7 +54,8 @@ def default_fields():
         "sortDesc": False,
         "pageName": False,
         "pageId": False,
-        "tagName": False
+        "tagName": False,
+        "settingsFile": 1
     }
     return fieldDict
 

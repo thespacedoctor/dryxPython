@@ -68,7 +68,7 @@ class setup_main_clutil():
             arguments = docopt(docString)
         self.arguments = arguments
 
-        # print arguments
+        print arguments
 
         ## UNPACK SETTINGS
         if "<settingsFile>" in arguments and arguments["<settingsFile>"]:
@@ -86,6 +86,11 @@ class setup_main_clutil():
             stream = file(arguments["<pathToSettingsFile>"], 'r')
             settings = yaml.load(stream)
             stream.close()
+        elif "pathToSettingsFile" in arguments and arguments["pathToSettingsFile"]:
+            import yaml
+            stream = file(arguments["pathToSettingsFile"], 'r')
+            settings = yaml.load(stream)
+            stream.close()
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
         if 'settings' in locals() and "logging settings" in settings:
@@ -96,6 +101,10 @@ class setup_main_clutil():
             elif "--settingsFile" in arguments:
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["--settingsFile"]
+                )
+            elif "pathToSettingsFile" in arguments:
+                log = dl.setup_dryx_logging(
+                    yaml_file=arguments["pathToSettingsFile"]
                 )
             else:
                 log = dl.setup_dryx_logging(

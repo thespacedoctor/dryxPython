@@ -45,7 +45,10 @@ def button(
         disable=False,
         dataToggle=False,
         popover=False,
-        close=False):
+        postInBackground=False,
+        notification=False,
+        close=False,
+        formId=False):
     """Generate a button - TBS style
 
     **Key Arguments:**
@@ -77,10 +80,20 @@ def button(
     else:
         buttonSize = "btn-%(buttonSize)s" % locals()
 
+    if notification is False:
+        notification = ""
+    else:
+        notification = """notification="%(notification)s" """ % locals()
+
     if block is True:
         block = "btn-block"
     else:
         block = ""
+
+    if postInBackground is True:
+        postInBackground = "postInBackground"
+    else:
+        postInBackground = ""
 
     if disable is True:
         disable = "disabled"
@@ -91,6 +104,11 @@ def button(
         ttype = "submit"
     else:
         ttype = "button"
+
+    if formId is False:
+        formId = ""
+    else:
+        formId = """formId="%(formId)s" """ % locals()
 
     if close is False:
         close = ""
@@ -125,7 +143,7 @@ def button(
     if len(dataToggle):
         popover = popover.replace("data-toggle", "rel")
 
-    button = """<%(elementOpen)s class="%(htmlClass)s btn %(close)s %(buttonStyle)s %(buttonSize)s %(block)s %(disable)s %(pull)s" %(popover)s id="%(htmlId)s" %(dataToggle)s %(dismiss)s>%(buttonText)s</%(elementClose)s>""" % locals()
+    button = """<%(elementOpen)s class="%(htmlClass)s btn %(close)s %(buttonStyle)s %(buttonSize)s %(block)s %(disable)s %(pull)s %(postInBackground)s" %(popover)s id="%(htmlId)s" %(formId)s %(dataToggle)s %(dismiss)s %(notification)s>%(buttonText)s</%(elementClose)s>""" % locals()
 
     return button
 

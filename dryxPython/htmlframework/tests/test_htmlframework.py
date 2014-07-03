@@ -1906,7 +1906,7 @@ class test_0001_htmlDocument():
             format='default'  # [ default | toolbar | vertical ]
         )
 
-        modal = dhf.modal(
+        modal = dhf.modals.modal(
             modalHeaderContent="This is a modal",
             modalBodyContent="<p>Put text or a form in here",
             modalFooterContent=buttonGroup,

@@ -114,7 +114,7 @@ def sqlquery_to_csv_file(
     for row in rows:
         for c in tableColumnNames:
             if isinstance(row[c], float) or isinstance(row[c], long) or isinstance(row[c], Decimal):
-                row[c] = "%6.2f" % row[c]
+                row[c] = "%0.2f" % row[c]
             elif isinstance(row[c], datetime):
                 thisDate = str(row[c])[:10]
                 row[c] = "%(thisDate)s" % locals()
@@ -173,11 +173,13 @@ def sqlquery_to_csv_file(
     if csvType == "human":
         dividerWriter.writerow(divider)
 
+
     now = datetime.now()
     now = now.strftime("%Y-%m-%d %H:%M:%S")
     output = output.getvalue()
-    output = """%(csvTitle)s (exported on %(now)s)\n%(output)s""" % locals(
-    )
+    if csvTitle and csvTitle.lower() != "false":
+        output = """%(csvTitle)s (exported on %(now)s)\n%(output)s""" % locals(
+        )
 
     now = datetime.now()
     now = now.strftime("%Y%m%dt%H%M%S")
@@ -196,6 +198,8 @@ def sqlquery_to_csv_file(
         ext = matchObject.group(2)
         filename = """%(filename)s_%(now)s.%(ext)s""" % locals()
 
+    output = output.strip()
+
     ################ >ACTION(S) ###############
     if returnFormat == "plainText":
         returnOutput = output
@@ -207,7 +211,7 @@ def sqlquery_to_csv_file(
         returnOutput = webpage
     elif returnFormat == "webpageDownload":
         webpage = dhf.htmlDocument(
-            contentType="text/plain",
+            contentType="text/csv",
             content=output,
             attachmentSaveAsName=filename
         )

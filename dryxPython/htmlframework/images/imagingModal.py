@@ -27,6 +27,7 @@ from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 from dryxPython.projectsetup import setup_main_clutil
 from ..__init__ import *
+from .. import modals
 from . import image
 
 ###################################################################
@@ -211,7 +212,7 @@ class imagingModal():
 
         ## create the modal with the correct trigger tag
         randNum = self.randomNum
-        imageModal = modal(
+        imageModal = modals.modal(
             modalHeaderContent=self.modalHeaderContent,
             modalBodyContent=thisImage,
             modalFooterContent=self.modalFooterContent + thisButtonGroup,

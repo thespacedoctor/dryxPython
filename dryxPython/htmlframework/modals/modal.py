@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-svgchart.py
-===========
+modal.py
+========
 :Summary:
-    Add an SVG chart placeholder to the HTML of your webpage
+    Modal
 
 :Author:
     David Young
 
 :Date Created:
-    May 9, 2014
+    July 1, 2014
 
 :dryx syntax:
     - ``_someObject`` = a 'private' object that should only be changed for debugging
@@ -33,66 +33,74 @@ from dryxPython.projectsetup import setup_main_clutil
 ###################################################################
 # CLASSES                                                         #
 ###################################################################
-# x-class-module-worker-tmpx
-# class-tmpx
+# xt-class-module-worker-tmpx
+# xt-class-tmpx
 
 
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-# x-worker-def
-## LAST MODIFIED : May 9, 2014
-## CREATED : May 9, 2014
+## LAST MODIFIED : October 9, 2013
+## CREATED : October 9, 2013
 ## AUTHOR : DRYX
-def svgchart(
-    htmlClass=False,
-    csvUrl="#",
-    disable=False,
+def modal(
+    modalHeaderContent="",
+    modalBodyContent="",
+    modalFooterContent="",
     htmlId=False,
-    chartType="",
-    span=12
+    centerContent=False,
+    htmlClass=False
 ):
-    """svgchart
+    """generate a modal to by generated with a js event
 
     **Key Arguments:**
-        - ``htmlClass`` -- the extra html classes required
-        - ``disable`` -- disable the plot (can enable via javascript)
-        - ``htmlId`` -- the html id if required
-        - ``csvUrl`` -- url to a csv file/csv data
-        - ``chartType`` -- the type of chart required (determines which javascript function to trigger)
+      - ``modalHeaderContent`` -- the heading for the modal
+      - ``modalBodyContent`` -- the content (form or text)
+      - ``modalFooterContent`` -- the foot (usually buttons)
+      - ``htmlId`` -- id for button to hook onto with href
 
     **Return:**
-        - None
+        - ``modal`` -- the modal
 
     **Todo**
-        - @review: when complete, clean svgchart function
+        - @review: when complete, clean modal function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    if not htmlClass:
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+    if htmlClass is False:
         htmlClass = ""
 
-    if htmlId:
-        htmlId = """id="%(htmlId)s" """ % locals()
-    else:
+    if htmlId is False:
         htmlId = ""
-
-    if disable:
-        disable = "true"
     else:
-        disable = "false"
-
-    if span:
-        span = "span%(span)s" % locals()
+        htmlId = """id="%(htmlId)s" """ % locals()
+    if centerContent is False:
+        centerContent = ""
     else:
-        span = ""
+        centerContent = "center-content"
 
-    svg = """<svg class="chart %(htmlClass)s %(chartType)s %(span)s" %(htmlId)s data-src="%(csvUrl)s" disable="%(disable)s"></svg>""" % locals()
+    ## VARIABLES ##
+    modal = """<div class="modal hide fade %(htmlClass)s" %(htmlId)s>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>%(modalHeaderContent)s</h3>
+      </div>
+      <div class="modal-body %(centerContent)s">
+        %(modalBodyContent)s
+      </div>
+      <div class="modal-footer">
+        %(modalFooterContent)s
+      </div>
+    </div>""" % locals()
 
-    return svg
+    return modal
 
 # use the tab-trigger below for new function
-# x-def-with-logger
+# xt-def-with-logger
 
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
@@ -108,3 +116,4 @@ if __name__ == '__main__':
 ###################################################################
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
+

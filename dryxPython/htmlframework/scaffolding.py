@@ -52,7 +52,10 @@ def htmlDocument(
     else:
         contentType = "Content-type: %(contentType)s" % locals()
 
-    if "text/plain" in contentType or attachmentSaveAsName is not False:
+    content = content.strip()
+
+
+    if "text/plain" in contentType or "text/csv" in contentType or attachmentSaveAsName is not False:
         htmlDocument = \
         """%(contentType)s\n
 %(content)s
@@ -66,7 +69,7 @@ def htmlDocument(
             </html>
         """ \
             % locals()
-    return htmlDocument
+    return htmlDocument.strip()
 
 
 ## SNIPPET CREATED
@@ -299,18 +302,29 @@ def grid_column(
         htmlId = ''
     if not htmlClass:
         htmlClass = ''
+    
+
+    phoneClass = ""
+    tabletClass = ""
+    desktopClass = ""
     if onPhone:
-        onPhone = ''
+        if onTablet:
+            if not onDesktop:
+                desktopClass = "hidden-desktop"
+        else:
+            if not onDesktop:
+                phoneClass = "visible-phone"
+            else:
+                tabletClass = "hidden-tablet"
     else:
-        onPhone = 'hidden-phone'
-    if onTablet:
-        onTablet = ''
-    else:
-        onTablet = 'hidden-tablet'
-    if onDesktop:
-        onDesktop = ''
-    else:
-        onDesktop = 'hidden-desktop'
+        if onTablet:
+            if not onDesktop:
+                tabletClass = "visible-tablet"
+            else:
+                phoneClass = "hidden-phone"
+        else:
+            desktopClass = "visible-desktop"
+
 
     if pull:
         pull = "pull-%(pull)s" % locals()
@@ -323,7 +337,7 @@ def grid_column(
         dataspy = ""
 
     column = """
-        <div %(dataspy)s class="span%(span)s offset%(offset)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s>
+        <div %(dataspy)s class="span%(span)s offset%(offset)s %(htmlClass)s %(phoneClass)s %(tabletClass)s %(desktopClass)s %(pull)s" %(htmlId)s>
             %(content)s
         </div>
     """ % locals()

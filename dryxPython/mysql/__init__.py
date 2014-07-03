@@ -214,7 +214,8 @@ def convert_dictionary_to_mysql_table(
         dictionary,
         dbTableName,
         uniqueKeyList=[],
-        createHelperTables=False):
+        createHelperTables=False,
+        dateModified=False):
     """ Convert a python dictionary into a mysql table
 
     **Key Arguments:**
@@ -278,7 +279,9 @@ def convert_dictionary_to_mysql_table(
                 raise ValueError(message)
         else:
             if not (isinstance(v, str) or isinstance(v, int) or isinstance(v, bool) or isinstance(v, float) or isinstance(v, long) or isinstance(v, unicode) or isinstance(v, datetime.date) or v == None):
-                message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool'
+                this = type(v)
+                message = 'Please make sure values in "dictionary" are of an appropriate value to add to the database, must be str, float, int or bool : %(k)s is a %(this)s' % locals(
+                )
                 log.critical("%s: in %s we have a %s (%s)" %
                              (message, k, v, type(v)))
                 raise ValueError(message)
@@ -316,10 +319,10 @@ def convert_dictionary_to_mysql_table(
     # ADD EXTRA COLUMNS TO THE DICTIONARY
     dictionary['dateCreated'] = [
         str(dcu.get_now_sql_datetime()), "date row was created"]
-    dictionary['dateLastModified'] = [
-        str(dcu.get_now_sql_datetime()), "date row was modified"]
-    dictionary['dateLastRead'] = [
-        str(dcu.get_now_sql_datetime()), "date row was last read"]
+    if dateModified:
+        dictionary['dateModified'] = [
+            str(dcu.get_now_sql_datetime()), "date row was modified"]
+
     # ITERATE THROUGH THE DICTIONARY AND GENERATE THE A TABLE COLUMN WITH THE
     # NAME OF THE KEY, IF IT DOES NOT EXIST
     count = len(dictionary)
@@ -351,6 +354,7 @@ def convert_dictionary_to_mysql_table(
             # JOIN THE VALUES TOGETHER IN A LIST - EASIER TO GENERATE THE MYSQL
             # COMMAND LATER
             if isinstance(value, str):
+                value = value.replace('\\', '\\\\')
                 value = value.replace('"', '\\"')
                 udata = value.decode("utf-8")
                 value = udata.encode("ascii", "ignore")

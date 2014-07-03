@@ -313,7 +313,8 @@ def navBar(
     location='top',
     responsive=False,
     dark=False,
-    transparent=False
+    transparent=False,
+    htmlClass=False
 ):
     """ Generate a navBar - TBS style
 
@@ -341,6 +342,9 @@ def navBar(
     titleList = ''
     # contentList = ''
     count = 0
+
+    if htmlClass is False:
+        htmlClass = ""
 
     if contentListPull is not False:
         contentListPull = "pull-%(contentListPull)s" % locals()
@@ -387,7 +391,7 @@ def navBar(
 
     navBar = \
         """
-        <div class="navbar %(fixedOrStatic)s %(dark)s %(transparent)s">
+        <div class="navbar %(fixedOrStatic)s %(dark)s %(transparent)s %(htmlClass)s">
           <div class="navbar-inner">
             %(brand)s
             %(titleList)s

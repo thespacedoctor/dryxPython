@@ -42,6 +42,7 @@ def image(
         htmlId=False,
         thumbnail=False,
         width=False,
+        height=False,
         onPhone=True,
         onTablet=True,
         onDesktop=True,
@@ -91,6 +92,11 @@ def image(
     else:
         width = ""
 
+    if height:
+        height = """height=%(height)s""" % locals()
+    else:
+        height = ""
+
     if onPhone:
         onPhone = ""
     else:
@@ -119,7 +125,7 @@ def image(
     else:
         src = """src="%(src)s" """ % locals()
 
-    image = """<img %(src)s class="%(display)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s %(clickToModal)s" %(htmlId)s %(width)s>""" % locals(
+    image = """<img %(src)s class="%(display)s %(htmlClass)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s %(clickToModal)s" %(htmlId)s %(width)s %(height)s>""" % locals(
     )
 
     if openInNewTab is not False:

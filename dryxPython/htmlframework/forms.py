@@ -441,7 +441,8 @@ def textarea(
         blockHelpText=False,
         focusedInputText=False,
         required=False,
-        disabled=False):
+        disabled=False,
+        prepopulate=False):
     """Generate a textarea - TBS style
 
     **Key Arguments:**
@@ -497,7 +498,12 @@ def textarea(
     else:
         name = htmlId
 
-    textarea = """<textarea rows="%(rows)s" class="%(span)s" id="%(htmlId)s%(focusId)s%(disabledId)s" value="%(focusedInputText)s" %(required)s %(disabled)s placeholder="%(placeholder)s" name="%(name)s"></textarea>%(inlineHelpText)s%(blockHelpText)s""" % locals()
+    if prepopulate is False:
+        prepopulate = ""
+      
+
+
+    textarea = """<textarea rows="%(rows)s" class="%(span)s" id="%(htmlId)s%(focusId)s%(disabledId)s" value="%(focusedInputText)s" %(required)s %(disabled)s placeholder="%(placeholder)s" name="%(name)s">%(prepopulate)s</textarea>%(inlineHelpText)s%(blockHelpText)s""" % locals()
 
     return textarea
 
@@ -832,65 +838,6 @@ def formActions(
 
     return formActions
 
-
-## LAST MODIFIED : October 9, 2013
-## CREATED : October 9, 2013
-## AUTHOR : DRYX
-def modal(
-        modalHeaderContent="",
-        modalBodyContent="",
-        modalFooterContent="",
-        htmlId=False,
-        centerContent=False,
-        htmlClass=False
-):
-    """generate a modal to by generated with a js event
-
-    **Key Arguments:**
-      - ``modalHeaderContent`` -- the heading for the modal
-      - ``modalBodyContent`` -- the content (form or text)
-      - ``modalFooterContent`` -- the foot (usually buttons)
-      - ``htmlId`` -- id for button to hook onto with href
-
-    **Return:**
-        - ``modal`` -- the modal
-
-    **Todo**
-        - @review: when complete, clean modal function
-        - @review: when complete add logging
-        - @review: when complete, decide whether to abstract function to another module
-    """
-    ################ > IMPORTS ################
-    ## STANDARD LIB ##
-    ## THIRD PARTY ##
-    ## LOCAL APPLICATION ##
-    if htmlClass is False:
-        htmlClass = ""
-
-    if htmlId is False:
-        htmlId = ""
-    else:
-        htmlId = """id="%(htmlId)s" """ % locals()
-    if centerContent is False:
-        centerContent = ""
-    else:
-        centerContent = "center-content"
-
-    ## VARIABLES ##
-    modal = """<div class="modal hide fade %(htmlClass)s" %(htmlId)s>
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3>%(modalHeaderContent)s</h3>
-                  </div>
-                  <div class="modal-body %(centerContent)s">
-                    %(modalBodyContent)s
-                  </div>
-                  <div class="modal-footer">
-                    %(modalFooterContent)s
-                  </div>
-                </div>""" % locals()
-
-    return modal
 
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
