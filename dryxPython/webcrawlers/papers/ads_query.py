@@ -26,6 +26,7 @@ ads_query.py
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
+import re
 import xml.etree.ElementTree as ET
 from docopt import docopt
 from dryxPython import logs as dl
@@ -101,9 +102,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : May 23, 2014
-## CREATED : May 23, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : May 23, 2014
+# CREATED : May 23, 2014
+# AUTHOR : DRYX
 def ads_query(
         log,
         queryString,
@@ -133,8 +134,9 @@ def ads_query(
 
     paperDictionary = {}
 
-    ## build the url
-    url = """http://adsabs.harvard.edu/cgi-bin/basic_connect?qsearch=%(queryString)s&version=1&sort=NDATE&nr_to_return=%(numberOfResults)s&data_type=SHORT_XML""" % locals()
+    # build the url
+    url = """http://adsabs.harvard.edu/cgi-bin/basic_connect?qsearch=%(queryString)s&version=1&sort=NDATE&nr_to_return=%(numberOfResults)s&data_type=SHORT_XML""" % locals(
+    )
     urlDoc = singleWebDocumentDownloader(
         url=url,
         downloadDirectory="/tmp",
@@ -143,7 +145,7 @@ def ads_query(
         credentials=False
     )
 
-    ## download the xml file
+    # download the xml file
     pathToReadFile = urlDoc
     try:
         log.debug("attempting to open the file %s" % (pathToReadFile,))
@@ -156,9 +158,13 @@ def ads_query(
         raise IOError(message)
     readFile.close()
 
-    ## remove crap that hinders xml parsing
-    thisData = thisData.replace(
-        """<records xmlns="http://ads.harvard.edu/schema/abs/1.1/references" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ads.harvard.edu/schema/abs/1.1/references http://ads.harvard.edu/schema/abs/1.1/references.xsd" retrieved="182" start="1" selected="182">""", "<records>")
+    # remove crap that hinders xml parsing
+    # fromstring = thisData.replace(
+    #     """<records xmlns="http://ads.harvard.edu/schema/abs/1.1/references" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ads.harvard.edu/schema/abs/1.1/references http://ads.harvard.edu/schema/abs/1.1/references.xsd" retrieved="182" start="1" selected="182">""", "<records>")
+
+    regex = re.compile(r'<records xmlns.*>')
+    thisData = regex.sub("<records>", thisData, count=1)
+
     pathToWriteFile = urlDoc
     try:
         log.debug("attempting to open the file %s" % (pathToWriteFile,))
@@ -170,13 +176,13 @@ def ads_query(
     writeFile.write(thisData)
     writeFile.close()
 
-    ### PARSE THE XML
+    # PARSE THE XML
     tree = ET.parse(urlDoc)
     root = tree.getroot()
 
     for record in root.iter('record'):
 
-        ## find paper metadata
+        # find paper metadata
         journal = record.find('journal').text
         if not atels and "astronomer's telegram" in journal.lower():
             continue
@@ -195,7 +201,7 @@ def ads_query(
         paperDictionary[bibcode]["pubdate"] = pubdate
         paperDictionary[bibcode]["journal"] = journal
 
-        ## find all paper links
+        # find all paper links
         for link in record.findall('link'):
             linkType = link.get('type')
             log.debug('linkType: %(linkType)s' % locals())
@@ -224,7 +230,7 @@ def ads_query(
                 paperDictionary[bibcode]["refcit_url"] = url
                 paperDictionary[bibcode]["refcit_count"] = count
 
-        ## find paper authors
+        # find paper authors
         authors = record.findall('author')
         theseAuthors = ""
         if len(authors) > 3:
