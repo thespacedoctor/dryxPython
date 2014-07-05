@@ -25,10 +25,10 @@
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## SNIPPET CREATED
-## LAST MODIFIED : March 15, 2013
-## CREATED : March 15, 2013
-## AUTHOR : DRYX
+# SNIPPET CREATED
+# LAST MODIFIED : March 15, 2013
+# CREATED : March 15, 2013
+# AUTHOR : DRYX
 def responsive_navigation_bar(
     shade='dark',
     brand=False,
@@ -62,14 +62,16 @@ def responsive_navigation_bar(
     if not brand:
         brand = ''
     else:
-        brand = """<a class="brand" href="%(brandLink)s">%(brand)s</a>""" % locals()
+        brand = """<a class="brand" href="%(brandLink)s">%(brand)s</a>""" % locals(
+        )
 
     if not outsideNavList:
         outsideNavList = ''
 
     thisList = ""
     if insideNavList:
-        insideNavList = """<div class="nav-collapse collapse"><ul class="nav pull-right">%(insideNavList)s</ul></div>""" % locals()
+        insideNavList = """<div class="nav-collapse collapse"><ul class="nav pull-right">%(insideNavList)s</ul></div>""" % locals(
+        )
     else:
         insideNavList = ''
 
@@ -104,10 +106,10 @@ def responsive_navigation_bar(
     return navBar
 
 
-## SNIPPET CREATED
-## LAST MODIFIED : March 15, 2013
-## CREATED : March 15, 2013
-## AUTHOR : DRYX
+# SNIPPET CREATED
+# LAST MODIFIED : March 15, 2013
+# CREATED : March 15, 2013
+# AUTHOR : DRYX
 def nav_list(
     itemList=[],
     pull=False,
@@ -156,9 +158,9 @@ def nav_list(
     return navList
 
 
-## LAST MODIFIED : March 15, 2013
-## CREATED : March 15, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : March 15, 2013
+# CREATED : March 15, 2013
+# AUTHOR : DRYX
 def searchbox(
     size='medium',
     htmlId="",
@@ -185,7 +187,8 @@ def searchbox(
         - ``markup`` -- markup for the searchbar """
 
     if button:
-        button = """<button type="submit" class="btn-%(buttonSize)s btn-%(buttonColor)s">Search</button>""" % locals()
+        button = """<button type="submit" class="btn-%(buttonSize)s btn-%(buttonColor)s">Search</button>""" % locals(
+        )
     else:
         button = ''
     if placeHolder:
@@ -211,9 +214,9 @@ def searchbox(
     return markup
 
 
-## LAST MODIFIED : April 29, 2013
-## CREATED : April 29, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 29, 2013
+# CREATED : April 29, 2013
+# AUTHOR : DRYX
 
 def tabbableNavigation(
         contentDictionary={},  # { name : content }
@@ -257,7 +260,8 @@ def tabbableNavigation(
 
     for k, v in contentDictionary.iteritems():
         if count == 0:
-            titleList = """%(titleList)s<li class="active"><a href="#tab%(uniqueNavigationId)s%(count)s" data-toggle="tab">%(k)s</a></li>""" % locals()
+            titleList = """%(titleList)s<li class="active"><a href="#tab%(uniqueNavigationId)s%(count)s" data-toggle="tab">%(k)s</a></li>""" % locals(
+            )
             contentList = \
                 """%(contentList)s
                 <div class="tab-pane active %(fadeIn)s" id="tab%(uniqueNavigationId)s%(count)s">
@@ -265,7 +269,8 @@ def tabbableNavigation(
                 </div>""" \
                 % locals()
         else:
-            titleList = """%(titleList)s<li><a href="#tab%(uniqueNavigationId)s%(count)s" data-toggle="tab">%(k)s</a></li>""" % locals()
+            titleList = """%(titleList)s<li><a href="#tab%(uniqueNavigationId)s%(count)s" data-toggle="tab">%(k)s</a></li>""" % locals(
+            )
             contentList = \
                 """%(contentList)s
                 <div class="tab-pane %(fadeIn)s" id="tab%(uniqueNavigationId)s%(count)s">
@@ -299,9 +304,9 @@ def tabbableNavigation(
     return tabbableNavigation
 
 
-## LAST MODIFIED : April 30, 2013
-## CREATED : April 30, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 30, 2013
+# CREATED : April 30, 2013
+# AUTHOR : DRYX
 
 def navBar(
     brand='',
@@ -334,8 +339,8 @@ def navBar(
     toggleButton = ""
     falseList = [dividers, fixedOrStatic, toggleButton, dark]
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
     [dividers, fixedOrStatic, toggleButton, dark] = falseList
     if dividers:
         dividers = """<li class="divider-vertical"></li>"""
@@ -402,9 +407,9 @@ def navBar(
     return navBar
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 def pagination(
         listItems="",
         size="default",
@@ -438,9 +443,9 @@ def pagination(
     return pagination
 
 
-## LAST MODIFIED : July 22, 2013
-## CREATED : July 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : July 22, 2013
+# CREATED : July 22, 2013
+# AUTHOR : DRYX
 def is_navStyle_active(
         log,
         thisPageName,
