@@ -46,11 +46,12 @@ class setup_main_clutil():
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
     """
-    ## Variable Data Atrributes
+    # Variable Data Atrributes
 
-    ## Override Variable Data Atrributes
+    # Override Variable Data Atrributes
 
-    ## Initialisation
+    # Initialisation
+
     def __init__(
             self,
             arguments,
@@ -63,14 +64,12 @@ class setup_main_clutil():
         # x-self-arg-tmpx
 
         ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-        ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+        # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
         if arguments == None:
             arguments = docopt(docString)
         self.arguments = arguments
 
-        print arguments
-
-        ## UNPACK SETTINGS
+        # UNPACK SETTINGS
         if "<settingsFile>" in arguments and arguments["<settingsFile>"]:
             import yaml
             stream = file(arguments["<settingsFile>"], 'r')
@@ -133,7 +132,7 @@ class setup_main_clutil():
                 dbConn = val
             log.debug('%s = %s' % (varname, val,))
 
-        ## SETUP A DATABASE CONNECTION BASED ON WHAT ARGUMENTS HAVE BEEN PASSED
+        # SETUP A DATABASE CONNECTION BASED ON WHAT ARGUMENTS HAVE BEEN PASSED
         dbConn = False
         if 'settings' in locals() and "database settings" in settings:
             host = settings["database settings"]["host"]
@@ -166,18 +165,18 @@ class setup_main_clutil():
 
         return None
 
-    ## Method Attributes
+    # Method Attributes
     # use the tab-trigger below for new method
     def setup(
             self):
         """setup the attributes and return
-    
+
         **Key Arguments:**
             # -
-    
+
         **Return:**
             - None
-    
+
         **Todo**
             - @review: when complete, clean setup method
             - @review: when complete add logging
@@ -187,7 +186,7 @@ class setup_main_clutil():
     # use the tab-trigger below for new method
     # method-tmpx
 
-    ## Override Method Attributes
+    # Override Method Attributes
     # method-override-tmpx
 
 
