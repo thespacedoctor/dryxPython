@@ -20,9 +20,9 @@ forms.py
     - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
 """
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 
 
 def searchForm(
@@ -57,12 +57,14 @@ def searchForm(
         focusId = "focusedInput"
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 
@@ -80,9 +82,9 @@ def searchForm(
 
     return searchForm
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 
 
 def form(
@@ -167,14 +169,15 @@ def form(
     if openInNewTab is not False:
         openInNewTab = """ target="_blank" """
 
-    form = """<form class="%(formType)s %(navBarPull)s %(postInBackground)s %(span)s %(offset)s %(htmlClass)s" %(htmlId)s action="%(postToScript)s" method="post" %(openInNewTab)s>%(content)s%(htmlInput)s%(redirectUrl)s</form>""" % locals()
+    form = """<form class="%(formType)s %(navBarPull)s %(postInBackground)s %(span)s %(offset)s %(htmlClass)s" %(htmlId)s action="%(postToScript)s" method="post" %(openInNewTab)s>%(content)s%(htmlInput)s%(redirectUrl)s</form>""" % locals(
+    )
 
     return form
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def horizontalFormControlGroup(
         content="",
         validationLevel=False,
@@ -210,13 +213,14 @@ def horizontalFormControlGroup(
     return horizontalFormControlGroup
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def horizontalFormControlLabel(
         labelText="",
         forId=False,
-        sideLabel=False):
+        sideLabel=False,
+        location="left"):
     """set a horizontal form label
 
     **Key Arguments:**
@@ -234,14 +238,15 @@ def horizontalFormControlLabel(
     else:
         sideLabel = ""
 
-    horizontalFormRowLabel = """<label class="control-label %(sideLabel)s" for="%(forId)s">%(labelText)s</label>""" % locals()
+    horizontalFormRowLabel = """<label class="control-label %(sideLabel)s %(location)s" for="%(forId)s">%(labelText)s</label>""" % locals(
+    )
 
     return horizontalFormRowLabel
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def formInput(
         ttype="text",
         placeholder="",
@@ -324,7 +329,8 @@ def formInput(
 
     if prepend:
         prependClass = "input-prepend"
-        prependContent = """<span class="add-on">%(prepend)s</span>""" % locals()
+        prependContent = """<span class="add-on">%(prepend)s</span>""" % locals(
+        )
 
     if append:
         appendClass = "input-append"
@@ -374,12 +380,14 @@ def formInput(
         # inputId = "appendedPrependedDropdownButton "
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 
@@ -403,6 +411,9 @@ def formInput(
         disabledId = ""
 
     if defaultValue:
+        if isinstance(defaultValue, str):
+            defaultValue = defaultValue.replace('"', "\"")
+            defaultValue = '"%(defaultValue)s"' % locals()
         defaultValue = """value=%(defaultValue)s """ % locals()
     else:
         defaultValue = ""
@@ -414,7 +425,8 @@ def formInput(
     """ % locals()
 
     if rightText is not False:
-        thisInput = """<label class="inline">%(thisInput)s%(rightText)s </label>""" % locals()
+        thisInput = """<label class="inline">%(thisInput)s%(rightText)s </label>""" % locals(
+        )
 
     formInput = """
         <div class="%(prependClass)s %(appendClass)s %(hidden)s %(pull)s">
@@ -429,9 +441,9 @@ def formInput(
     return formInput
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def textarea(
         rows="",
         span=2,
@@ -465,12 +477,14 @@ def textarea(
         span = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 
@@ -500,17 +514,16 @@ def textarea(
 
     if prepopulate is False:
         prepopulate = ""
-      
 
-
-    textarea = """<textarea rows="%(rows)s" class="%(span)s" id="%(htmlId)s%(focusId)s%(disabledId)s" value="%(focusedInputText)s" %(required)s %(disabled)s placeholder="%(placeholder)s" name="%(name)s">%(prepopulate)s</textarea>%(inlineHelpText)s%(blockHelpText)s""" % locals()
+    textarea = """<textarea rows="%(rows)s" class="%(span)s" id="%(htmlId)s%(focusId)s%(disabledId)s" value="%(focusedInputText)s" %(required)s %(disabled)s placeholder="%(placeholder)s" name="%(name)s">%(prepopulate)s</textarea>%(inlineHelpText)s%(blockHelpText)s""" % locals(
+    )
 
     return textarea
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def checkbox(
         optionText="",
         inline=False,
@@ -541,12 +554,14 @@ def checkbox(
         optionNumber = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 
@@ -572,19 +587,22 @@ def checkbox(
     return checkbox
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def select(
         optionList=[],
+        valueList=False,
         multiple=False,
         span=2,
         htmlId=False,
+        htmlClass=False,
         inlineHelpText=False,
         blockHelpText=False,
         required=False,
         disabled=False,
-        popover=False):
+        popover=False,
+        extraAttributeTupleList=False):
     """Generate a select - TBS style
 
     **Key Arguments:**
@@ -604,6 +622,22 @@ def select(
     if not htmlId:
         htmlId = ""
 
+    if not htmlClass:
+        htmlClass = ""
+
+    extraAttributes = ""
+    if extraAttributeTupleList:
+        for attributeTuple in extraAttributeTupleList:
+            attr = attributeTuple[0]
+            val = attributeTuple[1]
+            if isinstance(val, str):
+                val = '"%(val)s"' % locals()
+            extraAttributes = """%(extraAttributes)s %(attr)s=%(val)s """ % locals(
+            )
+
+    if not valueList:
+        valueList = optionList
+
     if multiple is True:
         multiple = """multiple="multiple" """
     else:
@@ -618,18 +652,20 @@ def select(
         popover = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 
     options = ""
-    for option in optionList:
-        options = """%(options)s <option value="%(option)s">%(option)s</option>""" % locals()
+    for o, v in zip(optionList, valueList):
+        options = """%(options)s <option value="%(v)s">%(o)s</option>""" % locals()
 
     if required:
         required = """required"""
@@ -644,7 +680,7 @@ def select(
         disabledId = ""
 
     select = """
-        <select %(multiple)s name="%(htmlId)s" class="%(span)s" %(popover)s id="%(disabledId)s%(htmlId)s" %(required)s %(disabled)s>
+        <select %(multiple)s name="%(htmlId)s" class="%(span)s %(htmlClass)s" %(popover)s id="%(disabledId)s%(htmlId)s" %(required)s %(disabled)s %(extraAttributes)s>
             %(options)s
         </select>%(inlineHelpText)s%(blockHelpText)s
         """ % locals()
@@ -652,9 +688,9 @@ def select(
     return select
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def radio(
         optionText="",
         optionNumber=1,
@@ -678,12 +714,14 @@ def radio(
         - ``radio`` -- the radio
     """
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 
@@ -711,9 +749,9 @@ def radio(
     return radio
 
 
-## LAST MODIFIED : April 23, 2013
-## CREATED : April 23, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 23, 2013
+# CREATED : April 23, 2013
+# AUTHOR : DRYX
 def controlRow(inputList=[]):
     """generate a form row
 
@@ -740,9 +778,9 @@ def controlRow(inputList=[]):
     return controlRow
 
 
-## LAST MODIFIED : April 24, 2013
-## CREATED : April 24, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 24, 2013
+# CREATED : April 24, 2013
+# AUTHOR : DRYX
 def uneditableInput(
         placeholder="",
         span=2,
@@ -765,12 +803,14 @@ def uneditableInput(
         span = ""
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 
@@ -782,9 +822,9 @@ def uneditableInput(
     return uneditableInput
 
 
-## LAST MODIFIED : April 24, 2013
-## CREATED : April 24, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 24, 2013
+# CREATED : April 24, 2013
+# AUTHOR : DRYX
 def formActions(
         primaryButton="",
         button2=False,
@@ -818,12 +858,14 @@ def formActions(
         button5, inlineHelpText] = falseList
 
     if inlineHelpText:
-        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals()
+        inlineHelpText = """<span class="help-inline">%(inlineHelpText)s</span>""" % locals(
+        )
     else:
         inlineHelpText = ""
 
     if blockHelpText:
-        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals()
+        blockHelpText = """<span class="help-block">%(blockHelpText)s</span>""" % locals(
+        )
     else:
         blockHelpText = ""
 

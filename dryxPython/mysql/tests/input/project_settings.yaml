@@ -18,9 +18,9 @@ nttarchiver:
     download window size: 4
 
 downloads:
-    transient cache directory: "/Users/Dave/Dropbox/github_projects/pessto_marshall_webapp/transients_cache/"
+    transient cache directory: "/Users/Dave/Dropbox/github_projects/pessto_webapp/transients_cache/"
 
-stats cache directory: "/Users/Dave/Dropbox/github_projects/pessto_marshall_webapp/stats_cache/"
+stats cache directory: "/Users/Dave/Dropbox/github_projects/pessto_webapp/stats_cache/"
 
 credentials:
     lsq:

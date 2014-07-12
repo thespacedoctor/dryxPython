@@ -170,10 +170,11 @@ class modalForm():
         )
         thisContentLabel = horizontalFormControlLabel(
             labelText=label,
-            forId=randId
+            forId=randId,
+            location="top"
         )
         thisContentCG = horizontalFormControlGroup(
-            content=thisControlRow + thisContentLabel,
+            content=thisContentLabel + thisControlRow,
             validationLevel=False
         )
         self.formContent = self.formContent + thisContentCG

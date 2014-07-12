@@ -26,9 +26,9 @@ typography.py
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 11, 2013
-## CREATED : April 11, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 11, 2013
+# CREATED : April 11, 2013
+# AUTHOR : DRYX
 
 
 def p(
@@ -40,7 +40,8 @@ def p(
         onPhone=True,
         onTablet=True,
         onDesktop=True,
-        htmlId=False):
+        htmlId=False,
+        htmlClass=False):
     """Get a Paragraph element
 
     **Key Arguments:**
@@ -58,14 +59,17 @@ def p(
     """
     falseList = [lead, textAlign, ]
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
     [lead, textAlign, ] = falseList
 
     if htmlId is not False:
         htmlId = """id="%(htmlId)s" """ % locals()
     else:
         htmlId = ""
+
+    if htmlClass is False:
+        htmlClass = ""
 
     if textAlign:
         textAlign = "text-%(textAlign)s" % locals()
@@ -101,14 +105,14 @@ def p(
         onDesktop = "hidden-desktop"
 
     p = """
-        <p class="%(lead)s %(onPhone)s %(onTablet)s %(onDesktop)s %(textAlign)s %(color)s %(navBar)s" %(htmlId)s>%(content)s</p>
+        <p class="%(lead)s %(onPhone)s %(onTablet)s %(onDesktop)s %(textAlign)s %(color)s %(navBar)s %(htmlClass)s" %(htmlId)s>%(content)s</p>
     """ % locals()
 
     return p
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 
 def emphasizeText(
@@ -131,9 +135,9 @@ def emphasizeText(
     return emphasizeText
 
 
-## LAST MODIFIED : April 13, 2013
-## CREATED : April 13, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 13, 2013
+# CREATED : April 13, 2013
+# AUTHOR : DRYX
 def abbr(
         abbreviation="",
         fullWord=""):
@@ -147,14 +151,15 @@ def abbr(
         - abbr
     """
 
-    abbr = """<abbr title="%(fullWord)s" class="initialism">%(abbreviation)s</abbr>""" % locals()
+    abbr = """<abbr title="%(fullWord)s" class="initialism">%(abbreviation)s</abbr>""" % locals(
+    )
 
     return abbr
 
 
-## LAST MODIFIED : April 13, 2013
-## CREATED : April 13, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 13, 2013
+# CREATED : April 13, 2013
+# AUTHOR : DRYX
 def address(
         name=False,
         addressLine1=False,
@@ -206,11 +211,13 @@ def address(
     else:
         phone = ""
     if email:
-        email = """<abbr title="email">e:</abbr> <a href="mailto:#">%(email)s</a><br>""" % locals()
+        email = """<abbr title="email">e:</abbr> <a href="mailto:#">%(email)s</a><br>""" % locals(
+        )
     else:
         email = ""
     if twitterHandle:
-        twitterHandle = """<abbr title="twitter handle">t:</abbr> %(twitterHandle)s<br>""" % locals()
+        twitterHandle = """<abbr title="twitter handle">t:</abbr> %(twitterHandle)s<br>""" % locals(
+        )
     else:
         twitterHandle = ""
 
@@ -229,9 +236,9 @@ def address(
     return address
 
 
-## LAST MODIFIED : April 13, 2013
-## CREATED : April 13, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 13, 2013
+# CREATED : April 13, 2013
+# AUTHOR : DRYX
 def blockquote(
         content="",
         source=False,
@@ -246,7 +253,8 @@ def blockquote(
         - None
     """
     if source:
-        source = """<small><cite title="%(source)s">%(source)s</cite></small>""" % locals()
+        source = """<small><cite title="%(source)s">%(source)s</cite></small>""" % locals(
+        )
     else:
         source = ""
 
@@ -264,9 +272,9 @@ def blockquote(
     return blockquote
 
 
-## LAST MODIFIED : April 13, 2013
-## CREATED : April 13, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 13, 2013
+# CREATED : April 13, 2013
+# AUTHOR : DRYX
 def ul(
         itemList=[],
         unstyled=False,
@@ -366,14 +374,15 @@ def ul(
     else:
         htmlId = 'id="%(htmlId)s"' % locals()
 
-    ul = """<ul class="%(unstyled)s %(inline)s %(dropDownMenu)s %(role)s %(navPull)s %(thisNavStyle)s %(navDirection)s %(breadcrumb)s %(pager)s %(thumbnails)s %(mediaList)s" %(htmlId)s>%(thisList)s</ul>""" % locals()
+    ul = """<ul class="%(unstyled)s %(inline)s %(dropDownMenu)s %(role)s %(navPull)s %(thisNavStyle)s %(navDirection)s %(breadcrumb)s %(pager)s %(thumbnails)s %(mediaList)s" %(htmlId)s>%(thisList)s</ul>""" % locals(
+    )
 
     return ul
 
 
-## LAST MODIFIED : April 29, 2013
-## CREATED : April 29, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 29, 2013
+# CREATED : April 29, 2013
+# AUTHOR : DRYX
 def li(
         content="",
         span=False,
@@ -406,8 +415,8 @@ def li(
     falseList = [disabled, submenuClass,
                  submenuTitle, navStyle, navDropDown, pager, span]
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
     [disabled, submenuClass, submenuTitle,
         navStyle, navDropDown, pager, span] = falseList
 
@@ -421,7 +430,8 @@ def li(
 
     if submenuTitle:
         submenuClass = "dropdown-submenu"
-        submenuTitle = """<a tabindex="-1" href="#">%(submenuTitle)s</a>""" % locals()
+        submenuTitle = """<a tabindex="-1" href="#">%(submenuTitle)s</a>""" % locals(
+        )
 
     if navStyle == "active":
         if "href" in content:
@@ -434,7 +444,6 @@ def li(
 
     if span:
         span = "span%(span)s" % locals()
-
 
     phoneClass = ""
     tabletClass = ""
@@ -457,8 +466,8 @@ def li(
         else:
             desktopClass = "visible-desktop"
 
-
-    li = """<li class="%(disabled)s %(phoneClass)s %(tabletClass)s %(desktopClass)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s %(pull)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals()
+    li = """<li class="%(disabled)s %(phoneClass)s %(tabletClass)s %(desktopClass)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s %(pull)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals(
+    )
 
     if divider is True:
         li = """<li class="divider"></li>"""
@@ -466,9 +475,9 @@ def li(
     return li
 
 
-## LAST MODIFIED : April 29, 2013
-## CREATED : April 29, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 29, 2013
+# CREATED : April 29, 2013
+# AUTHOR : DRYX
 def a(
         content="",
         href=False,
@@ -505,8 +514,8 @@ def a(
     falseList = [href, triggerClass,
                  triggerStyle, tableIndex, dropdownCaret, pull]
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
     [href, triggerClass, triggerStyle,
         tableIndex, dropdownCaret, pull] = falseList
 
@@ -561,9 +570,9 @@ def a(
     return a
 
 
-## LAST MODIFIED : April 13, 2013
-## CREATED : April 13, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 13, 2013
+# CREATED : April 13, 2013
+# AUTHOR : DRYX
 def ol(itemList=[]):
     """An ordered list
 
@@ -589,9 +598,9 @@ def ol(itemList=[]):
     return ol
 
 
-## LAST MODIFIED : April 13, 2013
-## CREATED : April 13, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 13, 2013
+# CREATED : April 13, 2013
+# AUTHOR : DRYX
 def descriptionLists(
         orderedDictionary={},
         sideBySide=False):
@@ -625,9 +634,9 @@ def descriptionLists(
 
     return descriptionLists
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 
 
 def code(
@@ -660,9 +669,9 @@ def code(
     return code
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 def heroUnit(
         headline="",
         tagline="",
@@ -696,9 +705,9 @@ def heroUnit(
     return heroUnit
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 def pageHeader(
         headline="",
         tagline=""):
@@ -719,9 +728,9 @@ def pageHeader(
     return pageHeader
 
 
-## LAST MODIFIED : November 21, 2013
-## CREATED : November 21, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : November 21, 2013
+# CREATED : November 21, 2013
+# AUTHOR : DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 def coloredText(
@@ -762,7 +771,8 @@ def coloredText(
     else:
         size = ""
 
-    text = """<span class="colortext %(color)s %(htmlClass)s %(pull)s %(size)s">%(text)s</span>""" % locals()
+    text = """<span class="colortext %(color)s %(htmlClass)s %(pull)s %(size)s">%(text)s</span>""" % locals(
+    )
 
     return text
 
