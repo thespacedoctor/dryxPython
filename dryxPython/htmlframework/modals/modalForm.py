@@ -302,7 +302,8 @@ class modalForm():
         )
         thisContentCG = horizontalFormControlGroup(
             content=thisControlRow,
-            validationLevel=False
+            validationLevel=False,
+            hidden=True
         )
 
         self.formContent = self.formContent + thisContentCG
