@@ -28,9 +28,9 @@ images.py
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : March 15, 2013
-## CREATED : March 15, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : March 15, 2013
+# CREATED : March 15, 2013
+# AUTHOR : DRYX
 
 
 def image(
@@ -70,8 +70,8 @@ def image(
     """
     falseList = [thumbnail, pull]
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
 
     [thumbnail, pull] = falseList
 
@@ -134,13 +134,14 @@ def image(
         openInNewTab = ""
 
     if href:
-        image = """<a href="%(href)s" class="%(thumbnail)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s %(openInNewTab)s>%(image)s</a>""" % locals()
+        image = """<a href="%(href)s" class="%(thumbnail)s %(onPhone)s %(onTablet)s %(onDesktop)s %(pull)s" %(htmlId)s %(openInNewTab)s>%(image)s</a>""" % locals(
+        )
 
     return image
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 
 def thumbnails(
@@ -158,13 +159,14 @@ def thumbnails(
     for item in listItems:
         theseItems = "%(theseItems)s %(item)s" % locals()
 
-    thumbnails = """<ul class="thumbnails" id="  ">%(theseItems)s</ul>""" % locals()
+    thumbnails = """<ul class="thumbnails" id="  ">%(theseItems)s</ul>""" % locals(
+    )
 
     return thumbnails
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 
 def thumbnail_div(
@@ -178,7 +180,8 @@ def thumbnail_div(
     **Return:**
         - ``thumbnail`` -- the thumbnail with HTML content
     """
-    thumbnail_div = """<div class="thumbnail" id="  ">%(div_content)s</div>""" % locals()
+    thumbnail_div = """<div class="thumbnail" id="  ">%(div_content)s</div>""" % locals(
+    )
 
     return thumbnail_div
 

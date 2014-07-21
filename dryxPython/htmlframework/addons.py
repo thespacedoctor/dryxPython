@@ -18,7 +18,6 @@
 :Notes:
     - If you have any questions requiring this code please email me: d.r.young@qub.ac.uk """
 
-# from . import *
 
 ###################################################################
 # CLASSES                                                         #
@@ -26,14 +25,14 @@
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 
 def mediaObject(
     displayType='div',
-    img='',
+    imagePath='',
     headlineText='',
     otherContent=False,
     nestedMediaObjects=False,
@@ -61,10 +60,34 @@ def mediaObject(
     if not otherContent:
         otherContent = ""
 
+    thisImage = images.image(
+        src=imagePath,  # [ industrial | gray | social ]
+        href=False,
+        display="polaroid",  # [ rounded | circle | polaroid | False ]
+        pull="left",  # [ "left" | "right" | "center" | False ]
+        htmlClass=False,
+        width=False
+    )
+
+    thisImage = """<img src="%(imagePath)s" class="pull-left" style="width: 128px;">""" % locals(
+    )
+
+    thisImage = images.image(
+        src=imagePath,
+        href=imagePath,
+        display="polaroid",  # [ rounded | circle | polaroid ]
+        pull="left",  # [ "left" | "right" | "center" ]
+        htmlClass=False,
+        htmlId=False,
+        thumbnail=True,
+        width=150,
+        height=False,
+    )
+
     mediaObject = \
         """
         <%(displayType)s class="media" id="  ">
-            %(img)s
+            %(thisImage)s
             <div class="media-body">
                 <h4 class="media-heading">%(headlineText)s</h4>
                 %(otherContent)s
@@ -76,9 +99,9 @@ def mediaObject(
     return mediaObject
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 def well(
         wellText='',
@@ -113,9 +136,9 @@ def well(
     return well
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 def closeIcon():
     """Get close icon. The generic close icon for dismissing content like modals and alerts.
@@ -128,9 +151,9 @@ def closeIcon():
     closeIcon = """<button class="close">&times;</button>"""
     return closeIcon
 
-## LAST MODIFIED : February 25, 2014
-## CREATED : February 25, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : February 25, 2014
+# CREATED : February 25, 2014
+# AUTHOR : DRYX
 
 
 def popover(
@@ -188,3 +211,6 @@ def popover(
 ###################################################################
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
+
+
+from . import images

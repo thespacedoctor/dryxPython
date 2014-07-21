@@ -30,8 +30,10 @@ from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 from dryxPython.projectsetup import setup_main_clutil
-from .__init__ import tbody
+from .__init__ import *
 from ..__init__ import *
+from ..typography import *
+from ..addons import *
 
 
 ###################################################################
@@ -50,7 +52,7 @@ class sortable_table():
         - ``defaultSort`` -- the column to sort on by default
         - ``tableRowsDictionary`` -- dictionary of column names and values (e.g. a mysql query result)
     """
-    ## Initialisation
+    # Initialisation
 
     def __init__(
             self,
@@ -69,7 +71,7 @@ class sortable_table():
         self.tableRowsDictionary = tableRowsDictionary
         # xt-self-arg-tmpx
 
-        ## Variable Data Atrributes
+        # Variable Data Atrributes
         self.colors = ["green", "red", "blue", "yellow",
                        "orange", "violet", "magenta", "cyan", ]
         self.modifyDisplayNameDict = {}
@@ -82,7 +84,7 @@ class sortable_table():
         self.extraColumnWidth = 100 - \
             self.columnWidth * len(self.columnsToDisplay)
 
-        ## determine how table is to be sorted from url
+        # determine how table is to be sorted from url
         thisSort = re.search(
             r'sortBy=(\w+)&',
             self.currentPageUrl,
@@ -139,10 +141,10 @@ class sortable_table():
         del self
         return None
 
-    ## Method Attributes
+    # Method Attributes
     def get(self):
         """get the sortable_table object
-    
+
         **Return:**
             - ``sortable_table``
         """
@@ -165,14 +167,14 @@ class sortable_table():
     def get_table_head(
             self):
         """get table head
-        
+
         **Return:**
             - ``tableHead`` -- the table head
         """
-        ## init variables
+        # init variables
         tableHead = ""
 
-        ## build the table header
+        # build the table header
         _popover = popover(
             tooltip=True,
             placement="bottom",  # [ top | bottom | left | right ]
@@ -186,7 +188,7 @@ class sortable_table():
         columnIndex = 0
 
         for i, c in enumerate(self.columnsToDisplay):
-            ## build sort url
+            # build sort url
             direction = "False"
             if c in self.modifySortByDict.keys():
                 columnSortByAlias = self.modifySortByDict[c]
@@ -209,7 +211,7 @@ class sortable_table():
                 if self.thisSort and (columnSortByAlias.lower() == self.thisSort.lower()):
                     thisArrow = self.arrow
 
-            ## add text color and change display names if necessary
+            # add text color and change display names if necessary
             if c in self.modifyDisplayNameDict.keys():
                 thisText = self.modifyDisplayNameDict[c]
             else:
@@ -254,13 +256,13 @@ class sortable_table():
     def get_table_body(
             self):
         """get table body
-        
+
         **Return:**
             - ``tableBody``
         """
         theseTickets = ""
 
-        ## build the table body
+        # build the table body
         for obj in self.tableRowsDictionary:
 
             if self.searchKeyAndColumn:
@@ -347,7 +349,7 @@ class sortable_table():
     # use the tab-trigger below for new method
     # xt-class-method
 
-    ## Override Method Attributes
+    # Override Method Attributes
     # method-override-tmpx
 
 

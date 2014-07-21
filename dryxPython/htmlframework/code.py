@@ -27,9 +27,9 @@ code.py
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 
 
 def code(
@@ -61,9 +61,7 @@ def code(
         code = """<code>%(content)s</code>""" % locals()
     else:
         code = """
-            <pre class="%(scroll)s">
-                %(content)s
-            </pre>""" % locals()
+            <pre class="%(scroll)s"><code>%(content)s</code></pre>""" % locals()
 
     return code
 ###################################################################

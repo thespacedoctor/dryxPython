@@ -634,40 +634,6 @@ def descriptionLists(
 
     return descriptionLists
 
-# LAST MODIFIED : April 16, 2013
-# CREATED : April 16, 2013
-# AUTHOR : DRYX
-
-
-def code(
-        content="",
-        inline=True,
-        scroll=False):
-    """Generate a code section
-
-    **Key Arguments:**
-        - ``content`` -- the content of the code block
-        - ``inline`` -- inline or block?
-        - ``scroll`` -- give the block a scroll bar on y-axis?
-
-    **Return:**
-        - ``code`` -- the code section
-    """
-    if scroll:
-        scroll = "pre-scrollable"
-    else:
-        scroll = ""
-
-    if inline:
-        code = """<code>%(content)s</code>""" % locals()
-    else:
-        code = """
-            <pre class="%(scroll)s">
-                %(content)s
-            </pre>""" % locals()
-
-    return code
-
 
 # LAST MODIFIED : 20130508
 # CREATED : 20130508
@@ -738,8 +704,7 @@ def coloredText(
         color="red",
         htmlClass="",
         pull=False,
-        size=False
-):
+        size=False):
     """Colour text a given colour
 
     **Key Arguments:**
