@@ -28,11 +28,11 @@ import MySQLdb
 #     pp.set_python_path()
 #     import dryxPython.mysql as m
 #     import pmCommonUtils as p
-#     ## SETUP DB CONNECTION AND A LOGGER
+# SETUP DB CONNECTION AND A LOGGER
 #     dbConn, log = p.settings()
 #     ## START LOGGING ##
 #     log.info('----- STARTING TO RUN THE mysql -----')
-#     ## WRITE DEBUG CODE HERE
+# WRITE DEBUG CODE HERE
 #     dbConn.commit()
 #     dbConn.close()
 #     ## FINISH LOGGING ##
@@ -76,7 +76,7 @@ def set_db_connection(pathToYamlFile):
         logging.critical(
             'could not load the connect dictionary from ' + pathToYamlFile)
         sys.exit(1)
-    # # ESTABLISH A DB CONNECTION
+    # ESTABLISH A DB CONNECTION
     try:
         logging.info('connecting to the ' + connDict[
                      'db'] + ' database on ' + connDict['host'])
@@ -86,7 +86,7 @@ def set_db_connection(pathToYamlFile):
             passwd=connDict['password'],
             db=connDict['db'],
             use_unicode=True,
-            charset='UTF8')
+            charset='UTF8'
         )
     except Exception as e:
         logging.critical('could not connect to the ' + connDict['db'] + ' database on ' + connDict['host'] + ' : '
@@ -97,8 +97,8 @@ def set_db_connection(pathToYamlFile):
 ##########################################################################
 # EXECUTE A MYSQL WRITE COMMAND GIVEN A QUERY (STRING) AND A DATABASE CONNECTION   #
 ##########################################################################
-## LAST MODIFIED : 20121023
-## CREATED : 20121023
+# LAST MODIFIED : 20121023
+# CREATED : 20121023
 
 def execute_mysql_write_query(
     sqlQuery,
@@ -160,8 +160,8 @@ def execute_mysql_write_query(
 ##########################################################################
 # EXECUTE A MYSQL SELECT COMMAND GIVEN A QUERY (STRING) AND A DATABASE CONNECTION  #
 ##########################################################################
-## LAST MODIFIED : 20121023
-## CREATED : 20121023
+# LAST MODIFIED : 20121023
+# CREATED : 20121023
 
 def execute_mysql_read_query(
     sqlQuery,
@@ -207,8 +207,8 @@ def execute_mysql_read_query(
 ########################################################################
 # GENERATE & POPULATE A MYSQL TABLE FROM DICTIONARY (WRTITEN BY DRYX)  #
 ########################################################################
-## LAST MODIFIED : 20121023
-## CREATED : 20121023
+# LAST MODIFIED : 20121023
+# CREATED : 20121023
 
 def convert_dictionary_to_mysql_table(
         dbConn,
@@ -244,7 +244,7 @@ def convert_dictionary_to_mysql_table(
 
     log.info('starting convert_dictionary_to_mysql_table')
 
-    ## TEST THE ARGUMENTS
+    # TEST THE ARGUMENTS
     if str(type(dbConn).__name__) != "Connection":
         message = 'Please use a valid MySQL DB connection.'
         log.critical(message)
@@ -293,10 +293,10 @@ def convert_dictionary_to_mysql_table(
         log.critical(message)
         raise TypeError(message)
 
-    ## TEST IF TABLE EXISTS
+    # TEST IF TABLE EXISTS
     tableExists = does_mysql_table_exist(dbConn, log, dbTableName)
 
-    ## CREATE THE TABLE IF IT DOES NOT EXIST
+    # CREATE THE TABLE IF IT DOES NOT EXIST
     if tableExists is False:
         sqlQuery = """
             CREATE TABLE `%(dbTableName)s`
@@ -427,11 +427,12 @@ def convert_dictionary_to_mysql_table(
                     myValues.pop()
                     qCreateColumn = None
                 if qCreateColumn:
-                    # # ADD COMMENT TO GIVE THE ORGINAL KEYWORD IF formatted FOR MYSQL
+                    # ADD COMMENT TO GIVE THE ORGINAL KEYWORD IF formatted FOR
+                    # MYSQL
                     if key is not formattedKey:
                         qCreateColumn += " COMMENT 'original keyword: " + \
                             key + """'"""
-                    # # CREATE THE COLUMN IF IT DOES NOT EXIST
+                    # CREATE THE COLUMN IF IT DOES NOT EXIST
                     try:
                         log.info('creating the ' +
                                  formattedKey + ' column in the ' + dbTableName + ' table')
@@ -445,7 +446,7 @@ def convert_dictionary_to_mysql_table(
                         log.error('could not create the ' + formattedKey + ' column in the ' + dbTableName
                                   + ' table -- ' + str(e) + '\n')
 
-    # # GENERATE THE INDEX NAME - THEN CREATE INDEX IF IT DOES NOT YET EXIST
+    # GENERATE THE INDEX NAME - THEN CREATE INDEX IF IT DOES NOT YET EXIST
     if len(uniqueKeyList):
         for i in range(len(uniqueKeyList)):
             uniqueKeyList[i] = uniqueKeyList[
@@ -521,8 +522,8 @@ def convert_dictionary_to_mysql_table(
 ########################################################################
 #  FUNCTION TO SET A FLAG TO A GIVEN VALUE          (WRTITEN BY DRYX)  #
 ########################################################################
-## LAST MODIFIED : 20121105
-## CREATED : 20121105
+# LAST MODIFIED : 20121105
+# CREATED : 20121105
 
 def set_flag(
     dbConn,
@@ -570,9 +571,9 @@ def set_flag(
 
 
 ##########################################################################
-## LAST MODIFIED : November 23, 2012
-## CREATED : November 23, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : November 23, 2012
+# CREATED : November 23, 2012
+# AUTHOR : DRYX
 
 def add_column_to_db_table(
     tableName,
@@ -617,8 +618,8 @@ def add_column_to_db_table(
     return None
 
 
-## LAST MODIFIED : 20121102
-## CREATED : 20121102
+# LAST MODIFIED : 20121102
+# CREATED : 20121102
 
 def add_HTMIds_to_mysql_tables(
         raColName,
@@ -645,7 +646,7 @@ def add_HTMIds_to_mysql_tables(
     from dryxPython.kws import utils as u
     # # >SETTINGS ##
 
-    ## TEST TABLE EXIST
+    # TEST TABLE EXIST
     sqlQuery = """show tables"""
     rows = execute_mysql_read_query(
         sqlQuery=sqlQuery,
@@ -660,7 +661,7 @@ def add_HTMIds_to_mysql_tables(
         log.critical(message)
         raise IOError(message)
 
-    ## TEST COLUMN EXISTS
+    # TEST COLUMN EXISTS
     cursor = dbConn.cursor(ms.cursors.DictCursor)
     sqlQuery = """SELECT * FROM %s LIMIT 1""" % (tableName,)
     cursor.execute(sqlQuery)
@@ -765,9 +766,9 @@ def add_HTMIds_to_mysql_tables(
                 return -1
     return None
 
-## LAST MODIFIED : January 9, 2014
-## CREATED : January 9, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : January 9, 2014
+# CREATED : January 9, 2014
+# AUTHOR : DRYX
 
 
 def does_mysql_table_exist(
@@ -794,7 +795,7 @@ def does_mysql_table_exist(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
     log.info('starting the ``does_mysql_table_exist`` function')
-    ## TEST THE ARGUMENTS
+    # TEST THE ARGUMENTS
 
     ## VARIABLES ##
     sqlQuery = """
@@ -816,9 +817,9 @@ def does_mysql_table_exist(
     log.info('completed the ``does_mysql_table_exist`` function')
     return tableExists
 
-## LAST MODIFIED : December 11, 2012
-## CREATED : December 11, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : December 11, 2012
+# CREATED : December 11, 2012
+# AUTHOR : DRYX
 
 
 def get_db_table_column_names(
