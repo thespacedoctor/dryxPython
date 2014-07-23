@@ -50,7 +50,7 @@ class utKit():
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
     """
-    ## Variable Data Atrributes
+    # Variable Data Atrributes
 
     # SETUP LOGGING
     loggerConfig = """
@@ -83,7 +83,7 @@ class utKit():
     password: root
     """
 
-    ## Initialisation
+    # Initialisation
     def __init__(
             self,
             moduleDirectory
@@ -97,7 +97,7 @@ class utKit():
 
         return
 
-    ## Method Attributes
+    # Method Attributes
     def setupModule(
             self):
         """The setupModule method
@@ -112,7 +112,7 @@ class utKit():
             - @review: when complete, clean setupModule method
             - @review: when complete add logging
         """
-        ## TEST THE ARGUMENTS
+        # TEST THE ARGUMENTS
 
         ## VARIABLES ##
         logging.config.dictConfig(yaml.load(self.loggerConfig))
@@ -123,6 +123,8 @@ class utKit():
             user=connDict['user'],
             passwd=connDict['password'],
             db=connDict['db'],
+            use_unicode=True,
+            charset='UTF8'
         )
 
         return log, dbConn, self.pathToInputDir, self.pathToOutputDir
@@ -131,13 +133,13 @@ class utKit():
     def tearDownModule(
             self):
         """The tearDownModule method
-    
+
         **Key Arguments:**
             # -
-    
+
         **Return:**
             - None
-    
+
         **Todo**
             - @review: when complete, clean tearDownModule method
             - @review: when complete add logging
@@ -148,7 +150,7 @@ class utKit():
     # use the tab-trigger below for new method
     # method-tmpx
 
-    ## Override Method Attributes
+    # Override Method Attributes
     # method-override-tmpx
 
 

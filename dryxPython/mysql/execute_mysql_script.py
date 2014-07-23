@@ -46,17 +46,17 @@ def main(arguments=None):
     ## LOCAL APPLICATION ##
 
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-    ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+    # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     if arguments == None:
         arguments = docopt(__doc__)
 
-    ## UNPACK SETTINGS
+    # UNPACK SETTINGS
     if "--settingsFile" in arguments and arguments["--settingsFile"]:
         import yaml
         stream = file(arguments["--settingsFile"], 'r')
         settings = yaml.load(stream)
         stream.close()
-    ## SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
+    # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
     if 'settings' in locals() and "logging settings" in settings:
         log = dl.setup_dryx_logging(
             yaml_file=arguments["--settingsFile"]
@@ -80,11 +80,11 @@ def main(arguments=None):
             dbConn = val
         log.debug('%s = %s' % (varname, val,))
 
-    ## Check for the force option
+    # Check for the force option
     if "force" not in locals() or force is not True:
         force = False
 
-    ## SETUP A DATABASE CONNECTION BASED ON WHAT ARGUMENTS HAVE BEEN PASSED
+    # SETUP A DATABASE CONNECTION BASED ON WHAT ARGUMENTS HAVE BEEN PASSED
     dbConn = False
     if 'settings' in locals() and "database settings" in settings:
         host = settings["database settings"]["host"]
@@ -106,6 +106,8 @@ def main(arguments=None):
             user=user,
             passwd=passwd,
             db=dbName,
+            use_unicode=True,
+            charset='UTF8'
         )
         log.debug('dbConn: %s' % (dbConn,))
 
@@ -145,9 +147,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : October 29, 2013
-## CREATED : October 29, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : October 29, 2013
+# CREATED : October 29, 2013
+# AUTHOR : DRYX
 
 
 def execute_mysql_script(
