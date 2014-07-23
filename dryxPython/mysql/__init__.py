@@ -85,6 +85,8 @@ def set_db_connection(pathToYamlFile):
             user=connDict['user'],
             passwd=connDict['password'],
             db=connDict['db'],
+            use_unicode=True,
+            charset='UTF8')
         )
     except Exception as e:
         logging.critical('could not connect to the ' + connDict['db'] + ' database on ' + connDict['host'] + ' : '
