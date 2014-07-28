@@ -704,7 +704,8 @@ def coloredText(
         color="red",
         htmlClass="",
         pull=False,
-        size=False):
+        size=False,
+        addBackgroundColor=False):
     """Colour text a given colour
 
     **Key Arguments:**
@@ -736,7 +737,12 @@ def coloredText(
     else:
         size = ""
 
-    text = """<span class="colortext %(color)s %(htmlClass)s %(pull)s %(size)s">%(text)s</span>""" % locals(
+    if addBackgroundColor is not False:
+        addBackgroundColor = "addBackground"
+    else:
+        addBackgroundColor = ""
+
+    text = """<span class="colortext %(color)s %(addBackgroundColor)s %(htmlClass)s %(pull)s %(size)s">%(text)s</span>""" % locals(
     )
 
     return text

@@ -48,12 +48,12 @@ def main(arguments=None):
     ## LOCAL APPLICATION ##
 
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-    ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+    # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     if arguments == None:
         arguments = docopt(__doc__)
 
     # x-unpackge-settings-in-main-function
-    ## SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
+    # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
     if 'settings' in locals() and "logging settings" in settings:
         log = dl.setup_dryx_logging(
             yaml_file=arguments["--settingsFile"]
@@ -124,9 +124,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : October 23, 2013
-## CREATED : October 23, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : October 23, 2013
+# CREATED : October 23, 2013
+# AUTHOR : DRYX
 
 
 def createpythonpackage(
@@ -155,7 +155,7 @@ def createpythonpackage(
     ## LOCAL APPLICATION ##
     import dryxPython.commonutils as dcu
 
-    ## locate the boilerplate folder structure
+    # locate the boilerplate folder structure
     moduleDirectory = os.path.dirname(__file__)
     boilerplatePath = moduleDirectory + "/helper_files/package_boilerplate"
     log.debug('boilerplatePath: %s' % (boilerplatePath,))
@@ -214,7 +214,7 @@ def createpythonpackage(
         writeFile.write(thisData)
         writeFile.close()
 
-    ## CREATE A GIT REPO
+    # CREATE A GIT REPO
     create_git_repo(
         log,
         pathToProjectRoot=location
@@ -222,9 +222,9 @@ def createpythonpackage(
 
     return None
 
-## LAST MODIFIED : October 25, 2013
-## CREATED : October 25, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : October 25, 2013
+# CREATED : October 25, 2013
+# AUTHOR : DRYX
 
 
 def createpythonsubpackage(
@@ -278,9 +278,9 @@ def createpythonsubpackage(
     log.info('completed the ``createpythonsubpackage`` function')
     return None
 
-## LAST MODIFIED : October 25, 2013
-## CREATED : October 25, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : October 25, 2013
+# CREATED : October 25, 2013
+# AUTHOR : DRYX
 
 
 def createpythonmodule(
@@ -310,7 +310,7 @@ def createpythonmodule(
     ## LOCAL APPLICATION ##
 
     log.info('starting the ``createpythonmodule`` function')
-    ## TEST THE ARGUMENTS
+    # TEST THE ARGUMENTS
 
     moduleDirectory = os.path.dirname(__file__)
     boilerplatePath = moduleDirectory + "/helper_files/module_boilerplate.py"
@@ -351,9 +351,9 @@ def createpythonmodule(
     log.info('completed the ``createpythonmodule`` function')
     return None
 
-## LAST MODIFIED : April 17, 2014
-## CREATED : April 17, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : April 17, 2014
+# CREATED : April 17, 2014
+# AUTHOR : DRYX
 
 
 def create_git_repo(
@@ -379,7 +379,7 @@ def create_git_repo(
     ## LOCAL APPLICATION ##
 
     log.info('starting the ``create_git_repo`` function')
-    ## TEST THE ARGUMENTS
+    # TEST THE ARGUMENTS
     os.chdir(pathToProjectRoot)
 
     moduleDirectory = os.path.dirname(__file__)
@@ -399,9 +399,9 @@ def create_git_repo(
     return None
 
 # use the tab-trigger below for new function
-## LAST MODIFIED : May 9, 2014
-## CREATED : May 9, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : May 9, 2014
+# CREATED : May 9, 2014
+# AUTHOR : DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 
@@ -446,7 +446,8 @@ def append_import_to_init_file(
         log.critical(message)
         raise IOError(message)
 
-    thisData = "%(thisData)s\nimport %(moduleName)s" % locals()
+    thisData = "%(thisData)s\nfrom %(moduleName)s import %(moduleName)s" % locals(
+    )
     pathToWriteFile = pathToReadFile
     try:
         log.debug("attempting to open the file %s" % (pathToWriteFile,))

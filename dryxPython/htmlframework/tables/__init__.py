@@ -27,9 +27,9 @@ tables.py
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 
 
 def tr(
@@ -71,9 +71,9 @@ def tr(
     return tr
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def th(
         content="",
         color=False,
@@ -120,9 +120,9 @@ def th(
     return th
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def td(
         content=False,
         color=False,
@@ -150,9 +150,9 @@ def td(
     return td
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def tableCaption(
         content=""):
     """Generate a table caption - TBS style
@@ -168,9 +168,9 @@ def tableCaption(
     return tableCaption
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def thead(
         trContent=""):
     """Generate a table head - TBS style
@@ -186,9 +186,9 @@ def thead(
     return thead
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def tbody(
         trContent=""):
     """Generate a table body - TBS style
@@ -204,9 +204,9 @@ def tbody(
     return tbody
 
 
-## LAST MODIFIED : April 16, 2013
-## CREATED : April 16, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 16, 2013
+# CREATED : April 16, 2013
+# AUTHOR : DRYX
 def table(
         caption="",
         thead="",
@@ -258,7 +258,8 @@ def table(
     else:
         condensed = ""
 
-    table = """<table class="table %(striped)s %(bordered)s %(hover)s %(condensed)s %(span)s">%(caption)s%(thead)s%(tbody)s</table>""" % locals()
+    table = """<table class="table %(striped)s %(bordered)s %(hover)s %(condensed)s %(span)s">%(caption)s%(thead)s%(tbody)s</table>""" % locals(
+    )
     return table
 
 ###################################################################
