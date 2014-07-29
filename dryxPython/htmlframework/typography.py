@@ -395,7 +395,8 @@ def li(
         pull=False,
         onPhone=True,
         onTablet=True,
-        onDesktop=True):
+        onDesktop=True,
+        indent=False):
     """Generate a li - TBS style
 
     **Key Arguments:**
@@ -445,6 +446,11 @@ def li(
     if span:
         span = "span%(span)s" % locals()
 
+    if indent:
+        indent = """style="padding-left: 1em" """
+    else:
+        indent = ""
+
     phoneClass = ""
     tabletClass = ""
     desktopClass = ""
@@ -466,7 +472,7 @@ def li(
         else:
             desktopClass = "visible-desktop"
 
-    li = """<li class="%(disabled)s %(phoneClass)s %(tabletClass)s %(desktopClass)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s %(pull)s" id="  ">%(submenuTitle)s%(content)s</li>""" % locals(
+    li = """<li class="%(disabled)s %(phoneClass)s %(tabletClass)s %(desktopClass)s %(submenuClass)s %(navStyle)s %(pager)s %(span)s %(navDropDown)s %(pull)s" %(indent)s id="  ">%(submenuTitle)s%(content)s</li>""" % locals(
     )
 
     if divider is True:
