@@ -155,7 +155,7 @@ class setup_main_clutil():
                 passwd=passwd,
                 db=dbName,
                 use_unicode=True,
-                charset='UTF8'
+                charset='utf8'
             )
             log.debug('dbConn: %s' % (dbConn,))
 

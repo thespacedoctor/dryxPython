@@ -18,7 +18,9 @@ def dbConnect(lhost, luser, lpasswd, ldb, quitOnError=True):
         conn = MySQLdb.connect(host=lhost,
                                user=luser,
                                passwd=lpasswd,
-                               db=ldb)
+                               db=ldb,
+                               use_unicode=True,
+                               charset='utf8')
     except MySQLdb.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
         if quitOnError:
@@ -224,7 +226,7 @@ def wrapConeSearch(dbuser, dbpass, dbname, dbhost, tablename, ra, dec, radius):
     cmd = "ConeSearch " + dbuser + " " + dbpass + " " + dbname + " " + dbhost + \
         " quick " + tablename + " "  + \
         str(ra) + " " + str(dec) + " " + str(radius)
-    #print cmd
+    # print cmd
     cmdout = os.popen(cmd)
     result = cmdout.readlines()
     if cmdout.close() != None:
@@ -238,16 +240,16 @@ def wrapConeSearch(dbuser, dbpass, dbname, dbhost, tablename, ra, dec, radius):
 
     if len(result) == 1:
         # We probably got no matches
-        #if result[0].startswith("No matches from "):
+        # if result[0].startswith("No matches from "):
         #   print "No results"
-        #else:
+        # else:
         #   print "Something went wrong..."
         pass
     else:
         resultSet = []
         for line in result:
             if line.startswith(matchedRowNumberLinePrefix):
-                #print line.replace(matchedRowNumberLinePrefix,"").rstrip()
+                # print line.replace(matchedRowNumberLinePrefix,"").rstrip()
                 numberOfMatches = int(
                     line.replace(matchedRowNumberLinePrefix, "").rstrip())
             else:
@@ -413,7 +415,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
     query = 'select ' + \
         ','.join(columns) + ' from %s' % tableName + \
         htmWhereClause + cartesianClause
-    #print query
+    # print query
 
     results = []
 

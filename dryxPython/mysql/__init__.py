@@ -86,7 +86,7 @@ def set_db_connection(pathToYamlFile):
             passwd=connDict['password'],
             db=connDict['db'],
             use_unicode=True,
-            charset='UTF8'
+            charset='utf8'
         )
     except Exception as e:
         logging.critical('could not connect to the ' + connDict['db'] + ' database on ' + connDict['host'] + ' : '
@@ -170,12 +170,12 @@ def execute_mysql_read_query(
 ):
     """ Execute a MySQL select command given a query
 
-            ****Key Arguments:****
-             - ``sqlQuery`` -- the MySQL command to execute
-             - ``dbConn`` -- the db connection
+    ****Key Arguments:****
+     - ``sqlQuery`` -- the MySQL command to execute
+     - ``dbConn`` -- the db connection
 
-            **Return:**
-             - ``rows`` -- the rows returned by the sql query """
+    **Return:**
+     - ``rows`` -- the rows returned by the sql query """
 
     # # > IMPORTS ##
 

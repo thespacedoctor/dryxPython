@@ -124,7 +124,7 @@ class utKit():
             passwd=connDict['password'],
             db=connDict['db'],
             use_unicode=True,
-            charset='UTF8'
+            charset='utf8'
         )
 
         return log, dbConn, self.pathToInputDir, self.pathToOutputDir

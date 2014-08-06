@@ -2,7 +2,7 @@ import os
 import nose
 from .. import mysql
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 
 
 def setUpModule():
@@ -67,9 +67,11 @@ def setUpModule():
         user=connDict['user'],
         passwd=connDict['password'],
         db=connDict['db'],
+        use_unicode=True,
+        charset='utf8'
     )
 
-    ## CREATE A TABLE TO TEST WITH
+    # CREATE A TABLE TO TEST WITH
     global testTableName
     testTableName = "setupmodule_table_for_unit_testing"
     cursor = dbConn.cursor(ms.cursors.DictCursor)
