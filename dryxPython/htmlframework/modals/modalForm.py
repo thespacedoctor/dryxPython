@@ -263,6 +263,8 @@ class modalForm():
 
         if isinstance(value, str):
             ttype = "text"
+        if isinstance(value, unicode):
+            ttype = "text"
         elif isinstance(value, datetime.date):
             ttype = "datetime"
         else:
