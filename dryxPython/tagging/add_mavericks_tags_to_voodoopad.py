@@ -47,11 +47,11 @@ def main(arguments=None):
     ## LOCAL APPLICATION ##
 
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-    ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+    # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     if arguments == None:
         arguments = docopt(__doc__)
 
-    ## SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
+    # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
     if "--logger" not in arguments or arguments["--logger"] is None:
         log = dl.console_logger(
             level="DEBUG"
@@ -62,7 +62,7 @@ def main(arguments=None):
     # automatically
     for arg, val in arguments.iteritems():
         varname = arg.replace("--", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -101,9 +101,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : February 25, 2014
-## CREATED : February 25, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : February 25, 2014
+# CREATED : February 25, 2014
+# AUTHOR : DRYX
 
 
 def add_mavericks_tags_to_voodoopad(

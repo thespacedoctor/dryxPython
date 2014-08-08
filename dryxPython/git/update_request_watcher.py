@@ -36,14 +36,15 @@ from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 from dryxPython.projectsetup import setup_main_clutil
 
+
 def main(arguments=None):
     """
     The main function used when ``update_request_watcher.py`` is run as a single script from the cl, or when installed as a cl command
     """
     su = setup_main_clutil(
-       arguments=arguments,
-       docString=__doc__,
-       logLevel="WARNING"
+        arguments=arguments,
+        docString=__doc__,
+        logLevel="WARNING"
     )
     arguments, settings, log, dbConn = su.setup()
 
@@ -54,7 +55,7 @@ def main(arguments=None):
             varname = arg.replace("-", "") + "Flag"
         else:
             varname = arg.replace("<", "").replace(">", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -62,24 +63,25 @@ def main(arguments=None):
             dbConn = val
         log.debug('%s = %s' % (varname, val,))
 
-
     ## START LOGGING ##
     startTime = dcu.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE update_request_watcher.py AT %s' %
         (startTime,))
 
-    ## find all update request files in "/_updates_required_" folder
+    # find all update request files in "/_updates_required_" folder
     basePath = pathToGitRepos + "/_updates_required_"
     for d in os.listdir(basePath):
         if os.path.isfile(os.path.join(basePath, d)):
             if "gitupdates" in d:
-                thisRepo = d.replace(".gitupdates","")
+                thisRepo = d.replace(".gitupdates", "")
 
-                ## check local git-repo requiring an update actually exists -- trigger pull if it does
+                # check local git-repo requiring an update actually exists --
+                # trigger pull if it does
                 pathToRepo = pathToGitRepos + "/" + thisRepo
                 if not os.path.exists(pathToRepo):
-                    message = "the path to the Folder folder %s does not exist on this machine" % (pathToRepo,)
+                    message = "the path to the Folder folder %s does not exist on this machine" % (
+                        pathToRepo,)
                     log.warning(message)
                 else:
                     dcu.update_git_repos.update_git_repos(
@@ -87,15 +89,16 @@ def main(arguments=None):
                         gitProjectRoot=pathToRepo,
                         branchToUpdate="master",
                         installClUtils=True
-                    )   
+                    )
 
-                ## finally delete the update request file
+                # finally delete the update request file
                 os.remove(os.path.join(basePath, d))
 
     ## FINISH LOGGING ##
     endTime = dcu.get_now_sql_datetime()
     runningTime = dcu.calculate_time_difference(startTime, endTime)
-    log.info('-- FINISHED ATTEMPT TO RUN THE update_request_watcher.py AT %s (RUNTIME: %s) --' % (endTime, runningTime, ))
+    log.info('-- FINISHED ATTEMPT TO RUN THE update_request_watcher.py AT %s (RUNTIME: %s) --' %
+             (endTime, runningTime, ))
 
     return
 
@@ -128,4 +131,3 @@ if __name__ == '__main__':
 ###################################################################
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
-

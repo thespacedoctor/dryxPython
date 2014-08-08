@@ -45,11 +45,11 @@ def main(arguments=None):
     ## LOCAL APPLICATION ##
 
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-    ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+    # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     if arguments == None:
         arguments = docopt(__doc__)
 
-    ## SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
+    # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
     if 'settings' in locals() and "logging settings" in settings:
         log = dl.setup_dryx_logging(
             yaml_file=arguments["--settingsFile"]
@@ -64,7 +64,7 @@ def main(arguments=None):
     # automatically
     for arg, val in arguments.iteritems():
         varname = arg.replace("--", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -106,9 +106,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : December 10, 2013
-## CREATED : December 10, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : December 10, 2013
+# CREATED : December 10, 2013
+# AUTHOR : DRYX
 
 
 def get_file_creation_modification_dates(

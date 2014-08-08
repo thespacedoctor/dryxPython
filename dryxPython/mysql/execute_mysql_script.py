@@ -72,7 +72,7 @@ def main(arguments=None):
     # automatically
     for arg, val in arguments.iteritems():
         varname = arg.replace("--", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))

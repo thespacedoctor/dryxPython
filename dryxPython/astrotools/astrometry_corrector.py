@@ -73,7 +73,7 @@ def main(arguments=None):
             varname = arg.replace("-", "") + "Flag"
         else:
             varname = arg.replace("<", "").replace(">", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -148,7 +148,7 @@ class WcsModel(object):
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
     """
-    ## Initialisation
+    # Initialisation
 
     def __init__(
             self,
@@ -174,11 +174,11 @@ class WcsModel(object):
         del self
         return None
 
-    ## Variable Data Atrributes
+    # Variable Data Atrributes
 
-    ## Override Variable Data Atrributes
+    # Override Variable Data Atrributes
 
-    ## Method Attributes
+    # Method Attributes
     # x-get-method-tempx
     def calc_pix(
             self,
@@ -187,21 +187,21 @@ class WcsModel(object):
         """For the given d_ra, d_dec, and d_theta pars, update the WCS
  transformation and calculate the new pixel coordinates for each
  reference source position.
-    
+
         **Key Arguments:**
             - ``pars`` -- d_ra, d_dec, and d_theta pars
             - ``x`` -- Sherpa passes an extra "X" argument, which in this case we always ignore.
-    
+
         **Return:**
             - ``pix.flatten()`` -- updated pixel positions
-    
+
         **Todo**
             - @review: when complete, clean calc_pix method
             - @review: when complete add logging
         """
         self.log.info('starting the ``calc_pix`` method')
 
-        ## get single parameters
+        # get single parameters
         d_ra, d_dec, d_theta = pars
         self.wcs.wcs.crval = self.crval + np.array([d_ra, d_dec]) / 3600.0
 
@@ -230,13 +230,13 @@ class WcsModel(object):
  specified in ``pars``)
 
  This gets called by the scipy.optimize.fmin function.
-    
+
         **Key Arguments:**
             - ``pars`` -- d_ra, d_dec, and d_theta pars
 
         **Return:**
             - None
-    
+
         **Todo**
             - @review: when complete, clean calc_resid2 method
             - @review: when complete add logging
@@ -254,19 +254,19 @@ class WcsModel(object):
     # use the tab-trigger below for new method
     # xt-class-method
 
-    ## Override Method Attributes
+    # Override Method Attributes
     # method-override-tmpx
 
 
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : May 15, 2014
-## CREATED : May 15, 2014
-## AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
-## LAST MODIFIED : May 15, 2014
-## CREATED : May 15, 2014
-## AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
+# LAST MODIFIED : May 15, 2014
+# CREATED : May 15, 2014
+# AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
+# LAST MODIFIED : May 15, 2014
+# CREATED : May 15, 2014
+# AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 def astrometry_corrector(
@@ -312,8 +312,8 @@ def astrometry_corrector(
     log.info('completed the ``astrometry_corrector`` function')
     return None
 
-## LAST MODIFIED : May 15, 2014
-## CREATED : May 15, 2014
+# LAST MODIFIED : May 15, 2014
+# CREATED : May 15, 2014
 # AUTHOR : aldcroft @
 # http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file
 # -- adapted by DRYX
@@ -368,8 +368,8 @@ def match_wcs(
 
 
 # use the tab-trigger below for new function
-## LAST MODIFIED : May 15, 2014
-## CREATED : May 15, 2014
+# LAST MODIFIED : May 15, 2014
+# CREATED : May 15, 2014
 # AUTHOR : aldcroft @
 # http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file
 # -- adapted by DRYX
@@ -400,8 +400,8 @@ def rotate(
     return np.array([[c, -s], [s, c]])
 
 # use the tab-trigger below for new function
-## LAST MODIFIED : May 15, 2014
-## CREATED : May 15, 2014
+# LAST MODIFIED : May 15, 2014
+# CREATED : May 15, 2014
 # AUTHOR : aldcroft @
 # http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file
 # -- adapted by DRYX
@@ -442,9 +442,9 @@ def read_fits(
     return img_hdu, hdulist, wcs
 
 # use the tab-trigger below for new function
-## LAST MODIFIED : ggs
-## CREATED : ggs
-## AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
+# LAST MODIFIED : ggs
+# CREATED : ggs
+# AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 
@@ -479,9 +479,9 @@ def write_fits(
     return None
 
 # use the tab-trigger below for new function
-## LAST MODIFIED : May 15, 2014
-## CREATED : May 15, 2014
-## AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
+# LAST MODIFIED : May 15, 2014
+# CREATED : May 15, 2014
+# AUTHOR : aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file -- adapted by DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 
@@ -527,9 +527,9 @@ def update_header_wcs(
     return None
 
 # use the tab-trigger below for new function
-## LAST MODIFIED : May 15, 2014
-## CREATED : May 15, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : May 15, 2014
+# CREATED : May 15, 2014
+# AUTHOR : DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 
@@ -563,9 +563,9 @@ def create_parameter_file(
     return None
 
 # use the tab-trigger below for new function
-## LAST MODIFIED : May 16, 2014
-## CREATED : May 16, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : May 16, 2014
+# CREATED : May 16, 2014
+# AUTHOR : DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 

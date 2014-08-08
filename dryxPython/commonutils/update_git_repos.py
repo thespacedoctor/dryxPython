@@ -46,11 +46,11 @@ def main(arguments=None):
     import dryxPython.commonutils as dcu
 
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-    ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+    # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     if arguments == None:
         arguments = docopt(__doc__)
 
-    ## UNPACK SETTINGS
+    # UNPACK SETTINGS
     if "--settingsFile" in arguments and arguments["--settingsFile"]:
         import yaml
         stream = file(arguments["--settingsFile"], 'r')
@@ -71,7 +71,7 @@ def main(arguments=None):
     # automatically
     for arg, val in arguments.iteritems():
         varname = arg.replace("--", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -142,7 +142,8 @@ def update_git_repos(
     # call(["git", "push", "origin", branchToUpdate])
 
     if installClUtils:
-        ## if setup.py exists in repo, then install as development package -- with any cl-utils
+        # if setup.py exists in repo, then install as development package --
+        # with any cl-utils
         exists = os.path.exists("%(gitProjectRoot)s/setup.py" % locals())
         if exists:
             log.debug('about to install cl-utils')

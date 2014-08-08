@@ -45,12 +45,12 @@ def main(arguments=None):
     ## LOCAL APPLICATION ##
 
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-    ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+    # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     if arguments == None:
         arguments = docopt(__doc__)
 
     # x-unpackge-settings-in-main-function
-    ## SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
+    # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
     if 'settings' in locals() and "logging settings" in settings:
         log = dl.setup_dryx_logging(
             yaml_file=arguments["--settingsFile"]
@@ -65,7 +65,7 @@ def main(arguments=None):
     # automatically
     for arg, val in arguments.iteritems():
         varname = arg.replace("--", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -108,9 +108,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : November 22, 2013
-## CREATED : November 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : November 22, 2013
+# CREATED : November 22, 2013
+# AUTHOR : DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 

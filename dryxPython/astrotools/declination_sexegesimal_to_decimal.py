@@ -45,17 +45,17 @@ def main(arguments=None):
     ## LOCAL APPLICATION ##
 
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
-    ## PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
+    # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     if arguments == None:
         arguments = docopt(__doc__)
 
-    ## UNPACK SETTINGS
+    # UNPACK SETTINGS
     if "--settingsFile" in arguments and arguments["--settingsFile"]:
         import yaml
         stream = file(arguments["--settingsFile"], 'r')
         settings = yaml.load(stream)
         stream.close()
-    ## SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
+    # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
     if 'settings' in locals() and "logging settings" in settings:
         log = dl.setup_dryx_logging(
             yaml_file=arguments["--settingsFile"]
@@ -70,7 +70,7 @@ def main(arguments=None):
     # automatically
     for arg, val in arguments.iteritems():
         varname = arg.replace("--", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -93,9 +93,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : January 17, 2014
-## CREATED : January 17, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : January 17, 2014
+# CREATED : January 17, 2014
+# AUTHOR : DRYX
 
 
 def declination_sexegesimal_to_decimal(
@@ -119,7 +119,7 @@ def declination_sexegesimal_to_decimal(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    ## remove surrounding whitespace
+    # remove surrounding whitespace
     dec = str(dec).strip()
 
     # Look for a minus sign.  Note that -00 is the same as 00.

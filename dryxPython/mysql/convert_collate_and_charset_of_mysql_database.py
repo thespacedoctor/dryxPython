@@ -66,7 +66,7 @@ def main(arguments=None):
             varname = arg.replace("-", "") + "Flag"
         else:
             varname = arg.replace("<", "").replace(">", "")
-        if isinstance(val, str):
+        if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
             exec(varname + " = %s" % (val,))
@@ -112,9 +112,9 @@ def main(arguments=None):
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 28, 2014
-## CREATED : April 28, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : April 28, 2014
+# CREATED : April 28, 2014
+# AUTHOR : DRYX
 def convert_collate_and_charset_of_mysql_database(
         log,
         dbConn,
