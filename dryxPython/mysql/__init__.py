@@ -194,7 +194,7 @@ def execute_mysql_read_query(
         rows = cursor.fetchall()
     except Exception as e:
         log.error(
-            'MySQL raised an error - write command not executed.\n' + str(e) + '\n')
+            'MySQL raised an error - write command not executed.\n' + str(e) + '\nHere is the sqlQuery\n\t%(sqlQuery)s' % locals())
         raise e
     # CLOSE THE CURSOR
     try:
