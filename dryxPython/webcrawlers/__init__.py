@@ -24,7 +24,7 @@ def main():
     import pmCommonUtils as p
 
     ################ > SETUP ##################
-    ## SETUP DB CONNECTION AND A LOGGER
+    # SETUP DB CONNECTION AND A LOGGER
     dbConn, log = p.settings()
     ## START LOGGING ##
     log.info('----- STARTING TO RUN THE modulename -----')
@@ -38,18 +38,18 @@ def main():
     ## FINISH LOGGING ##
     log.info('----- FINISHED ATTEMPT TO RUN THE modulename -----')
 
-    #atelDownloader(4000,4567,'/Users/Dave/Dropbox/projects/WORK/html_to_mysql_db_parsers/atel_pages')
-    #singleWebDocumentDownloader('http://docs.python.org/_static/py.png','/Users/Dave/Desktop',1)
+    # atelDownloader(4000,4567,'/Users/Dave/Dropbox/projects/WORK/html_to_mysql_db_parsers/atel_pages')
+    # singleWebDocumentDownloader('http://docs.python.org/_static/py.png','/Users/Dave/Desktop',1)
     #_fetch('http://docs.python.org/_static/py.png')
 
     #urlList = ['http://www.pessto.org/index.html','http://docs.python.org/_static/py.png','http://static.bbci.co.uk/frameworks/barlesque/2.14.4/desktop/3.5/img/blq-blocks_grey_alpha.png','http://www.pessto.org/pessto/assets/images/home_button_body.png','http://www.pessto.org/pessto/assets/images/news_button_selected.png']
-    #multiWebDocumentDownloader(urlList,'/Users/Dave/Desktop',1)
+    # multiWebDocumentDownloader(urlList,'/Users/Dave/Desktop',1)
 
 ########################################################################
 #  HELPER FUNCTION FOR DOC DOWNLOADERS                                 #
 ########################################################################
-## LAST MODIFIED : 20121025
-## CREATED : 20121025
+# LAST MODIFIED : 20121025
+# CREATED : 20121025
 
 
 def _fetch(url,):
@@ -57,18 +57,19 @@ def _fetch(url,):
     from eventlet.green import urllib2
 
     try:
-        log.debug('downloading ' + str(url))
+        log.debug('downloading ' + url.get_full_url())
         body = urllib2.urlopen(url).read()
     except Exception, e:
-        log.debug("could not download " + str(url) + " : " + str(e) + "\n")
+        log.warning(
+            "could not download " + url.get_full_url() + " : " + str(e) + "\n")
         url = None
         body = None
 
     return url, body
 
-## LAST MODIFIED : December 7, 2012
-## CREATED : December 7, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : December 7, 2012
+# CREATED : December 7, 2012
+# AUTHOR : DRYX
 
 
 def _dump_files_to_local_drive(bodies, theseUrls, log):
@@ -89,7 +90,7 @@ def _dump_files_to_local_drive(bodies, theseUrls, log):
     ################ >ACTION(S) ################
     j = 0
     log.debug("attempting to write file data to local drive")
-    log.debug('10 URLS = %s' % (str(theseUrls),))
+    log.debug('%s URLS = %s' % (len(theseUrls), str(theseUrls),))
     for body in bodies:
         try:
             if theseUrls[j]:
@@ -107,8 +108,8 @@ def _dump_files_to_local_drive(bodies, theseUrls, log):
 ########################################################################
 #  MUTLI-DOC WEB DOWNLOAD                                              #
 ########################################################################
-## LAST MODIFIED : 20121025
-## CREATED : 20121025
+# LAST MODIFIED : 20121025
+# CREATED : 20121025
 
 
 def multiWebDocumentDownloader(
@@ -150,14 +151,14 @@ def multiWebDocumentDownloader(
     ###########################################################
     # >ACTION(S)                                              #
     ###########################################################
-    ## BUILD THE 2D ARRAY FOR MULTI_THREADED DOWNLOADS
+    # BUILD THE 2D ARRAY FOR MULTI_THREADED DOWNLOADS
     thisArray = []
     bodies = []
     localUrls = []
     theseUrls = []
     requestList = []
 
-    ## if only one download direcory
+    # if only one download direcory
     if isinstance(downloadDirectory, str):
         for url in urlList:
             # EXTRACT THE FILENAME FROM THE URL
@@ -225,11 +226,11 @@ def multiWebDocumentDownloader(
                 theseUrls.extend([None])
                 bodies.extend([None])
 
-            ## DUMP THE FILES FROM MEMORY EVERY CONCURRENT DOWNLOAD CYCLE
+            # DUMP THE FILES FROM MEMORY EVERY CONCURRENT DOWNLOAD CYCLE
             if i % concurrentDownloads == 0:
                 _dump_files_to_local_drive(bodies, theseUrls, log)
                 localUrls.extend(theseUrls)
-                ## RESET THE TMP ARRAYS
+                # RESET THE TMP ARRAYS
                 bodies = []
                 theseUrls = []
             i += 1
@@ -237,7 +238,7 @@ def multiWebDocumentDownloader(
         log.error(
             "something went wrong with the mutli-threaded download : " + str(e) + "\n")
 
-    ## DUMP REMAINING FILES TO THE LOCAL DRIVE
+    # DUMP REMAINING FILES TO THE LOCAL DRIVE
     _dump_files_to_local_drive(bodies, theseUrls, log)
     localUrls.extend(theseUrls)
 
@@ -247,8 +248,8 @@ def multiWebDocumentDownloader(
 ########################################################################
 #  SINGLE DOC WEB DOWNLOADER                                           #
 ########################################################################
-## LAST MODIFIED : 20121025
-## CREATED : 20121025
+# LAST MODIFIED : 20121025
+# CREATED : 20121025
 def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credentials=False, resetFilename=False):
     """get a url document and place in a specified directory
 
@@ -279,9 +280,9 @@ def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credenti
     return filepath
 
 
-## LAST MODIFIED : January 15, 2013
-## CREATED : January 15, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : January 15, 2013
+# CREATED : January 15, 2013
+# AUTHOR : DRYX
 def password_protected_page_downloader(dbConn, log):
     """get a page that is behind HTTPS authentication password protection
 
