@@ -3,7 +3,7 @@ import nose
 from .. import ads_query
 from dryxPython.utKit import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -22,4 +22,9 @@ class test_ads_query():
 
         # x-print-testpage-for-pessto-marshall-web-object
 
-    # x-class-to-test-named-worker-function
+    def test_ads_query_function02(self):
+        kwargs = {}
+        kwargs["log"] = log
+        kwargs[
+            "url"] = "http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?library&libname=PESSTO&libid=47fa2f1493&data_type=SHORT_XML"
+        ads_query.ads_query(**kwargs)

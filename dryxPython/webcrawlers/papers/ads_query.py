@@ -107,10 +107,11 @@ def main(arguments=None):
 # AUTHOR : DRYX
 def ads_query(
         log,
-        queryString,
+        queryString=False,
         numberOfResults=5000,
         atels=False,
-        cbets=False
+        cbets=False,
+        url=False
 ):
     """query the ads archive for papers relating to a specific query
 
@@ -135,8 +136,9 @@ def ads_query(
     paperDictionary = {}
 
     # build the url
-    url = """http://adsabs.harvard.edu/cgi-bin/basic_connect?qsearch=%(queryString)s&version=1&sort=NDATE&nr_to_return=%(numberOfResults)s&data_type=SHORT_XML""" % locals(
-    )
+    if not url:
+        url = """http://adsabs.harvard.edu/cgi-bin/basic_connect?qsearch=%(queryString)s&version=1&sort=NDATE&nr_to_return=%(numberOfResults)s&data_type=SHORT_XML""" % locals(
+        )
     urlDoc = singleWebDocumentDownloader(
         url=url,
         downloadDirectory="/tmp",
