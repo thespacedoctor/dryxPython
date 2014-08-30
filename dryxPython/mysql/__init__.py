@@ -122,6 +122,7 @@ def execute_mysql_write_query(
     # CREATE DB CURSOR
 
     log.debug('starting execute_mysql_write_query')
+
     message = ""
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)

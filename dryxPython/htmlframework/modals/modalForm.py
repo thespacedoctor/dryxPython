@@ -70,7 +70,7 @@ class modalForm():
         # xt-self-arg-tmpx
 
         # Variable Data Atrributes
-        self.formContent = ""
+        self.formContent = u""
         self.randNum = int(np.random.rand() * 10000)
         self.hiddenParameterList = []
 

@@ -14,11 +14,11 @@ utKit.tearDownModule()
 
 class test_ads_query():
 
-    def test_ads_query_function(self):
-        kwargs = {}
-        kwargs["log"] = log
-        kwargs["queryString"] = "pessto"
-        ads_query.ads_query(**kwargs)
+    # def test_ads_query_function(self):
+    #     kwargs = {}
+    #     kwargs["log"] = log
+    #     kwargs["queryString"] = "pessto"
+    #     ads_query.ads_query(**kwargs)
 
         # x-print-testpage-for-pessto-marshall-web-object
 

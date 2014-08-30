@@ -90,6 +90,11 @@ class setup_main_clutil():
             stream = file(arguments["pathToSettingsFile"], 'r')
             settings = yaml.load(stream)
             stream.close()
+        elif "settingsFile" in arguments and arguments["settingsFile"]:
+            import yaml
+            stream = file(arguments["settingsFile"], 'r')
+            settings = yaml.load(stream)
+            stream.close()
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
         if 'settings' in locals() and "logging settings" in settings:
@@ -104,6 +109,10 @@ class setup_main_clutil():
             elif "pathToSettingsFile" in arguments:
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["pathToSettingsFile"]
+                )
+            elif "settingsFile" in arguments:
+                log = dl.setup_dryx_logging(
+                    yaml_file=arguments["settingsFile"]
                 )
             else:
                 log = dl.setup_dryx_logging(

@@ -25,13 +25,15 @@ convert_collate_and_charset_of_mysql_database.py
 # 'dms_convert_collate_and_charset_of_mysql_database=dryxPython.mysql.convert_collate_and_charset_of_mysql_database:main'
 
 Usage:
-    dms_convert_collate_and_charset_of_mysql_database -s <settingsFile>
-    dms_convert_collate_and_charset_of_mysql_database -s <settingsFile> -t <tableSchema>
+    dms_convert_collate_and_charset_of_mysql_database -s <settingsFile> -c <charset> -l <collate>
+    dms_convert_collate_and_charset_of_mysql_database -s <settingsFile> -c <charset> -l <collate> -t <tableSchema>
 
     -h, --help          show this help message
     -v, --version       show version
     -s, --settingsFile  path to a yaml settings file
     -t, --tableSchema   the table schema to update (excludes all other table schemas from change)
+    -c, --charset       character set for the tables
+    -l, --collation     table collation
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -88,6 +90,8 @@ def main(arguments=None):
     convert_collate_and_charset_of_mysql_database(
         log=log,
         dbConn=dbConn,
+        charset=charset,
+        collate=collate,
         tableSchema=tableSchema,
     )
 
@@ -118,6 +122,8 @@ def main(arguments=None):
 def convert_collate_and_charset_of_mysql_database(
         log,
         dbConn,
+        charset,
+        collate,
         tableSchema=False
 ):
     """convert_collate_and_charset_of_mysql_database
@@ -144,7 +150,20 @@ def convert_collate_and_charset_of_mysql_database(
         tableSchema = ""
 
     sqlQuery = """
-        SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' CONVERT TO CHARACTER SET latin1 COLLATE latin1_swedish_ci;')     FROM information_schema.tables     WHERE 1=1         AND table_schema NOT IN ('information_schema', 'mysql', 'performance_schema') %(tableSchema)s and table_name not like "%%view%%" and TABLE_COLLATION != "latin1_swedish_ci";        
+        SELECT 
+        CONCAT('ALTER TABLE ',
+            table_schema,
+            '.',
+            table_name,
+            ' CONVERT TO CHARACTER SET %(charset)s COLLATE %(collate)s;')
+        FROM
+            information_schema.tables
+        WHERE
+            1 = 1
+        AND table_schema NOT IN ('information_schema' , 'mysql', 'performance_schema')
+        %(tableSchema)s 
+        and table_name not like '%%view%%'
+        and TABLE_COLLATION != '%(collate)s';        
     """ % locals()
     rows = execute_mysql_read_query(
         sqlQuery=sqlQuery,

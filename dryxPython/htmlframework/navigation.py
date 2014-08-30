@@ -335,7 +335,7 @@ def navBar(
     **Return:**
         - ``navBar`` -- the navBar """
 
-    brand = """<a class="brand" href="#">%(brand)s</a>""" % locals()
+    brand = u"""<a class="brand" href="#">%(brand)s</a>""" % locals()
     toggleButton = ""
     falseList = [dividers, fixedOrStatic, toggleButton, dark]
     for i in range(len(falseList)):
@@ -343,7 +343,7 @@ def navBar(
             falseList[i] = ""
     [dividers, fixedOrStatic, toggleButton, dark] = falseList
     if dividers:
-        dividers = """<li class="divider-vertical"></li>"""
+        dividers = u"""<li class="divider-vertical"></li>"""
     titleList = ''
     # contentList = ''
     count = 0
@@ -352,13 +352,13 @@ def navBar(
         htmlClass = ""
 
     if contentListPull is not False:
-        contentListPull = "pull-%(contentListPull)s" % locals()
+        contentListPull = u"pull-%(contentListPull)s" % locals()
 
     for item in contentList:
-        item = """<li>%(item)s</li>""" % locals()
-        titleList = """%(titleList)s %(item)s %(dividers)s""" % locals()
+        item = u"""<li>%(item)s</li>""" % locals()
+        titleList = u"""%(titleList)s %(item)s %(dividers)s""" % locals()
 
-    titleList = """
+    titleList = u"""
     <ul class="nav %(contentListPull)s" id="  ">
         %(titleList)s
     </ul>
@@ -369,17 +369,17 @@ def navBar(
         formList = forms
 
     if fixedOrStatic:
-        fixedOrStatic = 'navbar-%(fixedOrStatic)s-%(location)s' % locals()
+        fixedOrStatic = u'navbar-%(fixedOrStatic)s-%(location)s' % locals()
     if responsive:
         toggleButton = \
-            """
+            u"""
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </a>
         """
-        titleList = """
+        titleList = u"""
             <div class="nav-collapse collapse">
                 %(titleList)s
             </div>""" \
@@ -390,12 +390,12 @@ def navBar(
         dark = ""
 
     if transparent is True:
-        transparent = "navbar-transparent"
+        transparent = u"navbar-transparent"
     else:
         transparent = ""
 
     navBar = \
-        """
+        u"""
         <div class="navbar %(fixedOrStatic)s %(dark)s %(transparent)s %(htmlClass)s">
           <div class="navbar-inner">
             %(brand)s
