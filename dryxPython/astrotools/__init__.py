@@ -44,9 +44,9 @@ RAD_TO_DEG_FACTOR = 180.0 / pi
 ##########################################################################
 # PUBLIC FUNCTIONS                                                                          #
 ##########################################################################
-## LAST MODIFIED : December 3, 2012
-## CREATED : December 3, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : December 3, 2012
+# CREATED : December 3, 2012
+# AUTHOR : DRYX
 # def check_for_sdss_coverage(dbConn, log, ra, decl):
 #     """Check an ra and dec for SDSS DR9 image coverage
 
@@ -91,9 +91,9 @@ RAD_TO_DEG_FACTOR = 180.0 / pi
 #     return match
 
 
-## LAST MODIFIED : December 10, 2012
-## CREATED : December 10, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : December 10, 2012
+# CREATED : December 10, 2012
+# AUTHOR : DRYX
 def create_cbet_url(dbConn, log, cbet):
     """
     Create the CBET URL given a CBET number.
@@ -123,9 +123,9 @@ def create_cbet_url(dbConn, log, cbet):
     return cbetUrl
 
 
-## LAST MODIFIED : February 20, 2013
-## CREATED : February 20, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : February 20, 2013
+# CREATED : February 20, 2013
+# AUTHOR : DRYX
 def clean_supernova_name(dbConn, log, snName):
     """Clean a SN name. As a string, this function will attempt to clean up the name so that it is somewhat homogeneous with SN/transient from the same survey/atel system.
 
@@ -169,9 +169,9 @@ def clean_supernova_name(dbConn, log, snName):
 
     return snName
 
-## LAST MODIFIED : March 22, 2013
-## CREATED : March 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : March 22, 2013
+# CREATED : March 22, 2013
+# AUTHOR : DRYX
 
 
 def luminosity_to_flux(lumErg_S, dist_Mpc):
@@ -375,9 +375,9 @@ def getAngularSeparation(ra1, dec1, ra2, dec2):
 
     return angularSeparation
 
-## LAST MODIFIED : April 15, 2013
-## CREATED : April 15, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 15, 2013
+# CREATED : April 15, 2013
+# AUTHOR : DRYX
 
 
 def convert_redshift_to_distance(z):
@@ -475,9 +475,9 @@ def convert_redshift_to_distance(z):
     return results
 
 
-## LAST MODIFIED : April 15, 2013
-## CREATED : April 15, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 15, 2013
+# CREATED : April 15, 2013
+# AUTHOR : DRYX
 def convert_mpc_to_redshift(
         DL_Mpc):
     """Convert a luminosity distance to a redshift
@@ -523,8 +523,9 @@ def convert_mpc_to_redshift(
 if __name__ == '__main__':
     main()
 
-import astrometry_corrector
+# import astrometry_corrector
 import declination_sexegesimal_to_decimal
 import ra_sexegesimal_to_decimal
 
 import catalogue_queries
+
