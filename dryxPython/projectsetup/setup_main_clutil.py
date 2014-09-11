@@ -110,14 +110,15 @@ class setup_main_clutil():
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["pathToSettingsFile"]
                 )
+            elif "<pathToSettingsFile>" in arguments:
+                log = dl.setup_dryx_logging(
+                    yaml_file=arguments["<pathToSettingsFile>"]
+                )
             elif "settingsFile" in arguments:
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["settingsFile"]
                 )
-            else:
-                log = dl.setup_dryx_logging(
-                    yaml_file=arguments["<pathToSettingsFile>"]
-                )
+
         elif "--logger" not in arguments or arguments["--logger"] is None:
             log = dl.console_logger(
                 level=self.logLevel
