@@ -75,14 +75,14 @@ class setup_main_clutil():
             stream = file(arguments["<settingsFile>"], 'r')
             settings = yaml.load(stream)
             stream.close()
-        elif "--settingsFile" in arguments and arguments["--settingsFile"]:
-            import yaml
-            stream = file(arguments["--settingsFile"], 'r')
-            settings = yaml.load(stream)
-            stream.close()
         elif "<pathToSettingsFile>" in arguments and arguments["<pathToSettingsFile>"]:
             import yaml
             stream = file(arguments["<pathToSettingsFile>"], 'r')
+            settings = yaml.load(stream)
+            stream.close()
+        elif "--settingsFile" in arguments and arguments["--settingsFile"]:
+            import yaml
+            stream = file(arguments["--settingsFile"], 'r')
             settings = yaml.load(stream)
             stream.close()
         elif "pathToSettingsFile" in arguments and arguments["pathToSettingsFile"]:
