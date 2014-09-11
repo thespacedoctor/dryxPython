@@ -22,11 +22,18 @@ execute_mysql_script.py
     - [ ] when complete pull all general functions and classes into dryxPython
 
 Usage:
-    dms_execute_mysql_script --settingsFile=<pathToSettingsFile> --pathToMysqlScript=<pathToMysqlScript> [force]
-    dms_execute_mysql_script --host=<host> --user=<user> --passwd=<passwd> --dbName=<dbName> --pathToMysqlScript=<pathToMysqlScript> [force]
+    dms_execute_mysql_script -s <pathToSettingsFile> -p <pathToMysqlScript> [force]
+    dms_execute_mysql_script --host=<host> --user=<user> --passwd=<passwd> --dbName=<dbName> -p <pathToMysqlScript> [force]
 
-    -h, --help    show this help message
-    -v, --version show version
+Options:
+    -h, --help               show this help message
+    -s, --settingsFile       path to the settings file
+    -p, --pathToMysqlScript  path to the script to execute
+    --host=<host>            database host
+    --user=<user>            database user
+    --passwd=<passwd>        database password
+    --dbName=<dbName>        database name
+    force                    force execution even if something goes wrong in the script somewhere
 """
 ################# GLOBAL IMPORTS ####################
 import sys
