@@ -102,6 +102,10 @@ class setup_main_clutil():
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["<settingsFile>"]
                 )
+            elif "<pathToSettingsFile>" in arguments:
+                log = dl.setup_dryx_logging(
+                    yaml_file=arguments["<pathToSettingsFile>"]
+                )
             elif "--settingsFile" in arguments:
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["--settingsFile"]
@@ -110,10 +114,7 @@ class setup_main_clutil():
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["pathToSettingsFile"]
                 )
-            elif "<pathToSettingsFile>" in arguments:
-                log = dl.setup_dryx_logging(
-                    yaml_file=arguments["<pathToSettingsFile>"]
-                )
+
             elif "settingsFile" in arguments:
                 log = dl.setup_dryx_logging(
                     yaml_file=arguments["settingsFile"]
