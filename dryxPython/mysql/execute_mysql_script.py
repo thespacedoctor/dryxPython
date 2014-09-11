@@ -57,28 +57,22 @@ def main(arguments=None):
     if arguments == None:
         arguments = docopt(__doc__)
 
-    # UNPACK SETTINGS
-    if "--settingsFile" in arguments and arguments["--settingsFile"]:
-        import yaml
-        stream = file(arguments["--settingsFile"], 'r')
-        settings = yaml.load(stream)
-        stream.close()
-    # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
-    if 'settings' in locals() and "logging settings" in settings:
-        log = dl.setup_dryx_logging(
-            yaml_file=arguments["--settingsFile"]
-        )
-        # log.error('log: %s' % (log,))
-    elif "--logger" not in arguments or arguments["--logger"] is None:
-        log = dl.console_logger(
-            level="DEBUG"
-        )
-        log.debug('logger setup')
+    # setup the command-line util settings
+    from dryxPython.projectsetup import setup_main_clutil
+    su = setup_main_clutil(
+        arguments=arguments,
+        docString=__doc__,
+        logLevel="DEBUG"
+    )
+    arguments, settings, log, dbConn = su.setup()
 
     # unpack remaining cl arguments using `exec` to setup the variable names
     # automatically
     for arg, val in arguments.iteritems():
-        varname = arg.replace("--", "")
+        if arg[0] == "-":
+            varname = arg.replace("-", "") + "Flag"
+        else:
+            varname = arg.replace("<", "").replace(">", "")
         if isinstance(val, str) or isinstance(val, unicode):
             exec(varname + " = '%s'" % (val,))
         else:
@@ -86,37 +80,6 @@ def main(arguments=None):
         if arg == "--dbConn":
             dbConn = val
         log.debug('%s = %s' % (varname, val,))
-
-    # Check for the force option
-    if "force" not in locals() or force is not True:
-        force = False
-
-    # SETUP A DATABASE CONNECTION BASED ON WHAT ARGUMENTS HAVE BEEN PASSED
-    dbConn = False
-    if 'settings' in locals() and "database settings" in settings:
-        host = settings["database settings"]["host"]
-        user = settings["database settings"]["user"]
-        passwd = settings["database settings"]["password"]
-        dbName = settings["database settings"]["db"]
-        dbConn = True
-    elif "host" in locals() and "dbName" in locals():
-        # SETUP DB CONNECTION
-        dbConn = True
-        host = arguments["--host"]
-        user = arguments["--user"]
-        passwd = arguments["--passwd"]
-        dbName = arguments["--dbName"]
-    if dbConn:
-        import MySQLdb as ms
-        dbConn = ms.connect(
-            host=host,
-            user=user,
-            passwd=passwd,
-            db=dbName,
-            use_unicode=True,
-            charset='utf8'
-        )
-        log.debug('dbConn: %s' % (dbConn,))
 
     ## START LOGGING ##
     startTime = dcu.get_now_sql_datetime()
