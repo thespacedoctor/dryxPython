@@ -335,7 +335,10 @@ def navBar(
     **Return:**
         - ``navBar`` -- the navBar """
 
-    brand = u"""<a class="brand" href="#">%(brand)s</a>""" % locals()
+    if brand is not False:
+        brand = u"""<a class="brand" href="#">%(brand)s</a>""" % locals()
+    else:
+        brand = u""
     toggleButton = ""
     falseList = [dividers, fixedOrStatic, toggleButton, dark]
     for i in range(len(falseList)):
