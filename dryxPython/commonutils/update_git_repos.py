@@ -131,7 +131,6 @@ def update_git_repos(
     ################ > IMPORTS ################
     ## STANDARD LIB ##
     from subprocess import call
-
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
     os.chdir(gitProjectRoot)
