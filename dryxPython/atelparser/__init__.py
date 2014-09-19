@@ -26,48 +26,48 @@ atelparser
 # MAIN LOOP - USED FOR DEBUGGING OR WHEN SCRIPTING   #
 ######################################################
 def main():
-        """Using the PESSTO Marshall database on mac to test & debug this module
+    """Using the PESSTO Marshall database on mac to test & debug this module
 
-        Key Arguments:
-                -
-                - dbConn -- mysql database connection
-                - log -- logger
+    Key Arguments:
+            -
+            - dbConn -- mysql database connection
+            - log -- logger
 
-        Return:
-                - None
-        """
-        ################ > IMPORTS ################
-        ## STANDARD LIB ##
-        ## THIRD PARTY ##
-        ## LOCAL APPLICATION ##
-        import pmCommonUtils as p
-        import dryxPython.commonutils as cu
+    Return:
+            - None
+    """
+    ################ > IMPORTS ################
+    ## STANDARD LIB ##
+    ## THIRD PARTY ##
+    ## LOCAL APPLICATION ##
+    import pmCommonUtils as p
+    import dryxPython.commonutils as cu
 
-        ################ > SETUP ##################
-        ## SETUP DB CONNECTION AND A LOGGER
-        dbConn, log = p.settings()
-        ## START LOGGING ##
-        startTime = cu.get_now_sql_datetime()
-        log.info('--- STARTING TO RUN THE atelparser AT %s' % (startTime,))
+    ################ > SETUP ##################
+    # SETUP DB CONNECTION AND A LOGGER
+    dbConn, log = p.settings()
+    ## START LOGGING ##
+    startTime = cu.get_now_sql_datetime()
+    log.info('--- STARTING TO RUN THE atelparser AT %s' % (startTime,))
 
-        ################ > VARIABLE SETTINGS ######
-        downloadDirectory = "/tmp"
-        dbTableName = "atel_fullcontent"
+    ################ > VARIABLE SETTINGS ######
+    downloadDirectory = "/tmp"
+    dbTableName = "atel_fullcontent"
 
-        ################ >ACTION(S) ###############
-        #download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirectory)
-        #atels_to_database(dbConn, log, dbTableName, downloadDirectory)
-        parse_atels(dbConn, log, "/Users/Dave/Desktop/")
+    ################ >ACTION(S) ###############
+    #download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirectory)
+    #atels_to_database(dbConn, log, dbTableName, downloadDirectory)
+    parse_atels(dbConn, log, "/Users/Dave/Desktop/")
 
-        dbConn.commit()
-        dbConn.close()
-        ## FINISH LOGGING ##
-        endTime = cu.get_now_sql_datetime()
-        runningTime = cu.calculate_time_difference(startTime, endTime)
-        log.info(
-            '-- FINISHED ATTEMPT TO RUN THE atelparser AT %s (RUNTIME: %s) --' %
-            (endTime, runningTime,))
-        return
+    dbConn.commit()
+    dbConn.close()
+    ## FINISH LOGGING ##
+    endTime = cu.get_now_sql_datetime()
+    runningTime = cu.calculate_time_difference(startTime, endTime)
+    log.info(
+        '-- FINISHED ATTEMPT TO RUN THE atelparser AT %s (RUNTIME: %s) --' %
+        (endTime, runningTime,))
+    return
 
 ###################################################################
 # CLASSES                                                         #
@@ -78,8 +78,8 @@ def main():
 ###################################################################
 
 
-## LAST MODIFIED : 20121026
-## CREATED : 20121026
+# LAST MODIFIED : 20121026
+# CREATED : 20121026
 def download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirectory):
     """download all atels within given range of atels
 
@@ -123,211 +123,211 @@ def download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirector
     return localUrls
 
 
-## LAST MODIFIED : 20121107
-## CREATED : 20121107
-## AUTHOR : DRYX
+# LAST MODIFIED : 20121107
+# CREATED : 20121107
+# AUTHOR : DRYX
 def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
-        """
-        Parse ATels into a mysql db. Parser to add ATels into a mysql db - each ATel has 'element' data (top level - title, author ...) and 'item' data (object specific data - ra, dec, mag, name ...).
-        The parser will add one row per 'item' (object) into the db table.
+    """
+    Parse ATels into a mysql db. Parser to add ATels into a mysql db - each ATel has 'element' data (top level - title, author ...) and 'item' data (object specific data - ra, dec, mag, name ...).
+    The parser will add one row per 'item' (object) into the db table.
 
-        Key Arguments:
-            - ``dbConn`` -- database connection
-            - ``log`` -- logger
-            - ``dbTableName`` -- name of the db table to add ATels to
-            - ``downloadDirectory`` -- directory to download the ATel HTML files to
+    Key Arguments:
+        - ``dbConn`` -- database connection
+        - ``log`` -- logger
+        - ``dbTableName`` -- name of the db table to add ATels to
+        - ``downloadDirectory`` -- directory to download the ATel HTML files to
 
-        """
-        ################ > IMPORTS ################
-        import re
-        import sys
-        import dryxPython.mysql as m
-        from datetime import datetime
+    """
+    ################ > IMPORTS ################
+    import re
+    import sys
+    import dryxPython.mysql as m
+    from datetime import datetime
 
-        ################ >SETTINGS ################
-        # USED FOR DEVELOPMENT
-        #sqlQuery = """DELETE FROM atel_fullcontent"""
-        #m.execute_mysql_write_query(sqlQuery, dbConn, log)
+    ################ >SETTINGS ################
+    # USED FOR DEVELOPMENT
+    #sqlQuery = """DELETE FROM atel_fullcontent"""
+    #m.execute_mysql_write_query(sqlQuery, dbConn, log)
 
-        # THE UNIQUEKEY LIST FOR THE DATABASE TABLE
-        uniqueKeyList = ['atelNumber']
-        # THE NUMBER OF ATELS TO CHECK PAST THE LAST KNOWN ATEL NUMBER
-        checkRange = 10
+    # THE UNIQUEKEY LIST FOR THE DATABASE TABLE
+    uniqueKeyList = ['atelNumber']
+    # THE NUMBER OF ATELS TO CHECK PAST THE LAST KNOWN ATEL NUMBER
+    checkRange = 10
 
-        ################ >ACTION(S) ################
-        ## QUERY TO GRAB THE LATEST ATEL NUMBER
-        sqlQuery = """SELECT atelNumber
+    ################ >ACTION(S) ################
+    # QUERY TO GRAB THE LATEST ATEL NUMBER
+    sqlQuery = """SELECT atelNumber
                         FROM %s
                         ORDER BY atelNumber DESC
                         LIMIT 1""" % (dbTableName, )
-        try:
-            log.debug("attempting to find the last ingested atel number")
-            rows = m.execute_mysql_read_query(sqlQuery, dbConn, log)
-        except Exception, e:
-            log.error(
-                "could not find the last ingested atel number - failed with this error: %s " %
-                (str(e),))
-            return -1
+    try:
+        log.debug("attempting to find the last ingested atel number")
+        rows = m.execute_mysql_read_query(sqlQuery, dbConn, log)
+    except Exception, e:
+        log.error(
+            "could not find the last ingested atel number - failed with this error: %s " %
+            (str(e),))
+        return -1
 
-        ## SET THE RANGE OF FUTURE ATEL NUMBERS TO CHECK (10 IS REASONABLE)
-        if len(rows) != 0:
-            nextATel = int(rows[0]["atelNumber"]) + 1
+    # SET THE RANGE OF FUTURE ATEL NUMBERS TO CHECK (10 IS REASONABLE)
+    if len(rows) != 0:
+        nextATel = int(rows[0]["atelNumber"]) + 1
+    else:
+        nextATel = 3900  # ROUGHLY THE START OF THE PESSTO SURVEY
+        checkRange = 1000
+    nextFewAtels = nextATel + checkRange
+
+    # DOWNLOAD THE NEXT FEW ATEL HTML FILES
+    try:
+        log.debug(
+            "attempting to download the html files of the next %s atels" %
+            (checkRange,))
+        localUrls = download_atels(
+            dbConn, log, nextATel, nextFewAtels, downloadDirectory)
+    except Exception, e:
+        log.error(
+            "could not download the html files of the next %s atels - failed with this error: %s " %
+            (checkRange, str(e),))
+        sys.exit(0)
+
+    # LOOP THROUGH THE FILES AND ADD THE VARIOUS HTML ELEMENTS AND TAGS TO
+    # MARSHALL DB
+    for url in localUrls:
+        rf = open(url, 'r')
+        html = rf.read()
+        elementDict = {}
+
+        # ATEL TITLE
+        reTitle = re.compile(
+            r'<TITLE>.*?#\d{1,4}:\s?(.*?)\s?<\/TITLE>', re.M | re.I)
+        try:
+            title = reTitle.search(html).group(1)
+        except:
+            # QUIT WHENEVER A TITLE IS NOT FOUND IN THE HTML DOC (i.e. ATEL
+            # DOES NOT EXIST YET)
+            return
+            title = None
+        elementDict['title'] = title
+
+        # ATEL NUMBER
+        reAtelNumber = re.compile(
+            r'<P ALIGN=CENTER>\s?ATel\s?#(\d{1,4})', re.M | re.I)
+        try:
+            atelNumber = reAtelNumber.search(html).group(1)
+        except:
+            atelNumber = None
+        # print atelNumber
+        elementDict['atelNumber'] = atelNumber
+
+        # ATEL AUTHORS
+        reWho = re.compile(
+            r'<A HREF=\"mailto:([\w.\-@]*)\">(.*?)<', re.M | re.I)
+        try:
+            email = reWho.search(html).group(1)
+            authors = reWho.search(html).group(2)
+        except:
+            email = None
+            authors = None
+        elementDict['email'] = email
+        elementDict['authors'] = authors
+
+        # ATEL DATETIME
+        redateTime = re.compile(
+            r'<STRONG>(\d{1,2}\s\w{1,10}\s\d{4});\s(\d{1,2}:\d{2})\sUT</STRONG>', re.M | re.I)
+        try:
+            date = redateTime.search(html).group(1)
+            time = redateTime.search(html).group(2)
+
+        except:
+            date = None
+            time = None
+
+        datePublished = date + " " + time
+        datePublished = datetime.strptime(datePublished, '%d %b %Y %H:%M')
+        # print "datePublished = %s" % (datePublished,)
+        elementDict['datePublished'] = datePublished
+
+        # ATEL
+        reTags = re.compile(
+            r'<p class="subjects">Subjects: (.*?)</p>', re.M | re.I)
+        try:
+            tags = reTags.search(html).group(1)
+        except:
+            tags = None
+        elementDict['tags'] = tags
+
+        # ATEL USER ADDED TEXT
+        reUserText = re.compile(
+            r'</div id="subjects">.*?(<div id="references">.*?</div id="references">)?<P>(.*)</P>.*?(<a href="http://twitter.com/share|</TD><TD>)', re.S | re.I)
+        try:
+            userText = reUserText.search(html).group(2)
+        except:
+            userText = None
+        elementDict['userText'] = userText
+
+        # FIND REFS IN USER ADDED TEXT
+        refList = []
+        reOneRef = re.compile(
+            r'http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,4})', re.M | re.I)
+        try:
+            refIter = reOneRef.finditer(userText)
+        except:
+            refIter = None
+        if refIter:
+            for item in refIter:
+                refList.extend([item.group(1)])
         else:
-            nextATel = 3900  # ROUGHLY THE START OF THE PESSTO SURVEY
-            checkRange = 1000
-        nextFewAtels = nextATel + checkRange
+            pass
+        refList = set(refList)
+        refList = ", ".join(refList)
+        elementDict['refList'] = refList
 
-        ## DOWNLOAD THE NEXT FEW ATEL HTML FILES
+        # ATEL BACK REFERENCES - FIND EXTRA BACK REFS IN REFERENCE DIV
+        reBacksRefs = re.compile(
+            r'<div id="references">(.*?)</div id="references">', re.M | re.I)
         try:
-            log.debug(
-                "attempting to download the html files of the next %s atels" %
-                (checkRange,))
-            localUrls = download_atels(
-                dbConn, log, nextATel, nextFewAtels, downloadDirectory)
-        except Exception, e:
-            log.error(
-                "could not download the html files of the next %s atels - failed with this error: %s " %
-                (checkRange, str(e),))
-            sys.exit(0)
+            backRefs = reBacksRefs.search(html).group(1)
+        except:
+            backRefs = None
+        backRefList = []
+        reOneBackRef = re.compile(
+            r'<A HREF="http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,4})">\1</a>', re.M | re.I)
+        try:
+            backRefIter = reOneBackRef.finditer(backRefs)
+        except:
+            backRefIter = None
+        if backRefIter:
+            for item in backRefIter:
+                # print item.group(1)
+                backRefList.extend([item.group(1)])
+        else:
+            # print backRefIter
+            pass
+        # REMOVE DUPLICATE ATEL NUMBERS FROM LIST
+        backRefList = set(backRefList)
+        backRefList = ", ".join(backRefList)
+        elementDict['backRefList'] = backRefList
 
-        # LOOP THROUGH THE FILES AND ADD THE VARIOUS HTML ELEMENTS AND TAGS TO
-        # MARSHALL DB
-        for url in localUrls:
-            rf = open(url, 'r')
-            html = rf.read()
-            elementDict = {}
-
-            # ATEL TITLE
-            reTitle = re.compile(
-                r'<TITLE>.*?#\d{1,4}:\s?(.*?)\s?<\/TITLE>', re.M | re.I)
-            try:
-                title = reTitle.search(html).group(1)
-            except:
-                # QUIT WHENEVER A TITLE IS NOT FOUND IN THE HTML DOC (i.e. ATEL
-                # DOES NOT EXIST YET)
-                return
-                title = None
-            elementDict['title'] = title
-
-            #ATEL NUMBER
-            reAtelNumber = re.compile(
-                r'<P ALIGN=CENTER>\s?ATel\s?#(\d{1,4})', re.M | re.I)
-            try:
-                atelNumber = reAtelNumber.search(html).group(1)
-            except:
-                atelNumber = None
-            #print atelNumber
-            elementDict['atelNumber'] = atelNumber
-
-            # ATEL AUTHORS
-            reWho = re.compile(
-                r'<A HREF=\"mailto:([\w.\-@]*)\">(.*?)<', re.M | re.I)
-            try:
-                email = reWho.search(html).group(1)
-                authors = reWho.search(html).group(2)
-            except:
-                email = None
-                authors = None
-            elementDict['email'] = email
-            elementDict['authors'] = authors
-
-            # ATEL DATETIME
-            redateTime = re.compile(
-                r'<STRONG>(\d{1,2}\s\w{1,10}\s\d{4});\s(\d{1,2}:\d{2})\sUT</STRONG>', re.M | re.I)
-            try:
-                date = redateTime.search(html).group(1)
-                time = redateTime.search(html).group(2)
-
-            except:
-                date = None
-                time = None
-
-            datePublished = date + " " + time
-            datePublished = datetime.strptime(datePublished, '%d %b %Y %H:%M')
-            #print "datePublished = %s" % (datePublished,)
-            elementDict['datePublished'] = datePublished
-
-            # ATEL
-            reTags = re.compile(
-                r'<p class="subjects">Subjects: (.*?)</p>', re.M | re.I)
-            try:
-                tags = reTags.search(html).group(1)
-            except:
-                tags = None
-            elementDict['tags'] = tags
-
-            # ATEL USER ADDED TEXT
-            reUserText = re.compile(
-                r'</div id="subjects">.*?(<div id="references">.*?</div id="references">)?<P>(.*)</P>.*?(<a href="http://twitter.com/share|</TD><TD>)', re.S | re.I)
-            try:
-                userText = reUserText.search(html).group(2)
-            except:
-                userText = None
-            elementDict['userText'] = userText
-
-            ## FIND REFS IN USER ADDED TEXT
-            refList = []
-            reOneRef = re.compile(
-                r'http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,4})', re.M | re.I)
-            try:
-                refIter = reOneRef.finditer(userText)
-            except:
-                refIter = None
-            if refIter:
-                for item in refIter:
-                    refList.extend([item.group(1)])
-            else:
-                pass
-            refList = set(refList)
-            refList = ", ".join(refList)
-            elementDict['refList'] = refList
-
-            # ATEL BACK REFERENCES - FIND EXTRA BACK REFS IN REFERENCE DIV
-            reBacksRefs = re.compile(
-                r'<div id="references">(.*?)</div id="references">', re.M | re.I)
-            try:
-                backRefs = reBacksRefs.search(html).group(1)
-            except:
-                backRefs = None
-            backRefList = []
-            reOneBackRef = re.compile(
-                r'<A HREF="http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,4})">\1</a>', re.M | re.I)
-            try:
-                backRefIter = reOneBackRef.finditer(backRefs)
-            except:
-                backRefIter = None
-            if backRefIter:
-                for item in backRefIter:
-                    #print item.group(1)
-                    backRefList.extend([item.group(1)])
-            else:
-                #print backRefIter
-                pass
-            ## REMOVE DUPLICATE ATEL NUMBERS FROM LIST
-            backRefList = set(backRefList)
-            backRefList = ", ".join(backRefList)
-            elementDict['backRefList'] = backRefList
-
-            ## ADD THE ATEL TO THE DATABASE
+        # ADD THE ATEL TO THE DATABASE
+        m.convert_dictionary_to_mysql_table(
+            dbConn, log, elementDict, dbTableName, uniqueKeyList)
+        try:
+            log.debug("attempting to convert ATELs to MySQL table")
             m.convert_dictionary_to_mysql_table(
                 dbConn, log, elementDict, dbTableName, uniqueKeyList)
-            try:
-                log.debug("attempting to convert ATELs to MySQL table")
-                m.convert_dictionary_to_mysql_table(
-                    dbConn, log, elementDict, dbTableName, uniqueKeyList)
-            except Exception, e:
-                log.critical(
-                    "could not convert ATELs to MySQL table - failed with this error: %s " % (str(e),))
-                sys.exit(0)
+        except Exception, e:
+            log.critical(
+                "could not convert ATELs to MySQL table - failed with this error: %s " % (str(e),))
+            sys.exit(0)
 
-            rf.close()
+        rf.close()
 
-        return None
+    return None
 
 
-## LAST MODIFIED : February 5, 2013
-## CREATED : February 5, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : February 5, 2013
+# CREATED : February 5, 2013
+# AUTHOR : DRYX
 def parse_atels(dbConn, log, mdFolder):
     """Parse the content of the ATels in the database, appending the various components and values to the db. Also includes the ability convert the atels to markdown, highlighting matches of the parsing regexs.
 
@@ -349,7 +349,7 @@ def parse_atels(dbConn, log, mdFolder):
     import dryxPython.astrotools as dat
 
     ################ > VARIABLE SETTINGS ######
-    ## METRICS TO FILTER ATELS
+    # METRICS TO FILTER ATELS
     numReferences = 0  # NUMBER OF REFERENCES WITH ATEL
     tags = ""  # ATEL TAGS
     numCoords = 0  # NUMBER OF COORDINATE PAIRS IN ATEL
@@ -364,7 +364,7 @@ def parse_atels(dbConn, log, mdFolder):
     clasText = 0  # CLASSIFICATION KEYWORD FOUND IN TEXT?
     comment = 0  # COMMENT TAG IN ATEL
 
-    ## SELECT STATEMENT FOR UNPROCESSED ATELS
+    # SELECT STATEMENT FOR UNPROCESSED ATELS
     sqlQuery = """SELECT *
                     FROM atel_fullcontent
                     WHERE dateParsed is NULL
@@ -393,7 +393,7 @@ def parse_atels(dbConn, log, mdFolder):
     #                 ALTER TABLE `pessto_marshall_sandbox`.`atel_names` AUTO_INCREMENT = 1 ;"""
     # m.execute_mysql_write_query(sqlQuery, dbConn, log)
 
-    ## REGEX BUILDS
+    # REGEX BUILDS
     start = r"""((R\.?A\.?\b|Coord)[/()\w\d\s,.]{0,9}(\(J2000(\.0)?\)\s?)?(=|:|\s)|\d{4}-\d{2}-\d{2})\s{0,2}[+(]{0,2}"""
     middle = r"""(\sdeg)?(\s?,|:)?\s{0,2}(and\s{1,2}|\(?[\ddeg.':\s]{1,16}\)?(;|,)?\s{0,3})?(Decl?\.?\s*?[()\w\d\s]{0,9}(=|:|\s))?\s?"""
     end = r"""(\sdeg)?"""
@@ -417,60 +417,60 @@ def parse_atels(dbConn, log, mdFolder):
             """
 
     nameList = [
-                    r"""(PSN|PNV)\s?J\d{8}(\+|-|–)\d{3}(\+|-|–)?\d{3,4}""",
-                    r"""(SN|Supernova)\s?(19|20)\d{2}[A-Za-z]{1,2}""",
-                    r"""GX\s?\d{3}(\+|-|–)\d""",
-                    r"""Fermi\s?J\d{4}(\+|-|–)\d{4}""",
-                    r"""PHL\s?\d{3}""",
-                    r"""QSO\s?B\d{4}(\+|-|–)\d{3}""",
-                    r"""PTF(0|1)\d[a-zA-Z]{1,3}""",
-                    r"""MASTER\s?((short\s)?ot\s)?J?\d{6}\.\d{2}(\+|-|–)\d{6}\.\d""",
-                    r"""(FSRQ\s?)?PKS\s?\d{4}(\+|-|–)\d{3}""",
-                    r"""BZQ\s?J\d{4}(\+|-|–)\d{4}""",
-                    r"""(SN(-|–))?LSQ1\d[a-zA-Z]{1,4}""",
-                    r"""M31N\s?(19|20)\d{2}(\+|-|–)\d{2}[a-z]""",
-                    r"""IGR\s?J?\d{5}(\+|-|–)?\d{1,4}""",
-                    r"""GRS\s?\d{4}(\+|-|–)\d{1,4}""",
-                    r"""PS1(-|–)?(0|1)\d[a-zA-Z]{1,3}""",
-                    r"""SDSS\s(galaxy\s)?J\d{6}\.\d{2}(\+|-|–)\d{6}\.\d""",
-                    r"""(CSS|MLS|SSS)\d{6}:\d{6}(\+|-|–)\d{6}""",
-                    r"""XMM(U|SL1)\s?J\d{6}\.\d{1}(\+|-|–)\d{6}""",
-                    r"""SAX\s?J\d{4}\.\d(\+|-|–)\d{3,4}""",
-                    r"""1RXS\s?J\d{6}\.\d(\+|-|–)\d{6}""",
-                    r"""USNO(-|–)(B1|A2)\.0\s?(catalogue\s?)\d{4}(-|–)\d{7}""",
-                    r"""KS\s?\d{4}(\+|-|–)\d{3}""",
-                    r"""AX\s?J\d{4}\.\d(\+|-|–)\d{4}""",
-                    r"""2MAS(S|X)\s?J?\d{8}(\+|-|–)\d{7}""",
-                    r"""SWIFT\s?J\d{4,6}\.\d(\+|-|–)\d{1,6}""",
-                    r"""4U\s?\d{4}(\+|-|–)\d{2,4}""",
-                    r"""Hen\s\d{1}(\+|-|–)\d{4}""",
-                    r"""(HMXB\s?)?XTE\s?J?\d{4}(\+|-|–)\d{3}""",
-                    r"""MAXI\s?J?\d{4}(\+|-|–)\d{3}""",
-                    r"""PG\s?J?\d{4}(\+|-|–)\d{3}""",
-                    r"""PMN\s?J?\d{4}(\+|-|–)\d{4}""",
-                    r"""Guide\sStar\sCatalog\sN4HU\d{6}""",
-                    r"""CXOGBS\s?J?\d{6}\.8(\+|-|–)\d{6}""",
-                    r"""Galactic\sPlane\s(gamma-ray\s)?Transient\sJ?\d{4}(\+|-|–)\d{4}""",
-                    r"""TXS\s\d{4}(\+|-|–)\d{3}""",
-                    r"""V\d{4}\sSgr""",
-                    r"""Aql\sX(\+|-|–)1""",
-                    r"""BLAZAR\s[a-zA-Z\d]{2}\s?\d{3,4}((\+|-|–)\d{2})?""",
-                    r"""SNhunt\s\d{1,5}""",
-                    r"""Nova\s[a-zA-Z]{3}\s(19|20)\d{2}""",
-                    r"""GRB\s?\d{6}[a-zA-Z]{1,2}""",
-                    r"""\bV\d{3,4}\s(Sagittarii|cyg)""",
-                    r"""SGR\s\d4(\+|-|–)\d{2}""",
-                    r"""(QSO|3EG|2FGL)\s?J?\d{4}(\.\d)?(\+|-|–)\d{4}""",
-                    r"""BL\sLacertae""",
-                    r"""\bCTA\s\d{3}"""
+        r"""(PSN|PNV)\s?J\d{8}(\+|-|–)\d{3}(\+|-|–)?\d{3,4}""",
+        r"""(SN|Supernova)\s?(19|20)\d{2}[A-Za-z]{1,2}""",
+        r"""GX\s?\d{3}(\+|-|–)\d""",
+        r"""Fermi\s?J\d{4}(\+|-|–)\d{4}""",
+        r"""PHL\s?\d{3}""",
+        r"""QSO\s?B\d{4}(\+|-|–)\d{3}""",
+        r"""PTF(0|1)\d[a-zA-Z]{1,3}""",
+        r"""MASTER\s?((short\s)?ot\s)?J?\d{6}\.\d{2}(\+|-|–)\d{6}\.\d""",
+        r"""(FSRQ\s?)?PKS\s?\d{4}(\+|-|–)\d{3}""",
+        r"""BZQ\s?J\d{4}(\+|-|–)\d{4}""",
+        r"""(SN(-|–))?LSQ1\d[a-zA-Z]{1,4}""",
+        r"""M31N\s?(19|20)\d{2}(\+|-|–)\d{2}[a-z]""",
+        r"""IGR\s?J?\d{5}(\+|-|–)?\d{1,4}""",
+        r"""GRS\s?\d{4}(\+|-|–)\d{1,4}""",
+        r"""PS1(-|–)?(0|1)\d[a-zA-Z]{1,3}""",
+        r"""SDSS\s(galaxy\s)?J\d{6}\.\d{2}(\+|-|–)\d{6}\.\d""",
+        r"""(CSS|MLS|SSS)\d{6}:\d{6}(\+|-|–)\d{6}""",
+        r"""XMM(U|SL1)\s?J\d{6}\.\d{1}(\+|-|–)\d{6}""",
+        r"""SAX\s?J\d{4}\.\d(\+|-|–)\d{3,4}""",
+        r"""1RXS\s?J\d{6}\.\d(\+|-|–)\d{6}""",
+        r"""USNO(-|–)(B1|A2)\.0\s?(catalogue\s?)\d{4}(-|–)\d{7}""",
+        r"""KS\s?\d{4}(\+|-|–)\d{3}""",
+        r"""AX\s?J\d{4}\.\d(\+|-|–)\d{4}""",
+        r"""2MAS(S|X)\s?J?\d{8}(\+|-|–)\d{7}""",
+        r"""SWIFT\s?J\d{4,6}\.\d(\+|-|–)\d{1,6}""",
+        r"""4U\s?\d{4}(\+|-|–)\d{2,4}""",
+        r"""Hen\s\d{1}(\+|-|–)\d{4}""",
+        r"""(HMXB\s?)?XTE\s?J?\d{4}(\+|-|–)\d{3}""",
+        r"""MAXI\s?J?\d{4}(\+|-|–)\d{3}""",
+        r"""PG\s?J?\d{4}(\+|-|–)\d{3}""",
+        r"""PMN\s?J?\d{4}(\+|-|–)\d{4}""",
+        r"""Guide\sStar\sCatalog\sN4HU\d{6}""",
+        r"""CXOGBS\s?J?\d{6}\.8(\+|-|–)\d{6}""",
+        r"""Galactic\sPlane\s(gamma-ray\s)?Transient\sJ?\d{4}(\+|-|–)\d{4}""",
+        r"""TXS\s\d{4}(\+|-|–)\d{3}""",
+        r"""V\d{4}\sSgr""",
+        r"""Aql\sX(\+|-|–)1""",
+        r"""BLAZAR\s[a-zA-Z\d]{2}\s?\d{3,4}((\+|-|–)\d{2})?""",
+        r"""SNhunt\s\d{1,5}""",
+        r"""Nova\s[a-zA-Z]{3}\s(19|20)\d{2}""",
+        r"""GRB\s?\d{6}[a-zA-Z]{1,2}""",
+        r"""\bV\d{3,4}\s(Sagittarii|cyg)""",
+        r"""SGR\s\d4(\+|-|–)\d{2}""",
+        r"""(QSO|3EG|2FGL)\s?J?\d{4}(\.\d)?(\+|-|–)\d{4}""",
+        r"""BL\sLacertae""",
+        r"""\bCTA\s\d{3}"""
     ]
 
-    ## JOIN ALL THE NAMES INTO ONE STRING
+    # JOIN ALL THE NAMES INTO ONE STRING
     nameStr = ("|").join(nameList)
-    ## REGEX TO SEARCH FOR OBJECT NAMES IN THE ATEL BODIES
+    # REGEX TO SEARCH FOR OBJECT NAMES IN THE ATEL BODIES
     reName = re.compile(r"""(%s)""" % (nameStr,), re.S | re.I)
 
-    ## REGEX TO SEARCH FOR SEXEGESIMAL COORDINATES WITHIN THE BODY TEXT
+    # REGEX TO SEARCH FOR SEXEGESIMAL COORDINATES WITHIN THE BODY TEXT
     reSexeg = r"""
                     %s
                     %s
@@ -481,7 +481,7 @@ def parse_atels(dbConn, log, mdFolder):
 
     reSexeg = re.compile(r"""%s""" % (reSexeg), re.S | re.I | re.X)
 
-    ## REGEX TO SEARCH FOR DECIMAL DEGREES COORDINATES WITHIN THE BODY TEX
+    # REGEX TO SEARCH FOR DECIMAL DEGREES COORDINATES WITHIN THE BODY TEX
     reDegree = r"""
                     %s
                     %s
@@ -491,7 +491,7 @@ def parse_atels(dbConn, log, mdFolder):
 
     reDegree = re.compile(r"""%s""" % (reDegree,), re.S | re.I | re.X)
 
-    ## REGEX TO SEARCH FOR SEXEG COORDINATES IN TABLES
+    # REGEX TO SEARCH FOR SEXEG COORDINATES IN TABLES
     reSexTable = r"""
                     %s
                     \s?(\||</td>\s?<td>)?\s?
@@ -500,7 +500,7 @@ def parse_atels(dbConn, log, mdFolder):
 
     reSexTable = re.compile(r"""%s""" % (reSexTable, ), re.S | re.I | re.X)
 
-    ## REGEX TO FIND THE SUPERNOVA TYPE
+    # REGEX TO FIND THE SUPERNOVA TYPE
     reSNType = re.compile(
         r'type\s(I[abcilps]{1,3}n?)|(\bI[abcilnps]{1,3}n?)\s(SN|supernova)|<td>\s?\b(I[abcilps]{1,3}n?)\b\s?<\/td>|(SN\simpostor)|\|\s?\b(I[abcilps]{1,3}n?)\b\s?\||(SN|supernova)\s?(I[abcilps]{1,3}n?)', re.S | re.I)
 
@@ -509,18 +509,19 @@ def parse_atels(dbConn, log, mdFolder):
     filename = mdFolder + "parsed_atels.md"
     #wf = open(filename, 'w')
 
-    ## ITERATE THROUGH THE NEW UNPROCESSED ATELS
+    # ITERATE THROUGH THE NEW UNPROCESSED ATELS
     for row in rows:
         atelNumber = row["atelNumber"]
         userText = row["userText"]
+        userText = unicode(userText, encoding="utf-8", errors="replace")
 
-        ## SETUP HEADERS FOR MD -- USED FOR DEBUGGING
+        # SETUP HEADERS FOR MD -- USED FOR DEBUGGING
         header = "\n# %s: %s" % (row["atelNumber"], row["title"],)
         references = "\n### **REFS:** %s" % (row["refList"],)
         numReferences = len(row["refList"])
         tags = "\n### **TAGS:** %s" % (row["tags"],)
 
-        ## REMOVE NIGGLY STRINGS TO MAKE PARSING EASIER
+        # REMOVE NIGGLY STRINGS TO MAKE PARSING EASIER
         stringsToRemove = [
             "<p>",
             "</p>",
@@ -582,7 +583,7 @@ def parse_atels(dbConn, log, mdFolder):
         userText = userText.replace(";", ":")
         userText = userText.replace("&plusmn: 0.001", "")
 
-        ## SEARCH FOR SEXEGESIMAL COORDINATES WITHIN THE BODY TEXT
+        # SEARCH FOR SEXEGESIMAL COORDINATES WITHIN THE BODY TEXT
         try:
             sIter = reSexeg.finditer(userText)
         except:
@@ -590,7 +591,7 @@ def parse_atels(dbConn, log, mdFolder):
 
         sList = []
         for item in sIter:
-            ## CONVERT RA DEC TO DECIMAL DEGREES
+            # CONVERT RA DEC TO DECIMAL DEGREES
             raSec = item.group('raSec')
             if item.group('raSubSec'):
                 raSec += item.group('raSubSec')
@@ -611,28 +612,28 @@ def parse_atels(dbConn, log, mdFolder):
             userText = userText.replace(
                 item.group('decSex'), " **<font color=blue>" + item.group('decSex') + " </font>** ")
 
-        ## SEARCH FOR DECIMAL DEGREES COORDINATES WITHIN THE BODY TEXT
+        # SEARCH FOR DECIMAL DEGREES COORDINATES WITHIN THE BODY TEXT
         try:
             sIter2 = reDegree.finditer(userText)
         except:
             sIter2 = None
 
         for item in sIter2:
-            #print item.group('raDDeg'), item.group('decDDeg')
+            # print item.group('raDDeg'), item.group('decDDeg')
             sList.extend([[item.group('raDDeg'), item.group('decDDeg')]])
             userText = userText.replace(
                 item.group('raDDeg'), " **<font color=green>" + item.group('raDDeg') + " </font>** ")
             userText = userText.replace(
                 item.group('decDDeg'), " **<font color=green>" + item.group('decDDeg') + " </font>** ")
 
-        ## SEARCH FOR SEXEG COORDINATES IN TABLES
+        # SEARCH FOR SEXEG COORDINATES IN TABLES
         try:
             sIter3 = reSexTable.finditer(userText)
         except:
             sIter3 = None
 
         for item in sIter3:
-            ## CONVERT RA DEC TO DECIMAL DEGREES
+            # CONVERT RA DEC TO DECIMAL DEGREES
             raSec = item.group('raSec')
             if item.group('raSubSec'):
                 raSec += item.group('raSubSec')
@@ -655,7 +656,7 @@ def parse_atels(dbConn, log, mdFolder):
 
         numCoords = len(sList)
 
-        ## SEARCH FOR NAMES IN THE ATEL BODY
+        # SEARCH FOR NAMES IN THE ATEL BODY
         try:
             sIter4 = reName.finditer(header)
         except:
@@ -693,7 +694,7 @@ def parse_atels(dbConn, log, mdFolder):
         except:
             pass
 
-        ## DETERMINE THE ATEL TYPE - DISCOVERY, CLASSIFICATION OR OBSERVATION
+        # DETERMINE THE ATEL TYPE - DISCOVERY, CLASSIFICATION OR OBSERVATION
         disc, obs, clas, correction, comment = 0, 0, 0, 0, 0
         discHead, obsHead, clasHead, correctionHead = 0, 0, 0, 0
         discText, obsText, clasText = 0, 0, 0
@@ -701,7 +702,7 @@ def parse_atels(dbConn, log, mdFolder):
         # SEARCH FOR DISCOVERY KEYWORDS IN HEADER AND TEXT
         dList = []
         reDisc = re.compile(
-                r"""(discovered\sby\sMASTER|Detection.{1,20}MASTER|detection\sof\sa\snew\s|discovery|candidate.{1,10}discovered|\ba\s?candidate|\d{1,4}:\s((Bright|MASTER)\sPSN\sin|Possible\snew\s|(A\s)?new.{1,30}(candidate|discovered)|(Bright|MASTER).{1,20}detection))""", re.I | re.M)
+            r"""(discovered\sby\sMASTER|Detection.{1,20}MASTER|detection\sof\sa\snew\s|discovery|candidate.{1,10}discovered|\ba\s?candidate|\d{1,4}:\s((Bright|MASTER)\sPSN\sin|Possible\snew\s|(A\s)?new.{1,30}(candidate|discovered)|(Bright|MASTER).{1,20}detection))""", re.I | re.M)
         reDiscPhrase = re.compile(r"""(We\sreport\sthe\sdiscovery\s)""", re.I)
         try:
             dpIter = reDiscPhrase.finditer(userText)
@@ -854,7 +855,7 @@ def parse_atels(dbConn, log, mdFolder):
         # CREATE AN ATELTYPE TAG -- SIMPLE ROUTINE TO GUESS THE 'TYPE' OF ATEL
         atelType = ""
         obs, clas, disc, correction = 0, 0, 0, 0
-        ## GIVE HEADER KEYWORDS PRIORITY OVER THE BODY TEXT
+        # GIVE HEADER KEYWORDS PRIORITY OVER THE BODY TEXT
         if clasHead == 1:
             clas = 1
         if obsHead == 1:
@@ -888,10 +889,10 @@ def parse_atels(dbConn, log, mdFolder):
             atelType += " observation "
 
         # if atelType:
-        #     atelType = " || **<font color=#b58900>" + atelType + " </font>** "
+        # atelType = " || **<font color=#b58900>" + atelType + " </font>** "
         header = header + atelType
 
-        ## IF THE ATEL-TYPE IS CLASSIFICATION THEN LOOK FOR THE CLASSIFICATION
+        # IF THE ATEL-TYPE IS CLASSIFICATION THEN LOOK FOR THE CLASSIFICATION
         SNTypeList = []
         SNTypeReplace = []
         singleClassification = None
@@ -957,7 +958,7 @@ def parse_atels(dbConn, log, mdFolder):
         if "Supernovae" in tags:
             isSN = 1
 
-            ## PROVIDE THE SINGLE CLASSIFICATION IF THERE IS ONLY ONE GIVEN
+            # PROVIDE THE SINGLE CLASSIFICATION IF THERE IS ONLY ONE GIVEN
             if oneType is not None:
                 singleClassification = oneType
             else:
@@ -966,14 +967,14 @@ def parse_atels(dbConn, log, mdFolder):
             # print "ATEL# %s singleClassification %s " % (atelNumber,
             # singleClassification,)
 
-        #if "discovery" in atelType:
-        #if "classification" in atelType:
-        #if not atelType:
+        # if "discovery" in atelType:
+        # if "classification" in atelType:
+        # if not atelType:
 
         # wf.write(header + references + tags + "\n\n" + userText + "\n\n##
         # Parsed Values\n\n")
         for item in sList:
-            #CREATE AN ATEL 'NAME' & URL USEFUL FOR INGEST
+            # CREATE AN ATEL 'NAME' & URL USEFUL FOR INGEST
             atelName = "atel_" + str(atelNumber)
             atelUrl = "http://www.astronomerstelegram.org/?read=" + \
                 str(atelNumber)
@@ -1024,7 +1025,7 @@ def parse_atels(dbConn, log, mdFolder):
 
             #wf.write("R&D: %s\n\n" % (", ".join(item),))
         for item in nList:
-            #CREATE AN ATEL 'NAME' & URL USEFUL FOR INGEST
+            # CREATE AN ATEL 'NAME' & URL USEFUL FOR INGEST
             atelName = "atel_" + str(atelNumber)
             atelUrl = "http://www.astronomerstelegram.org/?read=" + \
                 str(atelNumber)
@@ -1090,7 +1091,7 @@ def parse_atels(dbConn, log, mdFolder):
         #wf.write("clasText: %s\n\n" % (clasText,))
         #wf.write("comment : %s\n\n" % (comment,))
 
-    #wf.close()
+    # wf.close()
 
     return
 
@@ -1099,7 +1100,7 @@ def parse_atels(dbConn, log, mdFolder):
 ###################################################################
 
 if __name__ == '__main__':
-        main()
+    main()
 
 
 ###################################################################
