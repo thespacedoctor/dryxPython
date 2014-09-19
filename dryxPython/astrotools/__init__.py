@@ -151,7 +151,7 @@ def clean_supernova_name(dbConn, log, snName):
         snName = unicode(snName, encoding="utf-8", errors="replace")
 
     snName = snName.replace(" ", "")
-    snName = snName.replace("–", "-")
+    snName = snName.replace(u"–", "-")
     snName = snName.replace("FSRQ", "")
     snName = snName.replace("Catalogue", "-")
     regex = re.compile(r'swift|css|sss|mls|master|^sn', re.I)
