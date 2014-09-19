@@ -601,8 +601,17 @@ def parse_atels(dbConn, log, mdFolder):
                 item.group('raHrs'), item.group('raMin'), raSec)
             _decSex = """%s:%s:%s""" % (
                 item.group('decDeg'), item.group('decMin'), decSec)
-            raDegrees = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
-                ra=_raSex)
+            try:
+                log.debug("attempting to 'some action' here")
+                raDegrees = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
+                    ra=_raSex)
+            except Exception, e:
+                log.error(
+                    "could not 'some action' here - failed with this error: %s " % (str(e),))
+                log.debug('RA: %(_raSex)s' % locals())
+                log.debug('atelNumber: %(atelNumber)s' % locals())
+                return None
+
             decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
                 dec=_decSex)
             sList.extend([[str(raDegrees), str(decDegrees)]])
