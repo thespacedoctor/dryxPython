@@ -146,6 +146,10 @@ def clean_supernova_name(dbConn, log, snName):
     ################ > VARIABLE SETTINGS #######
 
     ################ >ACTION(S) ################
+    # convert bytes to unicode
+    if isinstance(snName, str):
+        snName = unicode(snName, encoding="utf-8", errors="replace")
+
     snName = snName.replace(" ", "")
     snName = snName.replace("–", "-")
     snName = snName.replace("FSRQ", "")
@@ -528,4 +532,3 @@ import declination_sexegesimal_to_decimal
 import ra_sexegesimal_to_decimal
 
 import catalogue_queries
-
