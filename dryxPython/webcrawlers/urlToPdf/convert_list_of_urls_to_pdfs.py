@@ -150,6 +150,16 @@ def convert_list_of_urls_to_pdfs(
     writeFile.write("")
     writeFile.close()
 
+    options = {
+        'page-size': 'A3',
+        'margin-top': '0.75in',
+        'margin-right': '0.75in',
+        'margin-bottom': '0.75in',
+        'margin-left': '0.75in',
+        'encoding': "UTF-8",
+        'no-outline': None
+    }
+
     for line in thisData:
 
         theseLines = string.split(line, ' | ')
@@ -164,7 +174,7 @@ def convert_list_of_urls_to_pdfs(
         url = url.encode("ascii", "ignore")
         outputPath = outputPath.encode("ascii", "ignore")
 
-        pdfkit.from_url(str(url), str(outputPath))
+        pdfkit.from_url(str(url), str(outputPath), options=options)
 
     log.info('completed the ``convert_list_of_urls_to_pdfs`` function')
     return None
