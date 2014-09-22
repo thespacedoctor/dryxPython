@@ -147,7 +147,7 @@ def convert_list_of_urls_to_pdfs(
         message = 'could not open the file %s' % (pathToWriteFile,)
         log.critical(message)
         raise IOError(message)
-    writeFile.write("")
+    # writeFile.write("")
     writeFile.close()
 
     for line in thisData:
