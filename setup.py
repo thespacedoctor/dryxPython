@@ -48,7 +48,8 @@ setup(name='dryxPython',
               'dms_convert_mysql_database_to_myisam=dryxPython.mysql.convert_mysql_database_to_myisam:main',
               'dp_xy_scatter=dryxPython.plotting.xy_scatter:main',
               'astromCorrector=dryxPython.astrotools.astrometry_corrector:main',
-              'git_update_request_watcher=dryxPython.git.update_request_watcher:main'
+              'git_update_request_watcher=dryxPython.git.update_request_watcher:main',
+              'dwc_convert_list_of_urls_to_pdfs=dryxPython.webcrawlers.urlToPdf.convert_list_of_urls_to_pdfs:main'
           ],
       },
       zip_safe=False)
