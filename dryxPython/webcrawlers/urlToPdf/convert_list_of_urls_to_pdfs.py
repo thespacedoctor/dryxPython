@@ -160,6 +160,12 @@ def convert_list_of_urls_to_pdfs(
         now = datetime.now()
         now = now.strftime("%Y%m%dt%H%M%S")
         outputPath = pathToPDFDirectory + "/%(title)s_%(now)s.pdf" % locals()
+        # RECODE INTO ASCII
+        url = url.decode("utf-8")
+        url = url.encode("ascii", "ignore")
+        outputPath = outputPath.decode("utf-8")
+        outputPath = outputPath.encode("ascii", "ignore")
+
         pdfkit.from_url(str(url), str(outputPath))
 
     log.info('completed the ``convert_list_of_urls_to_pdfs`` function')
