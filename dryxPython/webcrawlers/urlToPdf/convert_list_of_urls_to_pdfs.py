@@ -139,16 +139,16 @@ def convert_list_of_urls_to_pdfs(
         raise IOError(message)
     readFile.close()
 
-    # pathToWriteFile = pathToListFile
-    # try:
-    #     log.debug("attempting to open the file %s" % (pathToWriteFile,))
-    #     writeFile = open(pathToWriteFile, 'w')
-    # except IOError, e:
-    #     message = 'could not open the file %s' % (pathToWriteFile,)
-    #     log.critical(message)
-    #     raise IOError(message)
-    # writeFile.write("")
-    # writeFile.close()
+    pathToWriteFile = pathToListFile
+    try:
+        log.debug("attempting to open the file %s" % (pathToWriteFile,))
+        writeFile = open(pathToWriteFile, 'w')
+    except IOError, e:
+        message = 'could not open the file %s' % (pathToWriteFile,)
+        log.critical(message)
+        raise IOError(message)
+    writeFile.write("")
+    writeFile.close()
 
     for line in thisData:
 
@@ -161,9 +161,7 @@ def convert_list_of_urls_to_pdfs(
         now = now.strftime("%Y%m%dt%H%M%S")
         outputPath = pathToPDFDirectory + "/%(title)s_%(now)s.pdf" % locals()
         # RECODE INTO ASCII
-        url = url.decode("utf-8")
         url = url.encode("ascii", "ignore")
-        outputPath = outputPath.decode("utf-8")
         outputPath = outputPath.encode("ascii", "ignore")
 
         pdfkit.from_url(str(url), str(outputPath))
