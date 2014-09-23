@@ -129,14 +129,15 @@ def convert_list_of_urls_to_pdfs(
 
     # wkhtmltopdf options
     options = {
-        'page-size': 'A3',
-        'margin-top': '0.75in',
-        'margin-right': '0.75in',
-        'margin-bottom': '0.75in',
-        'margin-left': '0.75in',
-        'encoding': "UTF-8",
-        'no-outline': None
+        'page-size': 'A3'
+        # 'margin-top': '0.75in',
+        # 'margin-right': '0.75in',
+        # 'margin-bottom': '0.75in',
+        # 'margin-left': '0.75in',
+        # 'encoding': "UTF-8"
     }
+
+    config.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
 
     # list the files in the requests directory
     basePath = pathToRequestDirectory
