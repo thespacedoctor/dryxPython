@@ -513,6 +513,9 @@ def parse_atels(dbConn, log, mdFolder):
     for row in rows:
         atelNumber = row["atelNumber"]
         userText = row["userText"]
+        # convert bytes to unicode
+        if isinstance(userText, str):
+            userText = unicode(userText, encoding="utf-8", errors="replace")
 
         # SETUP HEADERS FOR MD -- USED FOR DEBUGGING
         header = "\n# %s: %s" % (row["atelNumber"], row["title"],)
