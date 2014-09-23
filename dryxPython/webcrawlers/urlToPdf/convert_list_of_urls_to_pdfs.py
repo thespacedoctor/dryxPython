@@ -137,8 +137,6 @@ def convert_list_of_urls_to_pdfs(
         # 'encoding': "UTF-8"
     }
 
-    config.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf'
-
     # list the files in the requests directory
     basePath = pathToRequestDirectory
     for d in os.listdir(basePath):
