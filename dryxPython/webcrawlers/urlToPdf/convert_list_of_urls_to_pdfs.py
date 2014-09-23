@@ -32,6 +32,7 @@ Usage:
 import sys
 import os
 import string
+import codecs
 from datetime import datetime, date, time
 from docopt import docopt
 from dryxPython import logs as dl
@@ -79,7 +80,7 @@ def main(arguments=None):
     # x-if-settings-or-database-credientials
     convert_list_of_urls_to_pdfs(
         log=log,
-        pathToListFile=settings["urls_to_pdf"]["urlList"],
+        pathToRequestDirectory=settings["urls_to_pdf"]["urlListDirectory"],
         pathToPDFDirectory=settings["urls_to_pdf"]["outputDirectory"]
     )
 
@@ -109,7 +110,7 @@ def main(arguments=None):
 # AUTHOR : DRYX
 def convert_list_of_urls_to_pdfs(
         log,
-        pathToListFile,
+        pathToRequestDirectory,
         pathToPDFDirectory):
     """convert list of urls to pdfs
 
@@ -126,30 +127,7 @@ def convert_list_of_urls_to_pdfs(
     """
     log.info('starting the ``convert_list_of_urls_to_pdfs`` function')
 
-    import codecs
-    pathToReadFile = pathToListFile
-    try:
-        log.debug("attempting to open the file %s" % (pathToReadFile,))
-        readFile = codecs.open(pathToListFile, encoding='utf-8', mode='r')
-        thisData = readFile.readlines()
-        readFile.close()
-    except IOError, e:
-        message = 'could not open the file %s' % (pathToReadFile,)
-        log.critical(message)
-        raise IOError(message)
-    readFile.close()
-
-    pathToWriteFile = pathToListFile
-    try:
-        log.debug("attempting to open the file %s" % (pathToWriteFile,))
-        writeFile = open(pathToWriteFile, 'w')
-    except IOError, e:
-        message = 'could not open the file %s' % (pathToWriteFile,)
-        log.critical(message)
-        raise IOError(message)
-    writeFile.write("")
-    writeFile.close()
-
+    # wkhtmltopdf options
     options = {
         'page-size': 'A3',
         'margin-top': '0.75in',
@@ -160,21 +138,52 @@ def convert_list_of_urls_to_pdfs(
         'no-outline': None
     }
 
-    for line in thisData:
+    # list the files in the requests directory
+    basePath = pathToRequestDirectory
+    for d in os.listdir(basePath):
+        if os.path.isfile(os.path.join(basePath, d)):
+            title = d
+            title = title.replace(".txt", "")
+            pathToReadFile = os.path.join(basePath, d)
+            try:
+                log.debug("attempting to open the file %s" % (pathToReadFile,))
+                readFile = codecs.open(
+                    pathToReadFile, encoding='utf-8', mode='r')
+                thisData = readFile.read()
+                readFile.close()
+            except IOError, e:
+                message = 'could not open the file %s' % (pathToReadFile,)
+                log.critical(message)
+                raise IOError(message)
+            readFile.close()
 
-        theseLines = string.split(line, ' | ')
-        url = theseLines[0]
-        title = theseLines[1].replace("\n", "")
-        log.debug("""URL: %(url)s""" % locals())
-        log.debug("""TITLE: %(title)s """ % locals())
-        now = datetime.now()
-        now = now.strftime("%Y%m%dt%H%M%S")
-        outputPath = pathToPDFDirectory + "/%(title)s_%(now)s.pdf" % locals()
-        # RECODE INTO ASCII
-        url = url.encode("ascii", "ignore")
-        outputPath = outputPath.encode("ascii", "ignore")
+            url = thisData
+            log.debug("""URL: %(url)s""" % locals())
+            log.debug("""TITLE: %(title)s """ % locals())
+            now = datetime.now()
+            now = now.strftime("%Y%m%dt%H%M%S")
+            outputPath = pathToPDFDirectory + \
+                "/%(title)s_%(now)s.pdf" % locals()
+            # RECODE INTO ASCII
+            url = url.encode("ascii", "ignore")
+            outputPath = outputPath.encode("ascii", "ignore")
+            pdfkit.from_url(str(url), str(outputPath), options=options)
 
-        pdfkit.from_url(str(url), str(outputPath), options=options)
+            exists = os.path.exists(outputPath)
+            if exists:
+                os.remove(pathToReadFile)
+            else:
+                log.error('cound not create the %(title)s pdf' % locals())
+                source = pathToReadFile
+                destination = "%(pathToPDFDirectory)s/%(d)s" % locals()
+                try:
+                    log.debug("attempting to rename file %s to %s" %
+                              (source, destination))
+                    os.rename(source, destination)
+                except Exception, e:
+                    log.error(
+                        "could not rename file %s to %s - failed with this error: %s " % (source, destination, str(e),))
+                    sys.exit(0)
 
     log.info('completed the ``convert_list_of_urls_to_pdfs`` function')
     return None

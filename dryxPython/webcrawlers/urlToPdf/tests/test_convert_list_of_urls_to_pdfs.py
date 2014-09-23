@@ -19,7 +19,7 @@ class test_convert_list_of_urls_to_pdfs():
         kwargs = {}
         kwargs["log"] = log
         kwargs[
-            "pathToListFile"] = "/Users/Dave/Dropbox/Apps/ifttt/script_triggers/convert_urls_to_pdf.txt"
+            "pathToRequestDirectory"] = "/Users/Dave/Dropbox/Apps/ifttt/script_triggers/url_to_pdf"
         kwargs["pathToPDFDirectory"] = "/Users/Dave/Dropbox/dryxDocs/inbox"
         # xt-kwarg_key_and_value
 
