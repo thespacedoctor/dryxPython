@@ -610,10 +610,10 @@ def parse_atels(dbConn, log, mdFolder):
                     ra=_raSex)
             except Exception, e:
                 log.error(
-                    "could not 'some action' here - failed with this error: %s " % (str(e),))
+                    "could not 'convert the ra' - failed with this error: %s " % (str(e),))
                 log.debug('RA: %(_raSex)s' % locals())
                 log.debug('atelNumber: %(atelNumber)s' % locals())
-                return None
+                continue
 
             decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
                 dec=_decSex)
