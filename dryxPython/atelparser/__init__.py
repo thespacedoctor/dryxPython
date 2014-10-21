@@ -55,8 +55,8 @@ def main():
     dbTableName = "atel_fullcontent"
 
     ################ >ACTION(S) ###############
-    #download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirectory)
-    #atels_to_database(dbConn, log, dbTableName, downloadDirectory)
+    # download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirectory)
+    # atels_to_database(dbConn, log, dbTableName, downloadDirectory)
     parse_atels(dbConn, log, "/Users/Dave/Desktop/")
 
     dbConn.commit()
@@ -146,8 +146,8 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
 
     ################ >SETTINGS ################
     # USED FOR DEVELOPMENT
-    #sqlQuery = """DELETE FROM atel_fullcontent"""
-    #m.execute_mysql_write_query(sqlQuery, dbConn, log)
+    # sqlQuery = """DELETE FROM atel_fullcontent"""
+    # m.execute_mysql_write_query(sqlQuery, dbConn, log)
 
     # THE UNIQUEKEY LIST FOR THE DATABASE TABLE
     uniqueKeyList = ['atelNumber']
@@ -370,7 +370,7 @@ def parse_atels(dbConn, log, mdFolder):
                     WHERE dateParsed is NULL
                     ORDER BY atelNumber"""
 
-    #log.warning('sqlQuery %s' % (sqlQuery,))
+    # log.warning('sqlQuery %s' % (sqlQuery,))
 
     # USED FOR DEVELOPMENT
     # sqlQuery = """SELECT *
@@ -507,7 +507,7 @@ def parse_atels(dbConn, log, mdFolder):
     ################ >ACTION(S) ################
     #  -- USED FOR DEBUGGING
     filename = mdFolder + "parsed_atels.md"
-    #wf = open(filename, 'w')
+    # wf = open(filename, 'w')
 
     # ITERATE THROUGH THE NEW UNPROCESSED ATELS
     for row in rows:
@@ -655,8 +655,16 @@ def parse_atels(dbConn, log, mdFolder):
                 item.group('raHrs'), item.group('raMin'), raSec)
             _decSex = """%s:%s:%s""" % (
                 item.group('decDeg'), item.group('decMin'), decSec)
-            raDegrees = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
-                ra=_raSex)
+            try:
+                log.debug("attempting to 'some action' here")
+                raDegrees = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
+                    ra=_raSex)
+            except Exception, e:
+                log.error(
+                    "could not 'convert the ra' - failed with this error: %s " % (str(e),))
+                log.debug('RA: %(_raSex)s' % locals())
+                log.debug('atelNumber: %(atelNumber)s' % locals())
+                continue
             decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
                 dec=_decSex)
             sList.extend([[str(raDegrees), str(decDegrees)]])
@@ -1034,7 +1042,7 @@ def parse_atels(dbConn, log, mdFolder):
                     (atelNumber, str(e),))
                 return -1
 
-            #wf.write("R&D: %s\n\n" % (", ".join(item),))
+            # wf.write("R&D: %s\n\n" % (", ".join(item),))
         for item in nList:
             # CREATE AN ATEL 'NAME' & URL USEFUL FOR INGEST
             atelName = "atel_" + str(atelNumber)
@@ -1083,24 +1091,24 @@ def parse_atels(dbConn, log, mdFolder):
                     (atelNumber, str(e),))
                 return -1
 
-            #wf.write("Name: %s\n\n" % (item,))
+            # wf.write("Name: %s\n\n" % (item,))
 
         # for item in SNTypeList:
         #     if item:
-                #wf.write("SN Type: %s\n\n" % (item,))
+                # wf.write("SN Type: %s\n\n" % (item,))
 
-        #wf.write("numReferences: %s\n\n" % (numReferences,))
-        #wf.write("numCoords: %s\n\n" % (numCoords,))
-        #wf.write("numHeaderName: %s\n\n" % (numHeaderName,))
-        #wf.write("numTextName: %s\n\n" % (numTextName,))
-        #wf.write("discHead: %s\n\n" % (discHead,))
-        #wf.write("obsHead: %s\n\n" % (obsHead,))
-        #wf.write("clasHead: %s\n\n" % (clasHead,))
-        #wf.write("correctionHead: %s\n\n" % (correctionHead,))
-        #wf.write("discText: %s\n\n" % (discText,))
-        #wf.write("obsText: %s\n\n" % (obsText,))
-        #wf.write("clasText: %s\n\n" % (clasText,))
-        #wf.write("comment : %s\n\n" % (comment,))
+        # wf.write("numReferences: %s\n\n" % (numReferences,))
+        # wf.write("numCoords: %s\n\n" % (numCoords,))
+        # wf.write("numHeaderName: %s\n\n" % (numHeaderName,))
+        # wf.write("numTextName: %s\n\n" % (numTextName,))
+        # wf.write("discHead: %s\n\n" % (discHead,))
+        # wf.write("obsHead: %s\n\n" % (obsHead,))
+        # wf.write("clasHead: %s\n\n" % (clasHead,))
+        # wf.write("correctionHead: %s\n\n" % (correctionHead,))
+        # wf.write("discText: %s\n\n" % (discText,))
+        # wf.write("obsText: %s\n\n" % (obsText,))
+        # wf.write("clasText: %s\n\n" % (clasText,))
+        # wf.write("comment : %s\n\n" % (comment,))
 
     # wf.close()
 
