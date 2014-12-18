@@ -1,6 +1,7 @@
 from dryxPython import commonutils
 from dryxPython import fitstools
 
+
 def _set_up_command_line_tool():
     import logging
     import logging.config
@@ -34,9 +35,9 @@ def _set_up_command_line_tool():
     return log
 
 
-## LAST MODIFIED : August 17, 2013
-## CREATED : August 17, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : August 17, 2013
+# CREATED : August 17, 2013
+# AUTHOR : DRYX
 def py_get_help_for_python_module(
         argv=None):
     """print the help for python module
@@ -55,25 +56,25 @@ def py_get_help_for_python_module(
 
     ## VARIABLES ##
     if argv is None:
-       argv = sys.argv
+        argv = sys.argv
 
     if len(argv) != 2:
-       print "Usage: get_help_for_python_module <pathToModuleFile>"
-       return -1
+        print "Usage: get_help_for_python_module <pathToModuleFile>"
+        return -1
     else:
         print "argv:", argv
 
     pathToModuleFile = argv[1]
 
-    basename = os.path.basename(pathToModuleFile).replace(".py","")
+    basename = os.path.basename(pathToModuleFile).replace(".py", "")
     print basename
 
     return None
 
 
-## LAST MODIFIED : August 20, 2013
-## CREATED : August 20, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : August 20, 2013
+# CREATED : August 20, 2013
+# AUTHOR : DRYX
 def dft_print_fits_header(clArgs=None):
     """
     Print a fits file headers to stout
@@ -96,7 +97,7 @@ def dft_print_fits_header(clArgs=None):
     ## LOCAL APPLICATION ##
     from dryxPython import fitstools as dft
 
-    ## SETUP AN EMPTY LOGGER
+    # SETUP AN EMPTY LOGGER
     log = _set_up_command_line_tool()
 
     if clArgs == None:
@@ -120,7 +121,7 @@ def dft_print_fits_header(clArgs=None):
             )
             result += str(thisDict)
         else:
-            fitsHeader=hduList[i].header
+            fitsHeader = hduList[i].header
             cardList = fitsHeader.ascardlist()
             result += str(cardList)
             hduList.close()
@@ -128,7 +129,7 @@ def dft_print_fits_header(clArgs=None):
         if not clArgs["--pydict"]:
             thisResult = ""
             import string
-            theseLines= string.split(result, '\n')
+            theseLines = string.split(result, '\n')
             for line in theseLines:
                 thisResult += "    %s\n" % (line,)
             print thisResult

@@ -532,3 +532,6 @@ import declination_sexegesimal_to_decimal
 import ra_sexegesimal_to_decimal
 
 import catalogue_queries
+
+from get_angular_separation import get_angular_separation
+from shift_coordinates import shift_coordinates

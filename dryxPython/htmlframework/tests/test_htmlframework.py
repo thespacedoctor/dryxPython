@@ -2,7 +2,7 @@ import os
 import nose
 from ... import htmlframework as dhf
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 
 
 def setUpModule():
@@ -87,7 +87,7 @@ class test_0001_htmlDocument():
         st = lambda x: "<BR/><h4>%s</h4>" % (x,)
         ct = dhf.code
 
-        ## PAGE DETAILS
+        # PAGE DETAILS
         text = "Page Details:\n"
         content += lt(text)
         text = dhf.p(
@@ -98,7 +98,7 @@ class test_0001_htmlDocument():
         content += "Page constructed from a %s and %s in an %s" % (ct("head"),
                                                                    ct("body"), ct("htmlDocument"))
 
-        ## BASIC GRIDS
+        # BASIC GRIDS
         text = "Basic grid HTML"
         content += lt(text)
         text = dhf.p(
@@ -153,7 +153,7 @@ class test_0001_htmlDocument():
         )
         content += row + "<br>"
 
-        ## TEXT
+        # TEXT
         text = "Typography"
         content += lt(text) + "Use a %s with `lead = True`" % (ct("p"),)
         text = dhf.p(
@@ -219,7 +219,8 @@ class test_0001_htmlDocument():
         )
         content += text
 
-        content += "use %s to create this abbreviation - hover<br><br>" % (ct("abbr"),)
+        content += "use %s to create this abbreviation - hover<br><br>" % (
+            ct("abbr"),)
         kwargs = {}
         kwargs["abbreviation"] = "abbr<br><br>"
         kwargs["fullWord"] = "use `abbr` to create this abbreviation"
@@ -242,7 +243,7 @@ class test_0001_htmlDocument():
         kwargs["pullRight"] = True
         content += dhf.blockquote(**kwargs)
 
-        ## LISTS
+        # LISTS
         text = "Lists"
         content += lt(text)
 
@@ -297,7 +298,7 @@ class test_0001_htmlDocument():
         kwargs["sideBySide"] = True
         content += dhf.descriptionLists(**kwargs)
 
-        ## CODE
+        # CODE
         text = "Code"
         content += lt(text)
 
@@ -310,7 +311,7 @@ class test_0001_htmlDocument():
         kwargs["scroll"] = False
         content += dhf.code(**kwargs)
 
-        ## TABLES
+        # TABLES
         text = "Tables"
         content += lt(text)
         content += "for a table use %s, with %s, %s and %ss<br><br>" % (ct("table"),
@@ -421,7 +422,7 @@ class test_0001_htmlDocument():
         kwargs["condensed"] = True
         content += dhf.table(**kwargs)
 
-        ## FORMS
+        # FORMS
         text = "Forms"
         content += lt(text)
 
@@ -866,7 +867,8 @@ class test_0001_htmlDocument():
             validationLevel=False
         )
 
-        content += "<br><br>For a form item use snippet %s" % (ct("horizontal-form-item"),)
+        content += "<br><br>For a form item use snippet %s" % (
+            ct("horizontal-form-item"),)
         content += "<small>- this places a %s and a %s within a %s</small>" % (
             ct("horizontalFormControlLabel"), ct("controlRow"), ct("horizontalFormControlGroup"))
 
@@ -888,7 +890,7 @@ class test_0001_htmlDocument():
         searchForm = dhf.searchForm(**kwargs)
         content += searchForm
 
-        ## IMAGES
+        # IMAGES
         text = "Images"
         content += lt(text)
         thisImage = dhf.image(
@@ -933,14 +935,14 @@ class test_0001_htmlDocument():
         )
         content += thisImage
 
-        ## Icons
+        # Icons
         text = "Icons"
         content += lt(text)
 
         content += """<span class="icon-paper"></span>"""
         content += """<i class="icon-location"></i>"""
 
-        ## Dropdown
+        # Dropdown
         text = "Dropdowns"
         content += lt(text)
 
@@ -1043,7 +1045,7 @@ class test_0001_htmlDocument():
 
         content += thisDropdown
 
-        ##Button Groups
+        # Button Groups
         text = "Button Groups"
         content += lt(text)
 
@@ -1095,7 +1097,7 @@ class test_0001_htmlDocument():
         )
         content += buttonGroup
 
-        ##Button Dropdowns
+        # Button Dropdowns
         text = "Button Dropdowns"
         content += lt(text)
 
@@ -1114,7 +1116,7 @@ class test_0001_htmlDocument():
         )
         content += thisDropdown
 
-        ##Navs
+        # Navs
         text = "Navs"
         content += lt(text)
 
@@ -1354,7 +1356,7 @@ class test_0001_htmlDocument():
         )
         content += tabbableNavigation
 
-        ##Navbar
+        # Navbar
         text = "Navbar"
         content += lt(text)
 
@@ -1474,7 +1476,7 @@ class test_0001_htmlDocument():
         )
         content += topNavBar
 
-        ##Breadcrumbs
+        # Breadcrumbs
         text = "Breadcrumbs"
         content += lt(text)
 
@@ -1505,7 +1507,7 @@ class test_0001_htmlDocument():
         )
         content += Breadcrumbs
 
-        ##Pagination
+        # Pagination
         text = "Pagination"
         content += lt(text)
 
@@ -1681,7 +1683,7 @@ class test_0001_htmlDocument():
         )
         content += badge
 
-        ##Typography
+        # Typography
         text = "Typography"
         content += lt(text)
 
@@ -1699,7 +1701,7 @@ class test_0001_htmlDocument():
         )
         content += pageHeader
 
-        ##Thumbnails
+        # Thumbnails
         text = "Thumbnails"
         content += lt(text)
 
@@ -1756,7 +1758,7 @@ class test_0001_htmlDocument():
         )
         content += thumbnails
 
-        ##Alerts
+        # Alerts
         text = "Alerts"
         content += lt(text)
 
@@ -1780,7 +1782,7 @@ class test_0001_htmlDocument():
         # alert #
         # dhf:var:get_alert_-_tbs_style.sublime-snippet #
 
-        ##Progress Bars
+        # Progress Bars
         text = "Progress Bars"
         content += lt(text)
 
@@ -1834,7 +1836,7 @@ class test_0001_htmlDocument():
             pull="left",
             triggerStyle=False  # [ False | "dropdown" | "tab" ]
         )
-        ##Media Object
+        # Media Object
         text = "Media Object"
         content += lt(text)
         mediaObject = dhf.mediaObject(
@@ -1855,7 +1857,7 @@ class test_0001_htmlDocument():
         )
         content += mediaObject
 
-        ##Misc
+        # Misc
         text = "Misc"
         content += lt(text)
         well = dhf.well(

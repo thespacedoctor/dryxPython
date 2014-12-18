@@ -26,10 +26,10 @@
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## SNIPPET CREATED
-## LAST MODIFIED : April 11, 2013
-## CREATED : April 11, 2013
-## AUTHOR : DRYX
+# SNIPPET CREATED
+# LAST MODIFIED : April 11, 2013
+# CREATED : April 11, 2013
+# AUTHOR : DRYX
 def htmlDocument(
         contentType=False,
         content='',
@@ -46,7 +46,8 @@ def htmlDocument(
     """
 
     if attachmentSaveAsName is not False:
-        contentType = """Content-Disposition: attachment; filename=%(attachmentSaveAsName)s""" % locals()
+        contentType = """Content-Disposition: attachment; filename=%(attachmentSaveAsName)s""" % locals(
+        )
     elif not contentType:
         contentType = ""
     else:
@@ -54,10 +55,9 @@ def htmlDocument(
 
     content = content.strip()
 
-
     if "text/plain" in contentType or "text/csv" in contentType or attachmentSaveAsName is not False:
         htmlDocument = \
-        """%(contentType)s\n
+            """%(contentType)s\n
 %(content)s
 """ % locals()
     else:
@@ -72,16 +72,17 @@ def htmlDocument(
     return htmlDocument.strip()
 
 
-## SNIPPET CREATED
-## LAST MODIFIED : May 28, 2013
-## CREATED : May 28, 2013
-## AUTHOR : DRYX
+# SNIPPET CREATED
+# LAST MODIFIED : May 28, 2013
+# CREATED : May 28, 2013
+# AUTHOR : DRYX
 def head(
     relativeUrlBase=False,
     mainCssFileName="main.css",
     pageTitle="",
     extras="",
-    faviconLocation=False
+    faviconLocation=False,
+    assetsDirectory=False
 ):
     """Generate an html head element for your webpage
 
@@ -129,10 +130,10 @@ def head(
 
     return head
 
-## SNIPPET CREATED
-## LAST MODIFIED : May 31, 2013
-## CREATED : May 31, 2013
-## AUTHOR : DRYX
+# SNIPPET CREATED
+# LAST MODIFIED : May 31, 2013
+# CREATED : May 31, 2013
+# AUTHOR : DRYX
 
 
 def body(
@@ -205,10 +206,10 @@ def body(
 
     return body
 
-## SNIPPET CREATED
-## LAST MODIFIED : March 27, 2013
-## CREATED : March 27, 2013
-## AUTHOR : DRYX
+# SNIPPET CREATED
+# LAST MODIFIED : March 27, 2013
+# CREATED : March 27, 2013
+# AUTHOR : DRYX
 
 
 def grid_row(
@@ -265,9 +266,9 @@ def grid_row(
     return row
 
 
-## LAST MODIFIED : March 27, 2013
-## CREATED : March 27, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : March 27, 2013
+# CREATED : March 27, 2013
+# AUTHOR : DRYX
 def grid_column(
     span=1,
     offset=0,
@@ -302,7 +303,6 @@ def grid_column(
         htmlId = ''
     if not htmlClass:
         htmlClass = ''
-    
 
     phoneClass = ""
     tabletClass = ""
@@ -325,7 +325,6 @@ def grid_column(
         else:
             desktopClass = "visible-desktop"
 
-
     if pull:
         pull = "pull-%(pull)s" % locals()
     else:
@@ -344,9 +343,9 @@ def grid_column(
     return column
 
 
-## LAST MODIFIED : April 30, 2014
-## CREATED : April 30, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : April 30, 2014
+# CREATED : April 30, 2014
+# AUTHOR : DRYX
 def row_adjustable(
     span=12,
     offset=0,
@@ -378,7 +377,7 @@ def row_adjustable(
         - @review: when complete, decide whether to abstract function to another module
     """
     ################ > IMPORTS ################
-    ## TEST THE ARGUMENTS
+    # TEST THE ARGUMENTS
 
     ## VARIABLES ##
     column = grid_column(
@@ -402,10 +401,10 @@ def row_adjustable(
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
 ###################################################################
-## SNIPPET CREATED
-## LAST MODIFIED : March 27, 2013
-## CREATED : March 27, 2013
-## AUTHOR : DRYX
+# SNIPPET CREATED
+# LAST MODIFIED : March 27, 2013
+# CREATED : March 27, 2013
+# AUTHOR : DRYX
 
 
 def _container(

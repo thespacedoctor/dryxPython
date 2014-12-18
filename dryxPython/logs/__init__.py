@@ -30,9 +30,9 @@ if __name__ == '__main__':
 def console_logger(
     level="INFO"
 ):
-    ## LAST MODIFIED : October 22, 2013
-    ## CREATED : October 22, 2013
-    ## AUTHOR : DRYX
+    # LAST MODIFIED : October 22, 2013
+    # CREATED : October 22, 2013
+    # AUTHOR : DRYX
     """Setup and return a console logger only.
 
     **Key Arguments:**

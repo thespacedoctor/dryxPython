@@ -2,7 +2,7 @@ import os
 import nose
 from .. import execute_mysql_script
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 
 
 def setUpModule():
@@ -71,7 +71,6 @@ class test_command_line():
         kwargs["force"] = True
         execute_mysql_script.main(kwargs)
 
-
     def test_command_line_method_02(self):
         kwargs = {}
         kwargs["--host"] = "localhost"
@@ -81,7 +80,6 @@ class test_command_line():
         kwargs["--pathToMysqlScript"] = pathToInputDir + \
             "clean_objectnames_in_transientbucket.sql"
         execute_mysql_script.main(kwargs)
-
 
     # x-class-method-to-test-a-command-line-usage
 # x-class-to-test-named-worker-function

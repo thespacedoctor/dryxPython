@@ -2,7 +2,7 @@ import os
 import nose
 from .. import declination_sexegesimal_to_decimal
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 
 
 def setUpModule():

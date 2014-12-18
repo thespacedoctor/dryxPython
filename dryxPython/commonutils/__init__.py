@@ -26,14 +26,14 @@ def main():
     # calculate_time_difference("2010-03-15T09:23:24","2013-01-15T05:34:42")
     print get_current_mjd()
 
-    #print get_now_sql_datetime()
-    #dryx_mkdir('/Users/Dave/Desktop/shit')
+    # print get_now_sql_datetime()
+    # dryx_mkdir('/Users/Dave/Desktop/shit')
     return
 
 
-## LAST MODIFIED : November 2012
-## CREATED : November 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : November 2012
+# CREATED : November 2012
+# AUTHOR : DRYX
 # class logger():
 #     """
 #     Uses the settings provided in a YAML dictionary to setup a logger(s) for you python program.
@@ -61,22 +61,23 @@ def main():
 #       Method to *set* and *get* the logger(s)
 #       """
 
-#       # IMPORT YAML LOGGING DICTIONARY FROM THE GIVEN PATH
+# IMPORT YAML LOGGING DICTIONARY FROM THE GIVEN PATH
 #       log.config.dictConfig(yaml.load(open(self.settingsFilePath, 'r')))
-#       # SET THE ROOT LOGGER
+# SET THE ROOT LOGGER
 #       logger = log.getLogger(__name__)
 
 #       return logger
 
 
-## LAST MODIFIED : 20121026
-## CREATED : 20121026
-def get_now_datetime_filestamp():
+# LAST MODIFIED : 20121026
+# CREATED : 20121026
+def get_now_datetime_filestamp(longTime=False):
     """A datetime stamp to be appended to the end of filenames:
         ``YYYYMMDDtHHMMSS``
 
         **Return:**
             - ``now`` -- current time and date in filename format
+            - ``longTime`` -- make time string longer (more change of filenames being unique)
     """
     ## > IMPORTS ##
     from datetime import datetime, date, time
@@ -87,7 +88,10 @@ def get_now_datetime_filestamp():
     # >ACTION(S)                                              #
     ###########################################################
     now = datetime.now()
-    now = now.strftime("%Y%m%dt%H%M%S")
+    if longTime:
+        now = now.strftime("%Y%m%dt%H%M%S%f")
+    else:
+        now = now.strftime("%Y%m%dt%H%M%S")
 
     return now
 
@@ -95,8 +99,8 @@ def get_now_datetime_filestamp():
 ############################################################################
 #  RETURNS A MYSQL STYLE TIMESTAMP (WRTITEN BY DRYX)                        #
 ############################################################################
-## LAST MODIFIED : 20121031
-## CREATED : 20121031
+# LAST MODIFIED : 20121031
+# CREATED : 20121031
 def get_now_sql_datetime():
     """A datetime stamp in MySQL format:
         ``YYYY-MM-DDTHH:MM:SS``
@@ -118,9 +122,9 @@ def get_now_sql_datetime():
 
 
 ##########################################################################
-## LAST MODIFIED : 20121108
-## CREATED : 20121108
-## AUTHOR : DRYX
+# LAST MODIFIED : 20121108
+# CREATED : 20121108
+# AUTHOR : DRYX
 def make_lowercase_nospace(theString):
     """Convert a string to a neatly formated filename type - no space, commas, lowercase etc
 
@@ -143,8 +147,8 @@ def make_lowercase_nospace(theString):
 ###########################################################################
 #  GIVEN A URL, EXTRACTS THE FILENAME AFTER THE LAST '/' (WRTITEN BY DRYX)#
 ###########################################################################
-## LAST MODIFIED : 20121031
-## CREATED : 20121031
+# LAST MODIFIED : 20121031
+# CREATED : 20121031
 def extract_filename_from_url(log, url):
     """
         get the filename from a URL.
@@ -168,7 +172,7 @@ def extract_filename_from_url(log, url):
         log.debug("extracting filename from url " + url)
         reEoURL = re.compile('([\w\.]*)$')
         filename = reEoURL.findall(url)[0]
-        #log.debug(filename)
+        # log.debug(filename)
         if(len(filename) == 0):
             filename = 'untitled.html'
         if not (re.search('\.', filename)):
@@ -182,9 +186,9 @@ def extract_filename_from_url(log, url):
 ##########################################################################
 #  GIVEN A FILENAME AND A DATE, WILL APPEND A DATE STAMP TO AND RETURN THE FILENAME (WRTITEN BY DRYX)  #
 ##########################################################################
-## LAST MODIFIED : 20121031
-## CREATED : 20121031
-def append_now_datestamp_to_filename(log, filename):
+# LAST MODIFIED : 20121031
+# CREATED : 20121031
+def append_now_datestamp_to_filename(log, filename, longTime=False):
     """append the current datestamp to the end of the filename (before the extension).
 
             **Key Arguments:**
@@ -202,7 +206,8 @@ def append_now_datestamp_to_filename(log, filename):
     try:
         #log.debug("appending date stamp to the filename : "+filename)
         sliced = filename.split('.')
-        dsFilename = sliced[0] + '_' + get_now_datetime_filestamp()
+        dsFilename = sliced[0] + '_' + \
+            get_now_datetime_filestamp(longTime=longTime)
         if len(sliced) == 2:
             dsFilename += '.' + sliced[1]
         else:
@@ -213,9 +218,9 @@ def append_now_datestamp_to_filename(log, filename):
 
     return dsFilename
 
-## LAST MODIFIED : December 12, 2012
-## CREATED : December 12, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : December 12, 2012
+# CREATED : December 12, 2012
+# AUTHOR : DRYX
 
 
 def pretty_date(date):
@@ -237,26 +242,26 @@ def pretty_date(date):
     s = diff.seconds
     ###############################
     if diff.days == 1:
-            return ' + 1d'
+        return ' + 1d'
     elif diff.days > 1:
-            return ' +{0}d'.format(diff.days)
+        return ' +{0}d'.format(diff.days)
     elif s <= 1:
-            return ' just now'
+        return ' just now'
     elif s < 60:
-            return ' +{0}sec'.format(s)
+        return ' +{0}sec'.format(s)
     elif s < 120:
-            return ' +1min'
+        return ' +1min'
     elif s < 3600:
-            return ' +{0}min'.format(s / 60)
+        return ' +{0}min'.format(s / 60)
     elif s < 7200:
-            return ' +1hr'
+        return ' +1hr'
     else:
-            return ' +{0}hr'.format(s / 3600)
+        return ' +{0}hr'.format(s / 3600)
 
 
-## LAST MODIFIED : January 19, 2013
-## CREATED : January 19, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : January 19, 2013
+# CREATED : January 19, 2013
+# AUTHOR : DRYX
 
 
 def calculate_time_difference(startDate, endDate):
@@ -301,8 +306,8 @@ def calculate_time_difference(startDate, endDate):
     return relTime
 
 
-## LAST MODIFIED : 20121101
-## CREATED : 20121101
+# LAST MODIFIED : 20121101
+# CREATED : 20121101
 def dryx_mkdir(log, directoryPath):
     """Create a directory if it does not yet exist
 
@@ -332,9 +337,9 @@ def dryx_mkdir(log, directoryPath):
 
     return None
 
-## LAST MODIFIED : December 10, 2012
-## CREATED : December 10, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : December 10, 2012
+# CREATED : December 10, 2012
+# AUTHOR : DRYX
 
 
 def strip_whitespace_from_dictionary_values(log, dictionary):
@@ -368,9 +373,9 @@ def strip_whitespace_from_dictionary_values(log, dictionary):
     return dictionary
 
 
-## LAST MODIFIED : January 25, 2013
-## CREATED : January 25, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : January 25, 2013
+# CREATED : January 25, 2013
+# AUTHOR : DRYX
 def get_current_mjd():
     """Get the current datetime as MJD
 
@@ -409,9 +414,9 @@ def get_current_mjd():
     return mjd
 
 
-## LAST MODIFIED : May 22, 2013
-## CREATED : May 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 22, 2013
+# CREATED : May 22, 2013
+# AUTHOR : DRYX
 def add_directories_to_path(
         directoryPath,
         log):
@@ -440,9 +445,9 @@ def add_directories_to_path(
     return
 
 
-## LAST MODIFIED : May 22, 2013
-## CREATED : May 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 22, 2013
+# CREATED : May 22, 2013
+# AUTHOR : DRYX
 def recusively_add_directories_to_path(
         directoryPath,
         log):
@@ -484,9 +489,9 @@ def recusively_add_directories_to_path(
     return
 
 
-## LAST MODIFIED : June 21, 2013
-## CREATED : June 21, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : June 21, 2013
+# CREATED : June 21, 2013
+# AUTHOR : DRYX
 def get_python_module_partials(
         pathToModuleFile,
         log):
@@ -546,9 +551,9 @@ def get_python_module_partials(
     return partialsDictionary
 
 
-## LAST MODIFIED : July 29, 2013
-## CREATED : July 29, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : July 29, 2013
+# CREATED : July 29, 2013
+# AUTHOR : DRYX
 def get_recursive_list_of_directory_contents(
         log,
         baseFolderPath,
@@ -604,7 +609,7 @@ def get_recursive_list_of_directory_contents(
                     if matched:
                         matchedPathList.append(fullPath)
 
-                    ## UPDATE DIRECTORY LISTING
+                    # UPDATE DIRECTORY LISTING
                     if os.path.isdir(fullPath):
                         childDirList.append(fullPath)
 
@@ -615,9 +620,9 @@ def get_recursive_list_of_directory_contents(
     return matchedPathList
 
 
-## LAST MODIFIED : August 17, 2013
-## CREATED : August 17, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : August 17, 2013
+# CREATED : August 17, 2013
+# AUTHOR : DRYX
 def get_help_for_python_module(
         pathToModuleFile,
         log):
@@ -649,9 +654,9 @@ def get_help_for_python_module(
     log.info('completed the ``get_help_for_python_module`` function')
     return None
 
-## LAST MODIFIED : July 22, 2013
-## CREATED : July 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : July 22, 2013
+# CREATED : July 22, 2013
+# AUTHOR : DRYX
 
 
 def recursively_remove_empty_directories(
