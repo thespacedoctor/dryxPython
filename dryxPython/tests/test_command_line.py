@@ -3,7 +3,9 @@ import nose
 import dryxPython.command_line as cl
 from unittest import TestCase
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+
+
 def setUpModule():
     import logging
     import logging.config
@@ -15,10 +17,10 @@ def setUpModule():
 
     # SETUP PATHS TO COMMONG DIRECTORIES FOR TEST DATA
     global pathToInputDataDir, pathToOutputDir, pathToOutputDataDir, pathToInputDir
-    pathToInputDir = moduleDirectory+"/input/"
+    pathToInputDir = moduleDirectory + "/input/"
     pathToInputDataDir = pathToInputDir + "data/"
-    pathToOutputDir = moduleDirectory+"/output/"
-    pathToOutputDataDir = pathToOutputDir+"data/"
+    pathToOutputDir = moduleDirectory + "/output/"
+    pathToOutputDataDir = pathToOutputDir + "data/"
 
     # SETUP THE TEST LOG FILE
     global testlog
@@ -53,6 +55,7 @@ def setUpModule():
 
     return None
 
+
 def tearDownModule():
     "tear down test fixtures"
 
@@ -61,21 +64,22 @@ def tearDownModule():
     testlog.close()
     return None
 
+
 class emptyLogger:
-    info=None
-    error=None
-    debug=None
-    critical=None
-    warning=None
+    info = None
+    error = None
+    debug = None
+    critical = None
+    warning = None
 
 
 class test_fits_print_fits_header():
 
     def test_result_to_python_dictionary(self):
         clArgs = {}
-        clArgs["<path-to-fits-file>"] = pathToInputDataDir + "SN2012ec_20130113_GB_merge_56478_1_sb.fits"
+        clArgs["<path-to-fits-file>"] = pathToInputDataDir + \
+            "SN2012ec_20130113_GB_merge_56478_1_sb.fits"
         clArgs["--pydict"] = False
         clArgs["--help"] = False
         result = cl.dft_print_fits_header(clArgs)
         # nose.tools.assert_is_instance(result, dict)
-

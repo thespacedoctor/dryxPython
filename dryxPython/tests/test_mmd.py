@@ -2,7 +2,9 @@ import os
 import nose
 from dryxPython.mmd import mmd
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+
+
 def setUpModule():
     import logging
     import logging.config
@@ -13,8 +15,8 @@ def setUpModule():
 
     # SETUP PATHS TO COMMONG DIRECTORIES FOR TEST DATA
     global pathToOutputDir, pathToInputDir
-    pathToInputDir = moduleDirectory+"/input/"
-    pathToOutputDir = moduleDirectory+"/output/"
+    pathToInputDir = moduleDirectory + "/input/"
+    pathToOutputDir = moduleDirectory + "/output/"
 
     # SETUP THE TEST LOG FILE
     global testlog
@@ -51,24 +53,27 @@ def setUpModule():
 
     return None
 
+
 def tearDownModule():
     "tear down test fixtures"
     # CLOSE THE TEST LOG FILE
     testlog.close()
     return None
 
+
 class emptyLogger:
-    info=None
-    error=None
-    debug=None
-    critical=None
-    warning=None
+    info = None
+    error = None
+    debug = None
+    critical = None
+    warning = None
+
 
 class test_convert_to_html():
+
     def test_convert_to_html_works_as_expected(self):
         kwargs = {}
-        kwargs["log"]=log
+        kwargs["log"] = log
         kwargs["pathToMMDFile"] = pathToInputDir + "test_file_for_mmd_module.md"
         kwargs["css"] = "amblin"
         print mmd.convert_to_html(**kwargs)
-

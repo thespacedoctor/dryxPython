@@ -60,7 +60,7 @@ def main(arguments=None):
         )
     elif "--logger" not in arguments or arguments["--logger"] is None:
         log = dl.console_logger(
-            level="DEBUG"
+            level="WARNING"
         )
         log.debug('logger setup')
     # x-setup-database-connection-in-main-function
@@ -168,7 +168,7 @@ def createpythonpackage(
         message = "%s\nthe path to this folder already exists. Please delete it or provide a different package name." % (
             location,)
         log.error(message)
-        raise IOError(message)
+        return
 
     shutil.copytree(boilerplatePath, location)
     try:
@@ -265,14 +265,15 @@ def createpythonsubpackage(
         message = "%s\nthe path to this subpackage already exists. Please delete it or provide a different subpackage name." % (
             location,)
         log.error(message)
-        raise IOError(message)
+        return
 
     shutil.copytree(boilerplatePath, location)
 
     append_import_to_init_file(
         log=log,
         pathToHostDirectory=pathToHostDirectory,
-        moduleName=subPackageName
+        moduleName=subPackageName,
+        fromImport=False
     )
 
     log.info('completed the ``createpythonsubpackage`` function')
@@ -322,7 +323,7 @@ def createpythonmodule(
         message = "%s\nthe path to this module already exists. Please delete it or provide a different module name." % (
             location,)
         log.error(message)
-        raise IOError(message)
+        return
     shutil.copy(boilerplatePath, location)
 
     # now for the test directory
@@ -345,7 +346,8 @@ def createpythonmodule(
     append_import_to_init_file(
         log=log,
         pathToHostDirectory=pathToHostDirectory,
-        moduleName=moduleName
+        moduleName=moduleName,
+        fromImport=True
     )
 
     log.info('completed the ``createpythonmodule`` function')
@@ -409,7 +411,8 @@ def create_git_repo(
 def append_import_to_init_file(
         log,
         pathToHostDirectory,
-        moduleName
+        moduleName,
+        fromImport=False
 ):
     """append import to init file
 
@@ -417,6 +420,7 @@ def append_import_to_init_file(
         - ``log`` -- logger
         - ``pathToHostDirectory`` -- path to the directory hosting the __init__ file
         - ``moduleName`` -- name of the module to import
+        - ``fromImport`` -- import class/function from module?
 
     **Return:**
         - None
@@ -446,8 +450,12 @@ def append_import_to_init_file(
         log.critical(message)
         raise IOError(message)
 
-    thisData = "%(thisData)s\nfrom %(moduleName)s import %(moduleName)s" % locals(
-    )
+    if fromImport:
+        thisData = "%(thisData)s\nfrom %(moduleName)s import %(moduleName)s" % locals(
+        )
+    else:
+        thisData = "%(thisData)s\nimport %(moduleName)s" % locals(
+        )
     pathToWriteFile = pathToReadFile
     try:
         log.debug("attempting to open the file %s" % (pathToWriteFile,))

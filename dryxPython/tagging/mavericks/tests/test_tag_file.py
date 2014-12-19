@@ -3,7 +3,7 @@ import nose
 import shutil
 from .. import tag_file
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 
 
 def setUpModule():

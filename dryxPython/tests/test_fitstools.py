@@ -2,7 +2,9 @@ import os
 import nose
 from .. import fitstools
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+
+
 def setUpModule():
     import logging
     import logging.config
@@ -13,10 +15,10 @@ def setUpModule():
 
     # SETUP PATHS TO COMMONG DIRECTORIES FOR TEST DATA
     global pathToInputDataDir, pathToOutputDir, pathToOutputDataDir, pathToInputDir
-    pathToInputDir = moduleDirectory+"/input/"
+    pathToInputDir = moduleDirectory + "/input/"
     pathToInputDataDir = pathToInputDir + "data/"
-    pathToOutputDir = moduleDirectory+"/output/"
-    pathToOutputDataDir = pathToOutputDir+"data/"
+    pathToOutputDir = moduleDirectory + "/output/"
+    pathToOutputDataDir = pathToOutputDir + "data/"
 
     # SETUP THE TEST LOG FILE
     global testlog
@@ -54,47 +56,42 @@ def setUpModule():
 
     return None
 
+
 def tearDownModule():
     "tear down test fixtures"
     # CLOSE THE TEST LOG FILE
     testlog.close()
     return None
 
+
 class emptyLogger:
-    info=None
-    error=None
-    debug=None
-    critical=None
-    warning=None
+    info = None
+    error = None
+    debug = None
+    critical = None
+    warning = None
+
 
 class test_convert_fits_header_to_dictionary():
 
     def test_pathToFitsFile_argu_is_str(self):
-        nose.tools.assert_raises(TypeError, fitstools.convert_fits_header_to_dictionary, log, ["not a string", 10])
+        nose.tools.assert_raises(
+            TypeError, fitstools.convert_fits_header_to_dictionary, log, ["not a string", 10])
 
     def test_error_raises_if_fits_file_does_not_exists(self):
-        nose.tools.assert_raises(IOError, fitstools.convert_fits_header_to_dictionary, log, "/path/to/nothing")
+        nose.tools.assert_raises(
+            IOError, fitstools.convert_fits_header_to_dictionary, log, "/path/to/nothing")
 
     def test_dictionary_is_returned(self):
-        result = fitstools.convert_fits_header_to_dictionary(log, pathToFitsFile)
+        result = fitstools.convert_fits_header_to_dictionary(
+            log, pathToFitsFile)
         nose.tools.assert_is_instance(result, dict)
 
     def test_dictionary_values_are_lists_with_2_items(self):
-        result = fitstools.convert_fits_header_to_dictionary(log, pathToFitsFile)
+        result = fitstools.convert_fits_header_to_dictionary(
+            log, pathToFitsFile)
         lengthResult = True
         for k, v in result.iteritems():
             if len(v) != 2:
                 lengthResult = False
         nose.tools.assert_true(lengthResult)
-
-
-
-
-
-
-
-
-
-
-
-

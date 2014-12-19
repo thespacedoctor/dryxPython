@@ -19164,3 +19164,7 @@
 127.0.0.1 - - [21/Jul/2014:11:56:25 +0100] "GET /assets/fonts/Oxygen.woff HTTP/1.1" 404 222
 127.0.0.1 - - [21/Jul/2014:11:56:25 +0100] "GET /assets/fonts/Oxygen_italic.woff HTTP/1.1" 404 229
 127.0.0.1 - - [21/Jul/2014:11:56:25 +0100] "GET /assets/fonts/Oxygen_bold.woff HTTP/1.1" 404 227
+127.0.0.1 - - [25/Nov/2014:14:31:13 +0000] "GET /dryxPython_htmlframework_cheatsheet.html HTTP/1.1" 403 242
+127.0.0.1 - - [25/Nov/2014:14:31:13 +0000] "GET /favicon.ico HTTP/1.1" 403 213
+127.0.0.1 - - [25/Nov/2014:14:31:13 +0000] "GET /favicon.ico HTTP/1.1" 403 213
+127.0.0.1 - - [25/Nov/2014:14:31:13 +0000] "GET /favicon.ico HTTP/1.1" 403 213

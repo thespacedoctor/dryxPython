@@ -120,7 +120,8 @@ def multiWebDocumentDownloader(
     timeout=180,
     concurrentDownloads=10,
     resetFilename=False,
-    credentials=False
+    credentials=False,
+    longTime=False
 ):
     """get multiple url documents and place in specified download directory
 
@@ -169,7 +170,7 @@ def multiWebDocumentDownloader(
             if(timeStamp):
                 # APPEND TIMESTAMP TO THE FILENAME
                 filename = dcu.append_now_datestamp_to_filename(
-                    log, filename)
+                    log, filename, longTime=longTime)
             # GENERATE THE LOCAL FILE URL
             localFilepath = downloadDirectory + "/" + filename
             thisArray.extend([[url, localFilepath]])
@@ -351,3 +352,4 @@ if __name__ == '__main__':
 import papers
 import urlToPdf
 import google_drive
+from download_flicker_image import download_flicker_image

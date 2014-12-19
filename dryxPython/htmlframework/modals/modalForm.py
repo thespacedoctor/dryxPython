@@ -171,7 +171,7 @@ class modalForm():
         thisContentLabel = horizontalFormControlLabel(
             labelText=label,
             forId=randId,
-            location="top"
+            location="left"
         )
         thisContentCG = horizontalFormControlGroup(
             content=thisContentLabel + thisControlRow,

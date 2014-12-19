@@ -56,7 +56,8 @@ class setup_main_clutil():
             self,
             arguments,
             docString,
-            logLevel="DEBUG"
+            logLevel="DEBUG",
+            options_first=False
     ):
         self.arguments = arguments
         self.docString = docString
@@ -66,7 +67,7 @@ class setup_main_clutil():
         ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
         # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
         if arguments == None:
-            arguments = docopt(docString)
+            arguments = docopt(docString, options_first=options_first)
         self.arguments = arguments
 
         # UNPACK SETTINGS

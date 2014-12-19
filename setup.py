@@ -27,6 +27,10 @@ setup(name='dryxPython',
           'pyyaml',
           'docopt',
           'numpy',
+          'pdfkit',
+          'gdata',
+          'mysql-python',
+          'eventlet'
       ],
       test_suite='nose.collector',
       tests_require=['nose', 'nose-cover3'],
@@ -49,7 +53,10 @@ setup(name='dryxPython',
               'dp_xy_scatter=dryxPython.plotting.xy_scatter:main',
               'astromCorrector=dryxPython.astrotools.astrometry_corrector:main',
               'git_update_request_watcher=dryxPython.git.update_request_watcher:main',
-              'dwc_convert_list_of_urls_to_pdfs=dryxPython.webcrawlers.urlToPdf.convert_list_of_urls_to_pdfs:main'
+              'dwc_convert_list_of_urls_to_pdfs=dryxPython.webcrawlers.urlToPdf.convert_list_of_urls_to_pdfs:main',
+              'dat_crossmatch_ned=dryxPython.astrotools.catalogue_queries.ned:main',
+              'dat_get_angular_separation=dryxPython.astrotools.get_angular_separation:main',
+              'dat_shift_coordinates=dryxPython.astrotools.shift_coordinates:main'
           ],
       },
       zip_safe=False)
