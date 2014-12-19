@@ -182,6 +182,7 @@ class download_flicker_image():
         self.log.info(
             'starting the ``_find_image_link_in_flicker_html`` method')
 
+        url = False
         urlDoc = singleWebDocumentDownloader(
             url=self.url,
             downloadDirectory="/tmp",
@@ -189,6 +190,9 @@ class download_flicker_image():
             timeStamp=1,
             credentials=False
         )
+
+        if not urlDoc:
+            return url
 
         import codecs
         pathToReadFile = urlDoc
@@ -210,8 +214,6 @@ class download_flicker_image():
             r'\{"label":"Original","file":"(?P<filename>.*?)","url":"(?P<url>.*?)","width"', thisData, re.S)
         if matchObject:
             url = matchObject.group("url").replace("\/", "/")
-        else:
-            url = False
 
         self.log.info(
             'completed the ``_find_image_link_in_flicker_html`` method')
