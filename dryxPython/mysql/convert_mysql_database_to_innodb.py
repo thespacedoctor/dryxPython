@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-convert_mysql_database_to_myisam.py
+convert_mysql_database_to_innodb.py
 ================================================
 :Summary:
     Convert the Collate of tables within database to `latin1_swedish_ci` and the charset to `latin1`
@@ -22,11 +22,11 @@ convert_mysql_database_to_myisam.py
     @review: when complete pull all general functions and classes into dryxPython
 
 # @review Code to be added to the package setup.py file        
-# 'dms_convert_mysql_database_to_myisam=dryxPython.mysql.convert_mysql_database_to_myisam:main'
+# 'dms_convert_mysql_database_to_innodb=dryxPython.mysql.convert_mysql_database_to_innodb:main'
 
 Usage:
-    dms_convert_mysql_database_to_myisam -s <settingsFile>
-    dms_convert_mysql_database_to_myisam -s <settingsFile> -t <tableSchema>
+    dms_convert_mysql_database_to_innodb -s <settingsFile>
+    dms_convert_mysql_database_to_innodb -s <settingsFile> -t <tableSchema>
 
     -h, --help          show this help message
     -v, --version       show version
@@ -46,7 +46,7 @@ from . import execute_mysql_write_query
 
 def main(arguments=None):
     """
-    The main function used when ``convert_mysql_database_to_myisam.py`` is run as a single script from the cl, or when installed as a cl command
+    The main function used when ``convert_mysql_database_to_innodb.py`` is run as a single script from the cl, or when installed as a cl command
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -77,7 +77,7 @@ def main(arguments=None):
     ## START LOGGING ##
     startTime = dcu.get_now_sql_datetime()
     log.info(
-        '--- STARTING TO RUN THE convert_mysql_database_to_myisam.py AT %s' %
+        '--- STARTING TO RUN THE convert_mysql_database_to_innodb.py AT %s' %
         (startTime,))
 
     if "tableSchema" not in locals():
@@ -85,7 +85,7 @@ def main(arguments=None):
 
     # call the worker function
     # x-if-settings-or-database-credientials
-    convert_mysql_database_to_myisam(
+    convert_mysql_database_to_innodb(
         log=log,
         dbConn=dbConn,
         tableSchema=tableSchema,
@@ -98,7 +98,7 @@ def main(arguments=None):
     endTime = dcu.get_now_sql_datetime()
     runningTime = dcu.calculate_time_difference(startTime, endTime)
     log.info(
-        '-- FINISHED ATTEMPT TO RUN THE convert_mysql_database_to_myisam.py AT %s (RUNTIME: %s) --' %
+        '-- FINISHED ATTEMPT TO RUN THE convert_mysql_database_to_innodb.py AT %s (RUNTIME: %s) --' %
         (endTime, runningTime, ))
 
     return
@@ -115,12 +115,12 @@ def main(arguments=None):
 # LAST MODIFIED : April 28, 2014
 # CREATED : April 28, 2014
 # AUTHOR : DRYX
-def convert_mysql_database_to_myisam(
+def convert_mysql_database_to_innodb(
         log,
         dbConn,
         tableSchema=False
 ):
-    """convert_mysql_database_to_myisam
+    """convert_mysql_database_to_innodb
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -144,10 +144,10 @@ def convert_mysql_database_to_myisam(
         tableSchema = ""
 
     sqlQuery = """
-        SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' ENGINE=MyISAM;')
+        SELECT CONCAT('ALTER TABLE ',table_schema,'.',table_name,' ENGINE=InnoDB ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;')
             FROM information_schema.tables
             WHERE 1=1
-                AND engine = 'InnoDB'
+                AND engine = 'MyISAM'
                 AND table_schema NOT IN ('information_schema', 'mysql', 'performance_schema') %(tableSchema)s and table_name not like "%%view%%";
     """ % locals()
     rows = execute_mysql_read_query(
@@ -158,11 +158,17 @@ def convert_mysql_database_to_myisam(
 
     for row in rows:
         sqlQuery = row.values()[0]
-        execute_mysql_write_query(
-            sqlQuery=sqlQuery,
-            dbConn=dbConn,
-            log=log
-        )
+
+        try:
+            log.debug("attempting to change table to InnoDB")
+            execute_mysql_write_query(
+                sqlQuery=sqlQuery,
+                dbConn=dbConn,
+                log=log
+            )
+        except Exception, e:
+            log.warning(
+                "could not change table to InnoDB - failed with this error: %s " % (str(e),))
 
     return None
 

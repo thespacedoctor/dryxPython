@@ -126,6 +126,7 @@ class utKit():
             use_unicode=True,
             charset='utf8'
         )
+        dbConn.autocommit(True)
 
         return log, dbConn, self.pathToInputDir, self.pathToOutputDir
 

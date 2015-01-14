@@ -88,6 +88,7 @@ def set_db_connection(pathToYamlFile):
             use_unicode=True,
             charset='utf8'
         )
+        dbConn.autocommit(True)
     except Exception as e:
         logging.critical('could not connect to the ' + connDict['db'] + ' database on ' + connDict['host'] + ' : '
                          + str(e) + '\n')
@@ -142,12 +143,12 @@ def execute_mysql_write_query(
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
                                                                                                    str(e)))
-            sys.exit(0)
+            return -1
     except Exception as e:
         log.error(
             'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
             (sqlQuery, str(e)))
-        sys.exit(0)
+        return -1
     # CLOSE THE CURSOR
     try:
         cursor.close()
@@ -863,7 +864,7 @@ def get_db_table_column_names(
 
 
 import convert_collate_and_charset_of_mysql_database
-import convert_mysql_database_to_myisam
+import convert_mysql_database_to_innodb
 import execute_mysql_script
 
 

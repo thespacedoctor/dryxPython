@@ -107,6 +107,7 @@ def main(arguments=None):
             use_unicode=True,
             charset='utf8'
         )
+        dbConn.autocommit(True)
         log.debug('dbConn: %s' % (dbConn,))
 
     ## START LOGGING ##

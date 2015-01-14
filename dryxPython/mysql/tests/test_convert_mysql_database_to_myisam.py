@@ -1,9 +1,9 @@
 import os
 import nose
-from .. import convert_mysql_database_to_myisam
+from .. import convert_mysql_database_to_innodb
 from dryxPython.utKit import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -16,21 +16,20 @@ class test_command_line():
         kwargs = {}
         kwargs["--settingsFile"] = pathToInputDir + "project_settings.yaml"
         kwargs["--tableSchema"] = False
-        convert_mysql_database_to_myisam.main(kwargs)
+        convert_mysql_database_to_innodb.main(kwargs)
 
     # x-class-method-to-test-a-command-line-usage
 
 
-# class test_convert_mysql_database_to_myisam():
+# class test_convert_mysql_database_to_innodb():
 
-#     def test_convert_mysql_database_to_myisam_function(self):
+#     def test_convert_mysql_database_to_innodb_function(self):
 #         kwargs = {}
 #         kwargs = {}
 #         kwargs["log"] = log
 #         kwargs["dbConn"] = dbConn
-#         convert_mysql_database_to_myisam.convert_mysql_database_to_myisam(
+#         convert_mysql_database_to_innodb.convert_mysql_database_to_innodb(
 #             **kwargs)
-
 
         # x-print-testpage-for-pessto-marshall-web-object
 

@@ -70,6 +70,7 @@ def setUpModule():
         use_unicode=True,
         charset='utf8'
     )
+    dbConn.autocommit(True)
 
     # CREATE A TABLE TO TEST WITH
     global testTableName
