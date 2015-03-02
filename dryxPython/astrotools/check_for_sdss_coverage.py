@@ -119,7 +119,7 @@ def check_for_sdss_coverage(
         log,
         raDeg,
         decDeg,
-        url="http://skyserver.sdss3.org/public/en/tools/search/x_sql.aspx"
+        url="http://skyserver.sdss.org/dr12/en/tools/search/x_sql.aspx"
 ):
     """Check an ra and dec for SDSS DR9 image coverage
 
