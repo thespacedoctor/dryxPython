@@ -321,3 +321,5 @@ if __name__ == '__main__':
 ###################################################################
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
+
+from convert_excel_workbook_to_binary_fits_table import convert_excel_workbook_to_binary_fits_table

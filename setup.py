@@ -56,7 +56,9 @@ setup(name='dryxPython',
               'dwc_convert_list_of_urls_to_pdfs=dryxPython.webcrawlers.urlToPdf.convert_list_of_urls_to_pdfs:main',
               'dat_crossmatch_ned=dryxPython.astrotools.catalogue_queries.ned:main',
               'dat_get_angular_separation=dryxPython.astrotools.get_angular_separation:main',
-              'dat_shift_coordinates=dryxPython.astrotools.shift_coordinates:main'
+              'dat_shift_coordinates=dryxPython.astrotools.shift_coordinates:main',
+              'dat_date_to_mjd=dryxPython.astrotools.date_to_mjd:main',
+              'dft_convert_excel_workbook_to_binary_fits_table=dryxPython.fitstools.convert_excel_workbook_to_binary_fits_table:main'
           ],
       },
       zip_safe=False)

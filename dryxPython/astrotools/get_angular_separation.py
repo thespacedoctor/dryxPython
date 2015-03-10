@@ -81,7 +81,7 @@ def main(arguments=None):
         dec2=dec2
     )
 
-    print """%(angularSeparation)4.2f\" (%(north)4.2f\" N, %(east)4.2f\" E)""" % locals()
+    print """%(angularSeparation)6.4f\" (%(north)6.4f\" N, %(east)6.4f\" E)""" % locals()
 
     if "dbConn" in locals() and dbConn:
         dbConn.commit()

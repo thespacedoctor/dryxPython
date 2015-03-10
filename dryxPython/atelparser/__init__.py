@@ -370,12 +370,7 @@ def parse_atels(dbConn, log, mdFolder):
                     WHERE dateParsed is NULL
                     ORDER BY atelNumber"""
 
-    # log.warning('sqlQuery %s' % (sqlQuery,))
-
-    # USED FOR DEVELOPMENT
-    # sqlQuery = """SELECT *
-    #                 FROM atel_fullcontent
-    #                 ORDER BY atelNumber"""
+    log.debug('sqlQuery %s' % (sqlQuery,))
 
     try:
         log.debug("attempting to select the required atel text")
@@ -385,13 +380,6 @@ def parse_atels(dbConn, log, mdFolder):
             "could not select the required atel text - failed with this error: %s " %
             (str(e),))
         return -1
-
-    # USED FOR DEVELOPMENT
-    # sqlQuery = """delete from atel_names;
-    #                 delete from atel_coordinates;
-    #                 ALTER TABLE `pessto_marshall_sandbox`.`atel_coordinates` AUTO_INCREMENT = 1 ;
-    #                 ALTER TABLE `pessto_marshall_sandbox`.`atel_names` AUTO_INCREMENT = 1 ;"""
-    # m.execute_mysql_write_query(sqlQuery, dbConn, log)
 
     # REGEX BUILDS
     start = r"""((R\.?A\.?\b|Coord)[/()\w\d\s,.]{0,9}(\(J2000(\.0)?\)\s?)?(=|:|\s)|\d{4}-\d{2}-\d{2})\s{0,2}[+(]{0,2}"""
@@ -513,6 +501,8 @@ def parse_atels(dbConn, log, mdFolder):
     for row in rows:
         atelNumber = row["atelNumber"]
         userText = row["userText"]
+
+        log.info("""parsing atel: `%(atelNumber)s`""" % locals())
         # convert bytes to unicode
         if isinstance(userText, str):
             userText = unicode(userText, encoding="utf-8", errors="replace")
@@ -591,6 +581,8 @@ def parse_atels(dbConn, log, mdFolder):
         except:
             sIter = None
 
+        # 14h 59m 36.51s -71d 46m 60.0s
+
         sList = []
         for item in sIter:
             # CONVERT RA DEC TO DECIMAL DEGREES
@@ -604,6 +596,7 @@ def parse_atels(dbConn, log, mdFolder):
                 item.group('raHrs'), item.group('raMin'), raSec)
             _decSex = """%s:%s:%s""" % (
                 item.group('decDeg'), item.group('decMin'), decSec)
+
             try:
                 log.debug("attempting to 'some action' here")
                 raDegrees = dat.ra_sexegesimal_to_decimal.ra_sexegesimal_to_decimal(
@@ -615,8 +608,17 @@ def parse_atels(dbConn, log, mdFolder):
                 log.debug('atelNumber: %(atelNumber)s' % locals())
                 continue
 
-            decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
-                dec=_decSex)
+            try:
+                log.debug("attempting to 'some action' here")
+                decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+                    dec=_decSex)
+            except Exception, e:
+                log.error(
+                    "could not 'convert the dec' - failed with this error: %s " % (str(e),))
+                log.debug('DEC: %(_decSex)s' % locals())
+                log.debug('atelNumber: %(atelNumber)s' % locals())
+                continue
+
             sList.extend([[str(raDegrees), str(decDegrees)]])
             userText = userText.replace(
                 item.group('raSex'), " **<font color=blue>" + item.group('raSex') + " </font>** ")
@@ -665,8 +667,17 @@ def parse_atels(dbConn, log, mdFolder):
                 log.debug('RA: %(_raSex)s' % locals())
                 log.debug('atelNumber: %(atelNumber)s' % locals())
                 continue
-            decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
-                dec=_decSex)
+            try:
+                log.debug("attempting to 'convert the dec' here")
+                decDegrees = dat.declination_sexegesimal_to_decimal.declination_sexegesimal_to_decimal(
+                    dec=_decSex)
+            except Exception, e:
+                log.error(
+                    "could not 'convert the dec' - failed with this error: %s " % (str(e),))
+                log.debug('DEC: %(_decSex)s' % locals())
+                log.debug('atelNumber: %(atelNumber)s' % locals())
+                continue
+
             sList.extend([[str(raDegrees), str(decDegrees)]])
             userText = userText.replace(
                 item.group('raSex'), " **<font color=#dc322f>" + item.group('raSex') + " </font>** ")
