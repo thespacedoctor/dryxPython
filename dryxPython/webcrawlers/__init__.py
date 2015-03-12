@@ -167,6 +167,10 @@ def multiWebDocumentDownloader(
                 filename = resetFilename
             else:
                 filename = dcu.extract_filename_from_url(log, url)
+
+            if not filename:
+                continue
+
             if(timeStamp):
                 # APPEND TIMESTAMP TO THE FILENAME
                 filename = dcu.append_now_datestamp_to_filename(
@@ -192,6 +196,10 @@ def multiWebDocumentDownloader(
                 filename = resetFilename
             else:
                 filename = dcu.extract_filename_from_url(log, url)
+
+            if not filename:
+                continue
+
             if(timeStamp):
                 # APPEND TIMESTAMP TO THE FILENAME
                 filename = dcu.append_now_datestamp_to_filename(

@@ -178,6 +178,8 @@ def extract_filename_from_url(log, url):
         if not (re.search('\.', filename)):
             filename = filename + '.html'
     except Exception as e:
+        filename = None
+        # print url
         log.error("could not extracting filename from url : " + str(e) + "\n")
 
     return filename
