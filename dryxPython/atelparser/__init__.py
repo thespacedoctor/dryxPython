@@ -193,6 +193,8 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
     # LOOP THROUGH THE FILES AND ADD THE VARIOUS HTML ELEMENTS AND TAGS TO
     # MARSHALL DB
     for url in localUrls:
+        if not url:
+            continue
         rf = open(url, 'r')
         html = rf.read()
         elementDict = {}
