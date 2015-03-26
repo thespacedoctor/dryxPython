@@ -536,3 +536,5 @@ import catalogue_queries
 from get_angular_separation import get_angular_separation
 from shift_coordinates import shift_coordinates
 from date_to_mjd import date_to_mjd
+from minor_planet_checker import minor_planet_checker
+from mjd_to_date import mjd_to_date

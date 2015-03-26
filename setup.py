@@ -58,7 +58,9 @@ setup(name='dryxPython',
               'dat_get_angular_separation=dryxPython.astrotools.get_angular_separation:main',
               'dat_shift_coordinates=dryxPython.astrotools.shift_coordinates:main',
               'dat_date_to_mjd=dryxPython.astrotools.date_to_mjd:main',
-              'dft_convert_excel_workbook_to_binary_fits_table=dryxPython.fitstools.convert_excel_workbook_to_binary_fits_table:main'
+              'dft_convert_excel_workbook_to_binary_fits_table=dryxPython.fitstools.convert_excel_workbook_to_binary_fits_table:main',
+              'dat_mjd_to_date=dryxPython.astrotools.mjd_to_date:main',
+              'dat_minor_planet_checker=dryxPython.astrotools.minor_planet_checker:main'
           ],
       },
       zip_safe=False)
