@@ -538,3 +538,4 @@ from shift_coordinates import shift_coordinates
 from date_to_mjd import date_to_mjd
 from minor_planet_checker import minor_planet_checker
 from mjd_to_date import mjd_to_date
+from decimal_day_to_day_hour_min_sec import decimal_day_to_day_hour_min_sec
