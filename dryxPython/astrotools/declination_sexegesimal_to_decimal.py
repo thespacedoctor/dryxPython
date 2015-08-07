@@ -124,7 +124,7 @@ def declination_sexegesimal_to_decimal(
 
     # Look for a minus sign.  Note that -00 is the same as 00.
     regex = re.compile(
-        '^([\+\-]?(\d|[0-8]\d))\D+([0-5]\d)\D+([0-5]\d(\.\d+)?)$')
+        '^([\+\-]?(\d|[0-8]\d))\D+([0-5]\d)\D+([0-5]?\d(\.\d+)?)$')
     decMatch = regex.match(dec)
 
     if decMatch:
@@ -146,7 +146,7 @@ def declination_sexegesimal_to_decimal(
 
     else:
         raise IOError(
-            "could not convert dec to decimal degrees, could not parse sexegesimal input")
+            "could not convert dec to decimal degrees, could not parse sexegesimal input. Original value was `%(dec)s`" % locals())
 
     return decimalDegrees
 

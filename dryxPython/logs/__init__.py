@@ -59,7 +59,7 @@ def console_logger(
   version: 1
   formatters:
       console_style:
-          format: '* %(asctime)s - %(levelname)s: %(filename)s:%(funcName)s:%(lineno)d > %(message)s'
+          format: '* %(asctime)s - %(levelname)s: %(pathname)s:%(funcName)s:%(lineno)d > %(message)s'
           datefmt: '%H:%M:%S'
   handlers:
       console:
@@ -138,7 +138,7 @@ class GroupWriteRotatingFileHandler(handlers.RotatingFileHandler):
 
     def _open(self):
         prevumask = os.umask(0)
-        #os.fdopen(os.open('/path/to/file', os.O_WRONLY, 0600))
+        # os.fdopen(os.open('/path/to/file', os.O_WRONLY, 0600))
         rtv = logging.handlers.RotatingFileHandler._open(self)
         os.umask(prevumask)
         return rtv

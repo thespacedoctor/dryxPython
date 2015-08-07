@@ -29,10 +29,10 @@ def setUpModule():
     version: 1
     formatters:
         file_style:
-            format: '* %(asctime)s - %(name)s - %(levelname)s (%(filename)s > %(funcName)s > %(lineno)d) - %(message)s  '
+            format: '* %(asctime)s - %(name)s - %(levelname)s (%(pathname)s > %(funcName)s > %(lineno)d) - %(message)s  '
             datefmt: '%Y/%m/%d %H:%M:%S'
         console_style:
-            format: '* %(asctime)s - %(levelname)s: %(filename)s:%(funcName)s:%(lineno)d > %(message)s'
+            format: '* %(asctime)s - %(levelname)s: %(pathname)s:%(funcName)s:%(lineno)d > %(message)s'
             datefmt: '%H:%M:%S'
         html_style:
             format: '<div id="row" class="%(levelname)s"><span class="date">%(asctime)s</span>   <span class="label">file:</span><span class="filename">%(filename)s</span>   <span class="label">method:</span><span class="funcName">%(funcName)s</span>   <span class="label">line#:</span><span class="lineno">%(lineno)d</span> <span class="pathname">%(pathname)s</span>  <div class="right"><span class="message">%(message)s</span><span class="levelname">%(levelname)s</span></div></div>'
@@ -247,7 +247,8 @@ class test_0001_htmlDocument():
         text = "Lists"
         content += lt(text)
 
-        content += "for a unordered list use %s with %s:" % (ct("ul"), ct("li"))
+        content += "for a unordered list use %s with %s:" % (
+            ct("ul"), ct("li"))
         kwargs = {}
         kwargs["itemList"] = ["list Item", "list Item",
                               "list Item", "list Item", "list Item"]
@@ -695,7 +696,8 @@ class test_0001_htmlDocument():
             forId='selection'
         )
         kwargs = {}
-        kwargs["optionList"] = ["select list", "link", "link", "link", "link", ]
+        kwargs["optionList"] = [
+            "select list", "link", "link", "link", "link", ]
         kwargs["multiple"] = False
         kwargs["span"] = 2
         kwargs["inlineHelpText"] = False
@@ -1216,7 +1218,8 @@ class test_0001_htmlDocument():
         )
         stackedPills = dhf.ul(
             # e.g a list links
-            itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem],
+            itemList=[
+                liveLink, disabledLink, liveLink, dropdown, linkListItem],
             unstyled=False,
             inline=False,
             dropDownMenu=False,  # [ false | true ]
@@ -1232,7 +1235,8 @@ class test_0001_htmlDocument():
 
         tabPills = dhf.ul(
             # e.g a list links
-            itemList=[liveLink, disabledLink, liveLink, dropdown, linkListItem],
+            itemList=[
+                liveLink, disabledLink, liveLink, dropdown, linkListItem],
             unstyled=False,
             inline=False,
             dropDownMenu=False,  # [ false | true ]

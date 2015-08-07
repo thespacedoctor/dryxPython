@@ -57,7 +57,7 @@ def main():
     ################ >ACTION(S) ###############
     # download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirectory)
     # atels_to_database(dbConn, log, dbTableName, downloadDirectory)
-    parse_atels(dbConn, log, "/Users/Dave/Desktop/")
+    parse_atels(dbConn, log, "/Users/Dave/Desktop/", reParse=False)
 
     dbConn.commit()
     dbConn.close()
@@ -330,7 +330,7 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
 # LAST MODIFIED : February 5, 2013
 # CREATED : February 5, 2013
 # AUTHOR : DRYX
-def parse_atels(dbConn, log, mdFolder):
+def parse_atels(dbConn, log, mdFolder, reParse=False):
     """Parse the content of the ATels in the database, appending the various components and values to the db. Also includes the ability convert the atels to markdown, highlighting matches of the parsing regexs.
 
     **Key Arguments:**
@@ -367,10 +367,15 @@ def parse_atels(dbConn, log, mdFolder):
     comment = 0  # COMMENT TAG IN ATEL
 
     # SELECT STATEMENT FOR UNPROCESSED ATELS
+    if reParse == False:
+        whereClause = "dateParsed is NULL"
+    else:
+        whereClause = "1=1"
+
     sqlQuery = """SELECT *
                     FROM atel_fullcontent
-                    WHERE dateParsed is NULL
-                    ORDER BY atelNumber"""
+                    where %(whereClause)s 
+                    ORDER BY atelNumber""" % locals()
 
     log.debug('sqlQuery %s' % (sqlQuery,))
 
@@ -413,7 +418,7 @@ def parse_atels(dbConn, log, mdFolder):
         r"""Fermi\s?J\d{4}(\+|-|–)\d{4}""",
         r"""PHL\s?\d{3}""",
         r"""QSO\s?B\d{4}(\+|-|–)\d{3}""",
-        r"""PTF(0|1)\d[a-zA-Z]{1,3}""",
+        r"""i?PTF(0|1)\d[a-zA-Z]{1,3}""",
         r"""MASTER\s?((short\s)?ot\s)?J?\d{6}\.\d{2}(\+|-|–)\d{6}\.\d""",
         r"""(FSRQ\s?)?PKS\s?\d{4}(\+|-|–)\d{3}""",
         r"""BZQ\s?J\d{4}(\+|-|–)\d{4}""",
@@ -422,6 +427,7 @@ def parse_atels(dbConn, log, mdFolder):
         r"""IGR\s?J?\d{5}(\+|-|–)?\d{1,4}""",
         r"""GRS\s?\d{4}(\+|-|–)\d{1,4}""",
         r"""PS1(-|–)?(0|1)\d[a-zA-Z]{1,3}""",
+        r"""PS1\d[a-zA-Z]{1,3}""",
         r"""SDSS\s(galaxy\s)?J\d{6}\.\d{2}(\+|-|–)\d{6}\.\d""",
         r"""(CSS|MLS|SSS)\d{6}:\d{6}(\+|-|–)\d{6}""",
         r"""XMM(U|SL1)\s?J\d{6}\.\d{1}(\+|-|–)\d{6}""",
@@ -452,7 +458,19 @@ def parse_atels(dbConn, log, mdFolder):
         r"""SGR\s\d4(\+|-|–)\d{2}""",
         r"""(QSO|3EG|2FGL)\s?J?\d{4}(\.\d)?(\+|-|–)\d{4}""",
         r"""BL\sLacertae""",
-        r"""\bCTA\s\d{3}"""
+        r"""\bCTA\s\d{3}""",
+        r"""ASASSN( |–|-)1\d[a-zA-Z]{1,4}""",
+        r"""OGLE-201\d-(SN|NOVA)-\d{1,4}""",
+        r"""OGLE ?1\d[a-zA-Z]{1,4}""",
+        r"""Gaia ?1\d[a-zA-Z]{1,4}""",
+        r"""DES1\d[a-zA-Z]\d[a-zA-Z]{1,4}""",
+        r"""HFF1\d[a-zA-Z]{1,4}""",
+        r"""HSC-SN1\d[a-zA-Z]{1,4}""",
+        r"""MASTER ?J\d{5,6}\.\d{2}\+\d{5,6}\.\d{1,2}""",
+        r"""SKY( |-|–|_)J\d{6,8}(-|–|\+)\d{6,8}""",
+        r"""SMT ?\d{6,8}(-|–|\+)\d{6,8}""",
+        r"""SN20\d{2}[a-zA-Z]{1,4}""",
+        r"""TCP ?J\d{6,8}(-|–|\+)\d{6,8}"""
     ]
 
     # JOIN ALL THE NAMES INTO ONE STRING
@@ -854,7 +872,8 @@ def parse_atels(dbConn, log, mdFolder):
             except:
                 pass
             try:
-                header = reObs.sub(r"**<font color=#b58900>\1</font>**", header)
+                header = reObs.sub(
+                    r"**<font color=#b58900>\1</font>**", header)
             except:
                 pass
 
@@ -877,7 +896,8 @@ def parse_atels(dbConn, log, mdFolder):
             except:
                 pass
             try:
-                header = reCor.sub(r"**<font color=#b58900>\1</font>**", header)
+                header = reCor.sub(
+                    r"**<font color=#b58900>\1</font>**", header)
             except:
                 pass
 
