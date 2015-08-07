@@ -24,6 +24,8 @@ setup_main_clutil.py
 ################# GLOBAL IMPORTS ####################
 import sys
 import os
+import yaml
+from collections import OrderedDict
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
@@ -74,28 +76,23 @@ class setup_main_clutil():
         if "<settingsFile>" in arguments and arguments["<settingsFile>"]:
             import yaml
             stream = file(arguments["<settingsFile>"], 'r')
-            settings = yaml.load(stream)
-            stream.close()
+            settings = ordered_load(stream, yaml.SafeLoader)
         elif "<pathToSettingsFile>" in arguments and arguments["<pathToSettingsFile>"]:
             import yaml
             stream = file(arguments["<pathToSettingsFile>"], 'r')
-            settings = yaml.load(stream)
-            stream.close()
+            settings = ordered_load(stream, yaml.SafeLoader)
         elif "--settingsFile" in arguments and arguments["--settingsFile"]:
             import yaml
             stream = file(arguments["--settingsFile"], 'r')
-            settings = yaml.load(stream)
-            stream.close()
+            settings = ordered_load(stream, yaml.SafeLoader)
         elif "pathToSettingsFile" in arguments and arguments["pathToSettingsFile"]:
             import yaml
             stream = file(arguments["pathToSettingsFile"], 'r')
-            settings = yaml.load(stream)
-            stream.close()
+            settings = ordered_load(stream, yaml.SafeLoader)
         elif "settingsFile" in arguments and arguments["settingsFile"]:
             import yaml
             stream = file(arguments["settingsFile"], 'r')
-            settings = yaml.load(stream)
-            stream.close()
+            settings = ordered_load(stream, yaml.SafeLoader)
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
         if 'settings' in locals() and "logging settings" in settings:
@@ -146,7 +143,7 @@ class setup_main_clutil():
 
         # SETUP A DATABASE CONNECTION BASED ON WHAT ARGUMENTS HAVE BEEN PASSED
         dbConn = False
-        if 'settings' in locals() and "database settings" in settings:
+        if 'settings' in locals() and "database settings" in settings and "host" in settings["database settings"]:
             host = settings["database settings"]["host"]
             user = settings["database settings"]["user"]
             passwd = settings["database settings"]["password"]
@@ -199,7 +196,7 @@ class setup_main_clutil():
         return self.arguments, self.settings, self.log, self.dbConn
 
     # use the tab-trigger below for new method
-    # method-tmpx
+    # xt-class-method
 
     # Override Method Attributes
     # method-override-tmpx
@@ -208,8 +205,19 @@ class setup_main_clutil():
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-# use the tab-trigger below for new function
-# x-def-with-logger
+def ordered_load(stream, Loader=yaml.Loader, object_pairs_hook=OrderedDict):
+    class OrderedLoader(Loader):
+        pass
+
+    def construct_mapping(loader, node):
+        loader.flatten_mapping(node)
+        return object_pairs_hook(loader.construct_pairs(node))
+    OrderedLoader.add_constructor(
+        yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+        construct_mapping)
+    return yaml.load(stream, OrderedLoader)
+
+
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
 ###################################################################

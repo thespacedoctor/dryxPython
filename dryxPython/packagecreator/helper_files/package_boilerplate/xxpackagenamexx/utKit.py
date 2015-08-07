@@ -1,6 +1,6 @@
 from dryxPython.utKit import utKit
 
-## OVERRIDES
+# OVERRIDES
 
 
 class utKit(utKit):
@@ -8,8 +8,7 @@ class utKit(utKit):
     """
     Override dryx utKit
     """
-    ## Variable Data Atrributes
+    # Variable Data Atrributes
 
-    ## Override Variable Data Atrributes
-    # x-dbConfig-tmpx
-
+    # Override Variable Data Atrributes
+    # xdpc-override-utkit-init

@@ -130,7 +130,7 @@ def ra_sexegesimal_to_decimal(
 
     else:
         raise IOError(
-            "could not convert ra to decimal degrees, could not parse sexegesimal input")
+            "could not convert ra to decimal degrees, could not parse sexegesimal input. Original value was `%(ra)s`" % locals())
 
     return decimalDegrees
 

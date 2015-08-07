@@ -54,7 +54,7 @@ def main(arguments=None):
     su = setup_main_clutil(
         arguments=arguments,
         docString=__doc__,
-        logLevel="DEBUG",
+        logLevel="WARNING",
         options_first=False
     )
     arguments, settings, log, dbConn = su.setup()
@@ -252,6 +252,10 @@ class convert_excel_workbook_to_binary_fits_table():
             keyword = sheet.cell(row, keywordIndex).value
             # get and tidy value
             value = sheet.cell(row, valueIndex).value
+            try:
+                value = value.strip()
+            except:
+                pass
             if ("tindx" in keyword.lower() or "tpric" in keyword.lower()) and value == 1:
                 value = True
             if isinstance(value, str) or isinstance(value, unicode):
@@ -346,6 +350,10 @@ class convert_excel_workbook_to_binary_fits_table():
             for col in range(extSheet.ncols):
                 rowKey = extSheet.cell(row, keywordIndex).value
                 rowValue = extSheet.cell(row, valueIndex).value
+                try:
+                    rowValue = rowValue.strip()
+                except:
+                    pass
                 rowComment = extSheet.cell(row, commentIndex).value
                 if "ttype" in rowKey.lower():
                     typesDict[rowValue] = rowKey
@@ -361,7 +369,7 @@ class convert_excel_workbook_to_binary_fits_table():
         tableLength = 0
         dataSheetName = dataSheet.name
         self.log.debug("""datasheet name: `%(dataSheetName)s`""" % locals())
-        print dataSheet.colinfo_map
+        # print dataSheet.colinfo_map
         for row in range(dataSheet.nrows):
             tableLength = row
             rowBlank = True
@@ -387,6 +395,10 @@ class convert_excel_workbook_to_binary_fits_table():
                 colValues = []
                 for row in range(1, tableLength):
                     cellValue = dataSheet.cell(row, col).value
+                    try:
+                        cellValue = cellValue.strip()
+                    except:
+                        pass
                     if (isinstance(cellValue, str) or isinstance(cellValue, unicode)) and len(cellValue) == 0:
                         cellValue = None
 
@@ -405,6 +417,10 @@ class convert_excel_workbook_to_binary_fits_table():
                 colValues = np.array(colValues)
                 masterColDict[colTypeIndex] = {"name": colName,
                                                "type": colType, "form": colForm, "array": colValues, "null": colNull}
+                if "mjd" in colName.lower():
+                    tmp = masterColDict[colTypeIndex]
+                    self.log.debug(
+                        """masterColDict[colTypeIndex]: `%(tmp)s`""" % locals())
         # sort masterColDict by keys
         import collections
         omasterColDict = collections.OrderedDict(sorted(masterColDict.items()))

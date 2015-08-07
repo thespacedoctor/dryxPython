@@ -169,6 +169,9 @@ def check_for_sdss_coverage(
     elif "cornsilk" in result:
         match = True
         print "This location IS in the SDSS footprint"
+    elif "minute" in result:
+        match = 999
+        print "Not sure if image in SDSS"
     else:
         match = 999
         print "Not sure if image in SDSS"
