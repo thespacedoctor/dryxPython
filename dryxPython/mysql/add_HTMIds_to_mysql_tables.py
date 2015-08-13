@@ -306,7 +306,7 @@ def add_HTMIds_to_mysql_tables(
             log=self.log
         )
     except:
-        pass
+        sys.exit(0)
 
     return None
 
