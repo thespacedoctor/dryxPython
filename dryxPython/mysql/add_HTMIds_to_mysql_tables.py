@@ -302,11 +302,11 @@ def add_HTMIds_to_mysql_tables(
         """ % locals()
         dms.execute_mysql_write_query(
             sqlQuery=sqlQuery,
-            dbConn=self.dbConn,
-            log=self.log
+            dbConn=dbConn,
+            log=log
         )
     except:
-        sys.exit(0)
+        pass
 
     return None
 
