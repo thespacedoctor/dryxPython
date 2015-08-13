@@ -60,7 +60,8 @@ setup(name='dryxPython',
               'dat_date_to_mjd=dryxPython.astrotools.date_to_mjd:main',
               'dft_convert_excel_workbook_to_binary_fits_table=dryxPython.fitstools.convert_excel_workbook_to_binary_fits_table:main',
               'dat_mjd_to_date=dryxPython.astrotools.mjd_to_date:main',
-              'dat_minor_planet_checker=dryxPython.astrotools.minor_planet_checker:main'
+              'dat_minor_planet_checker=dryxPython.astrotools.minor_planet_checker:main',
+              'dms_add_htmids_to_mysql_table=dryxPython.mysql.add_HTMIds_to_mysql_tables:main'
           ],
       },
       zip_safe=False)

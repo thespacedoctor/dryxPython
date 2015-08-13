@@ -94,7 +94,8 @@ class setup_main_clutil():
             stream = file(arguments["settingsFile"], 'r')
             settings = ordered_load(stream, yaml.SafeLoader)
 
-        # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN SETTINGS
+        # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN
+        # SETTINGS
         if 'settings' in locals() and "logging settings" in settings:
             if "<settingsFile>" in arguments:
                 log = dl.setup_dryx_logging(
@@ -149,13 +150,15 @@ class setup_main_clutil():
             passwd = settings["database settings"]["password"]
             dbName = settings["database settings"]["db"]
             dbConn = True
-        elif "host" in locals() and "dbName" in locals():
+        elif "hostFlag" in locals() and "dbNameFlag" in locals():
             # SETUP DB CONNECTION
             dbConn = True
             host = arguments["--host"]
             user = arguments["--user"]
             passwd = arguments["--passwd"]
             dbName = arguments["--dbName"]
+        else:
+            print "pooh"
         if dbConn:
             import MySQLdb as ms
             dbConn = ms.connect(

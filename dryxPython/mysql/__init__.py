@@ -623,150 +623,150 @@ def add_column_to_db_table(
 # LAST MODIFIED : 20121102
 # CREATED : 20121102
 
-def add_HTMIds_to_mysql_tables(
-        raColName,
-        declColName,
-        tableName,
-        dbConn,
-        log,
-        primaryIdColumnName="primaryId"):
-    """ Calculate and append HTMId info to a mysql db table containing ra and dec columns
+# def add_HTMIds_to_mysql_tables(
+#         raColName,
+#         declColName,
+#         tableName,
+#         dbConn,
+#         log,
+#         primaryIdColumnName="primaryId"):
+#     """ Calculate and append HTMId info to a mysql db table containing ra and dec columns
 
-    ****Key Arguments:****
-        - ``raColName`` -- ra in sexegesimal
-        - ``declColName`` -- dec in sexegesimal
-        - ``tableName`` -- name of table to add htmid info to
-        - ``dbConn`` -- database hosting the above table
-        - ``log`` -- logger
+#     ****Key Arguments:****
+#         - ``raColName`` -- ra in sexegesimal
+#         - ``declColName`` -- dec in sexegesimal
+#         - ``tableName`` -- name of table to add htmid info to
+#         - ``dbConn`` -- database hosting the above table
+#         - ``log`` -- logger
 
-    **Return:**
-        - ``None`` """
+#     **Return:**
+#         - ``None`` """
 
-    # # > IMPORTS ##
-    import MySQLdb as ms
-    import dryxPython.mysql as m
-    from dryxPython.kws import utils as u
-    # # >SETTINGS ##
+#     # # > IMPORTS ##
+#     import MySQLdb as ms
+#     import dryxPython.mysql as m
+#     from dryxPython.kws import utils as u
+#     # # >SETTINGS ##
 
-    # TEST TABLE EXIST
-    sqlQuery = """show tables"""
-    rows = execute_mysql_read_query(
-        sqlQuery=sqlQuery,
-        dbConn=dbConn,
-        log=log
-    )
-    tableList = []
-    for row in rows:
-        tableList.extend(row.values())
-    if tableName not in tableList:
-        message = "The %s table does not exist in the database" % (tableName,)
-        log.critical(message)
-        raise IOError(message)
+# TEST TABLE EXIST
+#     sqlQuery = """show tables"""
+#     rows = execute_mysql_read_query(
+#         sqlQuery=sqlQuery,
+#         dbConn=dbConn,
+#         log=log
+#     )
+#     tableList = []
+#     for row in rows:
+#         tableList.extend(row.values())
+#     if tableName not in tableList:
+#         message = "The %s table does not exist in the database" % (tableName,)
+#         log.critical(message)
+#         raise IOError(message)
 
-    # TEST COLUMN EXISTS
-    cursor = dbConn.cursor(ms.cursors.DictCursor)
-    sqlQuery = """SELECT * FROM %s LIMIT 1""" % (tableName,)
-    cursor.execute(sqlQuery)
-    rows = cursor.fetchall()
-    desc = cursor.description
-    existingColumns = []
-    for i in range(len(desc)):
-        existingColumns.append(desc[i][0])
-    if (raColName not in existingColumns) or (declColName not in existingColumns):
-        message = 'Please make sure you have got the naes of the RA and DEC columns correct'
-        log.critical(message)
-        raise IOError(message)
+# TEST COLUMN EXISTS
+#     cursor = dbConn.cursor(ms.cursors.DictCursor)
+#     sqlQuery = """SELECT * FROM %s LIMIT 1""" % (tableName,)
+#     cursor.execute(sqlQuery)
+#     rows = cursor.fetchall()
+#     desc = cursor.description
+#     existingColumns = []
+#     for i in range(len(desc)):
+#         existingColumns.append(desc[i][0])
+#     if (raColName not in existingColumns) or (declColName not in existingColumns):
+#         message = 'Please make sure you have got the naes of the RA and DEC columns correct'
+#         log.critical(message)
+#         raise IOError(message)
 
-    # >ACTION(S)   ###
-    htmCols = {
-        'htm16ID': 'BIGINT(20)',
-        'htm20ID': 'BIGINT(20)',
-        'cx': 'DOUBLE',
-        'cy': 'DOUBLE',
-        'cz': 'DOUBLE',
-    }
+#     # >ACTION(S)   ###
+#     htmCols = {
+#         'htm16ID': 'BIGINT(20)',
+#         'htm20ID': 'BIGINT(20)',
+#         'cx': 'DOUBLE',
+#         'cy': 'DOUBLE',
+#         'cz': 'DOUBLE',
+#     }
 
-    # CHECK IF COLUMNS EXISTS YET - IF NOT CREATE FROM
-    for key in htmCols.keys():
-        try:
-            log.debug(
-                'attempting to check and generate the HTMId columns for the %s db table' %
-                (tableName, ))
-            colExists = \
-                """SELECT *
-                    FROM information_schema.COLUMNS
-                    WHERE TABLE_SCHEMA=DATABASE()
-                    AND COLUMN_NAME='%s'
-                    AND TABLE_NAME='%s'""" \
-                % (key, tableName)
-            colExists = m.execute_mysql_read_query(
-                colExists,
-                dbConn,
-                log,
-            )
-            if not colExists:
-                sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + \
-                    key + ' ' + htmCols[key] + ' DEFAULT NULL'
-                m.execute_mysql_write_query(
-                    sqlQuery,
-                    dbConn,
-                    log,
-                )
-        except Exception as e:
-            log.critical('could not check and generate the HTMId columns for the %s db table - failed with this error: %s '
-                         % (tableName, str(e)))
-            return -1
-    # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
-    sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL""" % (
-        primaryIdColumnName, raColName, declColName, tableName)
-    rows = m.execute_mysql_read_query(
-        sqlQuery,
-        dbConn,
-        log,
-    )
-    # NOW GENERATE THE HTMLIds FOR THESE ROWS
-    for row in rows:
-        if row[raColName] is None or row[declColName] is None:
-            continue
-        else:
-            (thisRa, thisDec) = (float(row[raColName]), float(row[declColName]))
-            htm16ID = u.htmID(
-                thisRa,
-                thisDec,
-                16,
-            )
-            htm20ID = u.htmID(
-                thisRa,
-                thisDec,
-                20,
-            )
-            (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
-            sqlQuery = \
-                """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
-                                                    where %s = '%s'""" \
-                % (
-                tableName,
-                htm16ID,
-                htm20ID,
-                cx,
-                cy,
-                cz,
-                primaryIdColumnName,
-                row[primaryIdColumnName],
-            )
-            try:
-                log.debug(
-                    'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
-                m.execute_mysql_write_query(
-                    sqlQuery,
-                    dbConn,
-                    log,
-                )
-            except Exception as e:
-                log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
-                             % (tableName, str(e)))
-                return -1
-    return None
+# CHECK IF COLUMNS EXISTS YET - IF NOT CREATE FROM
+#     for key in htmCols.keys():
+#         try:
+#             log.debug(
+#                 'attempting to check and generate the HTMId columns for the %s db table' %
+#                 (tableName, ))
+#             colExists = \
+#                 """SELECT *
+#                     FROM information_schema.COLUMNS
+#                     WHERE TABLE_SCHEMA=DATABASE()
+#                     AND COLUMN_NAME='%s'
+#                     AND TABLE_NAME='%s'""" \
+#                 % (key, tableName)
+#             colExists = m.execute_mysql_read_query(
+#                 colExists,
+#                 dbConn,
+#                 log,
+#             )
+#             if not colExists:
+#                 sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + \
+#                     key + ' ' + htmCols[key] + ' DEFAULT NULL'
+#                 m.execute_mysql_write_query(
+#                     sqlQuery,
+#                     dbConn,
+#                     log,
+#                 )
+#         except Exception as e:
+#             log.critical('could not check and generate the HTMId columns for the %s db table - failed with this error: %s '
+#                          % (tableName, str(e)))
+#             return -1
+# SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
+#     sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL""" % (
+#         primaryIdColumnName, raColName, declColName, tableName)
+#     rows = m.execute_mysql_read_query(
+#         sqlQuery,
+#         dbConn,
+#         log,
+#     )
+# NOW GENERATE THE HTMLIds FOR THESE ROWS
+#     for row in rows:
+#         if row[raColName] is None or row[declColName] is None:
+#             continue
+#         else:
+#             (thisRa, thisDec) = (float(row[raColName]), float(row[declColName]))
+#             htm16ID = u.htmID(
+#                 thisRa,
+#                 thisDec,
+#                 16,
+#             )
+#             htm20ID = u.htmID(
+#                 thisRa,
+#                 thisDec,
+#                 20,
+#             )
+#             (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
+#             sqlQuery = \
+#                 """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
+#                                                     where %s = '%s'""" \
+#                 % (
+#                 tableName,
+#                 htm16ID,
+#                 htm20ID,
+#                 cx,
+#                 cy,
+#                 cz,
+#                 primaryIdColumnName,
+#                 row[primaryIdColumnName],
+#             )
+#             try:
+#                 log.debug(
+#                     'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
+#                 m.execute_mysql_write_query(
+#                     sqlQuery,
+#                     dbConn,
+#                     log,
+#                 )
+#             except Exception as e:
+#                 log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
+#                              % (tableName, str(e)))
+#                 return -1
+#     return None
 
 # LAST MODIFIED : January 9, 2014
 # CREATED : January 9, 2014
@@ -866,6 +866,7 @@ def get_db_table_column_names(
 import convert_collate_and_charset_of_mysql_database
 import convert_mysql_database_to_innodb
 import execute_mysql_script
+import add_HTMIds_to_mysql_tables
 
 
 if __name__ == '__main__':
