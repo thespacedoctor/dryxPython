@@ -300,7 +300,7 @@ def add_HTMIds_to_mysql_tables(
             ALTER TABLE %(tableName)s  ADD INDEX `idx_htm20ID` (`htm20ID` ASC);
             ALTER TABLE %(tableName)s  ADD INDEX `idx_htm16ID` (`htm16ID` ASC);
         """ % locals()
-        dms.execute_mysql_write_query(
+        m.execute_mysql_write_query(
             sqlQuery=sqlQuery,
             dbConn=dbConn,
             log=log
