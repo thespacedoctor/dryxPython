@@ -305,8 +305,8 @@ def add_HTMIds_to_mysql_tables(
             dbConn=dbConn,
             log=log
         )
-    except:
-        pass
+    except Exception, e:
+        log.info('no index needed on table: %(e)s' % locals())
 
     return None
 
