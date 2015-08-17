@@ -139,6 +139,10 @@ def execute_mysql_write_query(
                            # Duplicate Key error
             log.debug('Duplicate Key error: %s' % (str(e), ))
             message = "duplicate key error"
+        elif e[0] == 2014 or e[0] == 1061:
+                           # Duplicate Key error
+            log.debug('index already exists: %s' % (str(e), ))
+            message = "index already exists"
         else:
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
