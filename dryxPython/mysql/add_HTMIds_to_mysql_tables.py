@@ -248,7 +248,7 @@ def add_HTMIds_to_mysql_tables(
             return -1
 
     # COUNT ROWS WHERE HTMIDs ARE NOT SET
-    sqlQuery = """SELECT count(*) as count from %(tableName)s where htm16ID is NULL""" % locals(
+    sqlQuery = """SELECT count(*) as count from %(tableName)s where (htm16ID is NULL or htm16ID = 0)""" % locals(
     )
     rowCount = m.execute_mysql_read_query(
         sqlQuery,
@@ -272,7 +272,7 @@ def add_HTMIds_to_mysql_tables(
         print "%(count)s / %(totalCount)s htmIds added to %(tableName)s" % locals()
 
         # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
-        sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL limit %s""" % (
+        sqlQuery = """SELECT %s, %s, %s from %s where (htm16ID is NULL or htm16ID = 0) limit %s""" % (
             primaryIdColumnName, raColName, declColName, tableName, batchSize)
         batch = m.execute_mysql_read_query(
             sqlQuery,

@@ -124,7 +124,7 @@ class setup_main_clutil():
                     print "please add settings to file '%(settingsFile)s'" % locals()
                     sys.exit(0)
         else:
-            print arguments
+            pass
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN
         # SETTINGS
