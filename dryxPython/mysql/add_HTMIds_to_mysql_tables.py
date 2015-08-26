@@ -114,8 +114,6 @@ def main(arguments=None):
             pickleMe[k] = theseLocals[k]
         pickle.dump(pickleMe, open(pathToPickleFile, "wb"))
 
-    print locals()
-
     # call the worker function
     # x-if-settings-or-database-credientials
     add_HTMIds_to_mysql_tables(
@@ -199,6 +197,7 @@ def add_HTMIds_to_mysql_tables(
     for i in range(len(desc)):
         existingColumns.append(desc[i][0])
     if (raColName not in existingColumns) or (declColName not in existingColumns):
+        print raColName
         message = 'Please make sure you have got the naes of the RA and DEC columns correct'
         log.critical(message)
         raise IOError(message)
@@ -280,36 +279,30 @@ def add_HTMIds_to_mysql_tables(
             log,
         )
 
+        raList = []
+        decList = []
+        pIdList = []
+        raList[:] = [r[raColName] for r in batch]
+        decList[:] = [r[declColName] for r in batch]
+        pIdList[:] = [r[primaryIdColumnName] for r in batch]
+
+        from HMpTy import htm
+        mesh16 = htm.HTM(16)
+        mesh20 = htm.HTM(20)
+
+        htm16Ids = mesh16.lookup_id(raList, decList)
+        htm20Ids = mesh20.lookup_id(raList, decList)
+
         sqlQuery = ""
-        for row in batch:
-            if row[raColName] is None or row[declColName] is None:
-                continue
-            else:
-                (thisRa, thisDec) = (
-                    float(row[raColName]), float(row[declColName]))
-                htm16ID = u.htmID(
-                    thisRa,
-                    thisDec,
-                    16,
-                )
-                htm20ID = u.htmID(
-                    thisRa,
-                    thisDec,
-                    20,
-                )
-                (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
-                sqlQuery += \
-                    """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
-                                                        where %s = '%s';\n""" \
-                    % (
+        for h16, h20, pid in zip(htm16Ids, htm20Ids, pIdList):
+            sqlQuery += \
+                """UPDATE %s SET htm16ID=%s, htm20ID=%s where %s = '%s';\n""" \
+                % (
                     tableName,
-                    htm16ID,
-                    htm20ID,
-                    cx,
-                    cy,
-                    cz,
+                    h16,
+                    h20,
                     primaryIdColumnName,
-                    row[primaryIdColumnName],
+                    pid,
                 )
 
         try:
