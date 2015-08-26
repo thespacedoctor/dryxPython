@@ -24,9 +24,9 @@ import os
 ##########################################################################
 # CLASSES                                                                                   #
 ##########################################################################
-## LAST MODIFIED : June 18, 2013
-## CREATED : June 18, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : June 18, 2013
+# CREATED : June 18, 2013
+# AUTHOR : DRYX
 class projectSetup():
 
     """
@@ -54,7 +54,7 @@ class projectSetup():
         ## THIRD PARTY ##
         ## LOCAL APPLICATION ##
 
-        ## SETUP CLASS VARIABLES
+        # SETUP CLASS VARIABLES
         self.relativePathToProjectRoot = relativePathToProjectRoot
         self.generalSettingsFilepath = relativePathToProjectRoot + \
             "/settings/general_settings.yaml"
@@ -68,9 +68,9 @@ class projectSetup():
 
         return None
 
-    ## LAST MODIFIED : June 19, 2013
-    ## CREATED : June 19, 2013
-    ## AUTHOR : DRYX
+    # LAST MODIFIED : June 19, 2013
+    # CREATED : June 19, 2013
+    # AUTHOR : DRYX
     def get_project_atrributes(self):
         """Get all of the project attributes with one method
 
@@ -98,9 +98,9 @@ class projectSetup():
         self.log.info('completed the ``get_project_atrributes`` function')
         return dbConn, log, settings, contentPaths
 
-    ## LAST MODIFIED : June 19, 2013
-    ## CREATED : June 19, 2013
-    ## AUTHOR : DRYX
+    # LAST MODIFIED : June 19, 2013
+    # CREATED : June 19, 2013
+    # AUTHOR : DRYX
     def set_python_path(self):
         """Setup the python path for the project modules
 
@@ -120,7 +120,7 @@ class projectSetup():
         pathToYamlFile = self.relativePathToProjectRoot + \
             'settings/python_path.yaml'
 
-        ## READ THE ABSOLUTE PATH TO THE ROOT DIRECTORY OF THIS PROJECT
+        # READ THE ABSOLUTE PATH TO THE ROOT DIRECTORY OF THIS PROJECT
         try:
             stream = file(pathToYamlFile, 'r')
             ppDict = yaml.load(stream)
@@ -141,9 +141,9 @@ class projectSetup():
 
         return None
 
-    ## LAST MODIFIED : June 19, 2013
-    ## CREATED : June 19, 2013
-    ## AUTHOR : DRYX
+    # LAST MODIFIED : June 19, 2013
+    # CREATED : June 19, 2013
+    # AUTHOR : DRYX
     def get_project_settings(self):
         """Setup the project settings for the project from the general setting yaml file.
 
@@ -189,9 +189,9 @@ class projectSetup():
 
         return settings, contentPaths
 
-    ## LAST MODIFIED : June 19, 2013
-    ## CREATED : June 19, 2013
-    ## AUTHOR : DRYX
+    # LAST MODIFIED : June 19, 2013
+    # CREATED : June 19, 2013
+    # AUTHOR : DRYX
     def get_db_connection(self):
         """Setup the DB connection for the project
 
@@ -213,9 +213,9 @@ class projectSetup():
 
         return dbConn
 
-    ## LAST MODIFIED : June 19, 2013
-    ## CREATED : June 19, 2013
-    ## AUTHOR : DRYX
+    # LAST MODIFIED : June 19, 2013
+    # CREATED : June 19, 2013
+    # AUTHOR : DRYX
     def get_logger(self):
         """Set the loggers for the project
 
@@ -235,6 +235,9 @@ class projectSetup():
 
         return log
 
+    # use the tab-trigger below for new method
+    # xt-class-method
+
 ############################################
 # PUBLIC FUNCTIONS                         #
 ############################################
@@ -242,9 +245,9 @@ class projectSetup():
 ############################################
 # PRIVATE (HELPER) FUNCTIONS               #
 ############################################
-## LAST MODIFIED : May 22, 2013
-## CREATED : May 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 22, 2013
+# CREATED : May 22, 2013
+# AUTHOR : DRYX
 
 
 def _add_directories_to_path(
@@ -272,9 +275,9 @@ def _add_directories_to_path(
 
     return
 
-## LAST MODIFIED : May 22, 2013
-## CREATED : May 22, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 22, 2013
+# CREATED : May 22, 2013
+# AUTHOR : DRYX
 
 
 def _recusively_add_directories_to_path(
@@ -339,7 +342,7 @@ def set_python_path(relativePathToProjectRoot):
     pathToYamlFile = relativePathToProjectRoot + 'settings/python_path.yaml'
 
     ################ >ACTION(S) ################
-    ## READ THE ABSOLUTE PATH TO THE ROOT DIRECTORY OF THIS PROJECT
+    # READ THE ABSOLUTE PATH TO THE ROOT DIRECTORY OF THIS PROJECT
     # print 'PATH TO YAML: ', pathToYamlFile
     try:
         stream = file(pathToYamlFile, 'r')
@@ -364,9 +367,9 @@ def set_python_path(relativePathToProjectRoot):
     return
 
 
-## LAST MODIFIED : December 5, 2012
-## CREATED : December 5, 2012
-## AUTHOR : DRYX
+# LAST MODIFIED : December 5, 2012
+# CREATED : December 5, 2012
+# AUTHOR : DRYX
 def settings(relativePathToProjectRoot,
              dbConn=True,
              log=True,
@@ -393,7 +396,7 @@ def settings(relativePathToProjectRoot,
     setup_helper_variables(relativePathToProjectRoot)
 
     ################ >ACTION(S) ################
-    ## READ THE PATH OF THIS MODULE TO - SANDBOX OR MARSHALL?
+    # READ THE PATH OF THIS MODULE TO - SANDBOX OR MARSHALL?
     if dbConn:
         dbConn = m.set_db_connection(pathToDBSettings)
     if log:
@@ -401,9 +404,9 @@ def settings(relativePathToProjectRoot,
 
     return dbConn, log
 
-## LAST MODIFIED : May 27, 2013
-## CREATED : May 27, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 27, 2013
+# CREATED : May 27, 2013
+# AUTHOR : DRYX
 
 
 def setup_helper_variables(relativePathToProjectRoot):

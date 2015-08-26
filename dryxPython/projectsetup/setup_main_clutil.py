@@ -59,7 +59,8 @@ class setup_main_clutil():
             arguments,
             docString,
             logLevel="DEBUG",
-            options_first=False
+            options_first=False,
+            projectName=False
     ):
         self.arguments = arguments
         self.docString = docString
@@ -93,6 +94,35 @@ class setup_main_clutil():
             import yaml
             stream = file(arguments["settingsFile"], 'r')
             settings = ordered_load(stream, yaml.SafeLoader)
+        elif ("settingsFile" in arguments and arguments["settingsFile"] == None) or ("<pathToSettingsFile>" in arguments and arguments["<pathToSettingsFile>"] == None):
+            if projectName != False:
+                os.getenv("HOME")
+                projectDir = os.getenv(
+                    "HOME") + "/.config/%(projectName)s" % locals()
+                exists = os.path.exists(projectDir)
+                if not exists:
+                    dcu.dryx_mkdir(
+                        log=None,
+                        directoryPath=projectDir
+                    )
+                settingsFile = os.getenv(
+                    "HOME") + "/.config/%(projectName)s/%(projectName)s.yaml" % locals()
+                exists = os.path.exists(settingsFile)
+                if not exists:
+                    import codecs
+                    writeFile = codecs.open(
+                        settingsFile, encoding='utf-8', mode='w')
+            import yaml
+            stream = file(settingsFile, 'r')
+            this = ordered_load(stream, yaml.SafeLoader)
+            if this:
+                settings = this
+                arguments["<settingsFile>"] = settingsFile
+            else:
+                print "please add settings to file '%(settingsFile)s'" % locals()
+                sys.exit(0)
+        else:
+            print arguments
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN
         # SETTINGS
@@ -135,6 +165,7 @@ class setup_main_clutil():
             else:
                 varname = arg.replace("<", "").replace(">", "")
             if isinstance(val, str) or isinstance(val, unicode):
+                val = val.replace("'", "\\'")
                 exec(varname + " = '%s'" % (val,))
             else:
                 exec(varname + " = %s" % (val,))
@@ -158,7 +189,7 @@ class setup_main_clutil():
             passwd = arguments["--passwd"]
             dbName = arguments["--dbName"]
         else:
-            print "pooh"
+            pass
         if dbConn:
             import MySQLdb as ms
             dbConn = ms.connect(
