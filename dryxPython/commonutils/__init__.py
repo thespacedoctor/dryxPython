@@ -329,13 +329,18 @@ def dryx_mkdir(log, directoryPath):
     ###########################################################
     if not os.path.exists(directoryPath):
         try:
-            log.debug('creating the ' + directoryPath + ' directory')
+            if log:
+                log.debug('creating the ' + directoryPath + ' directory')
             os.mkdir(directoryPath)
         except Exception as e:
-            log.error("could not create the " +
-                      directoryPath + " directory" + str(e) + "\n")
+            if log:
+                log.error("could not create the " +
+                          directoryPath + " directory" + str(e) + "\n")
+            else:
+                print "could not create the " + directoryPath + " directory" + str(e) + "\n"
     else:
-        log.debug(directoryPath + ' directory already exists')
+        if log:
+            log.debug(directoryPath + ' directory already exists')
 
     return None
 

@@ -55,7 +55,7 @@ def main(arguments=None):
     su = setup_main_clutil(
         arguments=arguments,
         docString=__doc__,
-        logLevel="DEBUG",
+        logLevel="WARNING",
         options_first=False
     )
     arguments, settings, log, dbConn = su.setup()
@@ -164,15 +164,15 @@ def add_HTMIds_to_mysql_tables(
         - ``tableName`` -- name of table to add htmid info to
         - ``dbConn`` -- database hosting the above table
         - ``log`` -- logger
+        - ``primaryIdColumnName`` -- the primary id for the table
 
     **Return:**
-        - ``None`` """
+        - ``None``"""
 
-    # # > IMPORTS ##
+    ## IMPORTS ##
     import MySQLdb as ms
     import dryxPython.mysql as m
     from dryxPython.kws import utils as u
-    # # >SETTINGS ##
 
     # TEST TABLE EXIST
     sqlQuery = """show tables"""
@@ -189,7 +189,7 @@ def add_HTMIds_to_mysql_tables(
         log.critical(message)
         raise IOError(message)
 
-    # TEST COLUMN EXISTS
+    # TEST COLUMNS EXISTS
     cursor = dbConn.cursor(ms.cursors.DictCursor)
     sqlQuery = """SELECT * FROM %s LIMIT 1""" % (tableName,)
     cursor.execute(sqlQuery)
@@ -203,7 +203,7 @@ def add_HTMIds_to_mysql_tables(
         log.critical(message)
         raise IOError(message)
 
-    # >ACTION(S)   ###
+    # ACTION(S) ##
     htmCols = {
         'htm16ID': 'BIGINT(20)',
         'htm20ID': 'BIGINT(20)',
@@ -230,7 +230,11 @@ def add_HTMIds_to_mysql_tables(
                 dbConn,
                 log,
             )
+            switch = 0
             if not colExists:
+                if switch == 0:
+                    print "Adding the HTMCircle columns to %(tableName)s" % locals()
+                    switch = 1
                 sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + \
                     key + ' ' + htmCols[key] + ' DEFAULT NULL'
                 m.execute_mysql_write_query(
@@ -242,57 +246,84 @@ def add_HTMIds_to_mysql_tables(
             log.critical('could not check and generate the HTMId columns for the %s db table - failed with this error: %s '
                          % (tableName, str(e)))
             return -1
-    # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
-    sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL""" % (
-        primaryIdColumnName, raColName, declColName, tableName)
-    rows = m.execute_mysql_read_query(
+
+    # COUNT ROWS WHERE HTMIDs ARE NOT SET
+    sqlQuery = """SELECT count(*) as count from %(tableName)s where htm16ID is NULL""" % locals(
+    )
+    rowCount = m.execute_mysql_read_query(
         sqlQuery,
         dbConn,
         log,
     )
+    totalCount = rowCount[0]["count"]
+
+    # ADD HTMIDs IN BATCHES
+    batchSize = 2500
+    total = totalCount
+    batches = int(total / batchSize)
+
+    count = 0
     # NOW GENERATE THE HTMLIds FOR THESE ROWS
-    for row in rows:
-        if row[raColName] is None or row[declColName] is None:
-            continue
-        else:
-            (thisRa, thisDec) = (
-                float(row[raColName]), float(row[declColName]))
-            htm16ID = u.htmID(
-                thisRa,
-                thisDec,
-                16,
-            )
-            htm20ID = u.htmID(
-                thisRa,
-                thisDec,
-                20,
-            )
-            (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
-            sqlQuery = \
-                """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
-                                                    where %s = '%s'""" \
-                % (
-                tableName,
-                htm16ID,
-                htm20ID,
-                cx,
-                cy,
-                cz,
-                primaryIdColumnName,
-                row[primaryIdColumnName],
-            )
-            try:
-                log.debug(
-                    'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
-                m.execute_mysql_write_query(
-                    sqlQuery,
-                    dbConn,
-                    log,
+    for i in range(batches):
+        count += batchSize
+        if count > batchSize:
+            # Cursor up one line and clear line
+            sys.stdout.write("\x1b[1A\x1b[2K")
+        print "%(count)s / %(totalCount)s htmIds added to %(tableName)s" % locals()
+
+        # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
+        sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL limit %s""" % (
+            primaryIdColumnName, raColName, declColName, tableName, batchSize)
+        batch = m.execute_mysql_read_query(
+            sqlQuery,
+            dbConn,
+            log,
+        )
+
+        sqlQuery = ""
+        for row in batch:
+            if row[raColName] is None or row[declColName] is None:
+                continue
+            else:
+                (thisRa, thisDec) = (
+                    float(row[raColName]), float(row[declColName]))
+                htm16ID = u.htmID(
+                    thisRa,
+                    thisDec,
+                    16,
                 )
-            except Exception as e:
-                log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
-                             % (tableName, str(e)))
-                return -1
+                htm20ID = u.htmID(
+                    thisRa,
+                    thisDec,
+                    20,
+                )
+                (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
+                sqlQuery += \
+                    """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
+                                                        where %s = '%s';\n""" \
+                    % (
+                    tableName,
+                    htm16ID,
+                    htm20ID,
+                    cx,
+                    cy,
+                    cz,
+                    primaryIdColumnName,
+                    row[primaryIdColumnName],
+                )
+
+        try:
+            log.debug(
+                'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
+            m.execute_mysql_write_query(
+                sqlQuery,
+                dbConn,
+                log,
+            )
+        except Exception as e:
+            log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
+                         % (tableName, str(e)))
+            return -1
 
     # APPLY INDEXES IF NEEDED
     try:
