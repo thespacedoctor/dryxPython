@@ -95,6 +95,7 @@ class setup_main_clutil():
             stream = file(arguments["settingsFile"], 'r')
             settings = ordered_load(stream, yaml.SafeLoader)
         elif ("settingsFile" in arguments and arguments["settingsFile"] == None) or ("<pathToSettingsFile>" in arguments and arguments["<pathToSettingsFile>"] == None):
+
             if projectName != False:
                 os.getenv("HOME")
                 projectDir = os.getenv(
@@ -112,15 +113,16 @@ class setup_main_clutil():
                     import codecs
                     writeFile = codecs.open(
                         settingsFile, encoding='utf-8', mode='w')
-            import yaml
-            stream = file(settingsFile, 'r')
-            this = ordered_load(stream, yaml.SafeLoader)
-            if this:
-                settings = this
-                arguments["<settingsFile>"] = settingsFile
-            else:
-                print "please add settings to file '%(settingsFile)s'" % locals()
-                sys.exit(0)
+
+                import yaml
+                stream = file(settingsFile, 'r')
+                this = ordered_load(stream, yaml.SafeLoader)
+                if this:
+                    settings = this
+                    arguments["<settingsFile>"] = settingsFile
+                else:
+                    print "please add settings to file '%(settingsFile)s'" % locals()
+                    sys.exit(0)
         else:
             print arguments
 
