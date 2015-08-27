@@ -263,11 +263,13 @@ def add_HTMIds_to_mysql_tables(
 
     count = 0
     # NOW GENERATE THE HTMLIds FOR THESE ROWS
-    for i in range(batches):
+    for i in range(batches + 1):
         count += batchSize
         if count > batchSize:
             # Cursor up one line and clear line
             sys.stdout.write("\x1b[1A\x1b[2K")
+        if count > totalCount:
+            count = totalCount
         print "%(count)s / %(totalCount)s htmIds added to %(tableName)s" % locals()
 
         # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET

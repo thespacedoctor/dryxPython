@@ -107,13 +107,15 @@ def execute_mysql_write_query(
     sqlQuery,
     dbConn,
     log,
-    quiet=False
+    quiet=False,
+    Force=True
 ):
     """ Execute a MySQL write command given a sql query
 
             ****Key Arguments:****
                 - ``sqlQuery`` -- the MySQL command to execute
                 - ``dbConn`` -- the db connection
+                - ``Force`` -- do not exit code if error occurs
 
             **Return:**
                 - ``None`` """
@@ -146,15 +148,25 @@ def execute_mysql_write_query(
                            # Duplicate Key error
             log.debug('index already exists: %s' % (str(e), ))
             message = "index already exists"
+        elif e[0] == 1054:
+                           # Duplicate Key error
+            log.debug('unknown column: %s' % (str(e), ))
+            message = "unknown column"
         else:
+            sqlQuery = sqlQuery[:1000]
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
                                                                                                    str(e)))
+            if Force == False:
+                sys.exit(0)
             return -1
     except Exception as e:
+        sqlQuery = sqlQuery[:1000]
         log.error(
             'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
             (sqlQuery, str(e)))
+        if Force == False:
+            sys.exit(0)
         return -1
     # CLOSE THE CURSOR
     cOpen = True
@@ -210,6 +222,7 @@ def execute_mysql_read_query(
         cursor.execute(sqlQuery)
         rows = cursor.fetchall()
     except Exception as e:
+        sqlQuery = sqlQuery[:1000]
         if quiet == False:
             log.error(
                 'MySQL raised an error - read command not executed.\n' + str(e) + '\nHere is the sqlQuery\n\t%(sqlQuery)s' % locals())
@@ -527,7 +540,7 @@ def convert_dictionary_to_mysql_table(
     myValues = myValues.replace('!!python/unicode:', '')
     myValues = myValues.replace('!!python/unicode', '')
     # log.debug(myValues+" ------ POSTSTRIP")
-    addValue = """INSERT INTO """ + dbTableName + \
+    addValue = """INSERT IGNORE INTO """ + dbTableName + \
         """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     # log.debug(addValue)
 
@@ -906,7 +919,8 @@ def insert_list_of_dictionaries_into_database(
         dbTableName,
         uniqueKeyList=[],
         createHelperTables=False,
-        dateModified=False):
+        dateModified=False,
+        batchSize=2500):
     """insert list of dictionaries into database
 
     **Key Arguments:**
@@ -936,14 +950,13 @@ def insert_list_of_dictionaries_into_database(
             createHelperTables=createHelperTables,
             dateModified=dateModified)
 
-    batchSize = 2500
     total = len(dictList[1:])
     batches = int(total / batchSize)
 
     start = 0
     end = 0
     theseBatches = []
-    for i in range(batches):
+    for i in range(batches + 1):
         end = end + batchSize
         start = i * batchSize
         thisBatch = dictList[start:end]
@@ -953,37 +966,51 @@ def insert_list_of_dictionaries_into_database(
     count = 0
 
     for batch in theseBatches:
-        count += batchSize
+        count += len(batch)
         if count > batchSize:
             # Cursor up one line and clear line
             sys.stdout.write("\x1b[1A\x1b[2K")
+        if count > totalCount:
+            count = totalCount
         print "%(count)s / %(totalCount)s rows inserted into %(dbTableName)s" % locals()
-        theseInserts = ""
-        for aDict in batch:
-            insert = convert_dictionary_to_mysql_table(
-                dbConn=dbConn,
-                log=log,
-                dictionary=aDict,
-                dbTableName=dbTableName,
-                uniqueKeyList=uniqueKeyList,
-                createHelperTables=createHelperTables,
-                dateModified=dateModified,
-                returnInsertOnly=True
-            )
-            theseInserts = "%(theseInserts)s\n%(insert)s;" % locals()
 
-        message = ""
-        try:
+        inserted = False
+        while inserted == False:
+            theseInserts = ""
+            for aDict in batch:
+                insert = convert_dictionary_to_mysql_table(
+                    dbConn=dbConn,
+                    log=log,
+                    dictionary=aDict,
+                    dbTableName=dbTableName,
+                    uniqueKeyList=uniqueKeyList,
+                    createHelperTables=createHelperTables,
+                    dateModified=dateModified,
+                    returnInsertOnly=True
+                )
+                theseInserts = "%(theseInserts)s\n%(insert)s;" % locals()
+
+            message = ""
             # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
             message = execute_mysql_write_query(
                 theseInserts,
                 dbConn,
                 log,
+                Force=False
             )
-
-        except Exception as e:
-            log.error("could not add new data added to the table '" +
-                      dbTableName + "' : " + str(e) + '\n')
+            if message == "unknown column":
+                for aDict in batch:
+                    convert_dictionary_to_mysql_table(
+                        dbConn=dbConn,
+                        log=log,
+                        dictionary=aDict,
+                        dbTableName=dbTableName,
+                        uniqueKeyList=uniqueKeyList,
+                        createHelperTables=createHelperTables,
+                        dateModified=dateModified
+                    )
+            else:
+                inserted = True
 
     log.info(
         'completed the ``insert_list_of_dictionaries_into_database`` function')

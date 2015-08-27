@@ -60,7 +60,8 @@ class setup_main_clutil():
             docString,
             logLevel="DEBUG",
             options_first=False,
-            projectName=False
+            projectName=False,
+            orderedSettings=False
     ):
         self.arguments = arguments
         self.docString = docString
@@ -74,26 +75,17 @@ class setup_main_clutil():
         self.arguments = arguments
 
         # UNPACK SETTINGS
+        stream = False
         if "<settingsFile>" in arguments and arguments["<settingsFile>"]:
-            import yaml
             stream = file(arguments["<settingsFile>"], 'r')
-            settings = ordered_load(stream, yaml.SafeLoader)
         elif "<pathToSettingsFile>" in arguments and arguments["<pathToSettingsFile>"]:
-            import yaml
             stream = file(arguments["<pathToSettingsFile>"], 'r')
-            settings = ordered_load(stream, yaml.SafeLoader)
         elif "--settingsFile" in arguments and arguments["--settingsFile"]:
-            import yaml
             stream = file(arguments["--settingsFile"], 'r')
-            settings = ordered_load(stream, yaml.SafeLoader)
         elif "pathToSettingsFile" in arguments and arguments["pathToSettingsFile"]:
-            import yaml
             stream = file(arguments["pathToSettingsFile"], 'r')
-            settings = ordered_load(stream, yaml.SafeLoader)
         elif "settingsFile" in arguments and arguments["settingsFile"]:
-            import yaml
             stream = file(arguments["settingsFile"], 'r')
-            settings = ordered_load(stream, yaml.SafeLoader)
         elif ("settingsFile" in arguments and arguments["settingsFile"] == None) or ("<pathToSettingsFile>" in arguments and arguments["<pathToSettingsFile>"] == None):
 
             if projectName != False:
@@ -115,8 +107,11 @@ class setup_main_clutil():
                         settingsFile, encoding='utf-8', mode='w')
 
                 import yaml
-                stream = file(settingsFile, 'r')
-                this = ordered_load(stream, yaml.SafeLoader)
+                astream = file(settingsFile, 'r')
+                if orderedSettings:
+                    this = ordered_load(astream, yaml.SafeLoader)
+                else:
+                    this = yaml.load(astream)
                 if this:
                     settings = this
                     arguments["<settingsFile>"] = settingsFile
@@ -125,6 +120,13 @@ class setup_main_clutil():
                     sys.exit(0)
         else:
             pass
+
+        if stream is not False:
+            import yaml
+            if orderedSettings:
+                settings = ordered_load(stream, yaml.SafeLoader)
+            else:
+                settings = yaml.load(stream)
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN
         # SETTINGS
