@@ -321,13 +321,17 @@ def add_HTMIds_to_mysql_tables(
                 )
 
         try:
-            log.debug(
-                'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
-            m.execute_mysql_write_query(
-                sqlQuery,
-                dbConn,
-                log,
-            )
+            if len(sqlQuery):
+                log.debug(
+                    'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
+                m.execute_mysql_write_query(
+                    sqlQuery,
+                    dbConn,
+                    log,
+                )
+            else:
+                log.debug(
+                    'no HTMIds to add to the %s db table' % (tableName, ))
         except Exception as e:
             log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
                          % (tableName, str(e)))
