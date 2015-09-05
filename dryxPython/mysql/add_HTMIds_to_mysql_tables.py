@@ -36,6 +36,7 @@ os.environ['TERM'] = 'vt100'
 import readline
 import glob
 import pickle
+import math
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
@@ -197,7 +198,6 @@ def add_HTMIds_to_mysql_tables(
     for i in range(len(desc)):
         existingColumns.append(desc[i][0])
     if (raColName not in existingColumns) or (declColName not in existingColumns):
-        print raColName
         message = 'Please make sure you have got the naes of the RA and DEC columns correct'
         log.critical(message)
         raise IOError(message)
@@ -247,7 +247,7 @@ def add_HTMIds_to_mysql_tables(
             return -1
 
     # COUNT ROWS WHERE HTMIDs ARE NOT SET
-    sqlQuery = """SELECT count(*) as count from %(tableName)s where (htm16ID is NULL or htm16ID = 0)""" % locals(
+    sqlQuery = """SELECT count(*) as count from %(tableName)s where (htm16ID is NULL or htm16ID = 0) or (cx is NULL or cx = 0)""" % locals(
     )
     rowCount = m.execute_mysql_read_query(
         sqlQuery,
@@ -264,6 +264,8 @@ def add_HTMIds_to_mysql_tables(
     count = 0
     # NOW GENERATE THE HTMLIds FOR THESE ROWS
     for i in range(batches + 1):
+        if total == 0:
+            continue
         count += batchSize
         if count > batchSize:
             # Cursor up one line and clear line
@@ -296,15 +298,26 @@ def add_HTMIds_to_mysql_tables(
         htm20Ids = mesh20.lookup_id(raList, decList)
 
         sqlQuery = ""
-        for h16, h20, pid in zip(htm16Ids, htm20Ids, pIdList):
+        for h16, h20, pid, r, d in zip(htm16Ids, htm20Ids, pIdList, raList, decList):
+            # CALCULATE CARTESIANS
+            raRad = math.radians(ra)
+            decRad = math.radians(dec)
+            cos_dec = math.cos(decRad)
+            cx = math.cos(raRad) * cos_dec
+            cy = math.sin(raRad) * cos_dec
+            cz = math.sin(decRad)
+
             sqlQuery += \
-                """UPDATE %s SET htm16ID=%s, htm20ID=%s where %s = '%s';\n""" \
+                """UPDATE %s SET htm16ID=%s, htm20ID=%s, cx=%s, cy=%s, cz=%s where %s = '%s';\n""" \
                 % (
                     tableName,
                     h16,
                     h20,
+                    cx,
+                    cy,
+                    cz,
                     primaryIdColumnName,
-                    pid,
+                    pid
                 )
 
         try:

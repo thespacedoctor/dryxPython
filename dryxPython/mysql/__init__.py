@@ -999,6 +999,7 @@ def insert_list_of_dictionaries_into_database(
                 Force=False
             )
             if message == "unknown column":
+                sys.exit(0)
                 for aDict in batch:
                     convert_dictionary_to_mysql_table(
                         dbConn=dbConn,
