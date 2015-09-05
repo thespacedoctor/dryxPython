@@ -247,7 +247,7 @@ def add_HTMIds_to_mysql_tables(
             return -1
 
     # COUNT ROWS WHERE HTMIDs ARE NOT SET
-    sqlQuery = """SELECT count(*) as count from %(tableName)s where (htm16ID is NULL or htm16ID = 0) or (cx is NULL or cx = 0)""" % locals(
+    sqlQuery = """SELECT count(*) as count from %(tableName)s where %(raColName)s is not null and  ((htm16ID is NULL or htm16ID = 0) or (cx is NULL or cx = 0))""" % locals(
     )
     rowCount = m.execute_mysql_read_query(
         sqlQuery,
@@ -275,7 +275,7 @@ def add_HTMIds_to_mysql_tables(
         print "%(count)s / %(totalCount)s htmIds added to %(tableName)s" % locals()
 
         # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
-        sqlQuery = """SELECT %s, %s, %s from %s where (htm16ID is NULL or htm16ID = 0) or (cx is NULL or cx = 0) limit %s""" % (
+        sqlQuery = """SELECT %s, %s, %s from %s where %(raColName)s is not null and ((htm16ID is NULL or htm16ID = 0) or (cx is NULL or cx = 0)) limit %s""" % (
             primaryIdColumnName, raColName, declColName, tableName, batchSize)
         batch = m.execute_mysql_read_query(
             sqlQuery,
@@ -300,8 +300,8 @@ def add_HTMIds_to_mysql_tables(
         sqlQuery = ""
         for h16, h20, pid, r, d in zip(htm16Ids, htm20Ids, pIdList, raList, decList):
             # CALCULATE CARTESIANS
-            raRad = math.radians(ra)
-            decRad = math.radians(dec)
+            raRad = math.radians(r)
+            decRad = math.radians(d)
             cos_dec = math.cos(decRad)
             cx = math.cos(raRad) * cos_dec
             cy = math.sin(raRad) * cos_dec
