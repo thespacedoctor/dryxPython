@@ -289,7 +289,7 @@ def convert_dictionary_to_mysql_table(
     import collections as c
     import dryxPython.mysql as dms
 
-    log.info('starting convert_dictionary_to_mysql_table')
+    log.debug('starting convert_dictionary_to_mysql_table')
 
     if returnInsertOnly == False:
         # TEST THE ARGUMENTS
@@ -378,7 +378,7 @@ def convert_dictionary_to_mysql_table(
     count = len(dictionary)
     i = 1
     for (key, value) in dictionary.items():
-        if (isinstance(value, list) and value[0] is None) or value is None:
+        if (isinstance(value, list) and value[0] is None):
             del dictionary[key]
     # SORT THE DICTIONARY BY KEY
     odictionary = c.OrderedDict(sorted(dictionary.items()))
@@ -544,7 +544,10 @@ def convert_dictionary_to_mysql_table(
         valueString = ("%s, " * len(myValues))[:-2]
         insertCommand = """INSERT IGNORE INTO """ + dbTableName + \
             """ (""" + myKeys + """) VALUES (""" + valueString + """)"""
-        valueTuple = tuple(myValues)
+        mv = []
+        mv[:] = [None if m == "None" else m for m in myValues]
+        valueTuple = tuple(mv)
+
         return insertCommand, valueTuple
 
     # GENERATE THE INSERT COMMAND - IGNORE DUPLICATE ENTRIES
@@ -561,6 +564,7 @@ def convert_dictionary_to_mysql_table(
     myValues = myValues.replace('dictitems', '')
     myValues = myValues.replace('!!python/unicode:', '')
     myValues = myValues.replace('!!python/unicode', '')
+    myValues = myValues.replace('"None"', 'null')
     # log.debug(myValues+" ------ POSTSTRIP")
     addValue = """INSERT IGNORE INTO """ + dbTableName + \
         """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
@@ -579,7 +583,7 @@ def convert_dictionary_to_mysql_table(
         log.error("could not add new data added to the table '" +
                   dbTableName + "' : " + str(e) + '\n')
 
-    log.info('finished convert_dictionary_to_mysql_table')
+    log.debug('finished convert_dictionary_to_mysql_table')
 
     return message
 
