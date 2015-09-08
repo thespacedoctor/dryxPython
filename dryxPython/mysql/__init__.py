@@ -108,7 +108,8 @@ def execute_mysql_write_query(
     dbConn,
     log,
     quiet=False,
-    Force=True
+    Force=True,
+    manyValueList=False
 ):
     """ Execute a MySQL write command given a sql query
 
@@ -116,12 +117,15 @@ def execute_mysql_write_query(
                 - ``sqlQuery`` -- the MySQL command to execute
                 - ``dbConn`` -- the db connection
                 - ``Force`` -- do not exit code if error occurs
+                - ``manyValueList`` -- a list of value tuples if executing more than one insert
 
             **Return:**
                 - ``None`` """
 
     # # > IMPORTS ##
     import MySQLdb
+    import warnings
+    warnings.filterwarnings('error', category=MySQLdb.Warning)
     # ##########################################################
     # >ACTION(S)                                              #
     # ##########################################################
@@ -136,7 +140,10 @@ def execute_mysql_write_query(
         log.error('could not create the database cursor.')
     # EXECUTE THE SQL COMMAND
     try:
-        cursor.execute(sqlQuery)
+        if manyValueList == False:
+            cursor.execute(sqlQuery)
+        else:
+            cursor.executemany(sqlQuery, manyValueList)
     except MySQLdb.Error as e:
         if e[0] == 1050 and 'already exists' in e[1]:
             log.info(str(e) + '\n')
@@ -144,7 +151,7 @@ def execute_mysql_write_query(
                            # Duplicate Key error
             log.debug('Duplicate Key error: %s' % (str(e), ))
             message = "duplicate key error"
-        elif e[0] == 2014 or e[0] == 1061:
+        elif e[0] == 1061:
                            # Duplicate Key error
             log.debug('index already exists: %s' % (str(e), ))
             message = "index already exists"
@@ -152,22 +159,27 @@ def execute_mysql_write_query(
                            # Duplicate Key error
             log.debug('unknown column: %s' % (str(e), ))
             message = "unknown column"
+
         else:
-            sqlQuery = sqlQuery[:1000]
+            sqlQueryTrim = sqlQuery[:1000]
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
                                                                                                    str(e)))
+
             if Force == False:
                 sys.exit(0)
             return -1
     except Exception as e:
-        sqlQuery = sqlQuery[:1000]
-        log.error(
-            'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
-            (sqlQuery, str(e)))
-        if Force == False:
-            sys.exit(0)
-        return -1
+        if "truncated" in str(e):
+            log.info('%s\n' % (str(e), ))
+        else:
+            sqlQuery = sqlQuery[:1000]
+            log.error(
+                'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
+                (sqlQuery, str(e)))
+            if Force == False:
+                sys.exit(0)
+            return -1
     # CLOSE THE CURSOR
     cOpen = True
     count = 0
@@ -176,9 +188,11 @@ def execute_mysql_write_query(
             cursor.close()
             cOpen = False
         except Exception as e:
+            time.sleep(1)
             count += 1
             if count == 10:
                 log.warning('could not close the db cursor ' + str(e) + '\n')
+                raise e
                 count = 0
 
     log.debug('finished execute_mysql_write_query')
@@ -525,6 +539,14 @@ def convert_dictionary_to_mysql_table(
                     log,
                 )
 
+    if returnInsertOnly == True:
+        myKeys = ','.join(formattedKeyList)
+        valueString = ("%s, " * len(myValues))[:-2]
+        insertCommand = """INSERT IGNORE INTO """ + dbTableName + \
+            """ (""" + myKeys + """) VALUES (""" + valueString + """)"""
+        valueTuple = tuple(myValues)
+        return insertCommand, valueTuple
+
     # GENERATE THE INSERT COMMAND - IGNORE DUPLICATE ENTRIES
     myKeys = ','.join(formattedKeyList)
     myValues = '" ,"'.join(myValues)
@@ -543,9 +565,6 @@ def convert_dictionary_to_mysql_table(
     addValue = """INSERT IGNORE INTO """ + dbTableName + \
         """ (""" + myKeys + """) VALUES (\"""" + myValues + """\")"""
     # log.debug(addValue)
-
-    if returnInsertOnly == True:
-        return addValue
 
     message = ""
     try:
@@ -663,154 +682,6 @@ def add_column_to_db_table(
             (sqlQuery, dbConn, log)
     return None
 
-
-# LAST MODIFIED : 20121102
-# CREATED : 20121102
-
-# def add_HTMIds_to_mysql_tables(
-#         raColName,
-#         declColName,
-#         tableName,
-#         dbConn,
-#         log,
-#         primaryIdColumnName="primaryId"):
-#     """ Calculate and append HTMId info to a mysql db table containing ra and dec columns
-
-#     ****Key Arguments:****
-#         - ``raColName`` -- ra in sexegesimal
-#         - ``declColName`` -- dec in sexegesimal
-#         - ``tableName`` -- name of table to add htmid info to
-#         - ``dbConn`` -- database hosting the above table
-#         - ``log`` -- logger
-
-#     **Return:**
-#         - ``None`` """
-
-#     # # > IMPORTS ##
-#     import MySQLdb as ms
-#     import dryxPython.mysql as m
-#     from dryxPython.kws import utils as u
-#     # # >SETTINGS ##
-
-# TEST TABLE EXIST
-#     sqlQuery = """show tables"""
-#     rows = execute_mysql_read_query(
-#         sqlQuery=sqlQuery,
-#         dbConn=dbConn,
-#         log=log
-#     )
-#     tableList = []
-#     for row in rows:
-#         tableList.extend(row.values())
-#     if tableName not in tableList:
-#         message = "The %s table does not exist in the database" % (tableName,)
-#         log.critical(message)
-#         raise IOError(message)
-
-# TEST COLUMN EXISTS
-#     cursor = dbConn.cursor(ms.cursors.DictCursor)
-#     sqlQuery = """SELECT * FROM %s LIMIT 1""" % (tableName,)
-#     cursor.execute(sqlQuery)
-#     rows = cursor.fetchall()
-#     desc = cursor.description
-#     existingColumns = []
-#     for i in range(len(desc)):
-#         existingColumns.append(desc[i][0])
-#     if (raColName not in existingColumns) or (declColName not in existingColumns):
-#         message = 'Please make sure you have got the naes of the RA and DEC columns correct'
-#         log.critical(message)
-#         raise IOError(message)
-
-#     # >ACTION(S)   ###
-#     htmCols = {
-#         'htm16ID': 'BIGINT(20)',
-#         'htm20ID': 'BIGINT(20)',
-#         'cx': 'DOUBLE',
-#         'cy': 'DOUBLE',
-#         'cz': 'DOUBLE',
-#     }
-
-# CHECK IF COLUMNS EXISTS YET - IF NOT CREATE FROM
-#     for key in htmCols.keys():
-#         try:
-#             log.debug(
-#                 'attempting to check and generate the HTMId columns for the %s db table' %
-#                 (tableName, ))
-#             colExists = \
-#                 """SELECT *
-#                     FROM information_schema.COLUMNS
-#                     WHERE TABLE_SCHEMA=DATABASE()
-#                     AND COLUMN_NAME='%s'
-#                     AND TABLE_NAME='%s'""" \
-#                 % (key, tableName)
-#             colExists = m.execute_mysql_read_query(
-#                 colExists,
-#                 dbConn,
-#                 log,
-#             )
-#             if not colExists:
-#                 sqlQuery = 'ALTER TABLE ' + tableName + ' ADD ' + \
-#                     key + ' ' + htmCols[key] + ' DEFAULT NULL'
-#                 m.execute_mysql_write_query(
-#                     sqlQuery,
-#                     dbConn,
-#                     log,
-#                 )
-#         except Exception as e:
-#             log.critical('could not check and generate the HTMId columns for the %s db table - failed with this error: %s '
-#                          % (tableName, str(e)))
-#             return -1
-# SELECT THE ROWS WHERE THE HTMIds ARE NOT SET
-#     sqlQuery = """SELECT %s, %s, %s from %s where htm16ID is NULL""" % (
-#         primaryIdColumnName, raColName, declColName, tableName)
-#     rows = m.execute_mysql_read_query(
-#         sqlQuery,
-#         dbConn,
-#         log,
-#     )
-# NOW GENERATE THE HTMLIds FOR THESE ROWS
-#     for row in rows:
-#         if row[raColName] is None or row[declColName] is None:
-#             continue
-#         else:
-#             (thisRa, thisDec) = (float(row[raColName]), float(row[declColName]))
-#             htm16ID = u.htmID(
-#                 thisRa,
-#                 thisDec,
-#                 16,
-#             )
-#             htm20ID = u.htmID(
-#                 thisRa,
-#                 thisDec,
-#                 20,
-#             )
-#             (cx, cy, cz) = u.calculate_cartesians(thisRa, thisDec)
-#             sqlQuery = \
-#                 """UPDATE %s SET htm16ID=%s, htm20ID=%s,cx=%s,cy=%s,cz=%s
-#                                                     where %s = '%s'""" \
-#                 % (
-#                 tableName,
-#                 htm16ID,
-#                 htm20ID,
-#                 cx,
-#                 cy,
-#                 cz,
-#                 primaryIdColumnName,
-#                 row[primaryIdColumnName],
-#             )
-#             try:
-#                 log.debug(
-#                     'attempting to update the HTMIds for new objects in the %s db table' % (tableName, ))
-#                 m.execute_mysql_write_query(
-#                     sqlQuery,
-#                     dbConn,
-#                     log,
-#                 )
-#             except Exception as e:
-#                 log.critical('could not update the HTMIds for new objects in the %s db table - failed with this error: %s '
-#                              % (tableName, str(e)))
-#                 return -1
-#     return None
 
 # LAST MODIFIED : January 9, 2014
 # CREATED : January 9, 2014
@@ -976,9 +847,9 @@ def insert_list_of_dictionaries_into_database(
 
         inserted = False
         while inserted == False:
-            theseInserts = ""
+            theseInserts = []
             for aDict in batch:
-                insert = convert_dictionary_to_mysql_table(
+                insertCommand, valueTuple = convert_dictionary_to_mysql_table(
                     dbConn=dbConn,
                     log=log,
                     dictionary=aDict,
@@ -988,15 +859,16 @@ def insert_list_of_dictionaries_into_database(
                     dateModified=dateModified,
                     returnInsertOnly=True
                 )
-                theseInserts = "%(theseInserts)s\n%(insert)s;" % locals()
+                theseInserts.append(valueTuple)
 
             message = ""
             # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
             message = execute_mysql_write_query(
-                theseInserts,
+                insertCommand,
                 dbConn,
                 log,
-                Force=False
+                Force=False,
+                manyValueList=theseInserts
             )
             if message == "unknown column":
                 sys.exit(0)

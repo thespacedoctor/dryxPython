@@ -351,6 +351,8 @@ def add_HTMIds_to_mysql_tables(
     except Exception, e:
         log.info('no index needed on table: %(e)s' % locals())
 
+    print "All HTMIds added to %(tableName)s" % locals()
+
     return None
 
 # use the tab-trigger below for new function

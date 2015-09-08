@@ -108,6 +108,8 @@ def setup_dryx_logging(yaml_file):
     # SET THE ROOT LOGGER
     logger = logging.getLogger(__name__)
 
+    logging.captureWarnings(True)
+
     return logger
 
 
