@@ -121,7 +121,8 @@ def multiWebDocumentDownloader(
     concurrentDownloads=10,
     resetFilename=False,
     credentials=False,
-    longTime=False
+    longTime=False,
+    indexFilenames=False
 ):
     """get multiple url documents and place in specified download directory
 
@@ -130,6 +131,7 @@ def multiWebDocumentDownloader(
           - ``downloadDirectory`` -- directory(ies) to download the documents to - can be one url or a list of urls the same length as urlList
           - ``resetFilename`` -- a string to reset all filenames to
           - ``credentials`` -- basic http credentials { 'username' : "...", "password", "..." }
+          - ``indexFilenames`` -- prepend filenames with index (where url appears in urllist)
 
         **Return:**
           - list of timestamped documents (same order as the input urlList)
@@ -161,12 +163,14 @@ def multiWebDocumentDownloader(
 
     # if only one download direcory
     if isinstance(downloadDirectory, str):
-        for url in urlList:
+        for i, url in enumerate(urlList):
             # EXTRACT THE FILENAME FROM THE URL
             if resetFilename:
                 filename = resetFilename
             else:
                 filename = dcu.extract_filename_from_url(log, url)
+                if indexFilenames:
+                    filename = """%(i)03d_%(filename)s""" % locals()
 
             if not filename:
                 continue

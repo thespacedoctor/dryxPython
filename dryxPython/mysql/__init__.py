@@ -108,7 +108,7 @@ def execute_mysql_write_query(
     dbConn,
     log,
     quiet=False,
-    Force=True,
+    Force=False,
     manyValueList=False
 ):
     """ Execute a MySQL write command given a sql query
@@ -155,17 +155,11 @@ def execute_mysql_write_query(
                            # Duplicate Key error
             log.debug('index already exists: %s' % (str(e), ))
             message = "index already exists"
-        elif e[0] == 1054:
-                           # Duplicate Key error
-            log.debug('unknown column: %s' % (str(e), ))
-            message = "unknown column"
-
         else:
             sqlQueryTrim = sqlQuery[:1000]
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
                                                                                                    str(e)))
-
             if Force == False:
                 sys.exit(0)
             return -1
@@ -173,7 +167,7 @@ def execute_mysql_write_query(
         if "truncated" in str(e):
             log.info('%s\n' % (str(e), ))
         else:
-            sqlQuery = sqlQuery[:1000]
+            sqlQuery = sqlQuery[:2000]
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
                 (sqlQuery, str(e)))
