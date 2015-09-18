@@ -247,7 +247,7 @@ def add_HTMIds_to_mysql_tables(
             return -1
 
     # COUNT ROWS WHERE HTMIDs ARE NOT SET
-    sqlQuery = """SELECT count(*) as count from %(tableName)s where %(raColName)s is not null and  ((htm16ID is NULL or htm16ID = 0) or (cx is NULL of cx = 0))""" % locals(
+    sqlQuery = """SELECT count(*) as count from %(tableName)s where %(raColName)s is not null and  ((htm16ID is NULL or htm16ID = 0) or (cx is NULL or cx = 0))""" % locals(
     )
     rowCount = m.execute_mysql_read_query(
         sqlQuery,
