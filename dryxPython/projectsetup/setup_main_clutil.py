@@ -26,6 +26,7 @@ import sys
 import os
 import yaml
 from collections import OrderedDict
+import shutil
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
@@ -74,6 +75,12 @@ class setup_main_clutil():
             arguments = docopt(docString, options_first=options_first)
         self.arguments = arguments
 
+        try:
+            if "tests.test" in arguments["<pathToSettingsFile>"]:
+                del arguments["<pathToSettingsFile>"]
+        except:
+            pass
+
         # UNPACK SETTINGS
         stream = False
         if "<settingsFile>" in arguments and arguments["<settingsFile>"]:
@@ -116,7 +123,15 @@ class setup_main_clutil():
                     settings = this
                     arguments["<settingsFile>"] = settingsFile
                 else:
-                    print "please add settings to file '%(settingsFile)s'" % locals()
+                    import inspect
+                    ds = "/".join(inspect.stack()
+                                  [1][1].split("/")[:-2]) + "/default_settings.yaml"
+                    shutil.copyfile(ds, settingsFile)
+                    try:
+                        shutil.copyfile(ds, settingsFile)
+                        print "default settings have been added to '%(settingsFile)s'" % locals()
+                    except:
+                        print "please add settings to file '%(settingsFile)s'" % locals()
                     sys.exit(0)
         else:
             pass

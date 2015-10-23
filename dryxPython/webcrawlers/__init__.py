@@ -263,7 +263,7 @@ def multiWebDocumentDownloader(
 ########################################################################
 # LAST MODIFIED : 20121025
 # CREATED : 20121025
-def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credentials=False, resetFilename=False):
+def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credentials=False, resetFilename=False, timeout=20):
     """get a url document and place in a specified directory
 
         ****Key Arguments:****
@@ -286,7 +286,8 @@ def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credenti
         log=log,
         timeStamp=timeStamp,
         credentials=credentials,
-        resetFilename=resetFilename)
+        resetFilename=resetFilename,
+        timeout=timeout)
     filepath = localUrlList[0]
 
     #log.debug('>>>>>>>>>>>>>>> the local url is '+ filepath)

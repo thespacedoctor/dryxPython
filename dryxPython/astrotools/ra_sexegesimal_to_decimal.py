@@ -113,7 +113,7 @@ def ra_sexegesimal_to_decimal(
     ra = str(ra).strip()
 
     regex = re.compile(
-        '^(\+?(\d|[0-1]\d|2[0-3]))\D+([0-5]\d)\D+([0-5]?\d(\.\d+)?)$')
+        '^(\+?(\d|[0-1]\d|2[0-3]))\D+([0-5]\d)\D+([0-6]?\d(\.\d+)?)$')
     raMatch = regex.match(ra)
 
     if raMatch:

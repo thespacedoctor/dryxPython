@@ -269,6 +269,7 @@ def getDateFromMJD(mjd):
 
 def getSQLDateFromMJD(mjd):
     """convert mjd to a date"""
+    from datetime import datetime
     unixtime = (mjd + 2400000.5 - 2440587.5) * 86400.0
     theDate = datetime.utcfromtimestamp(unixtime)
     return theDate.strftime("%Y-%m-%dT%H:%M:%S.%f")

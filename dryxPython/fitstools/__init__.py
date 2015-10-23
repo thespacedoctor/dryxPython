@@ -49,7 +49,7 @@ def main():
     import dryxPython.commonutils as cu
 
     ################ > SETUP ##################
-    ## SETUP DB CONNECTION AND A LOGGER
+    # SETUP DB CONNECTION AND A LOGGER
     dbConn, log = p.settings()
     ## START LOGGING ##
     startTime = cu.get_now_sql_datetime()
@@ -74,9 +74,11 @@ def main():
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : March 19, 2013
-## CREATED : March 19, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : March 19, 2013
+# CREATED : March 19, 2013
+# AUTHOR : DRYX
+
+
 def convert_fits_header_to_dictionary(
         log,
         pathToFitsFile,
@@ -107,12 +109,13 @@ def convert_fits_header_to_dictionary(
             pass
             fileExists = True
     except IOError:
-       fileExists = False
-       raise IOError("the fits file %s does not exist" % (pathToFitsFile,))
+        fileExists = False
+        raise IOError("the fits file %s does not exist" % (pathToFitsFile,))
 
     headerDictionary = {}
     try:
-        fitsHeader = get_fits_header(log, pathToFitsFile, headerExtension=headerExtension)
+        fitsHeader = get_fits_header(
+            log, pathToFitsFile, headerExtension=headerExtension)
         cardList = fitsHeader.ascardlist()
         # print cardList
     except:
@@ -128,9 +131,11 @@ def convert_fits_header_to_dictionary(
 
     return headerDictionary
 
-## LAST MODIFIED : March 19, 2013
-## CREATED : March 19, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : March 19, 2013
+# CREATED : March 19, 2013
+# AUTHOR : DRYX
+
+
 def get_fits_header(
         log,
         pathToFits,
@@ -170,9 +175,9 @@ def get_fits_header(
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
 ###################################################################
-## LAST MODIFIED : March 19, 2013
-## CREATED : March 19, 2013
-## AUTHOR : Stefano Valenti & DRYX
+# LAST MODIFIED : March 19, 2013
+# CREATED : March 19, 2013
+# AUTHOR : Stefano Valenti & DRYX
 
 
 def _correct_extended_fits_keywords(log, pathToFits):
@@ -202,7 +207,8 @@ def _correct_extended_fits_keywords(log, pathToFits):
     for i in range(len(a)):
         if not a[i]:
             a[i] = ['']
-    ww = asarray([i for i in range(len(a)) if (re.sub(' ', '', a[i][0]) != '')])
+    ww = asarray([i for i in range(len(a)) if (
+        re.sub(' ', '', a[i][0]) != '')])
     if len(ww) > 0:
         newheader = []
         headername = []
@@ -224,9 +230,9 @@ def _correct_extended_fits_keywords(log, pathToFits):
     return
 
 
-## LAST MODIFIED : May 28, 2013
-## CREATED : May 28, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 28, 2013
+# CREATED : May 28, 2013
+# AUTHOR : DRYX
 
 def remove_keyword_from_file(
         log,
@@ -258,7 +264,7 @@ def remove_keyword_from_file(
 
     primHeader = pf.Header(cards=thisCardList)
     primHdu = pf.PrimaryHDU(header=primHeader, data=fitsData)
-    thisHduList = pf.HDUList([primHdu,])
+    thisHduList = pf.HDUList([primHdu, ])
 
     thisHduList.writeto(pathToFitsFile, checksum=True)
 
@@ -267,9 +273,9 @@ def remove_keyword_from_file(
     return
 
 
-## LAST MODIFIED : May 28, 2013
-## CREATED : May 28, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 28, 2013
+# CREATED : May 28, 2013
+# AUTHOR : DRYX
 
 def add_or_replace_keyword_to_fits(
         log,
@@ -305,7 +311,7 @@ def add_or_replace_keyword_to_fits(
 
     primHeader = pf.Header(cards=primCardList)
     primHdu = pf.PrimaryHDU(header=primHeader, data=fitsData)
-    thisHduList = pf.HDUList([primHdu,])
+    thisHduList = pf.HDUList([primHdu, ])
 
     thisHduList.writeto(pathToFitsFile, checksum=True)
 
@@ -323,3 +329,4 @@ if __name__ == '__main__':
 ###################################################################
 
 from convert_excel_workbook_to_binary_fits_table import convert_excel_workbook_to_binary_fits_table
+from convert_spectrum_fits_to_ascii import convert_spectrum_fits_to_ascii
