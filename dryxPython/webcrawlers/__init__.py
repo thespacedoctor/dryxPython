@@ -54,16 +54,32 @@ def main():
 
 def _fetch(url,):
     import logging as log
+    import socket
+    from eventlet import Timeout
     from eventlet.green import urllib2
+    import sys
 
-    try:
-        log.debug('downloading ' + url.get_full_url())
-        body = urllib2.urlopen(url).read()
-    except Exception, e:
-        log.warning(
-            "could not download " + url.get_full_url() + " : " + str(e) + "\n")
-        url = None
-        body = None
+    tries = 10
+    count = 1
+    downloaded = False
+    while count < tries and downloaded == False:
+        try:
+            log.debug('downloading ' + url.get_full_url())
+            body = urllib2.urlopen(url).read()
+            downloaded = True
+        except socket.timeout, e:
+            print "timeout on URL, trying again"
+            count += 1
+        except Exception, e:
+            if "[Errno 60]" in str(e):
+                print "timeout on URL, trying again"
+                count += 1
+            else:
+                log.warning(
+                    "could not download " + url.get_full_url() + " : " + str(e) + "\n")
+                url = None
+                body = None
+                downloaded = True
 
     return url, body
 
@@ -161,6 +177,8 @@ def multiWebDocumentDownloader(
     theseUrls = []
     requestList = []
 
+    totalCount = len(urlList)
+
     # if only one download direcory
     if isinstance(downloadDirectory, str):
         for i, url in enumerate(urlList):
@@ -227,11 +245,19 @@ def multiWebDocumentDownloader(
     pool = eventlet.GreenPool(concurrentDownloads)
     i = 0
     try:
+
         log.debug(
             "starting mutli-threaded download batch - %s concurrent downloads" %
             (concurrentDownloads,))
         log.debug('len(requestList): %s' % (len(requestList),))
         for url, body in pool.imap(_fetch, requestList):
+            urlNum = i + 1
+            if urlNum > 1:
+                # Cursor up one line and clear line
+                sys.stdout.write("\x1b[1A\x1b[2K")
+            percent = (float(urlNum) / float(totalCount)) * 100.
+            print "  %(urlNum)s / %(totalCount)s (%(percent)1.1f%%) URLs downloaded" % locals()
+
             if(body):
                 bodies.extend([body])
                 theseUrls.extend([thisArray[i][1]])
