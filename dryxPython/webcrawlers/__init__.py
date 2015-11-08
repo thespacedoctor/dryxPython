@@ -74,6 +74,9 @@ def _fetch(url,):
             if "[Errno 60]" in str(e):
                 print "timeout on URL, trying again"
                 count += 1
+            if "Error 502" in str(e).lower():
+                print "proxy error on URL, trying again"
+                count += 1
             else:
                 log.warning(
                     "could not download " + url.get_full_url() + " : " + str(e) + "\n")
