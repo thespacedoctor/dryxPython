@@ -121,7 +121,7 @@ def check_for_sdss_coverage(
         decDeg,
         url="http://skyserver.sdss.org/dr12/en/tools/search/x_sql.aspx"
 ):
-    """Check an ra and dec for SDSS DR9 image coverage
+    """Check an ra and dec for SDSS DR12 image coverage
 
         **Key Arguments:**
             - ``log`` -- python logger
@@ -149,7 +149,7 @@ def check_for_sdss_coverage(
     log.debug('sqlQuery: %s' % (sqlQuery,))
     try:
         log.debug(
-            "attempting to determine whether object is in SDSS DR9 footprint")
+            "attempting to determine whether object is in SDSS DR12 footprint")
         result = _query(
             sql=sqlQuery,
             url=url,
@@ -157,7 +157,7 @@ def check_for_sdss_coverage(
             log=log)
     except Exception, e:
         log.error(
-            "could not determine whether object is in SDSS DR9 footprint - failed with this error %s: " %
+            "could not determine whether object is in SDSS DR12 footprint - failed with this error %s: " %
             (str(e),))
         return -1
 
@@ -193,22 +193,33 @@ def _filtercomment(sql):
         fsql += line.split('--')[0] + ' ' + os.linesep
     return fsql
 
+import requests
+
 
 def _query(sql, url, fmt, log):
-    "Run query and return file object"
-    import urllib
-    import urllib2
-    fsql = _filtercomment(sql)
-    params = urllib.urlencode({'cmd': fsql, 'format': fmt})
-    log.debug('params %s' % (params,))
-    # url = url + '?%s' % params
-    req = urllib2.Request(url, params)
-    response = urllib2.urlopen(req)
-    result = response.read()
+    # My API
+    # GET http://skyserver.sdss.org/dr12/en/tools/search/x_sql.aspx
 
-    # result = urllib.urlopen(url + '?%s' % params)
-    # log.debug('url: %s' % (url,))
-    return result
+    try:
+        response = requests.get(
+            url=url,
+            params={
+                "cmd": _filtercomment(sql),
+                "format": fmt,
+            },
+            headers={
+                "Cookie": "ASP.NET_SessionId=d0fiwrodvk4rdf21gh3jzr3t; SERVERID=dsa003",
+            },
+        )
+        print('Response HTTP Status Code: {status_code}'.format(
+            status_code=response.status_code))
+        print('Response HTTP Response Body: {content}'.format(
+            content=response.content))
+    except requests.exceptions.RequestException:
+        print('HTTP Request failed')
+
+    return response.content
+
 
 ############################################
 # CODE TO BE DEPECIATED                    #
