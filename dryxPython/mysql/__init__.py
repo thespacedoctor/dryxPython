@@ -157,12 +157,14 @@ def execute_mysql_write_query(
             message = "index already exists"
         else:
             sqlQueryTrim = sqlQuery[:1000]
-            log.error(
-                'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
-                                                                                                   str(e)))
+            message = 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' % (sqlQuery,
+                                                                                                         str(e))
             if Force == False:
+                log.error(message)
                 sys.exit(0)
-            return -1
+            else:
+                log.warning(message)
+                return -1
     except Exception as e:
         if "truncated" in str(e):
             log.info('%s\n' % (str(e), ))

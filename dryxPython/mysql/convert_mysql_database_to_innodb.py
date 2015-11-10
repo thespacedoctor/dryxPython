@@ -21,9 +21,6 @@ convert_mysql_database_to_innodb.py
 :Tasks:
     @review: when complete pull all general functions and classes into dryxPython
 
-# @review Code to be added to the package setup.py file        
-# 'dms_convert_mysql_database_to_innodb=dryxPython.mysql.convert_mysql_database_to_innodb:main'
-
 Usage:
     dms_convert_mysql_database_to_innodb -s <settingsFile>
     dms_convert_mysql_database_to_innodb -s <settingsFile> -t <tableSchema>
@@ -164,7 +161,8 @@ def convert_mysql_database_to_innodb(
             execute_mysql_write_query(
                 sqlQuery=sqlQuery,
                 dbConn=dbConn,
-                log=log
+                log=log,
+                Force=True
             )
         except Exception, e:
             log.warning(
