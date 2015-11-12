@@ -211,10 +211,10 @@ def _query(sql, url, fmt, log):
                 "Cookie": "ASP.NET_SessionId=d0fiwrodvk4rdf21gh3jzr3t; SERVERID=dsa003",
             },
         )
-        print('Response HTTP Status Code: {status_code}'.format(
-            status_code=response.status_code))
-        print('Response HTTP Response Body: {content}'.format(
-            content=response.content))
+        # print('Response HTTP Status Code: {status_code}'.format(
+        #     status_code=response.status_code))
+        # print('Response HTTP Response Body: {content}'.format(
+        #     content=response.content))
     except requests.exceptions.RequestException:
         print('HTTP Request failed')
 
