@@ -12332,3 +12332,8 @@
 [Thu Oct 15 13:45:51.871463 2015] [core:info] [pid 46482] [client 127.0.0.1:58409] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/favicon.ico
 [Thu Oct 15 13:45:51.886646 2015] [core:info] [pid 46480] [client 127.0.0.1:58408] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/apple-touch-icon-precomposed.png
 [Thu Oct 15 13:45:51.887923 2015] [core:info] [pid 46480] [client 127.0.0.1:58408] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/apple-touch-icon.png
+[Thu Nov 19 12:15:29.387616 2015] [core:info] [pid 12730] [client 127.0.0.1:52441] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/apple-touch-icon-precomposed.png
+[Thu Nov 19 12:15:29.412697 2015] [core:info] [pid 12730] [client 127.0.0.1:52441] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/apple-touch-icon.png
+[Thu Nov 19 12:15:30.454498 2015] [core:info] [pid 12731] [client 127.0.0.1:52442] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/favicon.ico
+[Thu Nov 19 12:15:30.468832 2015] [core:info] [pid 12730] [client 127.0.0.1:52441] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/apple-touch-icon-precomposed.png
+[Thu Nov 19 12:15:30.476492 2015] [core:info] [pid 12730] [client 127.0.0.1:52441] AH00128: File does not exist: /Users/Dave/git_repos/dryxPython/dryxPython/tests/output/htdocs/apple-touch-icon.png

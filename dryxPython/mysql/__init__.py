@@ -143,7 +143,19 @@ def execute_mysql_write_query(
         if manyValueList == False:
             cursor.execute(sqlQuery)
         else:
-            cursor.executemany(sqlQuery, manyValueList)
+            # cursor.executemany(sqlQuery, manyValueList)
+            # INSET LARGE LISTS IN BATCHES TO STOP MYSQL SERVER BARFING
+            batch = 100000
+            offset = 0
+            stop = 0
+            while stop == 0:
+                thisList = manyValueList[offset:offset + batch]
+                offset += batch
+                a = len(thisList)
+                cursor.executemany(sqlQuery, thisList)
+                if len(thisList) < batch:
+                    stop = 1
+
     except MySQLdb.Error as e:
         if e[0] == 1050 and 'already exists' in e[1]:
             log.info(str(e) + '\n')
@@ -167,7 +179,10 @@ def execute_mysql_write_query(
                 return -1
     except Exception as e:
         if "truncated" in str(e):
-            log.info('%s\n' % (str(e), ))
+            log.error('%s\n Here is the sqlquery:\n%s' % (str(e), sqlQuery))
+            if manyValueList:
+                log.error('... and the values:\n%s' % (thisList, ))
+            sys.exit(0)
         else:
             sqlQuery = sqlQuery[:2000]
             log.error(
@@ -311,7 +326,7 @@ def convert_dictionary_to_mysql_table(
                 raise ValueError(message)
 
         for k, v in dictionary.iteritems():
-            log.debug('k: %s, v: %s' % (k, v,))
+            # log.debug('k: %s, v: %s' % (k, v,))
             if isinstance(v, list) and len(v) != 2:
                 message = 'Please make sure the list values in "dictionary" 2 items in length'
                 log.critical("%s: in %s we have a %s (%s)" %
@@ -408,7 +423,7 @@ def convert_dictionary_to_mysql_table(
                 except:
                     log.error('cound not decode value %(value)s' % locals())
 
-                log.debug('udata: %(udata)s' % locals())
+                # log.debug('udata: %(udata)s' % locals())
 
             if isinstance(value, unicode):
                 value = value.replace('"', '\\"')
@@ -431,7 +446,8 @@ def convert_dictionary_to_mysql_table(
                     + formattedKey + "'\
                                         AND TABLE_NAME='" + dbTableName + """'"""
                 try:
-                    # log.debug('checking if the column '+formattedKey+' exists in the '+dbTableName+' table')
+                    # log.debug('checking if the column '+formattedKey+' exists
+                    # in the '+dbTableName+' table')
                     rows = execute_mysql_read_query(
                         colExists,
                         dbConn,
@@ -471,8 +487,9 @@ def convert_dictionary_to_mysql_table(
                     elif isinstance(value[0], list):
                         qCreateColumn += ' varchar(1024) DEFAULT NULL'
                     else:
-                        log.debug('Do not know what format to add this key in MySQL - removing from dictionary: %s, %s'
-                                  % (key, type(value[0])))
+                        # log.debug('Do not know what format to add this key in
+                        # MySQL - removing from dictionary: %s, %s'
+                                 # % (key, type(value[0])))
                         formattedKeyList.pop()
                         myValues.pop()
                         qCreateColumn = None
@@ -492,7 +509,7 @@ def convert_dictionary_to_mysql_table(
                                 log,
                             )
                         except Exception as e:
-                            log.debug('qCreateColumn: %s' % (qCreateColumn, ))
+                            # log.debug('qCreateColumn: %s' % (qCreateColumn, ))
                             log.error('could not create the ' + formattedKey + ' column in the ' + dbTableName
                                       + ' table -- ' + str(e) + '\n')
 
@@ -521,7 +538,7 @@ def convert_dictionary_to_mysql_table(
                 log,
             )
             exists = rows[0]['COUNT(*)']
-            log.debug('uniqueKeyList: %s' % (uniqueKeyList,))
+            # log.debug('uniqueKeyList: %s' % (uniqueKeyList,))
             if exists == 0:
                 if isinstance(uniqueKeyList, list):
                     uniqueKeyList = ','.join(uniqueKeyList)
