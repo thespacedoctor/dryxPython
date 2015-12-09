@@ -182,7 +182,6 @@ def execute_mysql_write_query(
             log.error('%s\n Here is the sqlquery:\n%s' % (str(e), sqlQuery))
             if manyValueList:
                 log.error('... and the values:\n%s' % (thisList, ))
-            sys.exit(0)
         else:
             sqlQuery = sqlQuery[:2000]
             log.error(
