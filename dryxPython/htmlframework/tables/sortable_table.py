@@ -72,7 +72,7 @@ class sortable_table():
         # xt-self-arg-tmpx
 
         # Variable Data Atrributes
-        self.colors = ["green", "red", "blue", "yellow",
+        self.colors = ["green", "blue", "red", "yellow",
                        "orange", "violet", "magenta", "cyan", ]
         self.modifyDisplayNameDict = {}
         self.modifySortByDict = {}
