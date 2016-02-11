@@ -19326,3 +19326,9 @@
 127.0.0.1 - - [14/Jan/2016:09:31:01 +0000] "GET /apple-touch-icon.png HTTP/1.1" 404 218
 127.0.0.1 - - [14/Jan/2016:09:31:01 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 230
 127.0.0.1 - - [14/Jan/2016:09:31:01 +0000] "GET /apple-touch-icon.png HTTP/1.1" 404 218
+127.0.0.1 - - [28/Jan/2016:10:00:15 +0000] "GET /dryxPython_htmlframework_cheatsheet.html HTTP/1.1" 200 48094
+127.0.0.1 - - [28/Jan/2016:10:00:15 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 230
+127.0.0.1 - - [28/Jan/2016:10:00:15 +0000] "GET /apple-touch-icon.png HTTP/1.1" 404 218
+127.0.0.1 - - [28/Jan/2016:10:00:16 +0000] "GET /favicon.ico HTTP/1.1" 404 209
+127.0.0.1 - - [28/Jan/2016:10:00:16 +0000] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 230
+127.0.0.1 - - [28/Jan/2016:10:00:16 +0000] "GET /apple-touch-icon.png HTTP/1.1" 404 218
