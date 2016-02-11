@@ -40,7 +40,7 @@ import math
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+
 # from ..__init__ import *
 
 
@@ -53,6 +53,7 @@ def main(arguments=None):
     The main function used when ``add_htmids_to_mysql_table.py`` is run as a single script from the cl, or when installed as a cl command
     """
     # setup the command-line util settings
+    from dryxPython.projectsetup import setup_main_clutil
     su = setup_main_clutil(
         arguments=arguments,
         docString=__doc__,

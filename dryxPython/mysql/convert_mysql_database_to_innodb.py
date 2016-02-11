@@ -36,7 +36,7 @@ import os
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+
 from . import execute_mysql_read_query
 from . import execute_mysql_write_query
 
@@ -49,6 +49,7 @@ def main(arguments=None):
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
+    from dryxPython.projectsetup import setup_main_clutil
 
     su = setup_main_clutil(
         arguments=arguments,
