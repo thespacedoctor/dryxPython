@@ -28,8 +28,11 @@ import yaml
 from collections import OrderedDict
 import shutil
 from docopt import docopt
+import MySQLdb as ms
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
+import time
+
 
 ###################################################################
 # CLASSES                                                         #
@@ -62,12 +65,13 @@ class setup_main_clutil():
             logLevel="DEBUG",
             options_first=False,
             projectName=False,
-            orderedSettings=False
+            orderedSettings=False,
+            tunnel=False
     ):
         self.arguments = arguments
         self.docString = docString
         self.logLevel = logLevel
-        # x-self-arg-tmpx
+        self.tunnel = tunnel
 
         ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
         # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
@@ -142,6 +146,8 @@ class setup_main_clutil():
                 settings = ordered_load(stream, yaml.SafeLoader)
             else:
                 settings = yaml.load(stream)
+
+        self.settings = settings
 
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN
         # SETTINGS
@@ -224,29 +230,107 @@ class setup_main_clutil():
 
         self.dbConn = dbConn
 
+        if tunnel:
+            self._setup_tunnel()
+
         if not 'settings' in locals():
             settings = False
         self.settings = settings
 
         return None
 
-    # Method Attributes
-    # use the tab-trigger below for new method
     def setup(
             self):
         """setup the attributes and return
-
-        **Key Arguments:**
-            # -
-
-        **Return:**
-            - None
-
-        **Todo**
-            - @review: when complete, clean setup method
-            - @review: when complete add logging
         """
-        return self.arguments, self.settings, self.log, self.dbConn
+        if self.tunnel:
+            return self.arguments, self.settings, self.log, self.dbConn, self.remoteDBConn
+        else:
+            return self.arguments, self.settings, self.log, self.dbConn
+
+    def _setup_tunnel(
+            self):
+        """ setup ssh tunnel if required
+        """
+        self.log.debug('starting the ``_setup_tunnel`` method')
+
+        from subprocess import Popen, PIPE, STDOUT
+
+        # SETUP TUNNEL IF REQUIRED
+        if "ssh tunnel" in self.settings and "use tunnel" in self.settings["ssh tunnel"] and self.settings["ssh tunnel"]["use tunnel"] is True:
+            # TEST TUNNEL DOES NOT ALREADY EXIST
+            sshPort = self.settings["ssh tunnel"]["port"]
+            connected = self._checkServer(
+                self.settings["database settings"]["remote database"]["host"], sshPort)
+            if connected:
+                self.log.debug('ssh tunnel already exists - moving on')
+            else:
+                # GRAB TUNNEL SETTINGS FROM SETTINGS FILE
+                ru = self.settings["ssh tunnel"]["remote user"]
+                rip = self.settings["ssh tunnel"]["remote ip"]
+                rh = self.settings["ssh tunnel"]["remote datbase host"]
+
+                cmd = "ssh -fnN %(ru)s@%(rip)s -L %(sshPort)s:%(rh)s:3306" % locals()
+                p = Popen(cmd, shell=True, close_fds=True)
+                output = p.communicate()[0]
+                self.log.debug('output: %(output)s' % locals())
+
+                # TEST CONNECTION - QUIT AFTER SO MANY TRIES
+                connected = False
+                count = 0
+                while not connected:
+                    connected = self._checkServer(
+                        self.settings["database settings"]["remote database"]["host"], sshPort)
+                    time.sleep(1)
+                    count += 1
+                    if count == 5:
+                        self.log.error(
+                            'cound not setup tunnel to remote datbase' % locals())
+                        sys.exit(0)
+
+        # SETUP A DATABASE CONNECTION FOR THE remote database
+        host = self.settings["database settings"]["remote database"]["host"]
+        user = self.settings["database settings"]["remote database"]["user"]
+        passwd = self.settings["database settings"][
+            "remote database"]["password"]
+        dbName = self.settings["database settings"]["remote database"]["db"]
+        thisConn = ms.connect(
+            host=host,
+            user=user,
+            passwd=passwd,
+            db=dbName,
+            port=sshPort,
+            use_unicode=True,
+            charset='utf8'
+        )
+        thisConn.autocommit(True)
+        self.log.debug('cataloguesDbConn: %s' % (thisConn,))
+        self.remoteDBConn = thisConn
+
+        self.log.debug('completed the ``_setup_tunnel`` method')
+        return None
+
+    def _checkServer(self, address, port):
+        """Check that the TCP Port we've decided to use for tunnelling is available
+        """
+        self.log.debug('starting the ``_checkServer`` method')
+
+        # CREATE A TCP SOCKET
+        import socket
+        s = socket.socket()
+        self.log.debug(
+            """Attempting to connect to `%(address)s` on port `%(port)s`""" % locals())
+        try:
+            s.connect((address, port))
+            self.log.debug(
+                """Connected to `%(address)s` on port `%(port)s`""" % locals())
+            return True
+        except socket.error, e:
+            self.log.warning(
+                """Connection to `%(address)s` on port `%(port)s` failed - try again: %(e)s""" % locals())
+            return False
+
+        return None
 
     # use the tab-trigger below for new method
     # xt-class-method
