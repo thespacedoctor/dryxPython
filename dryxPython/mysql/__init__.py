@@ -554,8 +554,8 @@ def convert_dictionary_to_mysql_table(
     if returnInsertOnly == True:
         myKeys = ','.join(formattedKeyList)
         valueString = ("%s, " * len(myValues))[:-2]
-        insertCommand = """INSERT IGNORE INTO """ + dbTableName + \
-            """ (""" + myKeys + """) VALUES (""" + valueString + """)"""
+        insertCommand = """INSERT IGNORE INTO `""" + dbTableName + \
+            """` (""" + myKeys + """) VALUES (""" + valueString + """)"""
         mv = []
         mv[:] = [None if m == "None" else m for m in myValues]
         valueTuple = tuple(mv)
@@ -583,8 +583,8 @@ def convert_dictionary_to_mysql_table(
         myValues += '"'
 
     # log.debug(myValues+" ------ POSTSTRIP")
-    addValue = """INSERT IGNORE INTO """ + dbTableName + \
-        """ (""" + myKeys + """) VALUES (\"""" + myValues + """)"""
+    addValue = """INSERT IGNORE INTO `""" + dbTableName + \
+        """` (""" + myKeys + """) VALUES (\"""" + myValues + """)"""
     # log.debug(addValue)
 
     message = ""
