@@ -147,8 +147,6 @@ class setup_main_clutil():
             else:
                 settings = yaml.load(stream)
 
-        self.settings = settings
-
         # SETUP LOGGER -- DEFAULT TO CONSOLE LOGGER IF NONE PROVIDED IN
         # SETTINGS
         if 'settings' in locals() and "logging settings" in settings:
@@ -230,12 +228,12 @@ class setup_main_clutil():
 
         self.dbConn = dbConn
 
-        if tunnel:
-            self._setup_tunnel()
-
         if not 'settings' in locals():
             settings = False
         self.settings = settings
+
+        if tunnel:
+            self._setup_tunnel()
 
         return None
 
