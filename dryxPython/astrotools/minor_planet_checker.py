@@ -152,7 +152,7 @@ class minor_planet_checker():
         mjd,
         limitingMag=24.0,
         urlNum=1,
-        matchRadius=0.2,
+        matchRadius=0.3,
         showMovers=True
     ):
         self.log = log
@@ -306,6 +306,7 @@ class minor_planet_checker():
 
         # create a request object
         req = urllib2.Request(self.url, data, txheaders)
+        psResponsePage = urllib2.urlopen(req)
 
         # Because the cookie handler is installed, this should result in two
         # requests to the Server
@@ -354,6 +355,7 @@ class minor_planet_checker():
                     for line in dataRows[2:]:
                         row = list(
                             self._slice_string(line, 25, 11, 10, 6, 7, 7, 7, 7, 6, 100))
+
                         details = {'designation': row[0],
                                    'ra': row[1],
                                    'dec': row[2],
@@ -436,6 +438,10 @@ class minor_planet_checker():
 
                 if raOff is not None and decOff is not None and raOff < self.matchRadius and decOff < self.matchRadius:
                     moverName = self.movers[0]['designation']
+                else:
+                    print raOff
+                    print decOff
+                    print self.matchRadius
 
         self.moverName = moverName
 
