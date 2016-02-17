@@ -33,15 +33,14 @@ import sys
 import os
 from docopt import docopt
 
-from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
 
 
 def main(arguments=None):
     """
     The main function used when ``update_request_watcher.py`` is run as a single script from the cl, or when installed as a cl command
     """
-
+    from dryxPython import commonutils as dcu
+    from dryxPython.projectsetup import setup_main_clutil
     from dryxPython import logs as dl
     su = setup_main_clutil(
         arguments=arguments,
