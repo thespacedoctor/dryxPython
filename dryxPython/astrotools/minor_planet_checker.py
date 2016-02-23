@@ -152,7 +152,7 @@ class minor_planet_checker():
         mjd,
         limitingMag=24.0,
         urlNum=1,
-        matchRadius=0.3,
+        matchRadius=False,
         showMovers=True
     ):
         self.log = log
@@ -436,12 +436,15 @@ class minor_planet_checker():
                     self.moverName = moverName
                     return
 
-                if raOff is not None and decOff is not None and raOff < self.matchRadius and decOff < self.matchRadius:
-                    moverName = self.movers[0]['designation']
+                if self.matchRadius:
+                    if raOff is not None and decOff is not None and raOff < self.matchRadius and decOff < self.matchRadius:
+                        moverName = self.movers[0]['designation']
+                    else:
+                        print raOff
+                        print decOff
+                        print self.matchRadius
                 else:
-                    print raOff
-                    print decOff
-                    print self.matchRadius
+                    moverName = self.movers[0]['designation']
 
         self.moverName = moverName
 
