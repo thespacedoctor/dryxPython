@@ -159,7 +159,7 @@ class minor_planet_checker():
         self.log.debug("instansiating a new 'minor_planet_checker' object")
         self.ra = ra
         self.dec = dec
-        self.radius = int(radius)
+        self.radius = float(radius)
         self.mjd = mjd
         self.limitingMag = limitingMag
         self.urlNum = urlNum
@@ -273,7 +273,8 @@ class minor_planet_checker():
 
         # Minimum radius of 5 arcmins and max of 300 arcmins allowed.
         if radius < 5:
-            radius = 5
+            pass
+            # radius = 5
         if radius > 300:
             radius = 300
 
@@ -306,6 +307,9 @@ class minor_planet_checker():
 
         # create a request object
         req = urllib2.Request(self.url, data, txheaders)
+        thisUrl = req.get_full_url()
+        thisUrl += "?" + req.get_data()
+        print thisUrl
         psResponsePage = urllib2.urlopen(req)
 
         # Because the cookie handler is installed, this should result in two
