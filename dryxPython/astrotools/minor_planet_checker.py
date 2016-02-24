@@ -96,7 +96,7 @@ def main(arguments=None):
         log=log,
         ra=ra,
         dec=dec,
-        radius=float(radiusArcmin),
+        radius=int(radiusArcmin),
         mjd=float(mjd)
     )
     mpc = mpc.get()
