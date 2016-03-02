@@ -5,7 +5,7 @@
 **A handful of useful mysql python methods**
 
 | Created by David Young on October 8, 2012
-| If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+| If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 
 **dryx syntax**
  | ``xxx`` = come back here and do some more work

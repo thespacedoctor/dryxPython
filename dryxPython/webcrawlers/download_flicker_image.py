@@ -16,7 +16,7 @@ download_flicker_image.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 :Tasks:
     @review: when complete pull all general functions and classes into dryxPython
@@ -34,7 +34,7 @@ from docopt import docopt
 from . import singleWebDocumentDownloader
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 # from ..__init__ import *
 
 
@@ -47,7 +47,7 @@ def main(arguments=None):
     The main function used when ``download_flicker_image.py`` is run as a single script from the cl, or when installed as a cl command
     """
     # setup the command-line util settings
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="DEBUG",
@@ -76,7 +76,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE download_flicker_image.py AT %s' %
         (startTime,))
@@ -92,8 +92,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE download_flicker_image.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -197,7 +197,8 @@ class download_flicker_image():
         import codecs
         pathToReadFile = urlDoc
         try:
-            self.log.debug("attempting to open the file %s" % (pathToReadFile,))
+            self.log.debug("attempting to open the file %s" %
+                           (pathToReadFile,))
             readFile = codecs.open(pathToReadFile, encoding='utf-8', mode='r')
             thisData = readFile.read()
             readFile.close()

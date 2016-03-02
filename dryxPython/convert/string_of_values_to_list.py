@@ -16,7 +16,7 @@ string_of_values_to_list.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 :Tasks:
     @review: when complete pull all general functions and classes into dryxPython
@@ -35,9 +35,9 @@ from dryxPython import commonutils as dcu
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 3, 2014
-## CREATED : April 3, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : April 3, 2014
+# CREATED : April 3, 2014
+# AUTHOR : DRYX
 
 
 def string_of_values_to_list(
@@ -52,7 +52,7 @@ def string_of_values_to_list(
         # copy usage method(s) here and select the following snippet from the command palette:
         - ``log`` -- the logger
         - ``theString`` -- the delimited seperated string of values
-        
+
     **Return:**
         - `theList` -- the list
 

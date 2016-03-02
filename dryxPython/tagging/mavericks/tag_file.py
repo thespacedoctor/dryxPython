@@ -16,7 +16,7 @@ tag_file.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 :Tasks:
     @review: when complete pull all general functions and classes into dryxPython
@@ -35,9 +35,9 @@ from dryxPython import commonutils as dcu
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : February 25, 2014
-## CREATED : February 25, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : February 25, 2014
+# CREATED : February 25, 2014
+# AUTHOR : DRYX
 
 
 def tag_file(

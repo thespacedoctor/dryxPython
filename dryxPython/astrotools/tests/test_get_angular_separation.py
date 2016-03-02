@@ -2,7 +2,7 @@ import os
 import nose
 import shutil
 from .. import get_angular_separation
-from dryxPython.utKit import utKit
+from fundamentals import utKit
 
 # SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)

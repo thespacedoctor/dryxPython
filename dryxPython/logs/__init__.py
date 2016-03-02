@@ -4,7 +4,7 @@
 logs.py
 
 Initially created by David Young on October 10, 2012
-If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 
 dryx syntax:
 p<Var> = variable formated in the way I want it output to file or screen

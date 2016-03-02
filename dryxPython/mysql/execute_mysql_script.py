@@ -16,7 +16,7 @@ execute_mysql_script.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 :Tasks:
     - [ ] when complete pull all general functions and classes into dryxPython
@@ -55,8 +55,8 @@ def main(arguments=None):
     ## ACTIONS BASED ON WHICH ARGUMENTS ARE RECIEVED ##
     # PRINT COMMAND-LINE USAGE IF NO ARGUMENTS PASSED
     # setup the command-line util settings
-    from dryxPython.projectsetup import setup_main_clutil
-    su = setup_main_clutil(
+    from fundamentals import tools, times
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="DEBUG"
@@ -111,7 +111,7 @@ def main(arguments=None):
         log.debug('dbConn: %s' % (dbConn,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE execute_mysql_script.py AT %s' %
         (startTime,))
@@ -131,8 +131,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info(
         '-- FINISHED ATTEMPT TO RUN THE execute_mysql_script.py AT %s (RUNTIME: %s) --' %
         (endTime, runningTime, ))

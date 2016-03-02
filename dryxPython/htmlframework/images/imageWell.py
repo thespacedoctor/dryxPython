@@ -16,7 +16,7 @@ imageWell.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -25,7 +25,7 @@ import math
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 from ..__init__ import *
 from imagingModal import imagingModal
 
@@ -44,7 +44,7 @@ class imageWell():
         - ``description`` -- Description of the content of the image well
         - ``imageDisplay`` -- [ rounded | circle | polaroid | False ]
     """
-    ## Initialisation
+    # Initialisation
 
     def __init__(
             self,
@@ -64,17 +64,17 @@ class imageWell():
 
         return None
 
-    ## Variable Data Atrributes
+    # Variable Data Atrributes
 
-    ## Override Variable Data Atrributes
+    # Override Variable Data Atrributes
     def close(self):
         del self
         return None
 
-    ## Method Attributes
+    # Method Attributes
     def get(self):
         """get the image well
-        
+
         **Return:**
             - ``imageWellRow`` -- the html text
         """
@@ -85,14 +85,14 @@ class imageWell():
         colPerRow = int(math.floor(12 / self.imageSpan))
         numRows = int(math.ceil(float(numImages) / float(colPerRow)))
 
-        ## header text for the image well
+        # header text for the image well
         self.title = pageHeader(
             headline=self.title,
             tagline=self.description
         )
 
-        ## determine the number of rows from the number and span of the images
-        ## populate each of the rows and then append to ``theseRows``
+        # determine the number of rows from the number and span of the images
+        # populate each of the rows and then append to ``theseRows``
         theseRows = ""
         for r in range(int(numRows)):
             startC = r * colPerRow
@@ -109,7 +109,7 @@ class imageWell():
             )
             theseRows = """%(theseRows)s %(thisRow)s""" % locals()
 
-        ## bunch all the image rows into one parent row
+        # bunch all the image rows into one parent row
         content = grid_row(
             responsive=True,
             columns=theseRows,
@@ -120,7 +120,7 @@ class imageWell():
             onDesktop=True
         )
 
-        ## add header text and image rows to a well
+        # add header text and image rows to a well
         imageWell = well(
             wellText=self.title + content,
             wellSize='large',  # [ "default" | "large" | "small" ]
@@ -128,7 +128,7 @@ class imageWell():
             htmlClass="imagewell"
         )
 
-        ## wrapper the well in a parent row
+        # wrapper the well in a parent row
         imageWellRow = grid_row(
             responsive=True,
             columns=imageWell,
@@ -150,13 +150,13 @@ class imageWell():
             modalFooterContent="",
             modalFooterButtons=[]):
         """append an image to the image well
-    
+
         **Key Arguments:**
             - ``imagePath`` -- path to the image to add to the well
             - ``imageTitle`` -- text to tag the image with
             - ``modalHeaderContent`` -- the heading for the modal
             - ``modalFooterContent`` -- the footer (usually buttons)
-    
+
         **Return:**
             - None
         """
@@ -175,14 +175,14 @@ class imageWell():
             modalImageWidth=800,)
         thisImage = thisImage.get()
 
-        ## color the title text and make it the correct size
+        # color the title text and make it the correct size
         imageTitle = coloredText(
             text=imageTitle,
             color="lightgrey",
             size=3,  # 1-10
         )
 
-        ## position the title text correctly under each image
+        # position the title text correctly under each image
         imageTitle = row_adjustable(
             span=12 - (self.imageSpan - 1),
             offset=self.imageSpan - 1,
@@ -210,7 +210,7 @@ class imageWell():
     # use the tab-trigger below for new method
     # method-tmpx
 
-    ## Override Method Attributes
+    # Override Method Attributes
     # method-override-tmpx
 
 

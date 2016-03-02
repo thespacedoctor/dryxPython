@@ -17,7 +17,7 @@ constants
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -26,6 +26,8 @@ import os
 ######################################################
 # MAIN LOOP - USED FOR DEBUGGING OR WHEN SCRIPTING   #
 ######################################################
+
+
 def main():
     """one-line summary
 
@@ -47,7 +49,7 @@ def main():
     import dryxPython.commonutils as cu
 
     ################ > SETUP ##################
-    ## SETUP DB CONNECTION AND A LOGGER
+    # SETUP DB CONNECTION AND A LOGGER
     dbConn, log = p.settings()
     ## START LOGGING ##
     startTime = cu.get_now_sql_datetime()
@@ -56,12 +58,13 @@ def main():
     ################ > VARIABLE SETTINGS ######
     ################ >ACTION(S) ###############
 
-    dbConn.commit ()
-    dbConn.close ()
+    dbConn.commit()
+    dbConn.close()
     ## FINISH LOGGING ##
     endTime = cu.get_now_sql_datetime()
-    runningTime = cu.calculate_time_difference(startTime,endTime)
-    log.info('-- FINISHED ATTEMPT TO RUN THE constants AT %s (RUNTIME: %s) --' % (endTime,runningTime,))
+    runningTime = cu.calculate_time_difference(startTime, endTime)
+    log.info('-- FINISHED ATTEMPT TO RUN THE constants AT %s (RUNTIME: %s) --' %
+             (endTime, runningTime,))
     return
 
 ###################################################################

@@ -17,7 +17,7 @@ helpers.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this code please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this code please email me: davidrobertyoung@gmail.com
 """
 
 
@@ -34,9 +34,9 @@ if __name__ == '__main__':
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
 # xxx-replace
-## LAST MODIFIED : May 28, 2013
-## CREATED : May 28, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : May 28, 2013
+# CREATED : May 28, 2013
+# AUTHOR : DRYX
 
 
 def unescape_html(html):
@@ -66,11 +66,13 @@ def unescape_html(html):
 
     return html
 
-## LAST MODIFIED : June 26, 2014
-## CREATED : June 26, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : June 26, 2014
+# CREATED : June 26, 2014
+# AUTHOR : DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
+
+
 def hide_from_device(
         content="",
         onPhone=True,
@@ -79,7 +81,7 @@ def hide_from_device(
     """hide from device)
 
     **Key Arguments:**
-        
+
         # copy usage method(s) here and select the following snippet from the command palette:
         # x-setup-docstring-keys-from-selected-usage-options
 
@@ -91,7 +93,7 @@ def hide_from_device(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    
+
     phoneClass = ""
     tabletClass = ""
     desktopClass = ""
@@ -113,8 +115,7 @@ def hide_from_device(
         else:
             desktopClass = "visible-desktop"
 
-
-    span = """<span class="%(phoneClass)s %(tabletClass)s %(desktopClass)s">%(content)s</span>""" % locals() 
+    span = """<span class="%(phoneClass)s %(tabletClass)s %(desktopClass)s">%(content)s</span>""" % locals()
     return span
 
 # use the tab-trigger below for new function

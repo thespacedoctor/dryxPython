@@ -16,7 +16,7 @@ download_google_sheet.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -24,7 +24,7 @@ import os
 from datetime import datetime, date, time
 import gdata.docs.service
 import gdata.spreadsheet.service
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 def download_google_sheet(

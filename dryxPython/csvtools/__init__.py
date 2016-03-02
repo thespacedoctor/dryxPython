@@ -16,7 +16,7 @@ csvtools.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 
 :Tasks:
     - [ ] when complete, extract all code out of the main function and add cl commands
@@ -56,9 +56,9 @@ def main():
     startTime = cu.get_now_sql_datetime()
     log.info('--- STARTING TO RUN THE csvtools.py AT %s' % (startTime,))
 
-    ## SET GLOBAL VARIABLES
+    # SET GLOBAL VARIABLES
 
-    ## WRITE CODE HERE
+    # WRITE CODE HERE
 
     if dbConn:
         dbConn.commit()
@@ -79,9 +79,9 @@ def main():
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : June 14, 2013
-## CREATED : June 14, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : June 14, 2013
+# CREATED : June 14, 2013
+# AUTHOR : DRYX
 
 
 def convert_csv_file_to_python_list_of_dictionaries(
@@ -129,9 +129,9 @@ def convert_csv_file_to_python_list_of_dictionaries(
 
     return dictionaryList
 
-## LAST MODIFIED : June 21, 2013
-## CREATED : June 21, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : June 21, 2013
+# CREATED : June 21, 2013
+# AUTHOR : DRYX
 
 
 def convert_python_list_of_dictionaries_to_csv(

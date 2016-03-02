@@ -17,7 +17,7 @@ _dryxTBS_buttons
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 
 ###################################################################
@@ -27,9 +27,9 @@ _dryxTBS_buttons
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 25, 2013
-## CREATED : April 25, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 25, 2013
+# CREATED : April 25, 2013
+# AUTHOR : DRYX
 
 
 def button(
@@ -148,9 +148,9 @@ def button(
     return button
 
 
-## LAST MODIFIED : April 29, 2013
-## CREATED : April 29, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 29, 2013
+# CREATED : April 29, 2013
+# AUTHOR : DRYX
 def buttonGroup(
         buttonList=[],
         format="default",

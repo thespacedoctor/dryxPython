@@ -16,7 +16,7 @@ astrometry_corrector.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 :Tasks:
     @review: when complete pull all general functions and classes into dryxPython
@@ -45,7 +45,7 @@ from numpy import sin, cos, radians
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 import ra_sexegesimal_to_decimal
 import declination_sexegesimal_to_decimal
 
@@ -59,7 +59,7 @@ def main(arguments=None):
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="INFO"
@@ -82,7 +82,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE astrometry_corrector.py AT %s' %
         (startTime,))
@@ -118,8 +118,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info(
         '-- FINISHED ATTEMPT TO RUN THE astrometry_corrector.py AT %s (RUNTIME: %s) --' %
         (endTime, runningTime, ))

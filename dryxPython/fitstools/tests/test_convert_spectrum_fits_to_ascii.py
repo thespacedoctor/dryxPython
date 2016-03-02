@@ -4,11 +4,11 @@ import shutil
 import yaml
 # from dryxPython import cl_utils
 from dryxPython.fitstools import convert_spectrum_fits_to_ascii
-from dryxPython.utKit import utKit
+from fundamentals import utKit
 
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
-su = setup_main_clutil(
+su = tools(
     arguments={},
     docString=__doc__,
     logLevel="DEBUG",

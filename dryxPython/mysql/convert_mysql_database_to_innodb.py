@@ -16,7 +16,7 @@ convert_mysql_database_to_innodb.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 :Tasks:
     @review: when complete pull all general functions and classes into dryxPython
@@ -49,9 +49,9 @@ def main(arguments=None):
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
-    from dryxPython.projectsetup import setup_main_clutil
+    from fundamentals import tools, times
 
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__
     )
@@ -73,7 +73,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE convert_mysql_database_to_innodb.py AT %s' %
         (startTime,))
@@ -93,8 +93,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info(
         '-- FINISHED ATTEMPT TO RUN THE convert_mysql_database_to_innodb.py AT %s (RUNTIME: %s) --' %
         (endTime, runningTime, ))

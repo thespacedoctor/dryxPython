@@ -18,7 +18,7 @@ plotting
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 ################# GLOBAL IMPORTS ####################
 # from _project_setup import *
@@ -26,6 +26,8 @@ plotting
 ######################################################
 # MAIN LOOP - USED FOR DEBUGGING OR WHEN SCRIPTING   #
 ######################################################
+
+
 def main():
     """
     The main function used when ``plotting`` run as a single script from the cl
@@ -44,7 +46,7 @@ def main():
     startTime = cu.get_now_sql_datetime()
     log.info('--- STARTING TO RUN THE plotting AT %s' % (startTime,))
 
-    ## WRITE CODE HERE
+    # WRITE CODE HERE
 
     if dbConn:
         dbConn.commit()
@@ -52,7 +54,8 @@ def main():
     ## FINISH LOGGING ##
     endTime = cu.get_now_sql_datetime()
     runningTime = cu.calculate_time_difference(startTime, endTime)
-    log.info('-- FINISHED ATTEMPT TO RUN THE plotting AT %s (RUNTIME: %s) --' % (endTime, runningTime, ))
+    log.info('-- FINISHED ATTEMPT TO RUN THE plotting AT %s (RUNTIME: %s) --' %
+             (endTime, runningTime, ))
 
     return
 
@@ -63,9 +66,11 @@ def main():
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 15, 2013
-## CREATED : April 15, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 15, 2013
+# CREATED : April 15, 2013
+# AUTHOR : DRYX
+
+
 def plot_polynomial(
         log,
         title,
@@ -110,15 +115,15 @@ def plot_polynomial(
 
     ################ >ACTION(S) ################
     colors = {
-        'green' : '#859900',
-        'blue' : '#268bd2',
-        'red' : '#dc322f',
-        'gray' : '#D2D1D1',
-        'orange' : '#cb4b16',
-        'violet' : '#6c71c4',
-        'cyan' : '#2aa198',
-        'magenta' : '#d33682',
-        'yellow' : '#b58900'
+        'green': '#859900',
+        'blue': '#268bd2',
+        'red': '#dc322f',
+        'gray': '#D2D1D1',
+        'orange': '#cb4b16',
+        'violet': '#6c71c4',
+        'cyan': '#2aa198',
+        'magenta': '#d33682',
+        'yellow': '#b58900'
     }
 
     if not xRange:
@@ -134,17 +139,19 @@ def plot_polynomial(
     if xAxisLimits:
         ax.set_xlim(xAxisLimits[0], xAxisLimits[1])
     else:
-        overShoot = (xRange[1] - xRange[0])/10.
+        overShoot = (xRange[1] - xRange[0]) / 10.
         ax.set_xlim(xRange[0] - overShoot, xRange[1] + overShoot)
     if yAxisLimits:
         ax.set_ylim(yAxisLimits[0], yAxisLimits[1])
 
-    theseColors = [ colors['blue'], colors['green'], colors['red'], colors['violet'] ]
+    theseColors = [colors['blue'], colors[
+        'green'], colors['red'], colors['violet']]
 
     count = 0
     if orginalDataDictionary:
         for name, data in orginalDataDictionary.iteritems():
-            ax.plot(data[0], data[1], '.', label=name, color=theseColors[count])
+            ax.plot(data[0], data[1], '.', label=name,
+                    color=theseColors[count])
             count += 1
             if count == 4:
                 count = 0
@@ -162,7 +169,7 @@ def plot_polynomial(
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     # Put a legend to the right of the current axis
     if legend:
-        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={'size':8})
+        ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={'size': 8})
     ax.titlesize = 'medium'   # fontsize of the axes title
     ax.labelsize = 'medium'  # fontsize of the x any y labels
 
@@ -171,7 +178,8 @@ def plot_polynomial(
     if ylabel:
         plt.ylabel(ylabel, fontsize='small')
     if title:
-        plt.title(title, fontsize='small', verticalalignment = 'bottom', linespacing = 0.2)
+        plt.title(title, fontsize='small',
+                  verticalalignment='bottom', linespacing=0.2)
 
     if yAxisInvert:
         ax.invert_yaxis()
@@ -193,9 +201,9 @@ def plot_polynomial(
     return imageLink
 
 
-## LAST MODIFIED : April 15, 2013
-## CREATED : April 15, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 15, 2013
+# CREATED : April 15, 2013
+# AUTHOR : DRYX
 def plot_polar(
         log,
         title,
@@ -236,21 +244,21 @@ def plot_polar(
 
     ################ >ACTION(S) ################
     colors = [
-        {'green' : '#859900'},
-        {'blue' : '#268bd2'},
-        {'red' : '#dc322f'},
-        {'gray' : '#D2D1D1'},
-        {'orange' : '#cb4b16'},
-        {'violet' : '#6c71c4'},
-        {'cyan' : '#2aa198'},
-        {'magenta' : '#d33682'},
-        {'yellow' : '#b58900'}
+        {'green': '#859900'},
+        {'blue': '#268bd2'},
+        {'red': '#dc322f'},
+        {'gray': '#D2D1D1'},
+        {'orange': '#cb4b16'},
+        {'violet': '#6c71c4'},
+        {'cyan': '#2aa198'},
+        {'magenta': '#d33682'},
+        {'yellow': '#b58900'}
     ]
 
     # FORCE SQUARE FIGURE AND SQUARE AXES LOOKS BETTER FOR POLAR
     fig = plt.figure(
         num=None,
-        figsize=(8,8),
+        figsize=(8, 8),
         dpi=None,
         facecolor=None,
         edgecolor=None,
@@ -265,12 +273,13 @@ def plot_polar(
     # ax.get_xaxis().set_visible(circumference)
 
     if circleTicksRange:
-        circleTicks = np.arange(circleTicksRange[0], circleTicksRange[1], circleTicksRange[2])
+        circleTicks = np.arange(circleTicksRange[0], circleTicksRange[
+                                1], circleTicksRange[2])
     tickLabels = []
     for tick in circleTicks:
         tickLabels.append(".")
 
-    plt.xticks(2*np.pi*circleTicks/360., tickLabels)
+    plt.xticks(2 * np.pi * circleTicks / 360., tickLabels)
 
     count = 0
     for k, v in dataDictionary.iteritems():
@@ -282,9 +291,9 @@ def plot_polar(
             colorDict = colors[count]
 
         thetaList = []
-        twoPi = 2.*np.pi
+        twoPi = 2. * np.pi
         for i in range(len(v)):
-            thetaList.append(twoPi*np.random.rand())
+            thetaList.append(twoPi * np.random.rand())
         thetaArray = np.array(thetaList)
 
         x = thetaArray
@@ -310,7 +319,7 @@ def plot_polar(
     box = ax.get_position()
     ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
     # Put a legend to the right of the current axis
-    ax.legend(loc='center left', bbox_to_anchor=(0.7, -0.1), prop={'size':8})
+    ax.legend(loc='center left', bbox_to_anchor=(0.7, -0.1), prop={'size': 8})
     plt.grid(True)
     plt.title(title)
     if prependNum:
@@ -326,7 +335,6 @@ def plot_polar(
     plt.clf()  # clear figure
 
     return imageLink
-
 
 
 ###################################################################
