@@ -1,10 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 """
-helpers.py
-======================================
-:Summary:
-    helpers for TBS htmlframework
+*helpers for TBS htmlframework*
 
 :Author:
     David Young
@@ -40,7 +37,8 @@ if __name__ == '__main__':
 
 
 def unescape_html(html):
-    """Unescape a string previously escaped with cgi.escape()
+    """
+    *Unescape a string previously escaped with cgi.escape()*
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection
@@ -78,7 +76,8 @@ def hide_from_device(
         onPhone=True,
         onTablet=True,
         onDesktop=True):
-    """hide from device)
+    """
+    *hide from device)*
 
     **Key Arguments:**
 
@@ -88,7 +87,8 @@ def hide_from_device(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean hide_from_device) function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

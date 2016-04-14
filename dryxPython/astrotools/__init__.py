@@ -96,8 +96,8 @@ RAD_TO_DEG_FACTOR = 180.0 / pi
 # AUTHOR : DRYX
 def create_cbet_url(dbConn, log, cbet):
     """
-    Create the CBET URL given a CBET number.
-    The URL contains a *fiddly* middle number before the CBET txt file - this function calculates this number before returning the valid URL.
+    *Create the CBET URL given a CBET number.
+    The URL contains a *fiddly* middle number before the CBET txt file - this function calculates this number before returning the valid URL.*
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection
@@ -127,7 +127,8 @@ def create_cbet_url(dbConn, log, cbet):
 # CREATED : February 20, 2013
 # AUTHOR : DRYX
 def clean_supernova_name(dbConn, log, snName):
-    """Clean a SN name. As a string, this function will attempt to clean up the name so that it is somewhat homogeneous with SN/transient from the same survey/atel system.
+    """
+    *Clean a SN name. As a string, this function will attempt to clean up the name so that it is somewhat homogeneous with SN/transient from the same survey/atel system.*
 
     **Key Arguments:**
             - ``dbConn`` -- mysql database connection
@@ -179,7 +180,8 @@ def clean_supernova_name(dbConn, log, snName):
 
 
 def luminosity_to_flux(lumErg_S, dist_Mpc):
-    """Convert luminosity to a flux
+    """
+    *Convert luminosity to a flux*
 
     **Key Arguments:**
         - ``lumErg_S`` -- luminosity in ergs/sec
@@ -246,13 +248,13 @@ def coords_dec_to_sex(ra, dec, delimiter=':'):
 
 
 def ra_in_decimal_hours(ra):
-    """Convert ra in decimal degrees to hours"""
+    """*Convert ra in decimal degrees to hours*"""
 
     return(ra / 15.0)
 
 
 def getCurrentMJD():
-    """Get the current MJD"""
+    """*Get the current MJD*"""
     import time
     jd = time.time() / 86400.0 + 2440587.5
     mjd = jd - 2400000.5
@@ -260,7 +262,7 @@ def getCurrentMJD():
 
 
 def getDateFromMJD(mjd):
-    """convert mjd to a date"""
+    """*convert mjd to a date*"""
     from datetime import datetime
     unixtime = (mjd + 2400000.5 - 2440587.5) * 86400.0
     theDate = datetime.utcfromtimestamp(unixtime)
@@ -268,7 +270,7 @@ def getDateFromMJD(mjd):
 
 
 def getSQLDateFromMJD(mjd):
-    """convert mjd to a date"""
+    """*convert mjd to a date*"""
     from datetime import datetime
     unixtime = (mjd + 2400000.5 - 2440587.5) * 86400.0
     theDate = datetime.utcfromtimestamp(unixtime)
@@ -278,7 +280,7 @@ def getSQLDateFromMJD(mjd):
 
 
 def getMJDFromSqlDate(sqlDate):
-    """convert a sql date to mjd"""
+    """*convert a sql date to mjd*"""
     import time
     mjd = None
     sqlDate = str(sqlDate)
@@ -298,7 +300,7 @@ def getMJDFromSqlDate(sqlDate):
 
 
 def getDateFractionMJD(mjd):
-    """convert mjd to date fraction"""
+    """*convert mjd to date fraction*"""
     unixtime = (mjd + 2400000.5 - 2440587.5) * 86400.0
     theDate = datetime.utcfromtimestamp(unixtime)
     dateString = theDate.strftime("%Y:%m:%d:%H:%M:%S")
@@ -310,7 +312,7 @@ def getDateFractionMJD(mjd):
 
 
 def coords_sex_to_dec(ra, dec):
-    """Convert sexagesimal ra and dec to decimal degrees"""
+    """*Convert sexagesimal ra and dec to decimal degrees*"""
     import dryxPython.astrotools.declination_sexegesimal_to_decimal
     import dryxPython.astrotools.ra_sexegesimal_to_decimal
 
@@ -323,7 +325,7 @@ def coords_sex_to_dec(ra, dec):
 
 
 def calculate_cartesians(ra, dec):
-    """Convert decimal degrees ra and dec to cartesians"""
+    """*Convert decimal degrees ra and dec to cartesians*"""
 
     ra = math.radians(ra)
     dec = math.radians(dec)
@@ -338,9 +340,9 @@ def calculate_cartesians(ra, dec):
 
 def getAngularSeparation(ra1, dec1, ra2, dec2):
     """
-    Calculate the angular separation between two objects.  If either set of
+    *Calculate the angular separation between two objects.  If either set of
     coordinates contains a colon, assume it's in sexagesimal and automatically
-    convert into decimal before doing the calculation.
+    convert into decimal before doing the calculation.*
     """
     import dryxPython.astrotools as dat
 
@@ -386,7 +388,8 @@ def getAngularSeparation(ra1, dec1, ra2, dec2):
 
 
 def convert_redshift_to_distance(z):
-    """Convert a redshift to various distance units
+    """
+    *Convert a redshift to various distance units*
 
     **Key Arguments:**
         - ``z`` -- the redshift to be converted
@@ -485,7 +488,8 @@ def convert_redshift_to_distance(z):
 # AUTHOR : DRYX
 def convert_mpc_to_redshift(
         DL_Mpc):
-    """Convert a luminosity distance to a redshift
+    """
+    *Convert a luminosity distance to a redshift*
 
     **Key Arguments:**
         - ``DL_Mpc`` -- luminosity distance (Mpc)

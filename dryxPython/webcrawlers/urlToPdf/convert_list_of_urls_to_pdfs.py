@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-convert_list_of_urls_to_pdfs.py
-===============================
-:Summary:
-    Convert a list of URLs (from ifttt at the minute) to PDFs
+*Convert a list of URLs (from ifttt at the minute) to PDFs*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ convert_list_of_urls_to_pdfs.py
 :Date Created:
     September 22, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -45,7 +37,7 @@ import pdfkit
 
 def main(arguments=None):
     """
-    The main function used when ``convert_list_of_urls_to_pdfs.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_list_of_urls_to_pdfs.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
     su = tools(
@@ -112,7 +104,8 @@ def convert_list_of_urls_to_pdfs(
         log,
         pathToRequestDirectory,
         pathToPDFDirectory):
-    """convert list of urls to pdfs
+    """
+    *convert list of urls to pdfs*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -120,7 +113,8 @@ def convert_list_of_urls_to_pdfs(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean convert_list_of_urls_to_pdfs function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

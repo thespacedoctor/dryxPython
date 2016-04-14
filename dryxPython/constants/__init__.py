@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-constants
-===============
-:Summary:
-    Some commonly used constants
+*Some commonly used constants*
 
 :Author:
     David Young
@@ -29,7 +26,8 @@ import os
 
 
 def main():
-    """one-line summary
+    """
+    *one-line summary
 
     Key Arguments:
         -
@@ -37,7 +35,7 @@ def main():
         - log -- logger
 
     Return:
-        - None
+        - None*
     """
     ################ > IMPORTS ################
     ## STANDARD LIB ##

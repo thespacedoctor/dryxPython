@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-shift_coordinates.py
-====================
-:Summary:
-    Shift a give set of coordinates North and East
+*Shift a give set of coordinates North and East*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ shift_coordinates.py
 :Date Created:
     December 2, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -50,7 +42,7 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``shift_coordinates.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``shift_coordinates.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     from dryxPython import astrotools as dat
     # setup the command-line util settings
@@ -136,7 +128,7 @@ def main(arguments=None):
 class shift_coordinates():
 
     """
-    The worker class for the shift_coordinates module
+    *The worker class for the shift_coordinates module*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -145,7 +137,8 @@ class shift_coordinates():
         - ``north`` -- north in arcsec
         - ``east`` -- east in arcsec
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean shift_coordinates class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -203,12 +196,14 @@ class shift_coordinates():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the shift_coordinates object
+        """
+        *get the shift_coordinates object*
 
         **Return:**
             - ``shift_coordinates``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """

@@ -1,10 +1,7 @@
 # !/usr/bin/env python
 # encoding: utf-8
 """
-vizier.py
-=========
-:Summary:
-    Query vizier via URL
+*Query vizier via URL*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ vizier.py
 :Date Created:
     May 19, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 # xdocopt-usage-tempx
@@ -38,7 +30,7 @@ from fundamentals import tools, times
 
 def main(arguments=None):
     """
-    The main function used when ``vizier.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``vizier.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -110,7 +102,8 @@ def vizier(
         dec,
         catalogue,
         radius):
-    """vizier
+    """
+    *vizier*
 
     **Key Arguments:**
         - ``log`` -- logger,
@@ -122,7 +115,8 @@ def vizier(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean vizier function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

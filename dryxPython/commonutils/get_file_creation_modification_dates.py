@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-get_file_creation_modification_dates.py
-=========================
-:Summary:
-    Get the file creation and modification dates
+*Get the file creation and modification dates*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ get_file_creation_modification_dates.py
 :Date Created:
     December 10, 2013
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -37,7 +29,7 @@ import __init__ as dcu
 
 def main(arguments=None):
     """
-    The main function used when ``get_file_creation_modification_dates.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``get_file_creation_modification_dates.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -115,7 +107,8 @@ def get_file_creation_modification_dates(
         log,
         pathToFile,
 ):
-    """get_file_creation_modification_dates
+    """
+    *get_file_creation_modification_dates*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -124,7 +117,8 @@ def get_file_creation_modification_dates(
     **Return:**
         - ``dateCreated`` and ``dateModified`` -- the date the file was created and last modified
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

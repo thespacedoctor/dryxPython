@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-mmd.py
-===========
-:Summary:
-    My MMD helpers
+*My MMD helpers*
 
 :Author:
     David Young
@@ -12,13 +9,11 @@ mmd.py
 :Date Created:
     September 19, 2013
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
 :Notes:
     - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 
-:Tasks:
+.. todo::
+    
     @review: when complete add cl commands
     @review: make internal function private
     @review: pull all general functions and classes into dryxPython
@@ -43,14 +38,16 @@ def convert_to_html(
         log,
         pathToMMDFile,
         css="amblin"):
-    """convert mmd file to html
+    """
+    *convert mmd file to html*
 
     **Key Arguments:**
 
     **Return:**
         - ``pathToHtmlFile`` -- the path to the html file
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean convert_to_html function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

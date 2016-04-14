@@ -79,7 +79,8 @@ class xml_file():
         return None
 
     def get_object(self, log):
-        """Returns the parsed XML file - split into channel *elements* and *items*.
+        """
+        *Returns the parsed XML file - split into channel *elements* and *items*.*
 
         **Key Arguments:**
         - ``self``
@@ -95,7 +96,8 @@ class xml_file():
 
     ########## METHOD TO GRAB CHANNEL ELEMENTS ##########
     def get_channel_elements(self):
-        """Returns the parsed channel *elements* of the XML file.
+        """
+        *Returns the parsed channel *elements* of the XML file.*
 
         **Key Arguments:**
         - ``self``
@@ -122,7 +124,8 @@ class xml_file():
 
     ########## METHOD TO GRAB CHANNEL ITEMS ##########
     def get_channel_items(self):
-        """Returns the parsed channel *items* of the XML file.
+        """
+        *Returns the parsed channel *items* of the XML file.*
 
         **Key Arguments:**
         - ``self``
@@ -149,7 +152,8 @@ class xml_file():
 
     ########## FEED PARSER METHOD ##########
     def parse_feed(self):
-        """Parse the XML file
+        """
+        *Parse the XML file*
 
         **Key Arguments:**
         - ``self``
@@ -176,11 +180,11 @@ class xml_file():
 #############################################
 class rss_reader():
     """
-    Blue-print for an RSS Reader - builds and maintains an RSS Reader within a MySQL DB
+    *Blue-print for an RSS Reader - builds and maintains an RSS Reader within a MySQL DB
 
     Variable Attributes:
         - ``dbConn`` -- the connection to the database required to host the rss feed data
-        - ``subscriptionTable`` -- name of the table that will hold the feed subscription list
+        - ``subscriptionTable`` -- name of the table that will hold the feed subscription list*
     """
     ## GLOBAL IMPORTS ##
 
@@ -203,7 +207,7 @@ class rss_reader():
     # CREATED : 20121101
     def set_subscription(self, feedURL, rssFeedName, rssFeedSource, uniqueColumns):
         """
-            Add an XML subscription to the *subscriptionTable*
+        *Add an XML subscription to the *subscriptionTable**
 
             **Key Arguments:**
                 - ``feedURL`` -- the URL of the XML file for the rss feed channel
@@ -313,7 +317,8 @@ class rss_reader():
     # LAST MODIFIED : 20121101
     # CREATED : 20121101
     def refresh_rss_feeds(self):
-        """Refresh all feeds in the *subscriptionTable* - adding feed items to the the relevant RSS channel tables
+        """
+        *Refresh all feeds in the *subscriptionTable* - adding feed items to the the relevant RSS channel tables*
 
             **Key Arguments:**
 
@@ -416,10 +421,11 @@ class rss_reader():
     # LAST MODIFIED : 20121105
     # CREATED : 20121105
     def refresh_voevent_feeds(self):
-        """Refresh all VoEvents in the *subscriptionTable* - adding feed items to the relevant VoEvent channel tables
+        """
+        *Refresh all VoEvents in the *subscriptionTable* - adding feed items to the relevant VoEvent channel tables
 
             Return:
-                - ``None``
+                - ``None``*
         """
         ## > IMPORTS ##
         import dryxPython.webcrawlers as wc

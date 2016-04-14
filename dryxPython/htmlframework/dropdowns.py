@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-dropdowns.py
-=================================
-:Summary:
-    Dropdown for TBS htmlframework
+*Dropdown for TBS htmlframework*
 
 :Author:
     David Young
@@ -50,7 +47,8 @@ def dropdown(
         onPhone=True,
         onTablet=True,
         onDesktop=True):
-    """get a toggleable, contextual menu for displaying lists of links. Made interactive with the dropdown JavaScript plugin. You need to wrap the dropdown's trigger and the dropdown menu within .dropdown, or another element that declares position: relative;
+    """
+    *get a toggleable, contextual menu for displaying lists of links. Made interactive with the dropdown JavaScript plugin. You need to wrap the dropdown's trigger and the dropdown menu within .dropdown, or another element that declares position: relative;
 
     - ``buttonSize`` -- size of button [ mini | small | default | large ]
     - ``buttonColor`` -- [ default | sucess | error | warning | info ]
@@ -64,7 +62,7 @@ def dropdown(
     - ``popover`` -- add a popover for this dropdown
     - ``onPhone`` -- does this container get displayed on a phone sized screen
     - ``onTablet`` -- does this container get displayed on a tablet sized screen
-    - ``onDesktop`` -- does this container get displayed on a desktop sized screen
+    - ``onDesktop`` -- does this container get displayed on a desktop sized screen*
 
       **Return:**
         - ``dropdown`` -- the dropdown menu
@@ -180,7 +178,8 @@ def dropdownLinkList(
         title="dropdown",
         dropDirection="down"
 ):
-    """dropdownLinkList
+    """
+    *dropdownLinkList*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -192,7 +191,8 @@ def dropdownLinkList(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean dropdownLinkList function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

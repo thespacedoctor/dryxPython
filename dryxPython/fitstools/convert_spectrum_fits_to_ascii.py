@@ -1,22 +1,13 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-convert_spectrum_fits_to_ascii.py
-==================
-:Summary:
-    Given a FITS file containing a 1D spectrum, this code will output an ascii version of the file
+*Given a FITS file containing a 1D spectrum, this code will output an ascii version of the file*
 
 :Author:
     David Young
 
 :Date Created:
     October 19, 2015
-
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 Usage:
     dft_convert_spectrum_fits_to_ascii <pathToFits>
@@ -42,7 +33,7 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``convert_spectrum_fits_to_ascii.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_spectrum_fits_to_ascii.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
     su = tools(
@@ -129,13 +120,14 @@ def main(arguments=None):
 
 class convert_spectrum_fits_to_ascii():
     """
-    The worker class for the convert_spectrum_fits_to_ascii module
+    *The worker class for the convert_spectrum_fits_to_ascii module*
 
     **Key Arguments:**
         - ``log`` -- logger
          - ``fitsFilePath`` -- path to the fits file
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean convert_spectrum_fits_to_ascii class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -168,12 +160,14 @@ class convert_spectrum_fits_to_ascii():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the convert_spectrum_fits_to_ascii object
+        """
+        *get the convert_spectrum_fits_to_ascii object*
 
         **Return:**
             - ``convert_spectrum_fits_to_ascii``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
@@ -194,7 +188,8 @@ class convert_spectrum_fits_to_ascii():
         pathToFitsFile,
         fluxScalingFactor=False
     ):
-        """Build the ascii table data from a reduced 1D fits spectrum
+        """
+        *Build the ascii table data from a reduced 1D fits spectrum*
 
         **Key Arguments:**
             - ``log`` -- logger

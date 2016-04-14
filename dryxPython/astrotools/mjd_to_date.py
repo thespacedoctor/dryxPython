@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-mjd_to_date.py
-==============
-:Summary:
-    Convert MJD to date
+*Convert MJD to date*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ mjd_to_date.py
 :Date Created:
     March 26, 2015
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -48,7 +40,7 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``mjd_to_date.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``mjd_to_date.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
     su = tools(
@@ -114,7 +106,7 @@ def main(arguments=None):
 class mjd_to_date():
 
     """
-    The worker class for the mjd_to_date module
+    *The worker class for the mjd_to_date module*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -122,7 +114,8 @@ class mjd_to_date():
         - ``sqlDate`` -- return sqlDate format
         - ``fraction`` -- return date fraction format
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean mjd_to_date class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -163,12 +156,14 @@ class mjd_to_date():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the mjd_to_date object
+        """
+        *get the mjd_to_date object*
 
         **Return:**
             - ``mjd_to_date``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
@@ -187,7 +182,8 @@ class mjd_to_date():
 
     def _mjd_to_date(
             self):
-        """ mjd to date
+        """
+        *mjd to date*
 
         **Key Arguments:**
             # -
@@ -195,7 +191,8 @@ class mjd_to_date():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean _mjd_to_date method
             - @review: when complete add logging
         """
@@ -220,7 +217,8 @@ class mjd_to_date():
     # use the tab-trigger below for new method
     def _get_date_fractions(
             self):
-        """ get date fractions
+        """
+        *get date fractions*
 
         **Key Arguments:**
             # -
@@ -228,7 +226,8 @@ class mjd_to_date():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean _get_date_fractions method
             - @review: when complete add logging
         """

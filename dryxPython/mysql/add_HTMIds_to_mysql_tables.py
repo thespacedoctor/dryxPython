@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-add_htmids_to_mysql_table.py
-============================
-:Summary:
-    Give the credientials and the RA and DEC columns, add HTM ids to MySQL table
+*Give the credientials and the RA and DEC columns, add HTM ids to MySQL table*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ add_htmids_to_mysql_table.py
 :Date Created:
     August 12, 2015
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -50,7 +42,7 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``add_htmids_to_mysql_table.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``add_htmids_to_mysql_table.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
     from fundamentals import tools, times
@@ -156,7 +148,7 @@ def add_HTMIds_to_mysql_tables(
         dbConn,
         log,
         primaryIdColumnName="primaryId"):
-    """ Calculate and append HTMId info to a mysql db table containing ra and dec columns
+    """*Calculate and append HTMId info to a mysql db table containing ra and dec columns*
 
     ****Key Arguments:****
         - ``raColName`` -- ra in sexegesimal

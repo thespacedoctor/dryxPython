@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-convert_mysql_database_to_innodb.py
-================================================
-:Summary:
-    Convert the Collate of tables within database to `latin1_swedish_ci` and the charset to `latin1`
+*Convert the Collate of tables within database to `latin1_swedish_ci` and the charset to `latin1`*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ convert_mysql_database_to_innodb.py
 :Date Created:
     April 28, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -43,7 +35,7 @@ from . import execute_mysql_write_query
 
 def main(arguments=None):
     """
-    The main function used when ``convert_mysql_database_to_innodb.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_mysql_database_to_innodb.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -118,7 +110,8 @@ def convert_mysql_database_to_innodb(
         dbConn,
         tableSchema=False
 ):
-    """convert_mysql_database_to_innodb
+    """
+    *convert_mysql_database_to_innodb*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -127,7 +120,8 @@ def convert_mysql_database_to_innodb(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

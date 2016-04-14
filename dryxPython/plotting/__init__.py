@@ -2,10 +2,7 @@ import xy_scatter
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-plotting
-===============
-:Summary:
-    Module of plotting functions
+*Module of plotting functions*
 
 :Author:
     David Young
@@ -30,7 +27,7 @@ plotting
 
 def main():
     """
-    The main function used when ``plotting`` run as a single script from the cl
+    *The main function used when ``plotting`` run as a single script from the cl*
     """
     ################ > IMPORTS ################
     ## STANDARD LIB ##
@@ -85,7 +82,8 @@ def plot_polynomial(
         yAxisInvert=False,
         prependNum=False,
         legend=False):
-    """Plot a dictionary of numpy lightcurves polynomials
+    """
+    *Plot a dictionary of numpy lightcurves polynomials*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -216,7 +214,8 @@ def plot_polar(
         circleTicksRange=(0, 360, 60),
         circleTicksLabels=".",
         prependNum=False):
-    """Plot a dictionary of numpy lightcurves polynomials
+    """
+    *Plot a dictionary of numpy lightcurves polynomials*
 
     **Key Arguments:**
         - ``log`` -- logger

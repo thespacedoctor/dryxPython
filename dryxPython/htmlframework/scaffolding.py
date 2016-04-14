@@ -34,7 +34,8 @@ def htmlDocument(
         contentType=False,
         content='',
         attachmentSaveAsName=False):
-    """The doctype and html tags
+    """
+    *The doctype and html tags*
 
     **Key Arguments:**
         - ``content`` -- the head and body of the html page
@@ -84,7 +85,7 @@ def head(
     faviconLocation=False,
     assetsDirectory=False
 ):
-    """Generate an html head element for your webpage
+    """ *Generate an html head element for your webpage*
 
     **Key Arguments:**
         ``relativeUrlBase`` -- relative base url for js, css, image folders
@@ -146,7 +147,8 @@ def body(
         googleAnalyticsCode=False,
         jsFileName="main.js"
 ):
-    """Generate an HTML body
+    """
+    *Generate an HTML body*
 
     **Key Arguments:**
         - ``navBar`` -- the top navigation bar
@@ -221,8 +223,8 @@ def grid_row(
     onTablet=True,
     onDesktop=True,
 ):
-    """Create a row using the Twitter Bootstrap static layout grid.
-    The static Bootstrap grid system utilizes 12 columns.
+    """ *Create a row using the Twitter Bootstrap static layout grid.
+    The static Bootstrap grid system utilizes 12 columns.*
 
     **Key Arguments:**
         - ``responsive`` -- fluid layout if true, fixed if false
@@ -281,7 +283,7 @@ def grid_column(
     onDesktop=True,
     dataspy=False
 ):
-    """ Get a column block for the Twiiter Bootstrap static layout grid.
+    """ *Get a column block for the Twiiter Bootstrap static layout grid.*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -356,7 +358,8 @@ def row_adjustable(
     onTablet=True,
     onDesktop=True
 ):
-    """row adjustable
+    """
+    *row adjustable*
 
     **Key Arguments:**
         - ``span`` -- the relative width of the column
@@ -371,7 +374,8 @@ def row_adjustable(
     **Return:**
         - ``row`` -- the adjustable row
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean row_adjustable function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -416,7 +420,7 @@ def _container(
     onTablet=True,
     onDesktop=True,
 ):
-    """ The over-all content container for the twitter bootstrap webpage
+    """ *The over-all content container for the twitter bootstrap webpage*
 
     **Key Arguments:**
         - ``responsive`` -- fluid layout if true, fixed if false

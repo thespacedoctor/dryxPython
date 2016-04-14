@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-string_of_values_to_list.py
-===========================
-:Summary:
-    Convert a delimited string of values to a list
+*Convert a delimited string of values to a list*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ string_of_values_to_list.py
 :Date Created:
     April 3, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
@@ -46,7 +38,8 @@ def string_of_values_to_list(
         delimiter=",",
         forceValuesTo=False
 ):
-    """string_of_values_to_list
+    """
+    *string_of_values_to_list*
 
     **Key Arguments:**
         # copy usage method(s) here and select the following snippet from the command palette:
@@ -56,7 +49,8 @@ def string_of_values_to_list(
     **Return:**
         - `theList` -- the list
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

@@ -1,10 +1,8 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-typography.py
-=============================
-:Summary:
-    Basic text elements for TBS htmlframework
+*Basic text elements for TBS htmlframework*
+
 :Author:
     David Young
 
@@ -42,7 +40,8 @@ def p(
         onDesktop=True,
         htmlId=False,
         htmlClass=False):
-    """Get a Paragraph element
+    """
+    *Get a Paragraph element*
 
     **Key Arguments:**
         - ``content`` -- content of the paragraph
@@ -118,7 +117,8 @@ def p(
 def emphasizeText(
         style="em",
         text=""):
-    """Get HTML's default emphasis tags with lightweight styles.
+    """
+    *Get HTML's default emphasis tags with lightweight styles.*
 
     **Key Arguments:**
         - ``style`` -- the emphasis tag [ "small" | "strong" | "em" ]
@@ -141,7 +141,8 @@ def emphasizeText(
 def abbr(
         abbreviation="",
         fullWord=""):
-    """Get HTML5 Abbreviation
+    """
+    *Get HTML5 Abbreviation*
 
     **Key Arguments:**
         - ``abbreviation`` -- the abbreviation
@@ -168,7 +169,8 @@ def address(
         phone=False,
         email=False,
         twitterHandle=False):
-    """Get The HTML5 address element
+    """
+    *Get The HTML5 address element*
 
     **Key Arguments:**
         - ``name`` -- name of person
@@ -243,7 +245,8 @@ def blockquote(
         content="",
         source=False,
         pullRight=False):
-    """Get HTML5 Blockquote
+    """
+    *Get HTML5 Blockquote*
 
     **Key Arguments:**
         - ``content`` -- content to be quoted
@@ -289,7 +292,8 @@ def ul(
         mediaList=False,
         htmlId=False
 ):
-    """Get An unordered list -- can be used for navigation, stacked tab and pill
+    """
+    *Get An unordered list -- can be used for navigation, stacked tab and pill*
 
     **Key Arguments:**
         - ``itemList`` -- a list of items to be included in the unordered list
@@ -397,7 +401,8 @@ def li(
         onTablet=True,
         onDesktop=True,
         indent=False):
-    """Generate a li - TBS style
+    """
+    *Generate a li - TBS style*
 
     **Key Arguments:**
         - ``content`` -- the content (if a subMenu for dropdown this should be <ul>)
@@ -497,7 +502,8 @@ def a(
         postInBackground=False,
         openInNewTab=False,
         popover=False):
-    """Generate an anchor - TBS style
+    """
+    *Generate an anchor - TBS style*
 
     **Key Arguments:**
         - ``content`` -- the content
@@ -580,7 +586,8 @@ def a(
 # CREATED : April 13, 2013
 # AUTHOR : DRYX
 def ol(itemList=[]):
-    """An ordered list
+    """
+    *An ordered list*
 
     **Key Arguments:**
         - ``itemList`` -- a list of items to be included in the ordered list
@@ -610,7 +617,8 @@ def ol(itemList=[]):
 def descriptionLists(
         orderedDictionary={},
         sideBySide=False):
-    """A list of definitions.
+    """
+    *A list of definitions.*
 
     **Key Arguments:**
         - ``orderedDictionary`` -- the ordered dictionary of the terms and their definitions
@@ -651,7 +659,8 @@ def heroUnit(
         buttonText="",
         buttonHref="#"
 ):
-    """Generate a heroUnit - TBS style
+    """
+    *Generate a heroUnit - TBS style*
 
     **Key Arguments:**
         - ``headline`` -- the headline text
@@ -683,7 +692,8 @@ def heroUnit(
 def pageHeader(
         headline="",
         tagline=""):
-    """Generate a pageHeader - TBS style
+    """
+    *Generate a pageHeader - TBS style*
 
     **Key Arguments:**
         - ``headline`` -- the headline text
@@ -712,7 +722,8 @@ def coloredText(
         pull=False,
         size=False,
         addBackgroundColor=False):
-    """Colour text a given colour
+    """
+    *Colour text a given colour*
 
     **Key Arguments:**
         - ``text`` -- the text to color
@@ -723,7 +734,8 @@ def coloredText(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean coloredText function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

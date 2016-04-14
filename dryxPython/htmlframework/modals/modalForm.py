@@ -1,10 +1,7 @@
 # !/usr/bin/env python
 # encoding: utf-8
 """
-modalForm.py
-============
-:Summary:
-    The modal form class
+*The modal form class*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ modalForm.py
 :Date Created:
     July 1, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
@@ -41,7 +33,7 @@ from . import modal
 class modalForm():
 
     """
-    The worker class for the modalForm module
+    *The worker class for the modalForm module*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -49,7 +41,8 @@ class modalForm():
         - ``postToScriptUrl`` -- postToScriptUrl
         - ``reloadToUrl`` -- reloadToUrl
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean modalForm class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -88,12 +81,14 @@ class modalForm():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the modalForm object
+        """
+        *get the modalForm object*
 
         **Return:**
             - ``modalForm``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
@@ -146,7 +141,8 @@ class modalForm():
             formObject,
             label="",
             hidden=False):
-        """add a form objec to the modal form
+        """
+        *add a form objec to the modal form*
 
         **Key Arguments:**
             # -
@@ -154,7 +150,8 @@ class modalForm():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean addFormObject method
             - @review: when complete add logging
         """
@@ -186,7 +183,8 @@ class modalForm():
     def get_form_action_buttons(
             self,
             formId):
-        """get form action buttons
+        """
+        *get form action buttons*
 
         **Key Arguments:**
             # -
@@ -194,7 +192,8 @@ class modalForm():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get_form_action_buttons method
             - @review: when complete add logging
         """
@@ -247,7 +246,8 @@ class modalForm():
             self,
             key,
             value):
-        """add hidden parameter value to the form (to be submitted with the form but does not need user input)
+        """
+        *add hidden parameter value to the form (to be submitted with the form but does not need user input)*
 
         **Key Arguments:**
             # -
@@ -255,7 +255,8 @@ class modalForm():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean add_hidden_parameter_value method
             - @review: when complete add logging
         """
@@ -285,7 +286,8 @@ class modalForm():
     # use the tab-trigger below for new method
     def set_hidden_parameters(
             self):
-        """get hidden parameters
+        """
+        *get hidden parameters*
 
         **Key Arguments:**
             # -
@@ -293,7 +295,8 @@ class modalForm():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean set_hidden_parameters method
             - @review: when complete add logging
         """

@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-ads_query.py
-============
-:Summary:
-    Query the ADS database and return data in a sensible format
+*Query the ADS database and return data in a sensible format*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ ads_query.py
 :Date Created:
     May 23, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 # xdocopt-usage-tempx
@@ -38,7 +30,7 @@ from ..__init__ import *
 
 def main(arguments=None):
     """
-    The main function used when ``ads_query.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``ads_query.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -113,7 +105,8 @@ def ads_query(
         cbets=False,
         url=False
 ):
-    """query the ads archive for papers relating to a specific query
+    """
+    *query the ads archive for papers relating to a specific query*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -121,7 +114,8 @@ def ads_query(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean ads_query function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

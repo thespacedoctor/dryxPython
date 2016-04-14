@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-get_angular_separation.py
-=========================
-:Summary:
-    Get the angular separation between 2 sets of coordinates
+*Get the angular separation between 2 sets of coordinates*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ get_angular_separation.py
 :Date Created:
     November 4, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -39,7 +31,7 @@ from fundamentals import tools, times
 
 def main(arguments=None):
     """
-    The main function used when ``get_angular_separation.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``get_angular_separation.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
     su = tools(
@@ -113,7 +105,8 @@ def get_angular_separation(
         dec1,
         ra2,
         dec2):
-    """get angular separation
+    """
+    *get angular separation*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -121,7 +114,8 @@ def get_angular_separation(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean get_angular_separation function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

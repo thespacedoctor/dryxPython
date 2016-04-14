@@ -53,8 +53,8 @@ import time
 
 
 def set_db_connection(pathToYamlFile):
-    """Get a database connection using settings in yaml file. Given the location of a YAML dictionary containing database credientials,
-    this function will setup and return the connection
+    """ *Get a database connection using settings in yaml file. Given the location of a YAML dictionary containing database credientials,
+    this function will setup and return the connection*
 
     ****Key Arguments:****
         - ``pathToYamlFile`` -- path to the YAML dictionary.
@@ -111,7 +111,7 @@ def execute_mysql_write_query(
     Force=False,
     manyValueList=False
 ):
-    """ Execute a MySQL write command given a sql query
+    """ *Execute a MySQL write command given a sql query*
 
             ****Key Arguments:****
                 - ``sqlQuery`` -- the MySQL command to execute
@@ -221,7 +221,7 @@ def execute_mysql_read_query(
     log,
     quiet=False
 ):
-    """ Execute a MySQL select command given a query
+    """ *Execute a MySQL select command given a query*
 
     ****Key Arguments:****
      - ``sqlQuery`` -- the MySQL command to execute
@@ -274,7 +274,7 @@ def convert_dictionary_to_mysql_table(
         createHelperTables=False,
         dateModified=False,
         returnInsertOnly=False):
-    """ Convert a python dictionary into a mysql table
+    """ *Convert a python dictionary into a mysql table*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -620,7 +620,7 @@ def set_flag(
     primaryKeyColumn,
     primaryKeyId,
 ):
-    """ Set a flag in a db table to a given value
+    """ *Set a flag in a db table to a given value*
 
             ****Key Arguments:****
                 - ``dbConn`` -- db connection
@@ -667,7 +667,7 @@ def add_column_to_db_table(
     colType,
     dbConn,
 ):
-    """ Add a column of agiven name to a database table
+    """ *Add a column of agiven name to a database table*
 
             ****Key Arguments:****
                 - ``tableName`` -- name of table to add column to
@@ -713,7 +713,8 @@ def does_mysql_table_exist(
         dbConn,
         log,
         dbTableName):
-    """does mysql table exist
+    """
+    *does mysql table exist*
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection
@@ -723,7 +724,8 @@ def does_mysql_table_exist(
     **Return:**
         - ``tableExists`` -- True or False
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean does_mysql_table_exist function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -765,7 +767,7 @@ def get_db_table_column_names(
     log,
     dbTable,
 ):
-    """get database table column names
+    """ *get database table column names*
 
     ****Key Arguments:****
         - ``dbConn`` -- mysql database connection
@@ -813,7 +815,8 @@ def insert_list_of_dictionaries_into_database(
         createHelperTables=False,
         dateModified=False,
         batchSize=2500):
-    """insert list of dictionaries into database
+    """
+    *insert list of dictionaries into database*
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection
@@ -824,7 +827,8 @@ def insert_list_of_dictionaries_into_database(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean insert_list_of_dictionaries_into_database function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-astrometry_corrector.py
-=======================
-:Summary:
-    Correct the astrometry/WCS keywords in the headers of FITS images
+*Correct the astrometry/WCS keywords in the headers of FITS images*
 
 :Author:
     aldcroft @ http://www.astropython.org/snippet/2011/1/Fix-the-WCS-for-a-FITS-image-file (adapted by David Young)
@@ -12,13 +9,8 @@ astrometry_corrector.py
 :Date Created:
     May 15, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -52,7 +44,7 @@ import declination_sexegesimal_to_decimal
 
 def main(arguments=None):
     """
-    The main function used when ``astrometry_corrector.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``astrometry_corrector.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -135,7 +127,7 @@ def main(arguments=None):
 class WcsModel(object):
 
     """
-    Modal the WCS for a FITS image
+    *Modal the WCS for a FITS image*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -143,7 +135,8 @@ class WcsModel(object):
         - ``sky`` -- Reference (correct) source positions in RA, Dec
         - ``pix0`` -- Source pixel positions
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean WcsModel class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -184,9 +177,10 @@ class WcsModel(object):
             self,
             pars,
             x=None):
-        """For the given d_ra, d_dec, and d_theta pars, update the WCS
+        """
+        *For the given d_ra, d_dec, and d_theta pars, update the WCS
  transformation and calculate the new pixel coordinates for each
- reference source position.
+ reference source position.*
 
         **Key Arguments:**
             - ``pars`` -- d_ra, d_dec, and d_theta pars
@@ -195,7 +189,8 @@ class WcsModel(object):
         **Return:**
             - ``pix.flatten()`` -- updated pixel positions
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean calc_pix method
             - @review: when complete add logging
         """
@@ -225,11 +220,12 @@ class WcsModel(object):
     def calc_resid2(
             self,
             pars):
-        """Return the squared sum of the residual difference between the
+        """
+        *Return the squared sum of the residual difference between the
  original pixel coordinates and the new pixel coords (given offset
  specified in ``pars``)
 
- This gets called by the scipy.optimize.fmin function.
+ This gets called by the scipy.optimize.fmin function.*
 
         **Key Arguments:**
             - ``pars`` -- d_ra, d_dec, and d_theta pars
@@ -237,7 +233,8 @@ class WcsModel(object):
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean calc_resid2 method
             - @review: when complete add logging
         """
@@ -277,12 +274,13 @@ def astrometry_corrector(
         sky_img,
         opt_alg='scipy',
         hdu=1):
-    """Adjust the WCS transform in FITS file ``infile`` so that the sources
+    """
+    *Adjust the WCS transform in FITS file ``infile`` so that the sources
  positions given in ``sky_img`` most closely match the "correct" values in
  ``sky_ref``. The FITS image is assumed to be in the given ``hdu`` number
  (default=1). The updated image (along with any other HDUs) are written out
  to ``outfile``. The optimization algorithm can be "scipy"
- (scipy.optimize.fmin) or "sherpa".
+ (scipy.optimize.fmin) or "sherpa".*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -297,7 +295,8 @@ def astrometry_corrector(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean astrometry_corrector function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -325,8 +324,9 @@ def match_wcs(
         sky_img,
         sky_ref,
         opt_alg='scipy'):
-    """Adjust ``wcs_img`` (CRVAL{1,2} and CD{1,2}_{1,2}) using a rotation and linear
- offset so that ``coords_img`` matches ``coords_ref``
+    """
+    *Adjust ``wcs_img`` (CRVAL{1,2} and CD{1,2}_{1,2}) using a rotation and linear
+ offset so that ``coords_img`` matches ``coords_ref``*
 
     **Key Arguments:**
         - ``sky_img`` -- list of (world_x, world_y) [aka RA, Dec] coords in input image
@@ -336,7 +336,8 @@ def match_wcs(
     **Return:**
         -  ``d_ra``, ``d_dec``, ``d_theta``  (``wcsmodel.wcs``)
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean match_wcs function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -376,7 +377,8 @@ def match_wcs(
 def rotate(
         log,
         degs):
-    """Return a rotation matrix for counterclockwise rotation by ``deg`` degrees.
+    """
+    *Return a rotation matrix for counterclockwise rotation by ``deg`` degrees.*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -385,7 +387,8 @@ def rotate(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean rotate function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -411,9 +414,10 @@ def read_fits(
         log,
         name,
         hdu):
-    """Read FITS file ``name`` with an image in specified ``hdu`` number.
+    """
+    *Read FITS file ``name`` with an image in specified ``hdu`` number.
  Return the image HDU, list of all HDUs and the WCS object associated
- with the image HDU.
+ with the image HDU.*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -423,7 +427,8 @@ def read_fits(
     **Return:**
         - ``img_hdu``, ``hdulist``, ``wcs``
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean read_fits function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -455,7 +460,8 @@ def write_fits(
         name,
         clobber=True,
         checksum=True):
-    """Write the ``hdulist`` to a FITS file with name ``name``.
+    """
+    *Write the ``hdulist`` to a FITS file with name ``name``.*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -465,7 +471,8 @@ def write_fits(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete,
         clean write_fits function
         - @review: when complete add logging
@@ -490,10 +497,11 @@ def update_header_wcs(
         log,
         hdu,
         wcs):
-    """Update the WCS CRVAL and CD values in the header for the given ``hdu``
+    """
+    *Update the WCS CRVAL and CD values in the header for the given ``hdu``
  using the supplied ``wcs`` WCS object. This assumes that the CD values
  are being used instead of the PC values (as is the case for an HST
- Multidrizzle output). 
+ Multidrizzle output).* 
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -503,7 +511,8 @@ def update_header_wcs(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean update_header_wcs function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -537,7 +546,8 @@ def update_header_wcs(
 def create_parameter_file(
         log,
         parameterFilename):
-    """create the yaml parameter file template
+    """
+    *create the yaml parameter file template*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -545,7 +555,8 @@ def create_parameter_file(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean create_parameter_file function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -575,7 +586,8 @@ def astrometry_corrector_from_yaml(
         fitsFile,
         yamlFile,
         hdu=1):
-    """astrometry corrector using parameters taken from a yaml file
+    """
+    *astrometry corrector using parameters taken from a yaml file*
 
     **Key Arguments:**
         - ``log`` -- logger,
@@ -585,7 +597,8 @@ def astrometry_corrector_from_yaml(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean astrometry_corrector_from_yaml function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

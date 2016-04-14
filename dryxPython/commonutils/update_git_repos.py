@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-update_git_repos.py
-===================
-:Summary:
-    Update the pessto marshall git repos on the VM machines
+*Update the pessto marshall git repos on the VM machines*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ update_git_repos.py
 :Date Created:
     November 19, 2013
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -37,7 +29,7 @@ from dryxPython import logs as dl
 
 def main(arguments=None):
     """
-    The main function used when ``update_git_repos.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``update_git_repos.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -113,7 +105,8 @@ def update_git_repos(
     branchToUpdate="master",
     installClUtils=False
 ):
-    """update_git_repos
+    """
+    *update_git_repos*
 
     **Key Arguments:**
         # copy usage method(s) here and select the following snippet from the command palette:
@@ -124,7 +117,8 @@ def update_git_repos(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

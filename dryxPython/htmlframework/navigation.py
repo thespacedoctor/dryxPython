@@ -40,7 +40,7 @@ def responsive_navigation_bar(
     onTablet=True,
     onDesktop=True,
 ):
-    """ Create a twitter bootstrap responsive nav-bar component
+    """ *Create a twitter bootstrap responsive nav-bar component*
 
     **Key Arguments:**
         - ``shade`` -- if dark then colors are inverted [ False | 'dark' ]
@@ -117,7 +117,7 @@ def nav_list(
     onTablet=True,
     onDesktop=True,
 ):
-    """Create an html list of navigation items from the required python list
+    """ *Create an html list of navigation items from the required python list*
 
     **Key Arguments:**
         - ``itemList`` -- items to be included in the navigation list
@@ -172,7 +172,7 @@ def searchbox(
     pull=False,
     actionScript="#"
 ):
-    """Create a Search box
+    """ *Create a Search box*
 
     **Key Arguments:**
         - ``size`` -- size = mini | small | medium | large | xlarge | xxlarge
@@ -321,7 +321,7 @@ def navBar(
     transparent=False,
     htmlClass=False
 ):
-    """ Generate a navBar - TBS style
+    """ *Generate a navBar - TBS style*
 
     **Key Arguments:**
         - ``brand`` -- the website brand [ image | text ]
@@ -417,7 +417,8 @@ def pagination(
         listItems="",
         size="default",
         align="left"):
-    """Generate pagination - TBS style. Simple pagination inspired by Rdio, great for apps and search results.
+    """
+    *Generate pagination - TBS style. Simple pagination inspired by Rdio, great for apps and search results.*
 
     **Key Arguments:**
         - ``listItems`` -- the numbered items to be listed within the <ul> of the pagination block
@@ -453,7 +454,8 @@ def is_navStyle_active(
         log,
         thisPageName,
         thisPageId):
-    """is navStyle active
+    """
+    *is navStyle active*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -463,7 +465,8 @@ def is_navStyle_active(
     **Return:**
         - ``navStyle`` -- boolean, true if the navStyle should be active, i.e. the link is to the currently viewed page
 
-    **Todo**
+    .. todo::
+
     - [ ] when complete, clean is_navStyle_active function & add logging
     """
     ################ > IMPORTS ################

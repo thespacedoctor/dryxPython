@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-get_outliers_from_list.py
-=========================
-:Summary:
-    Given a list of data - return a list of the outlier indices
+*Given a list of data - return a list of the outlier indices*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ get_outliers_from_list.py
 :Date Created:
     March 13, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -38,7 +30,7 @@ import __init__ as dcu
 
 def main(arguments=None):
     """
-    The main function used when ``get_outliers_from_list.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``get_outliers_from_list.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -137,7 +129,8 @@ def get_outliers_from_list(
         log,
         alist,
         sigmaLimit):
-    """get outliers in list
+    """
+    *get outliers in list*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -147,7 +140,8 @@ def get_outliers_from_list(
     **Return:**
         - ``outliers`` -- list of indices at which outliers where found in input list
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean get_outliers_from_list function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

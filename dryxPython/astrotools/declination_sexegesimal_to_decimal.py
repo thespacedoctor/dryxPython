@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-declination_sexegesimal_to_decimal.py
-=====================================
-:Summary:
-    Convert declination from sexegesimal to decimal degrees - can accept all sorts of sexegesimal formats (spaces, colons)
+*Convert declination from sexegesimal to decimal degrees - can accept all sorts of sexegesimal formats (spaces, colons)*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ declination_sexegesimal_to_decimal.py
 :Date Created:
     January 17, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -37,7 +29,7 @@ from dryxPython import commonutils as dcu
 
 def main(arguments=None):
     """
-    The main function used when ``declination_sexegesimal_to_decimal.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``declination_sexegesimal_to_decimal.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -101,7 +93,8 @@ def main(arguments=None):
 def declination_sexegesimal_to_decimal(
     dec
 ):
-    """declination_sexegesimal_to_decimal
+    """
+    *declination_sexegesimal_to_decimal*
 
     **Key Arguments:**
         - ``dec`` -- declination in sexegesimal
@@ -109,7 +102,8 @@ def declination_sexegesimal_to_decimal(
     **Return:**
         - ``decimalDegrees``
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

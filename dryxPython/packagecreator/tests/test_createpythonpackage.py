@@ -16,7 +16,7 @@ utKit.tearDownModule()
 class test_command_line():
 
     def test_command_line_method_01(self):
-        """--packageName=<packageName> --location=<"/path/to/package/parent/folder">"""
+        """*--packageName=<packageName> --location=<"/path/to/package/parent/folder">*"""
         import shutil
         try:
             shutil.rmtree(pathToOutputDir + "/mytestpackage")

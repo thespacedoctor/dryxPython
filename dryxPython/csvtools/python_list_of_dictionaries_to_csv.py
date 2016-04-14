@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-python_list_of_dictionaries_to_csv.py
-=====================================
-:Summary:
-    Convert a python list of dictionaries to pretty csv output
+*Convert a python list of dictionaries to pretty csv output*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ python_list_of_dictionaries_to_csv.py
 :Date Created:
     December 2, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
@@ -57,7 +49,8 @@ def python_list_of_dictionaries_to_csv(
         log,
         datalist,
         csvType="human"):
-    """python list of dictionaries to csv
+    """
+    *python list of dictionaries to csv*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -66,7 +59,8 @@ def python_list_of_dictionaries_to_csv(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean python_list_of_dictionaries_to_csv function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

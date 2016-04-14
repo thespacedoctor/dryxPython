@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-csvtools.py
-===============
-:Summary:
-    A collection of functions and classes to help work with csv files
+*A collection of functions and classes to help work with csv files*
 
 :Author:
     David Young
@@ -12,13 +9,11 @@ csvtools.py
 :Date Created:
     June 24, 2013
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
 :Notes:
     - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 
-:Tasks:
+.. todo::
+    
     - [ ] when complete, extract all code out of the main function and add cl commands
     - [ ] make internal function private
     - [ ] pull all general functions and classes into dryxPythonModules
@@ -34,7 +29,7 @@ import os
 
 def main():
     """
-    The main function used when ``csvtools.py`` run as a single script from the cl
+    *The main function used when ``csvtools.py`` run as a single script from the cl*
     """
     ########## PRE-IMPORT SETUP ##########
     relativePathToProjectRoot = "../../../"
@@ -88,7 +83,8 @@ def convert_csv_file_to_python_list_of_dictionaries(
         log,
         csvFilePath,
         delimiter="|"):
-    """Convert a CSV file to a python list of dictionaries {"columnHeader": "value"}
+    """
+    *Convert a CSV file to a python list of dictionaries {"columnHeader": "value"}*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -138,7 +134,8 @@ def convert_python_list_of_dictionaries_to_csv(
         listOfDictionaries,
         csvFilePath,
         log):
-    """Converts a python list of dictionaries into a csv file with header = dictionary keys.
+    """
+    *Converts a python list of dictionaries into a csv file with header = dictionary keys.*
 
     **Key Arguments:**
         - ``listOfDictionaries`` -- the list of dictionaries { csvHeader : value }
@@ -148,7 +145,8 @@ def convert_python_list_of_dictionaries_to_csv(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
     - [ ] when complete, clean convert_python_module_content_to_autoSnippet_csv function & add logging
     """
     ################ > IMPORTS ################

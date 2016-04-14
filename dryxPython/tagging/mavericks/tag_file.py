@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-tag_file.py
-===========
-:Summary:
-    Tag a given file with mavericks tag
+*Tag a given file with mavericks tag*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ tag_file.py
 :Date Created:
     February 25, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
@@ -46,7 +38,8 @@ def tag_file(
     mode="set",
     tagList=[]
 ):
-    """tag_file
+    """
+    *tag_file*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -57,7 +50,8 @@ def tag_file(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

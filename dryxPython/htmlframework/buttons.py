@@ -1,10 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 """
-_dryxTBS_buttons
-===============================
-:Summary:
-    Buttons partial for the dryxTwitterBootstrap module
+*Buttons partial for the dryxTwitterBootstrap module*
 
 :Author:
     David Young
@@ -49,7 +46,8 @@ def button(
         notification=False,
         close=False,
         formId=False):
-    """Generate a button - TBS style
+    """
+    *Generate a button - TBS style*
 
     **Key Arguments:**
         - ``buttonText`` -- the text to display on the button
@@ -155,7 +153,8 @@ def buttonGroup(
         buttonList=[],
         format="default",
         pull=False):
-    """Generate a buttonGroup - TBS style
+    """
+    *Generate a buttonGroup - TBS style*
 
     **Key Arguments:**
         - ``buttonList`` -- a list of buttons

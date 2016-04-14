@@ -37,7 +37,7 @@ def mediaObject(
     otherContent=False,
     nestedMediaObjects=False,
 ):
-    """ Generate an abstract object style for building various types of components (like blog comments, Tweets, etc) that feature a left- or right-aligned image alongside textual content.
+    """ *Generate an abstract object style for building various types of components (like blog comments, Tweets, etc) that feature a left- or right-aligned image alongside textual content.*
 
     **Key Arguments:**
         - ``displayType`` -- the display style of the media object [ "div" | "li" ]
@@ -108,7 +108,7 @@ def well(
         wellSize='default',
         htmlId=False,
         htmlClass=False):
-    """Get well. Use the well as a simple effect on an element to give it an inset effect.
+    """ *Get well. Use the well as a simple effect on an element to give it an inset effect.*
 
     **Key Arguments:**
         - ``wellText`` -- the text to be displayed in the well
@@ -141,7 +141,7 @@ def well(
 # AUTHOR : DRYX
 
 def closeIcon():
-    """Get close icon. The generic close icon for dismissing content like modals and alerts.
+    """ *Get close icon. The generic close icon for dismissing content like modals and alerts.*
 
     **Key Arguments:**
 
@@ -164,7 +164,8 @@ def popover(
         content=False,
         delay=200,
         after=False):
-    """popover to provide helper text or some secondary info about an element
+    """
+    *popover to provide helper text or some secondary info about an element*
 
     **Key Arguments:**
         - ``tooltip`` -- use tooltip instead of popover
@@ -179,7 +180,8 @@ def popover(
     **Return:**
         - ``popover`` - the popover helper text to be added to an element
 
-    **Todo**
+    .. todo::
+
         - [ ] when complete, clean popover function
         - [ ] when complete add logging
         - [ ] when complete, decide whether to abstract function to another module

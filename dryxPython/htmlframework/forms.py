@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-forms.py
-=============================
-:Summary:
-    Forms for TBS htmlframework
+*Forms for TBS htmlframework*
 
 :Author:
     David Young
@@ -32,7 +29,8 @@ def searchForm(
         blockHelpText=False,
         focusedInputText=False,
         htmlId=False):
-    """Generate a search-form - TBS style
+    """
+    *Generate a search-form - TBS style*
 
     **Key Arguments:**
         - ``buttonText`` -- the button text
@@ -99,7 +97,8 @@ def form(
         span=False,
         offset=False,
         openInNewTab=False):
-    """Generate a form - TBS style
+    """
+    *Generate a form - TBS style*
 
     **Key Arguments:**
         - ``content`` -- the content
@@ -182,7 +181,8 @@ def horizontalFormControlGroup(
         content="",
         validationLevel=False,
         hidden=False):
-    """Generate a horizontal form control group (row) - TBS style
+    """
+    *Generate a horizontal form control group (row) - TBS style*
 
     **Key Arguments:**
         - ``content`` -- the content
@@ -221,7 +221,8 @@ def horizontalFormControlLabel(
         forId=False,
         sideLabel=False,
         location="left"):
-    """set a horizontal form label
+    """
+    *set a horizontal form label*
 
     **Key Arguments:**
         - ``labelText`` -- the label text
@@ -268,7 +269,8 @@ def formInput(
         disabled=False,
         defaultValue=False,
         hidden=False):
-    """Generate a form input - TBS style
+    """
+    *Generate a form input - TBS style*
 
     **Key Arguments:**
         - ``ttype`` -- [ text | password | datetime | datetime-local | date | month | time | week | number | float | email | url | search | tel | color ]
@@ -456,7 +458,8 @@ def textarea(
         required=False,
         disabled=False,
         prepopulate=False):
-    """Generate a textarea - TBS style
+    """
+    *Generate a textarea - TBS style*
 
     **Key Arguments:**
         - ``rows`` -- the number of rows the text area should span
@@ -533,7 +536,8 @@ def checkbox(
         inlineHelpText=False,
         blockHelpText=False,
         disabled=False):
-    """Generate a checkbox - TBS style
+    """
+    *Generate a checkbox - TBS style*
 
     **Key Arguments:**
         - ``optionText`` -- the text associated with this checkbox
@@ -604,7 +608,8 @@ def select(
         disabled=False,
         popover=False,
         extraAttributeTupleList=False):
-    """Generate a select - TBS style
+    """
+    *Generate a select - TBS style*
 
     **Key Arguments:**
         - ``optionList`` -- the list of options
@@ -700,7 +705,8 @@ def radio(
         blockHelpText=False,
         disabled=False,
         checked=False):
-    """Generate a radio - TBS style
+    """
+    *Generate a radio - TBS style*
 
     **Key Arguments:**
         - ``optionText`` -- the text associated with this checkbox
@@ -754,7 +760,8 @@ def radio(
 # CREATED : April 23, 2013
 # AUTHOR : DRYX
 def controlRow(inputList=[]):
-    """generate a form row
+    """
+    *generate a form row*
 
     **Key Arguments:**
         - ``inputList`` -- list of inputs for the control row
@@ -787,7 +794,8 @@ def uneditableInput(
         span=2,
         inlineHelpText=False,
         blockHelpText=False):
-    """Generate a uneditableInput - TBS style
+    """
+    *Generate a uneditableInput - TBS style*
 
     **Key Arguments:**
         - ``placeholder`` -- the placeholder text
@@ -834,7 +842,8 @@ def formActions(
         button5=False,
         inlineHelpText=False,
         blockHelpText=False):
-    """Generate a formActions - TBS style
+    """
+    *Generate a formActions - TBS style*
 
     **Key Arguments:**
         - ``primaryButton`` -- the primary button

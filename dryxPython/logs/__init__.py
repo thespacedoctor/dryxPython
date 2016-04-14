@@ -41,7 +41,8 @@ def console_logger(
     **Return:**
         - ``logger`` -- the console logger
 
-    **Todo**
+    .. todo::
+
         - [ ] when complete, clean console_logger function
         - [ ] when complete add logging
         - [ ] when complete, decide whether to abstract function to another module
@@ -78,7 +79,9 @@ def console_logger(
 
 
 def setup_dryx_logging(yaml_file):
-    """setup dryx style python logging
+    """
+
+    *setup dryx style python logging*
 
     """
     import logging
@@ -116,12 +119,12 @@ def setup_dryx_logging(yaml_file):
 class GroupWriteRotatingFileHandler(handlers.RotatingFileHandler):
 
     """
-    rotating file handler for logging
+    *rotating file handler for logging*
     """
 
     def doRollover(self):
         """
-        Override base class method to make the new log file group writable.
+        *Override base class method to make the new log file group writable.*
         """
         # Rotate the file first.
         handlers.RotatingFileHandler.doRollover(self)
@@ -135,7 +138,7 @@ class GroupWriteRotatingFileHandler(handlers.RotatingFileHandler):
 class GroupWriteRotatingFileHandler(handlers.RotatingFileHandler):
 
     """
-    rotating file handler for logging
+    *rotating file handler for logging*
     """
 
     def _open(self):

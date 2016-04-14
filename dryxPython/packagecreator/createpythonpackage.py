@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-createpythonpackage.py
-======================
-:Summary:
-    Create the structure required by a python package
+*Create the structure required by a python package*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ createpythonpackage.py
 :Date Created:
     October 23, 2013
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     - [ ] when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -40,7 +32,7 @@ from dryxPython import commonutils as dcu
 
 def main(arguments=None):
     """
-    The main function used when ``createpythonpackage.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``createpythonpackage.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -134,7 +126,8 @@ def createpythonpackage(
         packageName,
         location,
 ):
-    """createpythonpackage
+    """
+    *createpythonpackage*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -144,9 +137,10 @@ def createpythonpackage(
     **Return:**
         - None
 
-    **Todo**
-        - [ ] when complete, clean worker function and add comments
-        - [ ] when complete add logging
+    .. todo::
+
+        - when complete, clean worker function and add comments
+        - when complete add logging
     """
     ################ > IMPORTS ################
     ## STANDARD LIB ##
@@ -232,7 +226,8 @@ def createpythonsubpackage(
         subPackageName,
         pathToHostDirectory,
 ):
-    """createpythonsubpackage
+    """
+    *createpythonsubpackage*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -242,7 +237,8 @@ def createpythonsubpackage(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean createpythonsubpackage function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -289,7 +285,8 @@ def createpythonmodule(
         moduleName,
         pathToHostDirectory,
 ):
-    """Create a python module and its test module shawdow within a package or subpackage folder
+    """
+    *Create a python module and its test module shawdow within a package or subpackage folder*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -299,7 +296,8 @@ def createpythonmodule(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean createpythonmodule function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -361,7 +359,8 @@ def createpythonmodule(
 def create_git_repo(
         log,
         pathToProjectRoot):
-    """create a first instance of a git repo with all the neccessary files
+    """
+    *create a first instance of a git repo with all the neccessary files*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -370,7 +369,8 @@ def create_git_repo(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean create_git_repo function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -414,7 +414,8 @@ def append_import_to_init_file(
         moduleName,
         fromImport=False
 ):
-    """append import to init file
+    """
+    *append import to init file*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -425,7 +426,8 @@ def append_import_to_init_file(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean append_import_to_init_file function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

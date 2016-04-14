@@ -30,7 +30,7 @@
 
 
 def label(text='', level='default'):
-    """ Generate a label - TBS style
+    """ *Generate a label - TBS style*
 
     **Key Arguments:**
         - ``text`` -- the text content
@@ -51,7 +51,7 @@ def label(text='', level='default'):
 
 
 def badge(text='', level='default'):
-    """ Generate a badge - TBS style
+    """ *Generate a badge - TBS style*
 
     **Key Arguments:**
         - ``text`` -- the text content
@@ -79,7 +79,7 @@ def alert(alertText='',
           alertHeading="",
           extraPadding=False,
           alertLevel="warning"):
-    """ Generate a alert - TBS style
+    """ *Generate a alert - TBS style*
 
     **Key Arguments:**
         - ``alertText`` -- the text to be displayed in the alert
@@ -123,7 +123,8 @@ def progressBar(
         barStyle="plain",
         precentageWidth="10",
         barLevel="info"):
-    """Generate a progress bar - TBS style
+    """
+    *Generate a progress bar - TBS style*
 
     **Key Arguments:**
         - ``barStyle`` -- style of the progress bar [ "plain" | "striped" | "striped-active" ]
@@ -160,7 +161,8 @@ def stackedProgressBar(
         warningWidth="10",
         errorWidth="10"
 ):
-    """Generate a progress bar - TBS style
+    """
+    *Generate a progress bar - TBS style*
 
     **Key Arguments:**
         - ``barLevel`` -- the level/color of progress [ "info" | "success" | "warning" | "danger"]

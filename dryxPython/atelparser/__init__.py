@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-atelparser
-===============
-:Summary:
-        Download and parse ATel to strip out RA, DEC & Names of objects into a MySQL DB table(s)
+*Download and parse ATel to strip out RA, DEC & Names of objects into a MySQL DB table(s)*
 
 :Author:
         David Young
@@ -26,7 +23,8 @@ atelparser
 # MAIN LOOP - USED FOR DEBUGGING OR WHEN SCRIPTING   #
 ######################################################
 def main():
-    """Using the PESSTO Marshall database on mac to test & debug this module
+    """
+    *Using the PESSTO Marshall database on mac to test & debug this module
 
     Key Arguments:
             -
@@ -34,7 +32,7 @@ def main():
             - log -- logger
 
     Return:
-            - None
+            - None*
     """
     ################ > IMPORTS ################
     ## STANDARD LIB ##
@@ -81,7 +79,8 @@ def main():
 # LAST MODIFIED : 20121026
 # CREATED : 20121026
 def download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirectory):
-    """download all atels within given range of atels
+    """
+    *download all atels within given range of atels
 
             Key Arguuments:
                 - ``lowerAtelIndex`` -- lowest atel number to download
@@ -89,7 +88,7 @@ def download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirector
                 - ``downloadDirectory`` -- directory to download ATels to
 
             Returns
-                - None
+                - None*
     """
     ## > IMPORTS ##
     import dryxPython.webcrawlers as dwc
@@ -128,14 +127,15 @@ def download_atels(dbConn, log, lowerAtelIndex, upperAtelIndex, downloadDirector
 # AUTHOR : DRYX
 def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
     """
-    Parse ATels into a mysql db. Parser to add ATels into a mysql db - each ATel has 'element' data (top level - title, author ...) and 'item' data (object specific data - ra, dec, mag, name ...).
+
+    *Parse ATels into a mysql db. Parser to add ATels into a mysql db - each ATel has 'element' data (top level - title, author ...) and 'item' data (object specific data - ra, dec, mag, name ...).
     The parser will add one row per 'item' (object) into the db table.
 
     Key Arguments:
         - ``dbConn`` -- database connection
         - ``log`` -- logger
         - ``dbTableName`` -- name of the db table to add ATels to
-        - ``downloadDirectory`` -- directory to download the ATel HTML files to
+        - ``downloadDirectory`` -- directory to download the ATel HTML files to*
 
     """
     ################ > IMPORTS ################
@@ -331,7 +331,8 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
 # CREATED : February 5, 2013
 # AUTHOR : DRYX
 def parse_atels(dbConn, log, mdFolder, reParse=False):
-    """Parse the content of the ATels in the database, appending the various components and values to the db. Also includes the ability convert the atels to markdown, highlighting matches of the parsing regexs.
+    """
+    *Parse the content of the ATels in the database, appending the various components and values to the db. Also includes the ability convert the atels to markdown, highlighting matches of the parsing regexs.*
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection

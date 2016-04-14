@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-download_flicker_image.py
-=========================
-:Summary:
-    Download a flicker image given the flicker URL
+*Download a flicker image given the flicker URL*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ download_flicker_image.py
 :Date Created:
     December 18, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 # xdocopt-usage-tempx
@@ -44,7 +36,7 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``download_flicker_image.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``download_flicker_image.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
     su = tools(
@@ -107,13 +99,14 @@ def main(arguments=None):
 class download_flicker_image():
 
     """
-    The worker class for the download_flicker_image module
+    *The worker class for the download_flicker_image module*
 
     **Key Arguments:**
         - ``log`` -- logger
         - ``url`` -- url to the flicker page
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean download_flicker_image class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -149,12 +142,14 @@ class download_flicker_image():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the download_flicker_image object
+        """
+        *get the download_flicker_image object*
 
         **Return:**
             - ``download_flicker_image``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
@@ -167,7 +162,8 @@ class download_flicker_image():
 
     def get_url(
             self):
-        """ find image link in flicker html
+        """
+        *find image link in flicker html*
 
         **Key Arguments:**
             # -
@@ -175,7 +171,8 @@ class download_flicker_image():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean _find_image_link_in_flicker_html method
             - @review: when complete add logging
         """

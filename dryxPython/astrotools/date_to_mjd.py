@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-date_to_mjd.py
-==============
-:Summary:
-    Convert a date to an MJD
+*Convert a date to an MJD*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ date_to_mjd.py
 :Date Created:
     February 10, 2015
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -46,7 +38,7 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``date_to_mjd.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``date_to_mjd.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
     su = tools(
@@ -110,13 +102,14 @@ def main(arguments=None):
 class date_to_mjd():
 
     """
-    The worker class for the date_to_mjd module
+    *The worker class for the date_to_mjd module*
 
     **Key Arguments:**
         - ``log`` -- logger
         - ``date`` -- date to convert to MJD
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean date_to_mjd class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -153,12 +146,14 @@ class date_to_mjd():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the date_to_mjd object
+        """
+        *get the date_to_mjd object*
 
         **Return:**
             - ``date_to_mjd``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """

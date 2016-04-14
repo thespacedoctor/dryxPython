@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-execute_mysql_script.py
-=======================
-:Summary:
-    Provide the path to a mysql script and execute it from python modules
+*Provide the path to a mysql script and execute it from python modules*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ execute_mysql_script.py
 :Date Created:
     October 29, 2013
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     - [ ] when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -45,7 +37,7 @@ from dryxPython import commonutils as dcu
 
 def main(arguments=None):
     """
-    The main function used when ``execute_mysql_script.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``execute_mysql_script.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -160,7 +152,8 @@ def execute_mysql_script(
     pathToMysqlScript,
     force=False
 ):
-    """execute_mysql_script
+    """
+    *execute_mysql_script*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -174,9 +167,10 @@ def execute_mysql_script(
     **Return:**
         - None
 
-    **Todo**
-        - [ ] when complete, clean worker function and add comments
-        - [ ] when complete add logging
+    .. todo::
+
+        - when complete, clean worker function and add comments
+        - when complete add logging
     """
     ################ > IMPORTS ################
     ## STANDARD LIB ##

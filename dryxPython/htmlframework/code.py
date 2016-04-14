@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-code.py
-=============================
-:Summary:
-    Code elements for TBS htmlframework
+*Code elements for TBS htmlframework*
 
 :Author:
     David Young
@@ -36,7 +33,8 @@ def code(
         content="",
         inline=True,
         scroll=False):
-    """Generate a code section
+    """
+    *Generate a code section*
 
     **Key Arguments:**
         - ``content`` -- the content of the code block

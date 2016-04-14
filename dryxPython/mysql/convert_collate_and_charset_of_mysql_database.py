@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-convert_collate_and_charset_of_mysql_database.py
-================================================
-:Summary:
-    Convert the Collate of tables within database to `latin1_swedish_ci` and the charset to `latin1`
+*Convert the Collate of tables within database to `latin1_swedish_ci` and the charset to `latin1`*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ convert_collate_and_charset_of_mysql_database.py
 :Date Created:
     April 28, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 # @review Code to be added to the package setup.py file        
@@ -48,7 +40,7 @@ from . import execute_mysql_read_query
 
 def main(arguments=None):
     """
-    The main function used when ``convert_collate_and_charset_of_mysql_database.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_collate_and_charset_of_mysql_database.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -127,7 +119,8 @@ def convert_collate_and_charset_of_mysql_database(
         collate,
         tableSchema=False
 ):
-    """convert_collate_and_charset_of_mysql_database
+    """
+    *convert_collate_and_charset_of_mysql_database*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -136,7 +129,8 @@ def convert_collate_and_charset_of_mysql_database(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

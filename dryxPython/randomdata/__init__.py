@@ -28,7 +28,7 @@ from datetime import datetime, date, time, timedelta
 
 def random_letter():
     """
-    get a random lowercase letter.
+    *get a random lowercase letter.*
     """
     randomNum = math.ceil(random.random() * 26)
 
@@ -91,9 +91,9 @@ def random_letter():
 
 def random_ra_dec():
     """
-    get a random coordinate set
+    *get a random coordinate set
 
-    Returns a tuple: ( ``randomRa``, ``randomDec``,```randomRaErr``,``randomDecErr``)
+    Returns a tuple: ( ``randomRa``, ``randomDec``,```randomRaErr``,``randomDecErr``)*
     """
     randomRa = random.random() * 360.
     randomDec = -90 + random.random() * 180.
@@ -106,7 +106,7 @@ def random_ra_dec():
 
 def random_date_in_range(dateLower, dateUpper):
     """
-    get a random date within a range of two dates.
+    *get a random date within a range of two dates.*
     """
     dateRange = dateUpper - dateLower
     randomTimeInterval = timedelta(days=dateRange.days * random.random())
@@ -118,11 +118,11 @@ def random_date_in_range(dateLower, dateUpper):
 
 def random_magnitude():
     """
-    Get a random magnitude
+    *Get a random magnitude
 
     Returns:
      - ``magnitude`` -- a random magnitude < 16.0mag
-     - ``magnitudeError`` -- a random magnitude error
+     - ``magnitudeError`` -- a random magnitude error*
     """
     base = 16.0
     magnitude = base + random.random() * 7.0
@@ -134,10 +134,10 @@ def random_magnitude():
 
 def random_filter():
     """
-    get a random filter
+    *get a random filter
 
     Returns:
-     - ``randomFilter`` -- a random telescope filter
+     - ``randomFilter`` -- a random telescope filter*
     """
     randomNum = math.ceil(random.random() * 7)
 
@@ -162,10 +162,12 @@ def random_filter():
 
 def random_redshift(lowerLimit, upperLimit):
     """
-    Get a random redshift
+
+
+    *Get a random redshift
 
     Returns:
-     - ``redshift`` -- a random redshift between the limits provided
+     - ``redshift`` -- a random redshift between the limits provided*
 
     **Key Arguments:**
      - ``lowerLimit`` -- lower limit to random redhsift range
@@ -182,7 +184,7 @@ def random_redshift(lowerLimit, upperLimit):
 
 def is_odd(number):
     """
-    Determine if the number is odd or not
+    *Determine if the number is odd or not*
 
     **Key Arguments:**
      - ``number`` -- number to be tested for 'odd'ness
@@ -200,7 +202,7 @@ def is_odd(number):
 
 def is_even(number):
     """
-    Determine if the number is even or not
+    *Determine if the number is even or not*
 
     **Key Arguments:**
      - ``number`` -- number to be tested for 'even'ness
@@ -218,10 +220,10 @@ def is_even(number):
 
 def random_sentence():
     """
-    get a random lorem sentence
+    *get a random lorem sentence
 
     Returns:
-      - ``sentence`` -- random Lorem snippet
+      - ``sentence`` -- random Lorem snippet*
     """
     randomNum = math.ceil(random.random() * 4)
 
@@ -239,10 +241,10 @@ def random_sentence():
 # FUNCTION TO GENERATE RANDOM SN SPECTRAL TYPE
 def random_sn_spectral_type():
     """
-    get a random supernova spectral type
+    *get a random supernova spectral type
 
     Returns:
-      - ``SpectralType`` -- random SN spectral type
+      - ``SpectralType`` -- random SN spectral type*
     """
     randomNum = random.randint(1, 7)
 
@@ -267,10 +269,10 @@ def random_sn_spectral_type():
 
 def random_exptime():
     """
-    get a random exposure time
+    *get a random exposure time
 
     Returns:
-      - ``randomExptime`` -- a random exptime from a set of discrete values
+      - ``randomExptime`` -- a random exptime from a set of discrete values*
     """
     randomNum = random.randint(1, 7)
 
@@ -295,10 +297,10 @@ def random_exptime():
 
 def random_filter_set():
     """
-    get a random astronomical filter set
+    *get a random astronomical filter set
 
     Returns:
-      - ``randomRefSource`` -- random filter set name (sdss, 2MASS ...)
+      - ``randomRefSource`` -- random filter set name (sdss, 2MASS ...)*
     """
     randomNum = random.randint(1, 3)
 
@@ -315,10 +317,10 @@ def random_filter_set():
 
 def random_human_name():
     """
-    get a random human name (rock star!)
+    *get a random human name (rock star!)
 
     Returns:
-      - ``randomName`` -- a random human name from a set of 7
+      - ``randomName`` -- a random human name from a set of 7*
     """
     randomNum = random.randint(1, 7)
 

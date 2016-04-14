@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-update_request_watcher.py
-=========================
-:Summary:
-    Update the git repo with a request in the _update_requests_ directory of your git repos folder
+*Update the git repo with a request in the _update_requests_ directory of your git repos folder*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ update_request_watcher.py
 :Date Created:
     June 24, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -39,7 +31,7 @@ from fundamentals import tools, times
 
 def main(arguments=None):
     """
-    The main function used when ``update_request_watcher.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``update_request_watcher.py`` is run as a single script from the cl, or when installed as a cl command*
     """
 
     from dryxPython import logs as dl

@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-fitstools
-===============
-:Summary:
-    Some helpful tools to work with FITS files
+*Some helpful tools to work with FITS files*
 
 :Author:
     David Young
@@ -29,7 +26,8 @@ import os
 
 
 def main():
-    """Used for debugging
+    """
+    *Used for debugging
 
     Key Arguments:
         -
@@ -37,7 +35,7 @@ def main():
         - log -- logger
 
     Return:
-        - None
+        - None*
     """
     ################ > IMPORTS ################
     ## STANDARD LIB ##
@@ -83,7 +81,8 @@ def convert_fits_header_to_dictionary(
         log,
         pathToFitsFile,
         headerExtension=0):
-    """Convert a FITS file header keywords / values into a python dictionary
+    """
+    *Convert a FITS file header keywords / values into a python dictionary*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -140,7 +139,8 @@ def get_fits_header(
         log,
         pathToFits,
         headerExtension=0):
-    """Return the HDU for the given fits file
+    """
+    *Return the HDU for the given fits file*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -181,7 +181,8 @@ def get_fits_header(
 
 
 def _correct_extended_fits_keywords(log, pathToFits):
-    """Values within the fits header should be no longer than 80 characters
+    """
+    *Values within the fits header should be no longer than 80 characters*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -238,7 +239,8 @@ def remove_keyword_from_file(
         log,
         pathToFitsFile,
         keyword):
-    """Remove a given keyword card from a fits file
+    """
+    *Remove a given keyword card from a fits file*
 
     **Return:**
         - None
@@ -283,7 +285,8 @@ def add_or_replace_keyword_to_fits(
         keywordName,
         keywordValue,
         keywordComment):
-    """Add or replace a given keyword card from a fits file
+    """
+    *Add or replace a given keyword card from a fits file*
 
     **Return:**
         - None
