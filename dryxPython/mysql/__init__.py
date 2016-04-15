@@ -836,6 +836,11 @@ def insert_list_of_dictionaries_into_database(
     log.info(
         'starting the ``insert_list_of_dictionaries_into_database`` function')
 
+    if len(dictList) == 0:
+        log.warning(
+            'the dictionary to be added to the database is empty' % locals())
+        return None
+
     if len(dictList):
         convert_dictionary_to_mysql_table(
             dbConn=dbConn,
