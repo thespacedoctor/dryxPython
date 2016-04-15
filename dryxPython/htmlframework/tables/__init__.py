@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-tables.py
-=============================
-:Summary:
-    Tables for TBS htmlframework
+*Tables for TBS htmlframework*
 
 :Author:
     David Young
@@ -17,7 +14,7 @@ tables.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 
 ###################################################################
@@ -38,7 +35,8 @@ def tr(
         href=False,
         popover=False,
         span=False):
-    """Generate a table row - TBS style
+    """
+    *Generate a table row - TBS style*
 
     **Key Arguments:**
         - ``cellContent`` -- the content - either <td>s or <th>s
@@ -81,7 +79,8 @@ def th(
         popover=False,
         span=False,
         columnWidth=False):
-    """Generate a table header cell - TBS style
+    """
+    *Generate a table header cell - TBS style*
 
     **Key Arguments:**
         - ``content`` -- the content
@@ -127,7 +126,8 @@ def td(
         content=False,
         color=False,
         span=False):
-    """Generate a table data cell - TBS style
+    """
+    *Generate a table data cell - TBS style*
 
     **Key Arguments:**
         - ``content`` -- the content
@@ -155,7 +155,8 @@ def td(
 # AUTHOR : DRYX
 def tableCaption(
         content=""):
-    """Generate a table caption - TBS style
+    """
+    *Generate a table caption - TBS style*
 
     **Key Arguments:**
         - ``content`` -- the content
@@ -173,7 +174,8 @@ def tableCaption(
 # AUTHOR : DRYX
 def thead(
         trContent=""):
-    """Generate a table head - TBS style
+    """
+    *Generate a table head - TBS style*
 
     **Key Arguments:**
         - ``trContent`` -- the table row content
@@ -191,7 +193,8 @@ def thead(
 # AUTHOR : DRYX
 def tbody(
         trContent=""):
-    """Generate a table body - TBS style
+    """
+    *Generate a table body - TBS style*
 
     **Key Arguments:**
         - ``trContent`` -- the table row content
@@ -216,7 +219,8 @@ def table(
         hover=True,
         condensed=False,
         span=False):
-    """Generate a table - TBS style
+    """
+    *Generate a table - TBS style*
 
     **Key Arguments:**
         - ``caption`` -- the table caption

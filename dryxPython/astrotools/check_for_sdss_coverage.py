@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-check_for_sdss_coverage.py
-==========================
-:Summary:
-    Command-line tool to check for SDSS coverage
+*Command-line tool to check for SDSS coverage*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ check_for_sdss_coverage.py
 :Date Created:
     November 22, 2013
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -37,7 +29,7 @@ from dryxPython import commonutils as dcu
 
 def main(arguments=None):
     """
-    The main function used when ``check_for_sdss_coverage.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``check_for_sdss_coverage.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##

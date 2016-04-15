@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-decimal_day_to_day_hour_min_sec.py
-==================================
-:Summary:
-    Convert decimal day to days hours mins sec
+*Convert decimal day to days hours mins sec*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ decimal_day_to_day_hour_min_sec.py
 :Date Created:
     April 21, 2015
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 # xdocopt-usage-tempx
@@ -32,7 +24,7 @@ import pickle
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 # from ..__init__ import *
 
 
@@ -49,8 +41,8 @@ def tab_complete(text, state):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE decimal_day_to_day_hour_min_sec.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -66,7 +58,8 @@ def tab_complete(text, state):
 def decimal_day_to_day_hour_min_sec(
         log,
         daysFloat):
-    """decimal day to day hour min sec
+    """
+    *decimal day to day hour min sec*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -74,7 +67,8 @@ def decimal_day_to_day_hour_min_sec(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean decimal_day_to_day_hour_min_sec function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

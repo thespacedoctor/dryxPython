@@ -18,7 +18,7 @@ images.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 
 ###################################################################
@@ -147,7 +147,8 @@ def image(
 def thumbnails(
         listItems=[]
 ):
-    """Generate a thumbnail - TBS style
+    """
+    *Generate a thumbnail - TBS style*
 
     **Key Arguments:**
         - ``htmlContent`` -- the html content of the thumbnail
@@ -172,7 +173,8 @@ def thumbnails(
 def thumbnail_div(
         div_content=""
 ):
-    """Generate a thumbnail - TBS style
+    """
+    *Generate a thumbnail - TBS style*
 
     **Key Arguments:**
         - ``div_content`` -- the html content of the thumbnail

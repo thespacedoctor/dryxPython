@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-convert_excel_workbook_to_binary_fits_table.py
-==============================================
-:Summary:
-    Convert an excel spreadsheet (with correctly labeled speadsheets) into a FITS binary table
+*Convert an excel spreadsheet (with correctly labeled speadsheets) into a FITS binary table*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ convert_excel_workbook_to_binary_fits_table.py
 :Date Created:
     February 10, 2015
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
 
 Usage:
     dft_convert_excel_workbook_to_binary_fits_table -e <pathToExcelFile> -o <pathToOutputFits>
@@ -39,7 +31,7 @@ from datetime import datetime, date, time
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 def tab_complete(text, state):
@@ -48,10 +40,10 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``convert_excel_workbook_to_binary_fits_table.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_excel_workbook_to_binary_fits_table.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="WARNING",
@@ -75,7 +67,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE convert_excel_workbook_to_binary_fits_table.py AT %s' %
         (startTime,))
@@ -92,8 +84,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE convert_excel_workbook_to_binary_fits_table.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -107,14 +99,15 @@ def main(arguments=None):
 class convert_excel_workbook_to_binary_fits_table():
 
     """
-    The worker class for the convert_excel_workbook_to_binary_fits_table module
+    *The worker class for the convert_excel_workbook_to_binary_fits_table module*
 
     **Key Arguments:**
         - ``log`` -- logger
         - ``pathToWorkbook`` -- path to the excel workbook
         - ``pathToOutputFits`` -- path to the output fits file
 
-    **Todo**
+    .. todo::
+
     """
     # Initialisation
 
@@ -174,12 +167,14 @@ class convert_excel_workbook_to_binary_fits_table():
 
     # Method Attributes
     def get(self):
-        """get the convert_excel_workbook_to_binary_fits_table object
+        """
+        *get the convert_excel_workbook_to_binary_fits_table object*
 
         **Return:**
             - ``convert_excel_workbook_to_binary_fits_table``
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``get`` method')
 
@@ -216,7 +211,8 @@ class convert_excel_workbook_to_binary_fits_table():
             self,
             sheet,
             primary=True):
-        """ generate primary fits header
+        """
+        *generate primary fits header*
 
         **Key Arguments:**
             - ``sheet`` -- sheet to generate header from
@@ -225,7 +221,8 @@ class convert_excel_workbook_to_binary_fits_table():
         **Return:**
             - ``fitsHeader`` -- the header
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_generate_fits_header`` method')
 
@@ -295,14 +292,16 @@ class convert_excel_workbook_to_binary_fits_table():
 
     def _write_fits_file(
             self):
-        """ write fits file
+        """
+        *write fits file*
 
         **Key Arguments:**
 
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_write_fits_file`` method')
 
@@ -320,7 +319,8 @@ class convert_excel_workbook_to_binary_fits_table():
             self,
             dataSheet,
             extSheet):
-        """ generate data table unit
+        """
+        *generate data table unit*
 
         **Key Arguments:**
             - ``dataSheet`` -- the excel sheet containing the data
@@ -329,7 +329,8 @@ class convert_excel_workbook_to_binary_fits_table():
         **Return:**
             - ``binTableHdu`` -- the table HDU (pre-header population)
 
-        **Todo**
+        .. todo::
+
         """
         self.log.info('starting the ``_generate_data_table_unit`` method')
 

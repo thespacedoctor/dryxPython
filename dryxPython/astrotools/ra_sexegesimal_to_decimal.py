@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-ra_sexegesimal_to_decimal.py
-============================
-:Summary:
-    convert ra from sexegesimal (in any format) to decimal degrees
+*convert ra from sexegesimal (in any format) to decimal degrees*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ ra_sexegesimal_to_decimal.py
 :Date Created:
     January 17, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -37,7 +29,7 @@ from dryxPython import commonutils as dcu
 
 def main(arguments=None):
     """
-    The main function used when ``ra_sexegesimal_to_decimal.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``ra_sexegesimal_to_decimal.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -91,7 +83,8 @@ def main(arguments=None):
 def ra_sexegesimal_to_decimal(
     ra
 ):
-    """ra_sexegesimal_to_decimal
+    """
+    *ra_sexegesimal_to_decimal*
 
     **Key Arguments:**
         - ``ra`` -- ra in sexegesimal
@@ -99,7 +92,8 @@ def ra_sexegesimal_to_decimal(
     **Return:**
         - ``decimalDegrees``
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

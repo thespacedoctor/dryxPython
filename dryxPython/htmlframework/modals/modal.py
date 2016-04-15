@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-modal.py
-========
-:Summary:
-    Modal
+*Modal*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ modal.py
 :Date Created:
     July 1, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
@@ -27,7 +19,7 @@ import os
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 # from ..__init__ import *
 
 ###################################################################
@@ -40,9 +32,9 @@ from dryxPython.projectsetup import setup_main_clutil
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : October 9, 2013
-## CREATED : October 9, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : October 9, 2013
+# CREATED : October 9, 2013
+# AUTHOR : DRYX
 def modal(
     modalHeaderContent="",
     modalBodyContent="",
@@ -51,7 +43,8 @@ def modal(
     centerContent=False,
     htmlClass=False
 ):
-    """generate a modal to by generated with a js event
+    """
+    *generate a modal to by generated with a js event*
 
     **Key Arguments:**
       - ``modalHeaderContent`` -- the heading for the modal
@@ -62,7 +55,8 @@ def modal(
     **Return:**
         - ``modal`` -- the modal
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean modal function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
@@ -116,4 +110,3 @@ if __name__ == '__main__':
 ###################################################################
 # TEMPLATE FUNCTIONS                                              #
 ###################################################################
-

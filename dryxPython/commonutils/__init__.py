@@ -10,7 +10,7 @@ import update_git_repos
 A collection of miscellaneous useful utilities
 
 | Initially created by David Young on October 8, 2012
-| If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+| If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 
 dryx syntax:
     - ``xxx`` = come back here and do some more work
@@ -19,6 +19,8 @@ dryx syntax:
 ############################################
 # MAIN LOOP - USED FOR DEBUGGING           #
 ############################################
+
+import sys
 
 
 def main():
@@ -72,8 +74,9 @@ def main():
 # LAST MODIFIED : 20121026
 # CREATED : 20121026
 def get_now_datetime_filestamp(longTime=False):
-    """A datetime stamp to be appended to the end of filenames:
-        ``YYYYMMDDtHHMMSS``
+    """
+    *A datetime stamp to be appended to the end of filenames:
+        ``YYYYMMDDtHHMMSS``*
 
         **Return:**
             - ``now`` -- current time and date in filename format
@@ -102,8 +105,9 @@ def get_now_datetime_filestamp(longTime=False):
 # LAST MODIFIED : 20121031
 # CREATED : 20121031
 def get_now_sql_datetime():
-    """A datetime stamp in MySQL format:
-        ``YYYY-MM-DDTHH:MM:SS``
+    """
+    *A datetime stamp in MySQL format:
+        ``YYYY-MM-DDTHH:MM:SS``*
 
         **Return:**
             - ``now`` -- current time and date in MySQL format
@@ -126,7 +130,8 @@ def get_now_sql_datetime():
 # CREATED : 20121108
 # AUTHOR : DRYX
 def make_lowercase_nospace(theString):
-    """Convert a string to a neatly formated filename type - no space, commas, lowercase etc
+    """
+    *Convert a string to a neatly formated filename type - no space, commas, lowercase etc*
 
             **Key Arguments:**
                 - ``theString`` -- the string to be made pretty
@@ -151,8 +156,8 @@ def make_lowercase_nospace(theString):
 # CREATED : 20121031
 def extract_filename_from_url(log, url):
     """
-        get the filename from a URL.
-        Will return '*untitled.html*', if no filename is found.
+    *get the filename from a URL.
+        Will return '*untitled.html*', if no filename is found.*
 
         **Key Arguments:**
             - ``url`` -- the url to extract filename from
@@ -191,7 +196,8 @@ def extract_filename_from_url(log, url):
 # LAST MODIFIED : 20121031
 # CREATED : 20121031
 def append_now_datestamp_to_filename(log, filename, longTime=False):
-    """append the current datestamp to the end of the filename (before the extension).
+    """
+    *append the current datestamp to the end of the filename (before the extension).*
 
             **Key Arguments:**
                 - ``filename`` -- the filename
@@ -226,7 +232,8 @@ def append_now_datestamp_to_filename(log, filename, longTime=False):
 
 
 def pretty_date(date):
-    """convert date to a relative datetime (e.g. +15m, +2hr, +1w)
+    """
+    *convert date to a relative datetime (e.g. +15m, +2hr, +1w)*
 
     **Key Arguments:**
         - ``date`` -- absolute date
@@ -267,7 +274,8 @@ def pretty_date(date):
 
 
 def calculate_time_difference(startDate, endDate):
-    """Return the time difference between two dates
+    """
+    *Return the time difference between two dates*
 
     **Key Arguments:**
         - ``startDate`` -- the first date in YYYY-MM-DDTHH:MM:SS format
@@ -311,7 +319,8 @@ def calculate_time_difference(startDate, endDate):
 # LAST MODIFIED : 20121101
 # CREATED : 20121101
 def dryx_mkdir(log, directoryPath):
-    """Create a directory if it does not yet exist
+    """
+    *Create a directory if it does not yet exist*
 
             **Key Arguments:**
                 - ``directoryPath`` -- absolute/relative path to required directory
@@ -350,7 +359,8 @@ def dryx_mkdir(log, directoryPath):
 
 
 def strip_whitespace_from_dictionary_values(log, dictionary):
-    """Strip the leading and trailing whitespace from dictionary values and returns the cleaned up dictionary
+    """
+    *Strip the leading and trailing whitespace from dictionary values and returns the cleaned up dictionary*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -384,7 +394,8 @@ def strip_whitespace_from_dictionary_values(log, dictionary):
 # CREATED : January 25, 2013
 # AUTHOR : DRYX
 def get_current_mjd():
-    """Get the current datetime as MJD
+    """
+    *Get the current datetime as MJD*
 
     **Key Arguments:**
         - ``None``
@@ -427,7 +438,8 @@ def get_current_mjd():
 def add_directories_to_path(
         directoryPath,
         log):
-    """add a directories to the system path
+    """
+    *add a directories to the system path*
 
     **Key Arguments:**
         - ``directoryPath`` -- the path to the directory containing the directories you want to add to the system path
@@ -458,7 +470,8 @@ def add_directories_to_path(
 def recusively_add_directories_to_path(
         directoryPath,
         log):
-    """add contents of a directory **recusively** to the system path
+    """
+    *add contents of a directory* **recusively** to the system path
 
     **Key Arguments:**
            - ``directoryPath`` -- the path to the directory containing the directories you want to recusively add to the system path
@@ -502,7 +515,8 @@ def recusively_add_directories_to_path(
 def get_python_module_partials(
         pathToModuleFile,
         log):
-    """Get the names of the _partials imported into dryx python modules.
+    """
+    *Get the names of the _partials imported into dryx python modules.*
 
     **Key Arguments:**
         - ``pathToModuleFile`` -- the path to the python module we wish to extract the _partial names for
@@ -511,7 +525,8 @@ def get_python_module_partials(
     **Return:**
         - ``partialsDictionary`` -- a dictionary of the _partial names imported into the dryx python module, and a list of their functions
 
-    **Todo**
+    .. todo::
+
     - [ ] when complete, clean get_python_module_partials function & add logging
     """
     ################ > IMPORTS ################
@@ -566,9 +581,10 @@ def get_recursive_list_of_directory_contents(
         baseFolderPath,
         whatToList="all"
 ):
-    """list directory contents recursively.
+    """
+    *list directory contents recursively.
 
-    Options to list only files or only directories.
+    Options to list only files or only directories.*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -633,7 +649,8 @@ def get_recursive_list_of_directory_contents(
 def get_help_for_python_module(
         pathToModuleFile,
         log):
-    """print the help for python module
+    """
+    *print the help for python module*
 
     **Key Arguments:**
         - ``pathToModuleFile`` -- the path to the python module
@@ -642,7 +659,8 @@ def get_help_for_python_module(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - [ ] when complete, clean get_help_for_python_module function
         - [ ] when complete add logging
         - [ ] when complete, decide whether to abstract function to another module
@@ -669,7 +687,8 @@ def get_help_for_python_module(
 def recursively_remove_empty_directories(
         log,
         basePath):
-    """recursively remove empty directories
+    """
+    *recursively remove empty directories*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -678,7 +697,8 @@ def recursively_remove_empty_directories(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
     - [ ] when complete, clean recursively_remove_empty_directories function & add logging
     """
     ################ > IMPORTS ################

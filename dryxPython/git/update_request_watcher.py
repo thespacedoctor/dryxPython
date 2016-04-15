@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-update_request_watcher.py
-=========================
-:Summary:
-    Update the git repo with a request in the _update_requests_ directory of your git repos folder
+*Update the git repo with a request in the _update_requests_ directory of your git repos folder*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ update_request_watcher.py
 :Date Created:
     June 24, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -32,17 +24,17 @@ Usage:
 import sys
 import os
 from docopt import docopt
-
-
+from dryxPython import commonutils as dcu
+from fundamentals import tools, times
 
 def main(arguments=None):
     """
-    The main function used when ``update_request_watcher.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``update_request_watcher.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     from dryxPython import commonutils as dcu
     from dryxPython.projectsetup import setup_main_clutil
     from dryxPython import logs as dl
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="WARNING"
@@ -65,7 +57,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE update_request_watcher.py AT %s' %
         (startTime,))
@@ -96,8 +88,8 @@ def main(arguments=None):
                 os.remove(os.path.join(basePath, d))
 
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE update_request_watcher.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 

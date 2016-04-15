@@ -1,9 +1,9 @@
 import os
 import nose
 from .. import createpythonpackage
-from dryxPython.utKit import utKit
+from fundamentals import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -16,7 +16,7 @@ utKit.tearDownModule()
 class test_command_line():
 
     def test_command_line_method_01(self):
-        """--packageName=<packageName> --location=<"/path/to/package/parent/folder">"""
+        """*--packageName=<packageName> --location=<"/path/to/package/parent/folder">*"""
         import shutil
         try:
             shutil.rmtree(pathToOutputDir + "/mytestpackage")

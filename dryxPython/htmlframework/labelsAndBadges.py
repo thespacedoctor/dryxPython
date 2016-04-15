@@ -17,20 +17,20 @@
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this code please email me: d.r.young@qub.ac.uk """
+    - If you have any questions requiring this code please email me: davidrobertyoung@gmail.com """
 ###################################################################
 # CLASSES                                                         #
 ###################################################################
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 
 def label(text='', level='default'):
-    """ Generate a label - TBS style
+    """ *Generate a label - TBS style*
 
     **Key Arguments:**
         - ``text`` -- the text content
@@ -51,7 +51,7 @@ def label(text='', level='default'):
 
 
 def badge(text='', level='default'):
-    """ Generate a badge - TBS style
+    """ *Generate a badge - TBS style*
 
     **Key Arguments:**
         - ``text`` -- the text content
@@ -71,15 +71,15 @@ def badge(text='', level='default'):
     return badge
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 
 def alert(alertText='',
           alertHeading="",
           extraPadding=False,
           alertLevel="warning"):
-    """ Generate a alert - TBS style
+    """ *Generate a alert - TBS style*
 
     **Key Arguments:**
         - ``alertText`` -- the text to be displayed in the alert
@@ -91,8 +91,8 @@ def alert(alertText='',
 
     falseList = [extraPadding, ]
     for i in range(len(falseList)):
-            if not falseList[i]:
-                falseList[i] = ""
+        if not falseList[i]:
+            falseList[i] = ""
     [extraPadding, ] = falseList
 
     if alertLevel == "default":
@@ -116,14 +116,15 @@ def alert(alertText='',
     return alert
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 def progressBar(
         barStyle="plain",
         precentageWidth="10",
         barLevel="info"):
-    """Generate a progress bar - TBS style
+    """
+    *Generate a progress bar - TBS style*
 
     **Key Arguments:**
         - ``barStyle`` -- style of the progress bar [ "plain" | "striped" | "striped-active" ]
@@ -150,9 +151,9 @@ def progressBar(
     return progressBar
 
 
-## LAST MODIFIED : 20130508
-## CREATED : 20130508
-## AUTHOR : DRYX
+# LAST MODIFIED : 20130508
+# CREATED : 20130508
+# AUTHOR : DRYX
 def stackedProgressBar(
         barStyle="plain",
         infoWidth="10",
@@ -160,7 +161,8 @@ def stackedProgressBar(
         warningWidth="10",
         errorWidth="10"
 ):
-    """Generate a progress bar - TBS style
+    """
+    *Generate a progress bar - TBS style*
 
     **Key Arguments:**
         - ``barLevel`` -- the level/color of progress [ "info" | "success" | "warning" | "danger"]
@@ -188,8 +190,6 @@ def stackedProgressBar(
           <div class="bar bar-danger" style="width: %(errorWidth)s%%;"></div>
         </div>""" % locals()
     return stackedProgressBar
-
-
 
 
 ###################################################################

@@ -1,9 +1,9 @@
 import os
 import nose
 from .. import convert_collate_and_charset_of_mysql_database
-from dryxPython.utKit import utKit
+from fundamentals import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -29,7 +29,6 @@ class test_command_line():
 #         kwargs["dbConn"] = dbConn
 #         convert_collate_and_charset_of_mysql_database.convert_collate_and_charset_of_mysql_database(
 #             **kwargs)
-
 
         # x-print-testpage-for-pessto-marshall-web-object
 

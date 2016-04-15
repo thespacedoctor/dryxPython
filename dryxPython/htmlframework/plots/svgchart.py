@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-svgchart.py
-===========
-:Summary:
-    Add an SVG chart placeholder to the HTML of your webpage
+*Add an SVG chart placeholder to the HTML of your webpage*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ svgchart.py
 :Date Created:
     May 9, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 """
 ################# GLOBAL IMPORTS ####################
@@ -27,7 +19,7 @@ import os
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 # from ..__init__ import *
 
 ###################################################################
@@ -41,9 +33,9 @@ from dryxPython.projectsetup import setup_main_clutil
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
 # x-worker-def
-## LAST MODIFIED : May 9, 2014
-## CREATED : May 9, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : May 9, 2014
+# CREATED : May 9, 2014
+# AUTHOR : DRYX
 def svgchart(
     htmlClass=False,
     csvUrl="#",
@@ -52,7 +44,8 @@ def svgchart(
     chartType="",
     span=12
 ):
-    """svgchart
+    """
+    *svgchart*
 
     **Key Arguments:**
         - ``htmlClass`` -- the extra html classes required
@@ -64,7 +57,8 @@ def svgchart(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean svgchart function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

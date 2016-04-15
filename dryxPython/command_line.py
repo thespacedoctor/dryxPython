@@ -40,7 +40,8 @@ def _set_up_command_line_tool():
 # AUTHOR : DRYX
 def py_get_help_for_python_module(
         argv=None):
-    """print the help for python module
+    """
+    *print the help for python module*
 
     **Key Arguments:**
         - ``argv`` -- arguments for the function
@@ -77,7 +78,7 @@ def py_get_help_for_python_module(
 # AUTHOR : DRYX
 def dft_print_fits_header(clArgs=None):
     """
-    Print a fits file headers to stout
+    *Print a fits file headers to stout
 
     Usage:
         dft_print_fits_header <path-to-fits-file>
@@ -85,7 +86,7 @@ def dft_print_fits_header(clArgs=None):
         dft_print_fits_header -h
 
         -h, --help    show this help message
-        -p, --pydict  print as python dictionary
+        -p, --pydict  print as python dictionary*
     """
     ################ > IMPORTS ################
     ## STANDARD LIB ##

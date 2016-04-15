@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-shift_coordinates.py
-====================
-:Summary:
-    Shift a give set of coordinates North and East
+*Shift a give set of coordinates North and East*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ shift_coordinates.py
 :Date Created:
     December 2, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -40,7 +32,7 @@ from docopt import docopt
 
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 # from ..__init__ import *
 
 
@@ -50,11 +42,11 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``shift_coordinates.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``shift_coordinates.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     from dryxPython import astrotools as dat
     # setup the command-line util settings
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="WARNING",
@@ -83,7 +75,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE shift_coordinates.py AT %s' %
         (startTime,))
@@ -121,8 +113,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE shift_coordinates.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -136,7 +128,7 @@ def main(arguments=None):
 class shift_coordinates():
 
     """
-    The worker class for the shift_coordinates module
+    *The worker class for the shift_coordinates module*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -145,7 +137,8 @@ class shift_coordinates():
         - ``north`` -- north in arcsec
         - ``east`` -- east in arcsec
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean shift_coordinates class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -203,12 +196,14 @@ class shift_coordinates():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the shift_coordinates object
+        """
+        *get the shift_coordinates object*
 
         **Return:**
             - ``shift_coordinates``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """

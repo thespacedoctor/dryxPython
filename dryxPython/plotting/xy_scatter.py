@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-xy_scatter.py
-=============
-:Summary:
-    Plot a test xy scatter plot from the cl
+*Plot a test xy scatter plot from the cl*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ xy_scatter.py
 :Date Created:
     April 3, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -38,7 +30,7 @@ from dryxPython import convert as dc
 
 def main(arguments=None):
     """
-    The main function used when ``xy_scatter.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``xy_scatter.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -132,7 +124,8 @@ def xy_scatter(
         reverseYAxis=False,
         outputLocations={}
 ):
-    """xy_scatter
+    """
+    *xy_scatter*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -148,7 +141,8 @@ def xy_scatter(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

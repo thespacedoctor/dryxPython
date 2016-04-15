@@ -4,7 +4,7 @@
 **webcrawlers**
 
 Created by David Young on October 25, 2012
-If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 
 dryx syntax:
 p<Var> = variable formated in the way I want it output to file or screen
@@ -92,7 +92,8 @@ def _fetch(url,):
 
 
 def _dump_files_to_local_drive(bodies, theseUrls, log):
-    """takes the files stored in memory and dumps them to the local drive
+    """
+    *takes the files stored in memory and dumps them to the local drive*
 
         ****Key Arguments:****
           - ``bodies`` -- array of file data (currently stored in memory)
@@ -143,7 +144,8 @@ def multiWebDocumentDownloader(
     longTime=False,
     indexFilenames=False
 ):
-    """get multiple url documents and place in specified download directory
+    """
+    *get multiple url documents and place in specified download directory*
 
         ****Key Arguments:****
           - ``urlList`` -- list of document urls
@@ -293,7 +295,8 @@ def multiWebDocumentDownloader(
 # LAST MODIFIED : 20121025
 # CREATED : 20121025
 def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credentials=False, resetFilename=False, timeout=20):
-    """get a url document and place in a specified directory
+    """
+    *get a url document and place in a specified directory*
 
         ****Key Arguments:****
           - ``url`` -- document url
@@ -327,7 +330,8 @@ def singleWebDocumentDownloader(url, downloadDirectory, log, timeStamp, credenti
 # CREATED : January 15, 2013
 # AUTHOR : DRYX
 def password_protected_page_downloader(dbConn, log):
-    """get a page that is behind HTTPS authentication password protection
+    """
+    *get a page that is behind HTTPS authentication password protection*
 
     **Key Arguments:**
       - ``dbConn`` -- mysql database connection

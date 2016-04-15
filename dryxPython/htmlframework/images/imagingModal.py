@@ -1,22 +1,13 @@
 # #!/usr/bin/env python
 # encoding: utf-8
 """
-imagingModal.py
-===============
-:Summary:
-    An image and modal -- click on the image to present the modal of the larger image with download options
+*An image and modal -- click on the image to present the modal of the larger image with download options*
 
 :Author:
     David Young
 
 :Date Created:
     April 30, 2014
-
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -25,7 +16,7 @@ import numpy as np
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 from ..__init__ import *
 from .. import modals
 from . import image
@@ -38,7 +29,7 @@ from . import image
 class imagingModal():
 
     """
-    An image and modal -- click on the image to present the modal of the larger image with download options
+    *An image and modal -- click on the image to present the modal of the larger image with download options*
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection
@@ -51,7 +42,7 @@ class imagingModal():
         - ``modalImageWidth`` -- 400
         - ``downloadFilename`` -- False
     """
-    ## Initialisation
+    # Initialisation
 
     def __init__(
             self,
@@ -84,20 +75,21 @@ class imagingModal():
         del self
         return None
 
-    ## Variable Data Atrributes
+    # Variable Data Atrributes
 
-    ## Override Variable Data Atrributes
+    # Override Variable Data Atrributes
 
-    ## Method Attributes
+    # Method Attributes
     def get(self):
-        """get the object
-    
+        """
+        *get the object*
+
         **Return:**
             - ``imageModal``
         """
         self.log.info('starting the ``get`` method')
 
-        ## create imaging modal and associated image and return them
+        # create imaging modal and associated image and return them
         thisImage = self._create_image(width=self.stampWidth)
         thisModal = self._create_modal()
 
@@ -107,20 +99,21 @@ class imagingModal():
     def _create_image(
             self,
             width=False):
-        """create the html for the image
+        """
+        *create the html for the image
 
-         - ``width`` -- image width
-    
+         - ``width`` -- image width*
+
         **Return:**
             - ``thisImage`` -- the image created
         """
         self.log.info('starting the ``create_image`` method')
 
-        ## add placeholder as default image
+        #  add placeholder as default image
         if not self.imagePath:
             self.imagePath = 'holder.js/200x200/auto/industrial/text:placeholder'
 
-        ## create html code for the image
+        # create html code for the image
         thisImage = image(
             src=self.imagePath,  # [ industrial | gray | social ]
             href=False,
@@ -131,7 +124,7 @@ class imagingModal():
             thumbnail=True
         )
 
-        ## link the image to the associated modal with a random number tag
+        # link the image to the associated modal with a random number tag
         randNum = self.randomNum
         thisImage = a(
             content=thisImage,
@@ -147,17 +140,18 @@ class imagingModal():
 
     def _create_modal(
             self):
-        """create modal
-    
+        """
+        *create modal*
+
         **Key Arguments:**
             # -
-    
+
         **Return:**
             - ``imageModal`` -- the image modal
         """
         self.log.info('starting the ``create_modal`` method')
 
-        ## grab the associated image and place in a wrapper row
+        # grab the associated image and place in a wrapper row
         thisImage = self._create_image(width=self.modalImageWidth)
         thisImage = row_adjustable(
             span=10,
@@ -170,7 +164,7 @@ class imagingModal():
             onDesktop=True
         )
 
-        ## generate the download button for the modal footer
+        # generate the download button for the modal footer
         fileUrl = self.imagePath
 
         thisPopover = popover(
@@ -191,7 +185,8 @@ class imagingModal():
                 buttonStyle='primary',
                 buttonSize='small',  # [ large | default | small | mini ]
                 htmlId=False,
-                href="/marshall/scripts/python/download_file.py?url=%(fileUrl)s%(downloadFilename)s" % locals(),
+                href="/marshall/scripts/python/download_file.py?url=%(fileUrl)s%(downloadFilename)s" % locals(
+                ),
                 pull=False,  # right, left, center
                 submit=False,
                 block=False,
@@ -210,7 +205,7 @@ class imagingModal():
             format='default'  # [ default | toolbar | vertical ]
         )
 
-        ## create the modal with the correct trigger tag
+        # create the modal with the correct trigger tag
         randNum = self.randomNum
         imageModal = modals.modal(
             modalHeaderContent=self.modalHeaderContent,
@@ -227,7 +222,7 @@ class imagingModal():
     # use the tab-trigger below for new method
     # method-tmpx
 
-    ## Override Method Attributes
+    # Override Method Attributes
     # method-override-tmpx
 
 

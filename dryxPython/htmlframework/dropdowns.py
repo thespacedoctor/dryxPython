@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-dropdowns.py
-=================================
-:Summary:
-    Dropdown for TBS htmlframework
+*Dropdown for TBS htmlframework*
 
 :Author:
     David Young
@@ -17,7 +14,7 @@ dropdowns.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 
 
@@ -30,9 +27,9 @@ dropdowns.py
 ##################################################################
 
 
-## LAST MODIFIED : March 8, 2013
-## CREATED : March 8, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : March 8, 2013
+# CREATED : March 8, 2013
+# AUTHOR : DRYX
 def dropdown(
         buttonSize="default",
         buttonColor="default",
@@ -50,7 +47,8 @@ def dropdown(
         onPhone=True,
         onTablet=True,
         onDesktop=True):
-    """get a toggleable, contextual menu for displaying lists of links. Made interactive with the dropdown JavaScript plugin. You need to wrap the dropdown's trigger and the dropdown menu within .dropdown, or another element that declares position: relative;
+    """
+    *get a toggleable, contextual menu for displaying lists of links. Made interactive with the dropdown JavaScript plugin. You need to wrap the dropdown's trigger and the dropdown menu within .dropdown, or another element that declares position: relative;
 
     - ``buttonSize`` -- size of button [ mini | small | default | large ]
     - ``buttonColor`` -- [ default | sucess | error | warning | info ]
@@ -64,7 +62,7 @@ def dropdown(
     - ``popover`` -- add a popover for this dropdown
     - ``onPhone`` -- does this container get displayed on a phone sized screen
     - ``onTablet`` -- does this container get displayed on a tablet sized screen
-    - ``onDesktop`` -- does this container get displayed on a desktop sized screen
+    - ``onDesktop`` -- does this container get displayed on a desktop sized screen*
 
       **Return:**
         - ``dropdown`` -- the dropdown menu
@@ -168,9 +166,9 @@ def dropdown(
 
     return dropdown
 
-## LAST MODIFIED : May 22, 2014
-## CREATED : May 22, 2014
-## AUTHOR : DRYX
+# LAST MODIFIED : May 22, 2014
+# CREATED : May 22, 2014
+# AUTHOR : DRYX
 # copy usage method(s) into function below and select the following snippet from the command palette:
 # x-setup-worker-function-parameters-from-usage-method
 
@@ -180,7 +178,8 @@ def dropdownLinkList(
         title="dropdown",
         dropDirection="down"
 ):
-    """dropdownLinkList
+    """
+    *dropdownLinkList*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -192,7 +191,8 @@ def dropdownLinkList(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean dropdownLinkList function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

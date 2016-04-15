@@ -1,22 +1,13 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-download_google_sheet.py
-========================
-:Summary:
-    Download a google spreadsheet as csv
+*Download a google spreadsheet as csv*
 
 :Author:
     David Young
 
 :Date Created:
     October 13, 2014
-
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
 """
 ################# GLOBAL IMPORTS ####################
 import sys
@@ -24,7 +15,7 @@ import os
 from datetime import datetime, date, time
 import gdata.docs.service
 import gdata.spreadsheet.service
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 def download_google_sheet(
@@ -33,7 +24,8 @@ def download_google_sheet(
     password,
     gdoc_id
 ):
-    """download google sheet
+    """
+    *download google sheet*
 
     **Key Arguments:**
         - ``log`` -- logger

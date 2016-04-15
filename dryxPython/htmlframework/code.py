@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-code.py
-=============================
-:Summary:
-    Code elements for TBS htmlframework
+*Code elements for TBS htmlframework*
 
 :Author:
     David Young
@@ -17,7 +14,7 @@ code.py
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 
 ###################################################################
@@ -36,7 +33,8 @@ def code(
         content="",
         inline=True,
         scroll=False):
-    """Generate a code section
+    """
+    *Generate a code section*
 
     **Key Arguments:**
         - ``content`` -- the content of the code block

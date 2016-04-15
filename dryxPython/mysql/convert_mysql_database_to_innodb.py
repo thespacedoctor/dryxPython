@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-convert_mysql_database_to_innodb.py
-================================================
-:Summary:
-    Convert the Collate of tables within database to `latin1_swedish_ci` and the charset to `latin1`
+*Convert the Collate of tables within database to `latin1_swedish_ci` and the charset to `latin1`*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ convert_mysql_database_to_innodb.py
 :Date Created:
     April 28, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -43,15 +35,15 @@ from . import execute_mysql_write_query
 
 def main(arguments=None):
     """
-    The main function used when ``convert_mysql_database_to_innodb.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_mysql_database_to_innodb.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
-    from dryxPython.projectsetup import setup_main_clutil
+    from fundamentals import tools, times
 
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__
     )
@@ -73,7 +65,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE convert_mysql_database_to_innodb.py AT %s' %
         (startTime,))
@@ -93,8 +85,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info(
         '-- FINISHED ATTEMPT TO RUN THE convert_mysql_database_to_innodb.py AT %s (RUNTIME: %s) --' %
         (endTime, runningTime, ))
@@ -118,7 +110,8 @@ def convert_mysql_database_to_innodb(
         dbConn,
         tableSchema=False
 ):
-    """convert_mysql_database_to_innodb
+    """
+    *convert_mysql_database_to_innodb*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -127,7 +120,8 @@ def convert_mysql_database_to_innodb(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

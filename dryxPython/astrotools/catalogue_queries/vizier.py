@@ -1,10 +1,7 @@
 # !/usr/bin/env python
 # encoding: utf-8
 """
-vizier.py
-=========
-:Summary:
-    Query vizier via URL
+*Query vizier via URL*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ vizier.py
 :Date Created:
     May 19, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 # xdocopt-usage-tempx
@@ -32,20 +24,20 @@ from subprocess import Popen, PIPE, STDOUT
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 # from ..__init__ import *
 
 
 def main(arguments=None):
     """
-    The main function used when ``vizier.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``vizier.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="DEBUG"
@@ -68,7 +60,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE vizier.py AT %s' %
         (startTime,))
@@ -84,8 +76,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE vizier.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -110,7 +102,8 @@ def vizier(
         dec,
         catalogue,
         radius):
-    """vizier
+    """
+    *vizier*
 
     **Key Arguments:**
         - ``log`` -- logger,
@@ -122,7 +115,8 @@ def vizier(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean vizier function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

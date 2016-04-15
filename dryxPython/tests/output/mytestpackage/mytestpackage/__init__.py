@@ -1,13 +1,13 @@
-from dryxPython.utKit import utKit
+from fundamentals import utKit
 
 
-## OVERRIDES
+# OVERRIDES
 class utKit(utKit):
 
     """
-    Override dryx utKit
+    *Override dryx utKit*
     """
-    ## Variable Data Atrributes
+    # Variable Data Atrributes
 
-    ## Override Variable Data Atrributes
+    # Override Variable Data Atrributes
     # x-dbConfig-tmpx

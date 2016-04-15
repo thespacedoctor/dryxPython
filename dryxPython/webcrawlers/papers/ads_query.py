@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-ads_query.py
-============
-:Summary:
-    Query the ADS database and return data in a sensible format
+*Query the ADS database and return data in a sensible format*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ ads_query.py
 :Date Created:
     May 23, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 # xdocopt-usage-tempx
@@ -32,20 +24,20 @@ from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
 
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 from ..__init__ import *
 
 
 def main(arguments=None):
     """
-    The main function used when ``ads_query.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``ads_query.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="DEBUG"
@@ -68,7 +60,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE ads_query.py AT %s' %
         (startTime,))
@@ -84,8 +76,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info(
         '-- FINISHED ATTEMPT TO RUN THE ads_query.py AT %s (RUNTIME: %s) --' %
         (endTime, runningTime, ))
@@ -113,7 +105,8 @@ def ads_query(
         cbets=False,
         url=False
 ):
-    """query the ads archive for papers relating to a specific query
+    """
+    *query the ads archive for papers relating to a specific query*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -121,7 +114,8 @@ def ads_query(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean ads_query function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module

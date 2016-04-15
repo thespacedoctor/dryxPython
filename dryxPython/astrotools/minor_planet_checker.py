@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-minor_planet_checker.py
-=======================
-:Summary:
-    Check the minor planet centre for moving objects
+*Check the minor planet centre for moving objects*
 
 :Author:
     Ken Smith (adapted by David Young)
@@ -12,13 +9,8 @@ minor_planet_checker.py
 :Date Created:
     March 26, 2015
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -42,7 +34,7 @@ import urllib2
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 from . import ra_to_sex, dec_to_sex
 from mjd_to_date import mjd_to_date
 
@@ -53,10 +45,10 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``minor_planet_checker.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``minor_planet_checker.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="WARNING",
@@ -85,7 +77,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE minor_planet_checker.py AT %s' %
         (startTime,))
@@ -106,8 +98,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE minor_planet_checker.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -121,7 +113,7 @@ def main(arguments=None):
 class minor_planet_checker():
 
     """
-    The worker class for the minor_planet_checker module
+    *The worker class for the minor_planet_checker module*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -134,7 +126,8 @@ class minor_planet_checker():
         - ``matchRadius`` -- matchRadius
         - ``showMovers`` -- showMovers
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean minor_planet_checker class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -190,12 +183,14 @@ class minor_planet_checker():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the minor_planet_checker object
+        """
+        *get the minor_planet_checker object*
 
         **Return:**
             - ``minor_planet_checker``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
@@ -212,7 +207,8 @@ class minor_planet_checker():
 
     def _send_request_to_minor_planet_centre(
             self):
-        """ send request to minor planet centre
+        """
+        *send request to minor planet centre*
 
         **Key Arguments:**
             # -
@@ -220,7 +216,8 @@ class minor_planet_checker():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean _send_request_to_minor_planet_centre method
             - @review: when complete add logging
         """
@@ -331,7 +328,8 @@ class minor_planet_checker():
     def _extract_mp_info(
             self,
             htmlPage):
-        """ Parse the data returned by the MP Center into a dictionary
+        """
+        *Parse the data returned by the MP Center into a dictionary*
 
         **Key Arguments:**
             # -
@@ -339,7 +337,8 @@ class minor_planet_checker():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean _extract_mp_info method
             - @review: when complete add logging
         """
@@ -383,7 +382,8 @@ class minor_planet_checker():
             self,
             s,
             *args):
-        """ Code to split a string into fixed fields defined by list of numbers provided in args
+        """
+        *Code to split a string into fixed fields defined by list of numbers provided in args*
 
         **Key Arguments:**
             # -
@@ -391,7 +391,8 @@ class minor_planet_checker():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean _slice_string method
             - @review: when complete add logging
         """
@@ -406,7 +407,8 @@ class minor_planet_checker():
     # use the tab-trigger below for new method
     def _check_mp_match(
             self):
-        """ Check that the returned data from MPC is a match.
+        """
+        *Check that the returned data from MPC is a match.*
 
         **Key Arguments:**
             # -
@@ -414,7 +416,8 @@ class minor_planet_checker():
         **Return:**
             - None
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean _check_mp_match method
             - @review: when complete add logging
         """

@@ -1,10 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 """
-_dryxTBS_buttons
-===============================
-:Summary:
-    Buttons partial for the dryxTwitterBootstrap module
+*Buttons partial for the dryxTwitterBootstrap module*
 
 :Author:
     David Young
@@ -17,7 +14,7 @@ _dryxTBS_buttons
     - ``_someObject`` = a 'private' object that should only be changed for debugging
 
 :Notes:
-    - If you have any questions requiring this script please email me: d.r.young@qub.ac.uk
+    - If you have any questions requiring this script please email me: davidrobertyoung@gmail.com
 """
 
 ###################################################################
@@ -27,9 +24,9 @@ _dryxTBS_buttons
 ###################################################################
 # PUBLIC FUNCTIONS                                                #
 ###################################################################
-## LAST MODIFIED : April 25, 2013
-## CREATED : April 25, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 25, 2013
+# CREATED : April 25, 2013
+# AUTHOR : DRYX
 
 
 def button(
@@ -49,7 +46,8 @@ def button(
         notification=False,
         close=False,
         formId=False):
-    """Generate a button - TBS style
+    """
+    *Generate a button - TBS style*
 
     **Key Arguments:**
         - ``buttonText`` -- the text to display on the button
@@ -148,14 +146,15 @@ def button(
     return button
 
 
-## LAST MODIFIED : April 29, 2013
-## CREATED : April 29, 2013
-## AUTHOR : DRYX
+# LAST MODIFIED : April 29, 2013
+# CREATED : April 29, 2013
+# AUTHOR : DRYX
 def buttonGroup(
         buttonList=[],
         format="default",
         pull=False):
-    """Generate a buttonGroup - TBS style
+    """
+    *Generate a buttonGroup - TBS style*
 
     **Key Arguments:**
         - ``buttonList`` -- a list of buttons

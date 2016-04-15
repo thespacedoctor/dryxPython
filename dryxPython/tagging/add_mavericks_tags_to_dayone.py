@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-add_mavericks_tags_to_dayone.py
-===============================
-:Summary:
-    Extract out the tags from a dayone XML file and add them as mavericks tags
+*Extract out the tags from a dayone XML file and add them as mavericks tags*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ add_mavericks_tags_to_dayone.py
 :Date Created:
     February 25, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -39,7 +31,7 @@ from . import mavericks
 
 def main(arguments=None):
     """
-    The main function used when ``add_mavericks_tags_to_dayone.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``add_mavericks_tags_to_dayone.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     ########## IMPORTS ##########
     ## STANDARD LIB ##
@@ -110,7 +102,8 @@ def add_mavericks_tags_to_dayone(
     log,
     pathToDoentry,
 ):
-    """add_mavericks_tags_to_dayone
+    """
+    *add_mavericks_tags_to_dayone*
 
     **Key Arguments:**
         - ``log`` -- the logger
@@ -119,7 +112,8 @@ def add_mavericks_tags_to_dayone(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         @review: when complete, clean worker function and add comments
         @review: when complete add logging
     """

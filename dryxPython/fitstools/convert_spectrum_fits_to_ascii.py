@@ -1,22 +1,13 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-convert_spectrum_fits_to_ascii.py
-==================
-:Summary:
-    Given a FITS file containing a 1D spectrum, this code will output an ascii version of the file
+*Given a FITS file containing a 1D spectrum, this code will output an ascii version of the file*
 
 :Author:
     David Young
 
 :Date Created:
     October 19, 2015
-
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: davidrobertyoung@gmail.com
 
 Usage:
     dft_convert_spectrum_fits_to_ascii <pathToFits>
@@ -33,7 +24,7 @@ import pickle
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 
 
 def tab_complete(text, state):
@@ -42,10 +33,10 @@ def tab_complete(text, state):
 
 def main(arguments=None):
     """
-    The main function used when ``convert_spectrum_fits_to_ascii.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_spectrum_fits_to_ascii.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="WARNING",
@@ -75,7 +66,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE convert_spectrum_fits_to_ascii.py AT %s' %
         (startTime,))
@@ -119,8 +110,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE convert_spectrum_fits_to_ascii.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -129,13 +120,14 @@ def main(arguments=None):
 
 class convert_spectrum_fits_to_ascii():
     """
-    The worker class for the convert_spectrum_fits_to_ascii module
+    *The worker class for the convert_spectrum_fits_to_ascii module*
 
     **Key Arguments:**
         - ``log`` -- logger
          - ``fitsFilePath`` -- path to the fits file
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean convert_spectrum_fits_to_ascii class
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract class to another module
@@ -168,12 +160,14 @@ class convert_spectrum_fits_to_ascii():
     # 4. @flagged: what actions does each object have to be able to perform? Add them here
     # Method Attributes
     def get(self):
-        """get the convert_spectrum_fits_to_ascii object
+        """
+        *get the convert_spectrum_fits_to_ascii object*
 
         **Return:**
             - ``convert_spectrum_fits_to_ascii``
 
-        **Todo**
+        .. todo::
+
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
@@ -194,7 +188,8 @@ class convert_spectrum_fits_to_ascii():
         pathToFitsFile,
         fluxScalingFactor=False
     ):
-        """Build the ascii table data from a reduced 1D fits spectrum
+        """
+        *Build the ascii table data from a reduced 1D fits spectrum*
 
         **Key Arguments:**
             - ``log`` -- logger

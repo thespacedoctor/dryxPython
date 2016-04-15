@@ -1,10 +1,7 @@
 #!/usr/local/bin/python
 # encoding: utf-8
 """
-convert_list_of_urls_to_pdfs.py
-===============================
-:Summary:
-    Convert a list of URLs (from ifttt at the minute) to PDFs
+*Convert a list of URLs (from ifttt at the minute) to PDFs*
 
 :Author:
     David Young
@@ -12,13 +9,8 @@ convert_list_of_urls_to_pdfs.py
 :Date Created:
     September 22, 2014
 
-:dryx syntax:
-    - ``_someObject`` = a 'private' object that should only be changed for debugging
-
-:Notes:
-    - If you have any questions requiring this script/module please email me: d.r.young@qub.ac.uk
-
-:Tasks:
+.. todo::
+    
     @review: when complete pull all general functions and classes into dryxPython
 
 Usage:
@@ -37,7 +29,7 @@ from datetime import datetime, date, time
 from docopt import docopt
 from dryxPython import logs as dl
 from dryxPython import commonutils as dcu
-from dryxPython.projectsetup import setup_main_clutil
+from fundamentals import tools, times
 import pdfkit
 
 # from ..__init__ import *
@@ -45,10 +37,10 @@ import pdfkit
 
 def main(arguments=None):
     """
-    The main function used when ``convert_list_of_urls_to_pdfs.py`` is run as a single script from the cl, or when installed as a cl command
+    *The main function used when ``convert_list_of_urls_to_pdfs.py`` is run as a single script from the cl, or when installed as a cl command*
     """
     # setup the command-line util settings
-    su = setup_main_clutil(
+    su = tools(
         arguments=arguments,
         docString=__doc__,
         logLevel="DEBUG"
@@ -71,7 +63,7 @@ def main(arguments=None):
         log.debug('%s = %s' % (varname, val,))
 
     ## START LOGGING ##
-    startTime = dcu.get_now_sql_datetime()
+    startTime = times.get_now_sql_datetime()
     log.info(
         '--- STARTING TO RUN THE convert_list_of_urls_to_pdfs.py AT %s' %
         (startTime,))
@@ -88,8 +80,8 @@ def main(arguments=None):
         dbConn.commit()
         dbConn.close()
     ## FINISH LOGGING ##
-    endTime = dcu.get_now_sql_datetime()
-    runningTime = dcu.calculate_time_difference(startTime, endTime)
+    endTime = times.get_now_sql_datetime()
+    runningTime = times.calculate_time_difference(startTime, endTime)
     log.info('-- FINISHED ATTEMPT TO RUN THE convert_list_of_urls_to_pdfs.py AT %s (RUNTIME: %s) --' %
              (endTime, runningTime, ))
 
@@ -112,7 +104,8 @@ def convert_list_of_urls_to_pdfs(
         log,
         pathToRequestDirectory,
         pathToPDFDirectory):
-    """convert list of urls to pdfs
+    """
+    *convert list of urls to pdfs*
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -120,7 +113,8 @@ def convert_list_of_urls_to_pdfs(
     **Return:**
         - None
 
-    **Todo**
+    .. todo::
+
         - @review: when complete, clean convert_list_of_urls_to_pdfs function
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
