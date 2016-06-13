@@ -22,7 +22,7 @@ setup(name='dryxPython',
       license='MIT',
       packages=['dryxPython', 'dryxPython.tests',
                 'dryxPython.htmlframework', 'dryxPython.mmd', 'dryxPython.kws', 'dryxPython.tagging'],
-      package_data={'dryxPython.mmd': ['assets/*']},
+      include_package_data=True,
       install_requires=[
           'pyyaml',
           'docopt',
