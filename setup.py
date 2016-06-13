@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages
 import os
 
+moduleDirectory = os.path.dirname(os.path.realpath(__file__))
+
 
 def readme():
     with open(moduleDirectory + '/README.md') as f:
