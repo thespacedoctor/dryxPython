@@ -148,6 +148,8 @@ def convert_mysql_database_to_innodb(
         log=log
     )
 
+    print sqlQuery
+
     for row in rows:
         sqlQuery = row.values()[0]
 

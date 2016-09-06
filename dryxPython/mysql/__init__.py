@@ -56,6 +56,8 @@ def set_db_connection(pathToYamlFile):
     """ *Get a database connection using settings in yaml file. Given the location of a YAML dictionary containing database credientials,
     this function will setup and return the connection*
 
+    NOTE: ADDED TO FUNDAMENTALS
+
     ****Key Arguments:****
         - ``pathToYamlFile`` -- path to the YAML dictionary.
 
@@ -112,6 +114,8 @@ def execute_mysql_write_query(
     manyValueList=False
 ):
     """ *Execute a MySQL write command given a sql query*
+
+    NOTE: ADDED TO FUNDAMENTALS
 
             ****Key Arguments:****
                 - ``sqlQuery`` -- the MySQL command to execute
@@ -223,6 +227,8 @@ def execute_mysql_read_query(
 ):
     """ *Execute a MySQL select command given a query*
 
+    NOTE: ADDED TO FUNDAMENTALS
+
     ****Key Arguments:****
      - ``sqlQuery`` -- the MySQL command to execute
      - ``dbConn`` -- the db connection
@@ -273,8 +279,11 @@ def convert_dictionary_to_mysql_table(
         uniqueKeyList=[],
         createHelperTables=False,
         dateModified=False,
-        returnInsertOnly=False):
+        returnInsertOnly=False,
+        replace=False):
     """ *Convert a python dictionary into a mysql table*
+
+    NOTE: ADDED TO FUNDAMENTALS
 
     **Key Arguments:**
         - ``log`` -- logger
@@ -284,6 +293,7 @@ def convert_dictionary_to_mysql_table(
         - ``uniqueKeyList`` - a lists column names that need combined to create the primary key
         - ``createHelperTables`` -- create some helper tables with the main table, detailing original keywords etc
         - ``returnInsertOnly`` -- returns only the insert command (does not execute it)
+        - ``replace`` -- use replace instead of insert statement
 
     **Return:**
         - ``None`` """
@@ -300,6 +310,11 @@ def convert_dictionary_to_mysql_table(
     import dryxPython.mysql as dms
 
     log.debug('starting convert_dictionary_to_mysql_table')
+
+    if replace:
+        insertVerb = "REPLACE"
+    else:
+        insertVerb = "INSERT IGNORE"
 
     if returnInsertOnly == False:
         # TEST THE ARGUMENTS
@@ -554,7 +569,7 @@ def convert_dictionary_to_mysql_table(
     if returnInsertOnly == True:
         myKeys = ','.join(formattedKeyList)
         valueString = ("%s, " * len(myValues))[:-2]
-        insertCommand = """INSERT IGNORE INTO `""" + dbTableName + \
+        insertCommand = insertVerb + """ INTO `""" + dbTableName + \
             """` (""" + myKeys + """) VALUES (""" + valueString + """)"""
         mv = []
         mv[:] = [None if m == "None" else m for m in myValues]
@@ -583,7 +598,7 @@ def convert_dictionary_to_mysql_table(
         myValues += '"'
 
     # log.debug(myValues+" ------ POSTSTRIP")
-    addValue = """INSERT IGNORE INTO `""" + dbTableName + \
+    addValue = insertVerb + """ INTO `""" + dbTableName + \
         """` (""" + myKeys + """) VALUES (\"""" + myValues + """)"""
     # log.debug(addValue)
 
@@ -669,6 +684,9 @@ def add_column_to_db_table(
 ):
     """ *Add a column of agiven name to a database table*
 
+
+    NOTE: NOT USED ANYWHERE
+
             ****Key Arguments:****
                 - ``tableName`` -- name of table to add column to
                 - ``dbConn`` -- database hosting the above table
@@ -686,12 +704,8 @@ def add_column_to_db_table(
     # CHECK IF COLUMN EXISTS YET - IF NOT CREATE IT
     for key in colsToAdd.keys():
         colExists = \
-            "SELECT *\
-                                FROM information_schema.COLUMNS\
-                                WHERE TABLE_SCHEMA=DATABASE()\
-                                    AND COLUMN_NAME='" \
-            + key + "'\
-                                    AND TABLE_NAME='" + tableName + """'"""
+            "SELECT * FROM information_schema.COLUMNS WHERE TABLE_SCHEMA=DATABASE() AND COLUMN_NAME='" + \
+            key + "' AND TABLE_NAME='" + tableName + """'"""
         colExists = execute_mysql_read_query(
             colExists,
             dbConn,
@@ -715,6 +729,9 @@ def does_mysql_table_exist(
         dbTableName):
     """
     *does mysql table exist*
+
+
+    NOTE: ADDED TO FUNDAMENTALS
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection
@@ -769,6 +786,8 @@ def get_db_table_column_names(
 ):
     """ *get database table column names*
 
+    NOTE: ADDED TO FUNDAMENTALS
+
     ****Key Arguments:****
         - ``dbConn`` -- mysql database connection
         - ``log`` -- logger
@@ -814,9 +833,12 @@ def insert_list_of_dictionaries_into_database(
         uniqueKeyList=[],
         createHelperTables=False,
         dateModified=False,
-        batchSize=2500):
+        batchSize=2500,
+        replace=False):
     """
     *insert list of dictionaries into database*
+
+    NOTE: ADDED TO FUNDAMENTALS
 
     **Key Arguments:**
         - ``dbConn`` -- mysql database connection
@@ -849,7 +871,8 @@ def insert_list_of_dictionaries_into_database(
             dbTableName=dbTableName,
             uniqueKeyList=uniqueKeyList,
             createHelperTables=createHelperTables,
-            dateModified=dateModified)
+            dateModified=dateModified,
+            replace=replace)
 
     total = len(dictList[1:])
     batches = int(total / batchSize)
@@ -887,7 +910,8 @@ def insert_list_of_dictionaries_into_database(
                     uniqueKeyList=uniqueKeyList,
                     createHelperTables=createHelperTables,
                     dateModified=dateModified,
-                    returnInsertOnly=True
+                    returnInsertOnly=True,
+                    replace=replace
                 )
                 theseInserts.append(valueTuple)
 
@@ -910,7 +934,8 @@ def insert_list_of_dictionaries_into_database(
                         dbTableName=dbTableName,
                         uniqueKeyList=uniqueKeyList,
                         createHelperTables=createHelperTables,
-                        dateModified=dateModified
+                        dateModified=dateModified,
+                        replace=replace
                     )
             else:
                 inserted = True
