@@ -125,55 +125,6 @@ def convert_csv_file_to_python_list_of_dictionaries(
 
     return dictionaryList
 
-# LAST MODIFIED : June 21, 2013
-# CREATED : June 21, 2013
-# AUTHOR : DRYX
-
-
-def convert_python_list_of_dictionaries_to_csv(
-        listOfDictionaries,
-        csvFilePath,
-        log):
-    """
-    *Converts a python list of dictionaries into a csv file with header = dictionary keys.*
-
-    **Key Arguments:**
-        - ``listOfDictionaries`` -- the list of dictionaries { csvHeader : value }
-        - ``csvFilePath`` -- the path of the file to export the content to as a csv file
-        - ``log`` -- logger
-
-    **Return:**
-        - None
-
-    .. todo::
-
-    - [ ] when complete, clean convert_python_module_content_to_autoSnippet_csv function & add logging
-    """
-    ################ > IMPORTS ################
-    ## STANDARD LIB ##
-    import csv
-    ## THIRD PARTY ##
-    ## LOCAL APPLICATION ##
-
-    log.info(
-        'starting the ``convert_python_module_content_to_autoSnippet_csv`` function')
-    ## VARIABLES ##
-
-    with open(csvFilePath, 'wb') as csvfile:
-        writer = csv.writer(
-            csvfile,
-            dialect='excel'
-        )
-        if len(listOfDictionaries) > 0:
-            writer.writerow(listOfDictionaries[0].keys())
-            for dictionary in listOfDictionaries:
-                writer.writerow(dictionary.values())
-    csvfile.close()
-
-    log.info(
-        'completed the ``convert_python_module_content_to_autoSnippet_csv`` function')
-    return
-
 ###################################################################
 # PRIVATE (HELPER) FUNCTIONS                                      #
 ###################################################################
@@ -191,5 +142,3 @@ if __name__ == '__main__':
 ###################################################################
 
 import sqlquery_to_csv_file
-
-from python_list_of_dictionaries_to_csv import python_list_of_dictionaries_to_csv

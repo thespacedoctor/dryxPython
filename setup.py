@@ -1,9 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+import os
+
+moduleDirectory = os.path.dirname(os.path.realpath(__file__))
 
 
 def readme():
-    with open('README.md') as f:
+    with open(moduleDirectory + '/README.md') as f:
         return f.read()
+
 
 setup(name='dryxPython',
       version='1.098',
@@ -20,9 +24,8 @@ setup(name='dryxPython',
       author='thespacedoctor',
       author_email='nothingbutdave@gmail.com',
       license='MIT',
-      packages=['dryxPython', 'dryxPython.tests',
-                'dryxPython.htmlframework', 'dryxPython.mmd', 'dryxPython.kws', 'dryxPython.tagging'],
-      package_data={'dryxPython.mmd': ['assets/*']},
+      packages=find_packages(),
+      include_package_data=True,
       install_requires=[
           'pyyaml',
           'docopt',
