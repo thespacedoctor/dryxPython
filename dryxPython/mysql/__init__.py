@@ -312,7 +312,7 @@ def convert_dictionary_to_mysql_table(
     log.debug('starting convert_dictionary_to_mysql_table')
 
     if replace:
-        insertVerb = "REPLACE"
+        insertVerb = "INSERT"
     else:
         insertVerb = "INSERT IGNORE"
 
@@ -523,7 +523,8 @@ def convert_dictionary_to_mysql_table(
                                 log,
                             )
                         except Exception as e:
-                            # log.debug('qCreateColumn: %s' % (qCreateColumn, ))
+                            # log.debug('qCreateColumn: %s' % (qCreateColumn,
+                            # ))
                             log.error('could not create the ' + formattedKey + ' column in the ' + dbTableName
                                       + ' table -- ' + str(e) + '\n')
 
@@ -575,6 +576,15 @@ def convert_dictionary_to_mysql_table(
         mv[:] = [None if m == "None" else m for m in myValues]
         valueTuple = tuple(mv)
 
+        dup = ""
+        if replace:
+            dup = " ON DUPLICATE KEY UPDATE "
+            for k, v in zip(formattedKeyList, mv):
+                dup = """%(dup)s %(k)s=values(%(k)s),""" % locals()
+        dup = dup[:-1]
+
+        insertCommand = insertCommand + dup
+
         return insertCommand, valueTuple
 
     # GENERATE THE INSERT COMMAND - IGNORE DUPLICATE ENTRIES
@@ -597,14 +607,26 @@ def convert_dictionary_to_mysql_table(
     if myValues[-4:] != 'null':
         myValues += '"'
 
+    dup = ""
+    if replace:
+        dup = " ON DUPLICATE KEY UPDATE "
+        dupValues = ('"' + myValues).split(" ,")
+        dupKeys = myKeys.split(",")
+
+        for k, v in zip(dupKeys, dupValues):
+            dup = """%(dup)s %(k)s=%(v)s,""" % locals()
+    dup = dup[:-1]
+
     # log.debug(myValues+" ------ POSTSTRIP")
     addValue = insertVerb + """ INTO `""" + dbTableName + \
-        """` (""" + myKeys + """) VALUES (\"""" + myValues + """)"""
+        """` (""" + myKeys + """) VALUES (\"""" + \
+        myValues + """) %(dup)s """ % locals()
     # log.debug(addValue)
 
     message = ""
     try:
-        # log.debug('adding new data to the %s table; query: %s' % (dbTableName, addValue))
+        # log.debug('adding new data to the %s table; query: %s' %
+        # (dbTableName, addValue))
         message = execute_mysql_write_query(
             addValue,
             dbConn,
@@ -635,17 +657,17 @@ def set_flag(
     primaryKeyColumn,
     primaryKeyId,
 ):
-    """ *Set a flag in a db table to a given value*
+    """ * Set a flag in a db table to a given value*
 
-            ****Key Arguments:****
-                - ``dbConn`` -- db connection
-                - ``tableName`` -- db table name
-                - ``flagColumn`` -- flag column name
-                - ``flagValue`` -- value flag is to be set to
-                - ``primaryKeyColumn`` -- primaryKey column name
-                - ``primaryKeyId`` -- single id of the row you wish to set the flag for
+            ****Key Arguments: ****
+                - ``dbConn`` - - db connection
+                - ``tableName`` - - db table name
+                - ``flagColumn`` - - flag column name
+                - ``flagValue`` - - value flag is to be set to
+                - ``primaryKeyColumn`` - - primaryKey column name
+                - ``primaryKeyId`` - - single id of the row you wish to set the flag for
 
-            **Return:**
+            **Return: **
                 - ``None`` """
 
     # # > IMPORTS ##
@@ -682,19 +704,18 @@ def add_column_to_db_table(
     colType,
     dbConn,
 ):
-    """ *Add a column of agiven name to a database table*
-
+    """ * Add a column of agiven name to a database table*
 
     NOTE: NOT USED ANYWHERE
 
-            ****Key Arguments:****
-                - ``tableName`` -- name of table to add column to
-                - ``dbConn`` -- database hosting the above table
-                - ``colName`` -- name of the column to add
-                - ``colType`` -- type of the column to be added
-                - ``default`` -- the default value of the column to be added
+            ****Key Arguments: ****
+                - ``tableName`` - - name of table to add column to
+                - ``dbConn`` - - database hosting the above table
+                - ``colName`` - - name of the column to add
+                - ``colType`` - - type of the column to be added
+                - ``default`` - - the default value of the column to be added
 
-            **Return:**
+            **Return: **
                 - ``None`` """
 
     # ############### > IMPORTS ################
@@ -730,18 +751,17 @@ def does_mysql_table_exist(
     """
     *does mysql table exist*
 
-
     NOTE: ADDED TO FUNDAMENTALS
 
-    **Key Arguments:**
-        - ``dbConn`` -- mysql database connection
-        - ``log`` -- logger
-        - ``dbTableName`` -- the database tablename
+    **Key Arguments: **
+        - ``dbConn`` - - mysql database connection
+        - ``log`` - - logger
+        - ``dbTableName`` - - the database tablename
 
-    **Return:**
-        - ``tableExists`` -- True or False
+    **Return: **
+        - ``tableExists`` - - True or False
 
-    .. todo::
+    .. todo: :
 
         - @review: when complete, clean does_mysql_table_exist function
         - @review: when complete add logging
@@ -784,22 +804,22 @@ def get_db_table_column_names(
     log,
     dbTable,
 ):
-    """ *get database table column names*
+    """ * get database table column names*
 
     NOTE: ADDED TO FUNDAMENTALS
 
-    ****Key Arguments:****
-        - ``dbConn`` -- mysql database connection
-        - ``log`` -- logger
-        - ``dbTable`` -- database tablename
+    ****Key Arguments: ****
+        - ``dbConn`` - - mysql database connection
+        - ``log`` - - logger
+        - ``dbTable`` - - database tablename
 
-    **Return:**
-        - ``columnNames`` -- table column names """
+    **Return: **
+        - ``columnNames`` - - table column names """
 
     # ############### > IMPORTS ################
     # ############### > VARIABLE SETTINGS ######
     sqlQuery = """SELECT *
-                                FROM %s
+                                FROM % s
                                 LIMIT 1""" \
         % (dbTable, )
     # ############### >ACTION(S) ################
@@ -840,16 +860,16 @@ def insert_list_of_dictionaries_into_database(
 
     NOTE: ADDED TO FUNDAMENTALS
 
-    **Key Arguments:**
-        - ``dbConn`` -- mysql database connection
-        - ``log`` -- logger
+    **Key Arguments: **
+        - ``dbConn`` - - mysql database connection
+        - ``log`` - - logger
         # copy usage method(s) here and select the following snippet from the command palette:
         # x-setup-docstring-keys-from-selected-usage-options
 
-    **Return:**
+    **Return: **
         - None
 
-    .. todo::
+    .. todo: :
 
         - @review: when complete, clean insert_list_of_dictionaries_into_database function
         - @review: when complete add logging
