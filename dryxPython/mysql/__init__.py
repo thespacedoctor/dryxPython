@@ -136,7 +136,6 @@ def execute_mysql_write_query(
     # CREATE DB CURSOR
 
     log.debug('starting execute_mysql_write_query')
-
     message = ""
     try:
         cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
@@ -186,13 +185,15 @@ def execute_mysql_write_query(
             log.error('%s\n Here is the sqlquery:\n%s' % (str(e), sqlQuery))
             if manyValueList:
                 log.error('... and the values:\n%s' % (thisList, ))
-        else:
+    	elif "Duplicate" in str(e) and "ignore" in sqlQuery.lower():
+            pass
+	else:
             sqlQuery = sqlQuery[:2000]
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
                 (sqlQuery, str(e)))
             if Force == False:
-                sys.exit(0)
+		sys.exit(0)
             return -1
     # CLOSE THE CURSOR
     cOpen = True
@@ -630,7 +631,7 @@ def convert_dictionary_to_mysql_table(
         message = execute_mysql_write_query(
             addValue,
             dbConn,
-            log,
+            log
         )
 
     except Exception as e:
