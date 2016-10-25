@@ -459,8 +459,10 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
                 results.append([separation, row])
 
             # Sort by separation
-            print results
-            results.sort()
+            from operator import itemgetter
+            sortedListOfLists = sorted(results, key=itemgetter(0))
+            results = sortedListOfLists
+
         else:
             message = "No matches from %s." % tableName
     else:
