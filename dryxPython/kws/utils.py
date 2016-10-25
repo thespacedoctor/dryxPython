@@ -459,6 +459,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
                 results.append([separation, row])
 
             # Sort by separation
+            print results
             results.sort()
         else:
             message = "No matches from %s." % tableName
