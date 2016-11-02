@@ -414,7 +414,7 @@ def parse_atels(dbConn, log, mdFolder, reParse=False):
 
     nameList = [
         r"""(PSN|PNV)\s?J\d{8}(\+|-|–)\d{3}(\+|-|–)?\d{3,4}""",
-        r"""(SN|Supernova)\s?(19|20)\d{2}[A-Za-z]{1,2}""",
+        r"""(SN|Supernova)\s?(19|20)\d{2}[A-Za-z]{1,4}""",
         r"""GX\s?\d{3}(\+|-|–)\d""",
         r"""Fermi\s?J\d{4}(\+|-|–)\d{4}""",
         r"""PHL\s?\d{3}""",
