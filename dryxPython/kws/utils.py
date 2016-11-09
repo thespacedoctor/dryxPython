@@ -434,8 +434,6 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
 
             cursor.execute(query)
 
-            print query
-
             if django:
                 resultSet = [dict((d[0], c) for d, c in zip(cursor.description, row))
                              for row in cursor]
