@@ -364,6 +364,7 @@ CAT_ID_RA_DEC_COLS = {
 
 def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=None, django=False):
 
+    radius = radius / 3600.0
     # 2012-02-02 KWS Require database connections for cone searching
     import MySQLdb
 
@@ -403,7 +404,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
 
     cartesians = calculate_cartesians(ra, dec)
     cartesianClause = 'and (cx * %.17f + cy * %.17f + cz * %.17f >= cos(%.17f))' % (
-        cartesians[0], cartesians[1], cartesians[2], math.radians(radius / 3600.0))
+        cartesians[0], cartesians[1], cartesians[2], math.radians(radius))
 
     columns = ['*']
 
