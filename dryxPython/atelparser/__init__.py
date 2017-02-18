@@ -201,7 +201,7 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
 
         # ATEL TITLE
         reTitle = re.compile(
-            r'<TITLE>.*?#\d{1,4}:\s?(.*?)\s?<\/TITLE>', re.M | re.I)
+            r'<TITLE>.*?#\d{1,5}:\s?(.*?)\s?<\/TITLE>', re.M | re.I)
         try:
             title = reTitle.search(html).group(1)
         except:
@@ -213,7 +213,7 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
 
         # ATEL NUMBER
         reAtelNumber = re.compile(
-            r'<P ALIGN=CENTER>\s?ATel\s?#(\d{1,4})', re.M | re.I)
+            r'<P ALIGN=CENTER>\s?ATel\s?#(\d{1,5})', re.M | re.I)
         try:
             atelNumber = reAtelNumber.search(html).group(1)
         except:
@@ -270,7 +270,7 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
         # FIND REFS IN USER ADDED TEXT
         refList = []
         reOneRef = re.compile(
-            r'http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,4})', re.M | re.I)
+            r'http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,5})', re.M | re.I)
         try:
             refIter = reOneRef.finditer(userText)
         except:
@@ -293,7 +293,7 @@ def atels_to_database(dbConn, log, dbTableName, downloadDirectory):
             backRefs = None
         backRefList = []
         reOneBackRef = re.compile(
-            r'<A HREF="http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,4})">\1</a>', re.M | re.I)
+            r'<A HREF="http:\/\/www.astronomerstelegram.org\/\?read=(\d{1,5})">\1</a>', re.M | re.I)
         try:
             backRefIter = reOneBackRef.finditer(backRefs)
         except:
