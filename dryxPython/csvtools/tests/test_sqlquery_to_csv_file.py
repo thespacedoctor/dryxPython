@@ -12,7 +12,7 @@ utKit.tearDownModule()
 # x-class-to-test-main-command-line-function-of-module
 
 
-class test_sqlquery_to_csv_file():
+class test_sqlquery_to_csv_file(unittest.TestCase):
 
     def test_sqlquery_to_csv_file_function(self):
         kwargs = {}

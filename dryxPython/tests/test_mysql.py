@@ -52,7 +52,7 @@ def setUpModule():
     log = logging.getLogger(__name__)
 
     # SETUP DB CONNECTION
-    import MySQLdb as ms
+    import pymysql as ms
     dbConfig = """
     version: 1
     db: pessto_marshall_sandbox
@@ -150,7 +150,7 @@ class emptyLogger:
     warning = None
 
 
-class test_convert_dictionary_to_mysql_table():
+class test_convert_dictionary_to_mysql_table(unittest.TestCase):
 
     def test_raise_error_if_dbConn_is_not_a_working_db_connection(self):
         kwargs = {}
@@ -229,7 +229,7 @@ class test_convert_dictionary_to_mysql_table():
         mysql.convert_dictionary_to_mysql_table(**kwargs)
 
 
-class test_add_HTMIds_to_mysql_tables():
+class test_add_HTMIds_to_mysql_tables(unittest.TestCase):
 
     def test_table_exits(self):
         kwargs = {}

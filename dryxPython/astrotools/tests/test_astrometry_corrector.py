@@ -3,7 +3,7 @@ import nose
 from .. import astrometry_corrector
 from ... import utKit
 
-## SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
+# SETUP AND TEARDOWN FIXTURE FUNCTIONS FOR THE ENTIRE MODULE
 moduleDirectory = os.path.dirname(__file__)
 utKit = utKit.utKit(moduleDirectory)
 log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
@@ -12,7 +12,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_astrometry_corrector():
+class test_astrometry_corrector(unittest.TestCase):
 
     def test_astrometry_corrector_function(self):
         kwargs = {}

@@ -17,7 +17,7 @@
 
 import sys
 import os
-import MySQLdb
+import pymysql
 import time
 
 ############################################
@@ -67,7 +67,7 @@ def set_db_connection(pathToYamlFile):
     # # IMPORTS ##
     import logging
     import yaml
-    import MySQLdb as ms
+    import pymysql as ms
 
     import sys
     # # IMPORT THE YAML CONNECTION DICTIONARY ##
@@ -127,9 +127,9 @@ def execute_mysql_write_query(
                 - ``None`` """
 
     # # > IMPORTS ##
-    import MySQLdb
+    import pymysql
     import warnings
-    warnings.filterwarnings('error', category=MySQLdb.Warning)
+    warnings.filterwarnings('error', category=pymysql.Warning)
     # ##########################################################
     # >ACTION(S)                                              #
     # ##########################################################
@@ -138,7 +138,7 @@ def execute_mysql_write_query(
     log.debug('starting execute_mysql_write_query')
     message = ""
     try:
-        cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
+        cursor = dbConn.cursor(pymysql.cursors.DictCursor)
     except Exception as e:
         log.error('could not create the database cursor.')
     # EXECUTE THE SQL COMMAND
@@ -159,7 +159,7 @@ def execute_mysql_write_query(
                 if len(thisList) < batch:
                     stop = 1
 
-    except MySQLdb.Error as e:
+    except pymysql.Error as e:
         if e[0] == 1050 and 'already exists' in e[1]:
             log.info(str(e) + '\n')
         elif e[0] == 1062:
@@ -185,15 +185,15 @@ def execute_mysql_write_query(
             log.error('%s\n Here is the sqlquery:\n%s' % (str(e), sqlQuery))
             if manyValueList:
                 log.error('... and the values:\n%s' % (thisList, ))
-    	elif "Duplicate" in str(e) and "ignore" in sqlQuery.lower():
+        elif "Duplicate" in str(e) and "ignore" in sqlQuery.lower():
             pass
-	else:
+        else:
             sqlQuery = sqlQuery[:2000]
             log.error(
                 'MySQL write command not executed for this query: << %s >>\nThe error was: %s ' %
                 (sqlQuery, str(e)))
             if Force == False:
-		sys.exit(0)
+                sys.exit(0)
             return -1
     # CLOSE THE CURSOR
     cOpen = True
@@ -244,7 +244,7 @@ def execute_mysql_read_query(
     # ##########################################################
     # CREATE DB CURSOR
     try:
-        cursor = dbConn.cursor(MySQLdb.cursors.DictCursor)
+        cursor = dbConn.cursor(pymysql.cursors.DictCursor)
     except Exception as e:
         log.error('could not create the database cursor: %s' % (e, ))
         raise IOError('could not create the database cursor: %s' % (e, ))
@@ -300,7 +300,7 @@ def convert_dictionary_to_mysql_table(
         - ``None`` """
 
     # # >IMPORTS ##
-    import MySQLdb as mdb
+    import pymysql as mdb
     import re
     import yaml
     import time

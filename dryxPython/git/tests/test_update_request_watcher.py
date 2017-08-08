@@ -11,7 +11,7 @@ log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
 utKit.tearDownModule()
 
 
-class test_command_line():
+class test_command_line(unittest.TestCase):
 
     def test_command_line_method_01(self):
         kwargs = {}

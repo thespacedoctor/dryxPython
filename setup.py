@@ -35,8 +35,8 @@ setup(name='dryxPython',
           'mysql-python',
           'eventlet'
       ],
-      test_suite='nose.collector',
-      tests_require=['nose', 'nose-cover3'],
+      test_suite='nose2.collector.collector',
+      tests_require=['nose2', 'cov-core'],
       entry_points={
           'console_scripts': [
               'py_get_help_for_python_module=dryxPython.command_line:get_help_for_python_module',

@@ -12,7 +12,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_vizier():
+class test_vizier(unittest.TestCase):
 
     def test_vizier_function(self):
         kwargs = {}

@@ -10,7 +10,7 @@ log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
 utKit.tearDownModule()
 
 
-class test_command_line():
+class test_command_line(unittest.TestCase):
 
     def test_command_line_method_01(self):
         kwargs = {}
@@ -21,7 +21,7 @@ class test_command_line():
     # x-class-method-to-test-a-command-line-usage
 
 
-# class test_convert_mysql_database_to_innodb():
+# class test_convert_mysql_database_to_innodb(unittest.TestCase):
 
 #     def test_convert_mysql_database_to_innodb_function(self):
 #         kwargs = {}

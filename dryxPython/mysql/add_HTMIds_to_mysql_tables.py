@@ -162,7 +162,7 @@ def add_HTMIds_to_mysql_tables(
         - ``None``"""
 
     ## IMPORTS ##
-    import MySQLdb as ms
+    import pymysql as ms
     import dryxPython.mysql as m
     from dryxPython.kws import utils as u
 
@@ -265,6 +265,7 @@ def add_HTMIds_to_mysql_tables(
             sys.stdout.write("\x1b[1A\x1b[2K")
         if count > totalCount:
             count = totalCount
+
         print "%(count)s / %(totalCount)s htmIds added to %(tableName)s" % locals()
 
         # SELECT THE ROWS WHERE THE HTMIds ARE NOT SET

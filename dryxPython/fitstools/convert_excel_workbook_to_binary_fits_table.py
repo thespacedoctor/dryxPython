@@ -257,8 +257,8 @@ class convert_excel_workbook_to_binary_fits_table():
                 value = True
             if isinstance(value, str) or isinstance(value, unicode):
                 value = value.strip()
-                if not len(value):
-                    continue
+                # if not len(value):
+                #     continue
                 if value == 'T' or value.lower() == 'true':
                     value = True
                 elif value == 'F' or value.lower() == 'false':
@@ -404,6 +404,7 @@ class convert_excel_workbook_to_binary_fits_table():
                         cellValue = None
 
                     colValues.append(cellValue)
+
                 # FIND TYPE NUMBER
                 colType = typesDict[colName]
                 colTypeIndex = int(colType.replace("TTYPE", ""))
@@ -416,6 +417,7 @@ class convert_excel_workbook_to_binary_fits_table():
                 else:
                     colNull = None
                 colValues = np.array(colValues)
+
                 masterColDict[colTypeIndex] = {"name": colName,
                                                "type": colType, "form": colForm, "array": colValues, "null": colNull}
                 if "mjd" in colName.lower():
@@ -425,12 +427,13 @@ class convert_excel_workbook_to_binary_fits_table():
         # sort masterColDict by keys
         import collections
         omasterColDict = collections.OrderedDict(sorted(masterColDict.items()))
+
         for k, v in omasterColDict.iteritems():
             try:
                 self.log.debug(
                     "attempting to generate the column for the FITS binary table")
                 thisColumn = pf.Column(
-                    name=v["name"], format=v["form"], array=v["array"], null=v["null"])
+                    name=str(v["name"]), format=v["form"], array=v["array"], null=v["null"])
             except Exception, e:
                 self.log.debug(v["name"])
                 self.log.debug(v["form"])
@@ -440,7 +443,10 @@ class convert_excel_workbook_to_binary_fits_table():
                     "could not generate the column for the FITS binary table - failed with this error: %s " % (str(e),))
                 sys.exit(0)
 
+            print thisColumn
+
             allColumns.append(thisColumn)
+        print allColumns
         binTableHdu = pf.BinTableHDU.from_columns(allColumns)
 
         self.log.info('completed the ``_generate_data_table_unit`` method')

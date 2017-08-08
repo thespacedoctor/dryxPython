@@ -8,20 +8,20 @@ from datetime import datetime
 import math
 import warnings
 warnings.filterwarnings(
-    'ignore', '.*the sets module is deprecated.*', DeprecationWarning, 'MySQLdb')
+    'ignore', '.*the sets module is deprecated.*', DeprecationWarning, 'pymysql')
 
 
 def dbConnect(lhost, luser, lpasswd, ldb, quitOnError=True):
-    import MySQLdb
+    import pymysql
 
     try:
-        conn = MySQLdb.connect(host=lhost,
+        conn = pymysql.connect(host=lhost,
                                user=luser,
                                passwd=lpasswd,
                                db=ldb,
                                use_unicode=True,
                                charset='utf8')
-    except MySQLdb.Error, e:
+    except pymysql.Error, e:
         print "Error %d: %s" % (e.args[0], e.args[1])
         if quitOnError:
             sys.exit(1)
@@ -366,7 +366,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
 
     # radius = radius / 3600.0
     # 2012-02-02 KWS Require database connections for cone searching
-    import MySQLdb
+    import pymysql
 
     # 2012-02-02 KWS Introduced a new SWIG htmCircle library for cone searching
     import htmCircle
@@ -430,7 +430,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
             if django:
                 cursor = conn.cursor()
             else:
-                cursor = conn.cursor(MySQLdb.cursors.DictCursor)
+                cursor = conn.cursor(pymysql.cursors.DictCursor)
 
             cursor.execute(query)
 
@@ -440,7 +440,7 @@ def coneSearch(ra, dec, radius, tableName, htmLevel=16, queryType=QUICK, conn=No
             else:
                 resultSet = cursor.fetchall()
 
-        except MySQLdb.Error, e:
+        except pymysql.Error, e:
             return "Error %d: %s" % (e.args[0], e.args[1]), []
 
         if resultSet:

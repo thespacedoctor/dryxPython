@@ -73,7 +73,7 @@ class emptyLogger:
     warning = None
 
 
-class test_fits_print_fits_header():
+class test_fits_print_fits_header(unittest.TestCase):
 
     def test_result_to_python_dictionary(self):
         clArgs = {}

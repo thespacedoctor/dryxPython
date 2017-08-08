@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_mjd_to_date():
+class test_mjd_to_date(unittest.TestCase):
 
     def test_mjd_to_date_function(self):
         kwargs = {}

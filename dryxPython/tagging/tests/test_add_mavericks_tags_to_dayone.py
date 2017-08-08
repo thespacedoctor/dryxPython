@@ -80,7 +80,7 @@ def tearDownModule():
     return None
 
 
-class test_command_line():
+class test_command_line(unittest.TestCase):
 
     def test_command_line_method_01(self):
         kwargs = {}

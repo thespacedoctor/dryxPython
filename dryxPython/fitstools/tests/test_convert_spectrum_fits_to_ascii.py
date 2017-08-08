@@ -30,7 +30,7 @@ log, dbConn, pathToInputDir, pathToOutputDir = utKit.setupModule()
 utKit.tearDownModule()
 
 
-class test_convert_spectrum_fits_to_ascii():
+class test_convert_spectrum_fits_to_ascii(unittest.TestCase):
 
     def test_convert_spectrum_fits_to_ascii_function(self):
         kwargs = {}

@@ -12,7 +12,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_ads_query():
+class test_ads_query(unittest.TestCase):
 
     # def test_ads_query_function(self):
     #     kwargs = {}

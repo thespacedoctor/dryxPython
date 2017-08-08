@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_ned():
+class test_ned(unittest.TestCase):
 
     def test_ned_function(self):
         kwargs = {}
