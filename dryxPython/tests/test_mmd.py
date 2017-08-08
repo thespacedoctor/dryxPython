@@ -69,7 +69,7 @@ class emptyLogger:
     warning = None
 
 
-class test_convert_to_html():
+class test_convert_to_html(unittest.TestCase):
 
     def test_convert_to_html_works_as_expected(self):
         kwargs = {}

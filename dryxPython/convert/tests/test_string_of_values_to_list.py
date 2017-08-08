@@ -64,7 +64,7 @@ def tearDownModule():
 # x-class-to-test-main-command-line-function-of-module
 
 
-class test_string_of_values_to_list():
+class test_string_of_values_to_list(unittest.TestCase):
 
     def test_string_of_values_to_list_function01(self):
         kwargs = {}

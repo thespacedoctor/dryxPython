@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_minor_planet_checker():
+class test_minor_planet_checker(unittest.TestCase):
 
     def test_minor_planet_checker_function(self):
         kwargs = {}

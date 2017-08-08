@@ -72,7 +72,7 @@ def tearDownModule():
     return None
 
 
-class test_tag_file():
+class test_tag_file(unittest.TestCase):
 
     def test_tag_file_function(self):
         kwargs = {}

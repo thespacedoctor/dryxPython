@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_download_google_sheet():
+class test_download_google_sheet(unittest.TestCase):
 
     def test_download_google_sheet_function(self):
         kwargs = {}

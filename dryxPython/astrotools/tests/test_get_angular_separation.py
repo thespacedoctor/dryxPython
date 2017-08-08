@@ -13,7 +13,7 @@ utKit.tearDownModule()
 # xnose-class-to-test-main-command-line-function-of-module
 
 
-class test_get_angular_separation():
+class test_get_angular_separation(unittest.TestCase):
 
     def test_get_angular_separation_function(self):
         kwargs = {}

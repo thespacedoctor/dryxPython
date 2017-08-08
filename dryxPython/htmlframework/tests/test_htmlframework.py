@@ -79,7 +79,7 @@ class emptyLogger:
     warning = None
 
 
-class test_0001_htmlDocument():
+class test_0001_htmlDocument(unittest.TestCase):
 
     def test_htmlDocument_works_as_expected(self):
         content = ""

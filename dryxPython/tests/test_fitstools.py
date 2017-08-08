@@ -72,7 +72,7 @@ class emptyLogger:
     warning = None
 
 
-class test_convert_fits_header_to_dictionary():
+class test_convert_fits_header_to_dictionary(unittest.TestCase):
 
     def test_pathToFitsFile_argu_is_str(self):
         nose.tools.assert_raises(

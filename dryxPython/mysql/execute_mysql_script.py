@@ -90,7 +90,7 @@ def main(arguments=None):
         passwd = arguments["--passwd"]
         dbName = arguments["--dbName"]
     if dbConn:
-        import MySQLdb as ms
+        import pymysql as ms
         dbConn = ms.connect(
             host=host,
             user=user,
