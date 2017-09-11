@@ -23,6 +23,8 @@ html_test_coverage_report/
 /*.egg-info
 /*.egg
 
+build
+
 
 git_update_script.py
 */tests/output/*
