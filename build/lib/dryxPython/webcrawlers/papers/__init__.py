@@ -1,2 +1,0 @@
-
-import ads_query

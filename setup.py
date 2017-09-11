@@ -29,7 +29,6 @@ setup(name='dryxPython',
       install_requires=[
           'pyyaml',
           'docopt',
-          'numpy',
           'pdfkit',
           'gdata',
           'mysql-python',

@@ -131,9 +131,11 @@ def plot_polynomial(
     ax = plt.subplot(111)
 
     if len(xRange) == 2:
-        xRange.append(1)
+        x = np.arange(xRange[0] * 4, xRange[1] * 4, 1)
+        x = x / 4.
+    else:
+        x = np.arange(xRange[0], xRange[1], xRange[2])
 
-    x = np.arange(xRange[0], xRange[1], xRange[2])
     if xAxisLimits:
         ax.set_xlim(xAxisLimits[0], xAxisLimits[1])
     else:
