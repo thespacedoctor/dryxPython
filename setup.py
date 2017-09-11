@@ -10,7 +10,7 @@ def readme():
 
 
 setup(name='dryxPython',
-      version='1.1.0',
+      version='2.0.0',
       description='A collection of useful commonly used python modules',
       long_description=readme(),
       classifiers=[
