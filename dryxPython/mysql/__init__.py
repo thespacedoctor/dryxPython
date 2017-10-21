@@ -90,9 +90,9 @@ def set_db_connection(pathToYamlFile):
             passwd=connDict['password'],
             db=connDict['db'],
             use_unicode=True,
-            charset='utf8'
+            charset='utf8',
+            autocommit=True
         )
-        dbConn.autocommit(True)
     except Exception as e:
         logging.critical('could not connect to the ' + connDict['db'] + ' database on ' + connDict['host'] + ' : '
                          + str(e) + '\n')
