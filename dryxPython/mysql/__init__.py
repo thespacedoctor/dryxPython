@@ -633,6 +633,8 @@ def convert_dictionary_to_mysql_table(
             dbConn,
             log
         )
+        if "PS17etr" in addValue:
+            print addValue
 
     except Exception as e:
         log.error("could not add new data added to the table '" +
