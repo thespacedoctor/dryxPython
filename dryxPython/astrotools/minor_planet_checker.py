@@ -194,7 +194,7 @@ class minor_planet_checker():
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         self._send_request_to_minor_planet_centre()
         self._check_mp_match()
@@ -202,7 +202,7 @@ class minor_planet_checker():
         if not self.moverName:
             self.moverName = "NO MPC MATCH FOUND"
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return self.moverName
 
     def _send_request_to_minor_planet_centre(
@@ -221,8 +221,8 @@ class minor_planet_checker():
             - @review: when complete, clean _send_request_to_minor_planet_centre method
             - @review: when complete add logging
         """
-        self.log.info(
-            'starting the ``_send_request_to_minor_planet_centre`` method')
+        self.log.debug(
+            'completed the ````_send_request_to_minor_planet_centre`` method')
 
         ra = self.ra
         dec = self.dec
@@ -320,7 +320,7 @@ class minor_planet_checker():
             print "Something went horribly wrong."
             print e
 
-        self.log.info(
+        self.log.debug(
             'completed the ``_send_request_to_minor_planet_centre`` method')
         return mpInfo
 
@@ -342,7 +342,7 @@ class minor_planet_checker():
             - @review: when complete, clean _extract_mp_info method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``_extract_mp_info`` method')
+        self.log.debug('starting the ``_extract_mp_info`` method')
 
         from BeautifulSoup import BeautifulSoup
         movers = []
@@ -374,7 +374,7 @@ class minor_planet_checker():
 
         self.movers = movers
 
-        self.log.info('completed the ``_extract_mp_info`` method')
+        self.log.debug('completed the ``_extract_mp_info`` method')
         return
 
     # use the tab-trigger below for new method
@@ -396,13 +396,13 @@ class minor_planet_checker():
             - @review: when complete, clean _slice_string method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``_slice_string`` method')
+        self.log.debug('starting the ``_slice_string`` method')
 
         position = 0
         for length in args:
             yield s[position:position + length].strip()
             position += length
-        self.log.info('completed the ``_slice_string`` method')
+        self.log.debug('completed the ``_slice_string`` method')
 
     # use the tab-trigger below for new method
     def _check_mp_match(
@@ -421,7 +421,7 @@ class minor_planet_checker():
             - @review: when complete, clean _check_mp_match method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``_check_mp_match`` method')
+        self.log.debug('starting the ``_check_mp_match`` method')
 
         moverName = None
 
@@ -455,7 +455,7 @@ class minor_planet_checker():
 
         self.moverName = moverName
 
-        self.log.info('completed the ``_check_mp_match`` method')
+        self.log.debug('completed the ``_check_mp_match`` method')
         return None
 
     # use the tab-trigger below for new method

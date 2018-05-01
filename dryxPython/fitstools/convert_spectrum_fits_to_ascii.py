@@ -171,7 +171,7 @@ class convert_spectrum_fits_to_ascii():
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         self.convert(
             log=self.log,
@@ -179,7 +179,7 @@ class convert_spectrum_fits_to_ascii():
             fluxScalingFactor=False
         )
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return convert_spectrum_fits_to_ascii
 
     def convert(

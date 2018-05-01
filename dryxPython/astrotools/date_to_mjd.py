@@ -157,7 +157,7 @@ class date_to_mjd():
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         import time
         mjd = None
@@ -181,7 +181,7 @@ class date_to_mjd():
         unixtime = int(time.mktime(t))
         mjd = unixtime / 86400.0 - 2400000.5 + 2440587.5
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return mjd
     # xt-class-method
 

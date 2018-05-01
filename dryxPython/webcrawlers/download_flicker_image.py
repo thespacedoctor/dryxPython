@@ -153,11 +153,11 @@ class download_flicker_image():
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         self._find_image_link_in_flicker_html()
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return None
 
     def get_url(
@@ -176,8 +176,8 @@ class download_flicker_image():
             - @review: when complete, clean _find_image_link_in_flicker_html method
             - @review: when complete add logging
         """
-        self.log.info(
-            'starting the ``_find_image_link_in_flicker_html`` method')
+        self.log.debug(
+            'completed the ````_find_image_link_in_flicker_html`` method')
 
         url = False
         urlDoc = singleWebDocumentDownloader(
@@ -213,7 +213,7 @@ class download_flicker_image():
         if matchObject:
             url = matchObject.group("url").replace("\/", "/")
 
-        self.log.info(
+        self.log.debug(
             'completed the ``_find_image_link_in_flicker_html`` method')
         return url
 

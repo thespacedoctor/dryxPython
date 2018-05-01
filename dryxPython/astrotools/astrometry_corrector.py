@@ -194,7 +194,7 @@ class WcsModel(object):
             - @review: when complete, clean calc_pix method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``calc_pix`` method')
+        self.log.debug('starting the ``calc_pix`` method')
 
         # get single parameters
         d_ra, d_dec, d_theta = pars
@@ -212,7 +212,7 @@ class WcsModel(object):
         varToPrint = self.pix0.flatten()
         self.log.debug('pix0: %(varToPrint)s' % locals())
 
-        self.log.info('completed the ``calc_pix`` method')
+        self.log.debug('completed the ``calc_pix`` method')
 
         return pix.flatten()
 
@@ -238,14 +238,14 @@ class WcsModel(object):
             - @review: when complete, clean calc_resid2 method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``calc_resid2`` method')
+        self.log.debug('starting the ``calc_resid2`` method')
 
         pix = self.calc_pix(pars)
         resid2 = np.sum((self.pix0 - pix) ** 2)  # assumes uniform errors
 
         self.log.debug('resid2: %(resid2)s' % locals())
 
-        self.log.info('completed the ``calc_resid2`` method')
+        self.log.debug('completed the ``calc_resid2`` method')
         return resid2
 
     # use the tab-trigger below for new method
@@ -301,14 +301,14 @@ def astrometry_corrector(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``astrometry_corrector`` function')
+    log.debug('starting the ``astrometry_corrector`` function')
 
     img_hdu, hdulist, wcs_img = read_fits(log, infile, hdu)
     new_wcs = match_wcs(log, wcs_img, sky_img, sky_ref, opt_alg)
     update_header_wcs(log, img_hdu, new_wcs)
     write_fits(log, hdulist, outfile)
 
-    log.info('completed the ``astrometry_corrector`` function')
+    log.debug('completed the ``astrometry_corrector`` function')
     return None
 
 # LAST MODIFIED : May 15, 2014
@@ -342,7 +342,7 @@ def match_wcs(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``match_wcs`` function')
+    log.debug('starting the ``match_wcs`` function')
 
     pix_img = wcs_img.wcs_sky2pix(sky_img, 1)
     wcsmodel = WcsModel(log, wcs_img, sky_ref, pix_img)
@@ -364,7 +364,7 @@ def match_wcs(
         d_ra, d_dec, d_theta = scipy.optimize.fmin(wcsmodel.calc_resid2, x0)
         print 'Scipy fit values:', d_ra, d_dec, d_theta
 
-    log.info('completed the ``match_wcs`` function')
+    log.debug('completed the ``match_wcs`` function')
     return wcsmodel.wcs
 
 
@@ -393,13 +393,13 @@ def rotate(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``rotate`` function')
+    log.debug('starting the ``rotate`` function')
 
     rads = radians(degs)
     s = sin(rads)
     c = cos(rads)
 
-    log.info('completed the ``rotate`` function')
+    log.debug('completed the ``rotate`` function')
     return np.array([[c, -s], [s, c]])
 
 # use the tab-trigger below for new function
@@ -433,7 +433,7 @@ def read_fits(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``read_fits`` function')
+    log.debug('starting the ``read_fits`` function')
 
     hdulist = pyfits.open(name)
     img_hdu = hdulist[hdu]
@@ -443,7 +443,7 @@ def read_fits(
     # thisString = wcs.wcs.print_contents()
     # log.info('original wcs: %(thisString)s' % locals())
 
-    log.info('completed the ``read_fits`` function')
+    log.debug('completed the ``read_fits`` function')
     return img_hdu, hdulist, wcs
 
 # use the tab-trigger below for new function
@@ -478,11 +478,11 @@ def write_fits(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``write_fits`` function')
+    log.debug('starting the ``write_fits`` function')
 
     hdulist.writeto(name, clobber=clobber, checksum=checksum)
 
-    log.info('completed the ``write_fits`` function')
+    log.debug('completed the ``write_fits`` function')
     return None
 
 # use the tab-trigger below for new function
@@ -517,7 +517,7 @@ def update_header_wcs(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``update_header_wcs`` function')
+    log.debug('starting the ``update_header_wcs`` function')
     hdr = hdu.header
     hdr['CRVAL1'] = wcs.wcs.crval[0]
     hdr['CRVAL2'] = wcs.wcs.crval[1]
@@ -532,7 +532,7 @@ def update_header_wcs(
         hdr['PC2_1'] = wcs.wcs.pc[1, 0]
         hdr['PC2_2'] = wcs.wcs.pc[1, 1]
 
-    log.info('completed the ``update_header_wcs`` function')
+    log.debug('completed the ``update_header_wcs`` function')
     return None
 
 # use the tab-trigger below for new function
@@ -561,7 +561,7 @@ def create_parameter_file(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``create_parameter_file`` function')
+    log.debug('starting the ``create_parameter_file`` function')
 
     pwd = os.getcwd()
     parameterFilename = os.path.splitext(parameterFilename)[0]
@@ -570,7 +570,7 @@ def create_parameter_file(
     src = """%(moduleDirectory)s/resources/astrometry_corrector_tmpx.yaml""" % locals()
     shutil.copyfile(src, parameterFilename)
 
-    log.info('completed the ``create_parameter_file`` function')
+    log.debug('completed the ``create_parameter_file`` function')
     return None
 
 # use the tab-trigger below for new function
@@ -603,7 +603,7 @@ def astrometry_corrector_from_yaml(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``astrometry_corrector_from_yaml`` function')
+    log.debug('starting the ``astrometry_corrector_from_yaml`` function')
 
     pwd = os.getcwd()
     yamlFile = pwd + "/%(yamlFile)s" % locals()
@@ -675,7 +675,7 @@ def astrometry_corrector_from_yaml(
     destination = "%(pwd)s/original_fits/%(basename)s" % locals()
     os.rename(source, destination)
 
-    log.info('completed the ``astrometry_corrector_from_yaml`` function')
+    log.debug('completed the ``astrometry_corrector_from_yaml`` function')
     return None
 
 # use the tab-trigger below for new function

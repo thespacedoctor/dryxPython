@@ -120,7 +120,7 @@ def get_angular_separation(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``get_angular_separation`` function')
+    log.debug('starting the ``get_angular_separation`` function')
 
     import dryxPython.astrotools as dat
 
@@ -177,7 +177,7 @@ def get_angular_separation(
     east = -(ra1 - ra2) * \
         math.cos((dec1 + dec2) * DEG_TO_RAD_FACTOR / 2.) * 3600.0
 
-    log.info('completed the ``get_angular_separation`` function')
+    log.debug('completed the ``get_angular_separation`` function')
     return angularSeparation, north, east
 
 # use the tab-trigger below for new function

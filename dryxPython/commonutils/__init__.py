@@ -541,7 +541,7 @@ def get_python_module_partials(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``get_python_module_partials`` function')
+    log.debug('starting the ``get_python_module_partials`` function')
     ## VARIABLES ##
     partialsDictionary = {}
 
@@ -572,7 +572,7 @@ def get_python_module_partials(
                 # print mod.__file__, importList
                 partialsDictionary[name] = importList
 
-    log.info('completed the ``get_python_module_partials`` function')
+    log.debug('completed the ``get_python_module_partials`` function')
     return partialsDictionary
 
 
@@ -603,8 +603,8 @@ def get_recursive_list_of_directory_contents(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info(
-        'starting the ``get_recursive_list_of_directory_contents`` function')
+    log.debug(
+        'completed the ````get_recursive_list_of_directory_contents`` function')
 
     ## VARIABLES ##
     matchedPathList = []
@@ -641,7 +641,7 @@ def get_recursive_list_of_directory_contents(
 
                 parentDirectoryList = childDirList
 
-    log.info(
+    log.debug(
         'completed the ``get_recursive_list_of_directory_contents`` function')
     return matchedPathList
 
@@ -673,13 +673,13 @@ def get_help_for_python_module(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``get_help_for_python_module`` function')
+    log.debug('starting the ``get_help_for_python_module`` function')
     ## VARIABLES ##
 
     basename = os.path.basename(pathToModuleFile).replace(".py")
     print basename
 
-    log.info('completed the ``get_help_for_python_module`` function')
+    log.debug('completed the ``get_help_for_python_module`` function')
     return None
 
 # LAST MODIFIED : July 22, 2013
@@ -710,7 +710,7 @@ def recursively_remove_empty_directories(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``recursively_remove_empty_directories`` function')
+    log.debug('starting the ``recursively_remove_empty_directories`` function')
     ## VARIABLES ##
 
     count = 0
@@ -746,7 +746,7 @@ def recursively_remove_empty_directories(
                 except:
                     pass
 
-    log.info('completed the ``recursively_remove_empty_directories`` function')
+    log.debug('completed the ``recursively_remove_empty_directories`` function')
     return None
 
 if __name__ == '__main__':

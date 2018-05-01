@@ -152,7 +152,7 @@ def get_outliers_from_list(
 
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``get_outliers_from_list`` function')
+    log.debug('starting the ``get_outliers_from_list`` function')
     # TEST THE ARGUMENTS
     listArray = np.array(alist)
     mean = np.mean(listArray)
@@ -173,7 +173,7 @@ def get_outliers_from_list(
 
     ## VARIABLES ##
 
-    log.info('completed the ``get_outliers_from_list`` function')
+    log.debug('completed the ``get_outliers_from_list`` function')
     return mean, rms_scatter, outliers
 
 # use the tab-trigger below for new function

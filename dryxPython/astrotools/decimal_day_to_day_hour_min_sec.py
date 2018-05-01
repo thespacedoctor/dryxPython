@@ -73,7 +73,7 @@ def decimal_day_to_day_hour_min_sec(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``decimal_day_to_day_hour_min_sec`` function')
+    log.debug('starting the ``decimal_day_to_day_hour_min_sec`` function')
 
     daysInt = int(daysFloat)
     hoursFloat = (daysFloat - daysInt) * 24.
@@ -82,7 +82,7 @@ def decimal_day_to_day_hour_min_sec(
     minsInt = int(minsFloat)
     secFloat = (minsFloat - minsInt) * 60.
 
-    log.info('completed the ``decimal_day_to_day_hour_min_sec`` function')
+    log.debug('completed the ``decimal_day_to_day_hour_min_sec`` function')
     return daysInt, hoursInt, minsInt, secFloat
 
 # use the tab-trigger below for new function

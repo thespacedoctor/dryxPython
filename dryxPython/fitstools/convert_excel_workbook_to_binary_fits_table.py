@@ -176,7 +176,7 @@ class convert_excel_workbook_to_binary_fits_table():
         .. todo::
 
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         # generate the prinary header HDU
         primaryHeader = self._generate_fits_header(
@@ -204,7 +204,7 @@ class convert_excel_workbook_to_binary_fits_table():
         self.hduList = hduList
         self._write_fits_file()
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return None
 
     def _generate_fits_header(
@@ -224,7 +224,7 @@ class convert_excel_workbook_to_binary_fits_table():
         .. todo::
 
         """
-        self.log.info('starting the ``_generate_fits_header`` method')
+        self.log.debug('starting the ``_generate_fits_header`` method')
 
         # GENERATE THE FITS HEADER
         if primary:
@@ -287,7 +287,7 @@ class convert_excel_workbook_to_binary_fits_table():
                 card = pf.Card(keyword, value, comment)
                 fitsHeader.append(card)
 
-        self.log.info('completed the ``_generate_fits_header`` method')
+        self.log.debug('completed the ``_generate_fits_header`` method')
         return fitsHeader
 
     def _write_fits_file(
@@ -303,7 +303,7 @@ class convert_excel_workbook_to_binary_fits_table():
         .. todo::
 
         """
-        self.log.info('starting the ``_write_fits_file`` method')
+        self.log.debug('starting the ``_write_fits_file`` method')
 
         # build and fix HDU list
         hduList = pf.HDUList(self.hduList)
@@ -312,7 +312,7 @@ class convert_excel_workbook_to_binary_fits_table():
         # write to file
         hduList.writeto(self.pathToOutputFits, checksum=True, clobber=True)
 
-        self.log.info('completed the ``_write_fits_file`` method')
+        self.log.debug('completed the ``_write_fits_file`` method')
         return None
 
     def _generate_data_table_unit(
@@ -332,7 +332,7 @@ class convert_excel_workbook_to_binary_fits_table():
         .. todo::
 
         """
-        self.log.info('starting the ``_generate_data_table_unit`` method')
+        self.log.debug('starting the ``_generate_data_table_unit`` method')
 
         # read the format dictionary in from the extension header sheet
         for col in range(extSheet.ncols):
@@ -449,7 +449,7 @@ class convert_excel_workbook_to_binary_fits_table():
         print allColumns
         binTableHdu = pf.BinTableHDU.from_columns(allColumns)
 
-        self.log.info('completed the ``_generate_data_table_unit`` method')
+        self.log.debug('completed the ``_generate_data_table_unit`` method')
 
         return binTableHdu
 

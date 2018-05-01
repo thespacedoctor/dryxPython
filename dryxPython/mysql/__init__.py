@@ -90,9 +90,9 @@ def set_db_connection(pathToYamlFile):
             passwd=connDict['password'],
             db=connDict['db'],
             use_unicode=True,
-            charset='utf8',
-            autocommit=True
+            charset='utf8'
         )
+        dbConn.autocommit(True)
     except Exception as e:
         logging.critical('could not connect to the ' + connDict['db'] + ' database on ' + connDict['host'] + ' : '
                          + str(e) + '\n')
@@ -633,8 +633,6 @@ def convert_dictionary_to_mysql_table(
             dbConn,
             log
         )
-        if "PS17etr" in addValue:
-            print addValue
 
     except Exception as e:
         log.error("could not add new data added to the table '" +
@@ -774,7 +772,7 @@ def does_mysql_table_exist(
     ## STANDARD LIB ##
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
-    log.info('starting the ``does_mysql_table_exist`` function')
+    log.debug('starting the ``does_mysql_table_exist`` function')
     # TEST THE ARGUMENTS
 
     ## VARIABLES ##
@@ -794,7 +792,7 @@ def does_mysql_table_exist(
     else:
         tableExists = True
 
-    log.info('completed the ``does_mysql_table_exist`` function')
+    log.debug('completed the ``does_mysql_table_exist`` function')
     return tableExists
 
 # LAST MODIFIED : December 11, 2012
@@ -878,8 +876,8 @@ def insert_list_of_dictionaries_into_database(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info(
-        'starting the ``insert_list_of_dictionaries_into_database`` function')
+    log.debug(
+        'completed the ````insert_list_of_dictionaries_into_database`` function')
 
     if len(dictList) == 0:
         log.warning(
@@ -963,7 +961,7 @@ def insert_list_of_dictionaries_into_database(
             else:
                 inserted = True
 
-    log.info(
+    log.debug(
         'completed the ``insert_list_of_dictionaries_into_database`` function')
     return None
 

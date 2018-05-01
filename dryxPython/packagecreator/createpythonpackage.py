@@ -249,7 +249,7 @@ def createpythonsubpackage(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``createpythonsubpackage`` function')
+    log.debug('starting the ``createpythonsubpackage`` function')
 
     moduleDirectory = os.path.dirname(__file__)
     boilerplatePath = moduleDirectory + "/helper_files/subpackage_boilerplate"
@@ -272,7 +272,7 @@ def createpythonsubpackage(
         fromImport=False
     )
 
-    log.info('completed the ``createpythonsubpackage`` function')
+    log.debug('completed the ``createpythonsubpackage`` function')
     return None
 
 # LAST MODIFIED : October 25, 2013
@@ -308,7 +308,7 @@ def createpythonmodule(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``createpythonmodule`` function')
+    log.debug('starting the ``createpythonmodule`` function')
     # TEST THE ARGUMENTS
 
     moduleDirectory = os.path.dirname(__file__)
@@ -348,7 +348,7 @@ def createpythonmodule(
         fromImport=True
     )
 
-    log.info('completed the ``createpythonmodule`` function')
+    log.debug('completed the ``createpythonmodule`` function')
     return None
 
 # LAST MODIFIED : April 17, 2014
@@ -380,7 +380,7 @@ def create_git_repo(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``create_git_repo`` function')
+    log.debug('starting the ``create_git_repo`` function')
     # TEST THE ARGUMENTS
     os.chdir(pathToProjectRoot)
 
@@ -397,7 +397,7 @@ def create_git_repo(
     log.debug('output: %(output)s' % locals())
 
     ## VARIABLES ##
-    log.info('completed the ``create_git_repo`` function')
+    log.debug('completed the ``create_git_repo`` function')
     return None
 
 # use the tab-trigger below for new function
@@ -432,7 +432,7 @@ def append_import_to_init_file(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``append_import_to_init_file`` function')
+    log.debug('starting the ``append_import_to_init_file`` function')
     # Add the module to the __init__ file e.g. `import moduleNmae`
     pathToReadFile = pathToHostDirectory + "/__init__.py"
     try:
@@ -469,7 +469,7 @@ def append_import_to_init_file(
         raise IOError(message)
     writeFile.close()
 
-    log.info('completed the ``append_import_to_init_file`` function')
+    log.debug('completed the ``append_import_to_init_file`` function')
     return None
 
 # use the tab-trigger below for new function

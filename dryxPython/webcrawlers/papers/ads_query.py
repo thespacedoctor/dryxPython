@@ -125,7 +125,7 @@ def ads_query(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``ads_query`` function')
+    log.debug('starting the ``ads_query`` function')
 
     paperDictionary = {}
 
@@ -242,7 +242,7 @@ def ads_query(
         log.debug('authors: %(theseAuthors)s' % locals())
         paperDictionary[bibcode]["authors"] = theseAuthors
 
-    log.info('completed the ``ads_query`` function')
+    log.debug('completed the ``ads_query`` function')
     return paperDictionary
 
 # use the tab-trigger below for new function

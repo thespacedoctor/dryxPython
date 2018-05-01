@@ -87,13 +87,13 @@ class imagingModal():
         **Return:**
             - ``imageModal``
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         # create imaging modal and associated image and return them
         thisImage = self._create_image(width=self.stampWidth)
         thisModal = self._create_modal()
 
-        self.log.info('completed the ``get arse`` method')
+        self.log.debug('completed the ``get arse`` method')
         return thisImage + thisModal
 
     def _create_image(
@@ -107,7 +107,7 @@ class imagingModal():
         **Return:**
             - ``thisImage`` -- the image created
         """
-        self.log.info('starting the ``create_image`` method')
+        self.log.debug('starting the ``create_image`` method')
 
         #  add placeholder as default image
         if not self.imagePath:
@@ -135,7 +135,7 @@ class imagingModal():
             postInBackground=False,
         )
 
-        self.log.info('completed the ``create_image`` method')
+        self.log.debug('completed the ``create_image`` method')
         return thisImage
 
     def _create_modal(
@@ -149,7 +149,7 @@ class imagingModal():
         **Return:**
             - ``imageModal`` -- the image modal
         """
-        self.log.info('starting the ``create_modal`` method')
+        self.log.debug('starting the ``create_modal`` method')
 
         # grab the associated image and place in a wrapper row
         thisImage = self._create_image(width=self.modalImageWidth)
@@ -216,7 +216,7 @@ class imagingModal():
             htmlClass=False
         )
 
-        self.log.info('completed the ``create_modal`` method')
+        self.log.debug('completed the ``create_modal`` method')
         return imageModal
 
     # use the tab-trigger below for new method

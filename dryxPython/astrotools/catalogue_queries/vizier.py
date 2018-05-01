@@ -126,7 +126,7 @@ def vizier(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``vizier`` function')
+    log.debug('starting the ``vizier`` function')
 
     cat = {
         'usnoa2': ['I/252/out', 'USNO-A2.0', 'Rmag'],
@@ -165,7 +165,7 @@ def vizier(
         except:
             mag.append(float(9999))
 
-    log.info('completed the ``vizier`` function')
+    log.debug('completed the ``vizier`` function')
     return {'ra': ra, 'dec': dec, 'id': objectName, 'mag': mag}
 
 # use the tab-trigger below for new function

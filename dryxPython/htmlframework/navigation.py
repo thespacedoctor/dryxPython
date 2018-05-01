@@ -474,7 +474,7 @@ def is_navStyle_active(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``is_navStyle_active`` function')
+    log.debug('starting the ``is_navStyle_active`` function')
     ## VARIABLES ##
 
     if thisPageName == thisPageId:
@@ -482,7 +482,7 @@ def is_navStyle_active(
     else:
         navStyle = False
 
-    log.info('completed the ``is_navStyle_active`` function')
+    log.debug('completed the ``is_navStyle_active`` function')
     return navStyle
 
 ###################################################################

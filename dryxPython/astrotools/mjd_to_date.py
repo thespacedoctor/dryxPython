@@ -167,7 +167,7 @@ class mjd_to_date():
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         if self.fraction:
             return self._get_date_fractions()
@@ -177,7 +177,7 @@ class mjd_to_date():
         if self.sqlDate:
             thisDate = thisDate.replace(" ", "T")
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return thisDate
 
     def _mjd_to_date(
@@ -196,7 +196,7 @@ class mjd_to_date():
             - @review: when complete, clean _mjd_to_date method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``_mjd_to_date`` method')
+        self.log.debug('starting the ``_mjd_to_date`` method')
 
         unixtime = (self.mjd + 2400000.5 - 2440587.5) * 86400.0
         theDate = datetime.utcfromtimestamp(unixtime)
@@ -211,7 +211,7 @@ class mjd_to_date():
 
         theDate = theDate.strftime("%Y-%m-%d %H:%M:") + secs
 
-        self.log.info('completed the ``_mjd_to_date`` method')
+        self.log.debug('completed the ``_mjd_to_date`` method')
         return theDate
 
     # use the tab-trigger below for new method
@@ -231,7 +231,7 @@ class mjd_to_date():
             - @review: when complete, clean _get_date_fractions method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``_get_date_fractions`` method')
+        self.log.debug('starting the ``_get_date_fractions`` method')
 
         unixtime = (self.mjd + 2400000.5 - 2440587.5) * 86400.0
         theDate = datetime.utcfromtimestamp(unixtime)
@@ -241,7 +241,7 @@ class mjd_to_date():
             (24.0 * 60.0) + int(sec) / (24.0 * 60.0 * 60.0)
         dateFraction = "%s %s %05.2f" % (year, month, dayFraction)
 
-        self.log.info('completed the ``_get_date_fractions`` method')
+        self.log.debug('completed the ``_get_date_fractions`` method')
         return dateFraction
 
     # use the tab-trigger below for new method

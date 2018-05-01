@@ -36,7 +36,7 @@ def download_google_sheet(
     **Return:**
         - ``downloadFilepath`` -- the path the the downloaded CSV file
     """
-    log.info('starting the ``download_google_sheet`` function')
+    log.debug('starting the ``download_google_sheet`` function')
 
     log.debug(
         """Attempting to downloading the CSV file with id %(gdoc_id)s""" % locals())
@@ -64,5 +64,5 @@ def download_google_sheet(
     gd_client.Export(resource_id, downloadFilepath, gid=tab)
     gd_client.SetClientLoginToken(docs_token)
 
-    log.info('completed the ``download_google_sheet`` function')
+    log.debug('completed the ``download_google_sheet`` function')
     return downloadFilepath

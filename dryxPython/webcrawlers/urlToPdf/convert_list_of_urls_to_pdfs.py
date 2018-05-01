@@ -119,7 +119,7 @@ def convert_list_of_urls_to_pdfs(
         - @review: when complete add logging
         - @review: when complete, decide whether to abstract function to another module
     """
-    log.info('starting the ``convert_list_of_urls_to_pdfs`` function')
+    log.debug('starting the ``convert_list_of_urls_to_pdfs`` function')
 
     # wkhtmltopdf options
     options = {
@@ -178,7 +178,7 @@ def convert_list_of_urls_to_pdfs(
                         "could not rename file %s to %s - failed with this error: %s " % (source, destination, str(e),))
                     sys.exit(0)
 
-    log.info('completed the ``convert_list_of_urls_to_pdfs`` function')
+    log.debug('completed the ``convert_list_of_urls_to_pdfs`` function')
     return None
 
 # use the tab-trigger below for new function

@@ -92,7 +92,7 @@ class modalForm():
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         randNum = self.randNum
         modalTrigger = "modalTrigger%(randNum)s" % locals()
@@ -133,7 +133,7 @@ class modalForm():
 
         modalTrigger = "#%(modalTrigger)s" % locals()
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return modalForm, modalTrigger
 
     def add_form_object(
@@ -155,7 +155,7 @@ class modalForm():
             - @review: when complete, clean addFormObject method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``addFormObject`` method')
+        self.log.debug('starting the ``addFormObject`` method')
 
         randNum = self.randNum
         randId = "randId%(randNum)s" % locals()
@@ -176,7 +176,7 @@ class modalForm():
         )
         self.formContent = self.formContent + thisContentCG
 
-        self.log.info('completed the ``addFormObject`` method')
+        self.log.debug('completed the ``addFormObject`` method')
         return None
 
     # use the tab-trigger below for new method
@@ -197,7 +197,7 @@ class modalForm():
             - @review: when complete, clean get_form_action_buttons method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get_form_action_buttons`` method')
+        self.log.debug('starting the ``get_form_action_buttons`` method')
 
         cancel = button(
             buttonText='cancel',
@@ -238,7 +238,7 @@ class modalForm():
             format='default'  # [ default | toolbar | vertical ]
         )
 
-        self.log.info('completed the ``get_form_action_buttons`` method')
+        self.log.debug('completed the ``get_form_action_buttons`` method')
         return actionButtons
 
     # use the tab-trigger below for new method
@@ -260,7 +260,7 @@ class modalForm():
             - @review: when complete, clean add_hidden_parameter_value method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``add_hidden_parameter_value`` method')
+        self.log.debug('starting the ``add_hidden_parameter_value`` method')
 
         if isinstance(value, str):
             ttype = "text"
@@ -280,7 +280,7 @@ class modalForm():
         )
         self.hiddenParameterList.append(thisInput)
 
-        self.log.info('completed the ``add_hidden_parameter_value`` method')
+        self.log.debug('completed the ``add_hidden_parameter_value`` method')
         return None
 
     # use the tab-trigger below for new method
@@ -300,7 +300,7 @@ class modalForm():
             - @review: when complete, clean set_hidden_parameters method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``set_hidden_parameters`` method')
+        self.log.debug('starting the ``set_hidden_parameters`` method')
 
         thisControlRow = controlRow(
             inputList=self.hiddenParameterList
@@ -313,7 +313,7 @@ class modalForm():
 
         self.formContent = self.formContent + thisContentCG
 
-        self.log.info('completed the ``set_hidden_parameters`` method')
+        self.log.debug('completed the ``set_hidden_parameters`` method')
         return
 
     # use the tab-trigger below for new method

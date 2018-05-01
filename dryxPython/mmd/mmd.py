@@ -58,7 +58,7 @@ def convert_to_html(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``convert_to_html`` function')
+    log.debug('starting the ``convert_to_html`` function')
     # TEST THE ARGUMENTS
 
     ## GRAB THE CSS ##
@@ -136,7 +136,7 @@ def convert_to_html(
     writeFile.write(thisData)
     writeFile.close()
 
-    log.info('completed the ``convert_to_html`` function')
+    log.debug('completed the ``convert_to_html`` function')
     return pathToHtmlFile
 
 

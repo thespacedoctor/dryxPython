@@ -207,7 +207,7 @@ class shift_coordinates():
             - @review: when complete, clean get method
             - @review: when complete add logging
         """
-        self.log.info('starting the ``get`` method')
+        self.log.debug('starting the ``get`` method')
 
         dec2 = self.dec + self.north
 
@@ -215,7 +215,7 @@ class shift_coordinates():
             ((self.east) /
              (math.cos((self.dec + dec2) * self.DEG_TO_RAD_FACTOR / 2.)))
 
-        self.log.info('completed the ``get`` method')
+        self.log.debug('completed the ``get`` method')
         return ra2, dec2
     # xt-class-method
 

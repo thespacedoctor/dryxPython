@@ -76,7 +76,7 @@ def sqlquery_to_csv_file(
     ## THIRD PARTY ##
     ## LOCAL APPLICATION ##
 
-    log.info('starting the ``sqlquery_to_csv_file`` function')
+    log.debug('starting the ``sqlquery_to_csv_file`` function')
     rows = dms.execute_mysql_read_query(
         sqlQuery=sqlQuery,
         dbConn=dbConn,
@@ -212,7 +212,7 @@ def sqlquery_to_csv_file(
         )
         returnOutput = webpage
 
-    log.info('completed the ``sqlquery_to_csv_file`` function')
+    log.debug('completed the ``sqlquery_to_csv_file`` function')
     return returnOutput
 
 # use the tab-trigger below for new function
