@@ -473,7 +473,9 @@ def parse_atels(dbConn, log, mdFolder, reParse=False):
         r"""SN20\d{2}[a-zA-Z]{1,4}""",
         r"""TCP ?J\d{6,8}(-|–|\+)\d{6,8}""",
         r"""ATLAS\d{2}\w{1,8}""",
-        r"""AT20\d{2}[a-zA-Z]{1,4}"""
+        r"""AT20\d{2}[a-zA-Z]{1,4}""",
+        r"""SPIRITS ?1\d[a-zA-Z]{1,4}""",
+        r"""ZTF ?1\d[a-zA-Z]{1,15}""",
     ]
 
     # JOIN ALL THE NAMES INTO ONE STRING
