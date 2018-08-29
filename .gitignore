@@ -29,3 +29,5 @@ Gemfile.lock
 
 git_update_script.py
 */tests/output/*
+/dryxPython/tests/output/logs/apache_error.log
+/dryxPython/tests/output/logs/apache_access.log
